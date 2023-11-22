@@ -18,18 +18,21 @@ const options = {
   scales: {
     y: {
       beginAtZero: true,
+      grid: {
+        display: false,
+      }
     },
   },
 };
 
 const GrafikBulanan = () => {
   return (
-    <div className="bg-gray-200 text-black p-8 rounded-lg shadow-lg mt-6">
+    <div className="bg-white text-black p-6 rounded-lg">
       <div className="mb-1">
         <h1 className="text-2xl font-bold">Keuntungan</h1>
         <p className="text-lg">Bulan Lalu</p>
         <Line data={data} options={options} />
-        <h1 className="text-lg font-bold"> 600k </h1>
+        <h1 className="text-lg font-semibold"> 600k </h1>
       </div>
     </div>
   );
