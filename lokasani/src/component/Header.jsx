@@ -1,19 +1,19 @@
-import React from "react";
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import SmsIcon from '@mui/icons-material/Sms';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 
 const Header = () => {
   return (
-    <div className="bg-gray-200 p-4 fixed z-10 top-0 w-full flex items-center justify-between">
-      {/* Home Link */}
-      <div>
-        <h1 className="text-black text-lg font-bold text-[48px]">HOME</h1>
-      </div>
-
-      {/* Avatar Icons */}
-      <div className="flex justify-between items-center w-full">
-        <div className="flex items-center space-x-4">
-          <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-          <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-          <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
+    <div className="bg-white p-4 fixed z-10 top-0 w-full">
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold">Home</h1>
+        </div>
+        <div className="flex items-center gap-5 mr-[255px]">
+          <SmsIcon className="text-[#253E8D]" fontSize='large'/>
+          <NotificationsActiveIcon className="text-[#253E8D]" fontSize='large'/>
+          <AccountCircleIcon className="text-[#253E8D]" fontSize='large'/>
         </div>
       </div>
     </div>
