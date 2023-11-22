@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import AdminEvent from './pages/admin-event/Index'
+import AdminEvent from './pages/adminEvent/Index'
 import Home from "./pages/home"
 
 function App() {

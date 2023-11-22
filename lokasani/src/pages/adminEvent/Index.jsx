@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import Sidebar from '../../components/admin-event/Sidebar'
+import Sidebar from '../../component/adminEvent/Sidebar'
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import TextsmsIcon from '@mui/icons-material/Textsms';
