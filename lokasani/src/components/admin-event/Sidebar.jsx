@@ -3,18 +3,35 @@ import React, {useState} from 'react'
 import {  useNavigate } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import EventIcon from '@mui/icons-material/Event';
-import TransactionIcon from '../assets/icon/transaction.svg'
+import TransactionIcon from '../../assets/icon/transaction.svg'
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import ForumIcon from '@mui/icons-material/Forum';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
-import logo from "../assets/img/logo_admin.png"
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import logo from "../../assets/img/logo_admin.png"
 
 function Sidebar() {
     const navigate = useNavigate();
     const [sidebar, setSidebar] = useState(false);
+    const [myEvent, setMyEvent] = useState(true);
+    const [helpCenter, setHelpCenter] = useState(true);
+    const [kataPengunjung, setKataPengunjung] = useState(true);
     const openSidebar = () => {
         setSidebar(!sidebar);
+    };
+
+    const openMyEvent = () => {
+        setMyEvent(!myEvent);
+    };
+
+    const openHelpCenter = () => {
+        setHelpCenter(!helpCenter);
+    };
+
+    const openKataPengunjung = () => {
+        setKataPengunjung(!kataPengunjung);
     };
 
     return (
@@ -59,7 +76,7 @@ function Sidebar() {
                 
                 <div className='flex flex-col space-y-[15vh]'>
                     <div className='mx-3'>
-                        <ul className="space-y-3">
+                        <ul className="space-y-1">
                             <li>
                                 <a
                                 className="cursor-pointer text-sm  text-sm flex items-center px-2 py-1 text-white rounded-sm hover:bg-gray-700 group">
@@ -67,13 +84,40 @@ function Sidebar() {
                                 <span className="flex-1 ml-3 whitespace-nowrap ">Home</span>
                                 </a>
                             </li>
-                            <li>
+                            <li onClick={openMyEvent}>
                                 <a
                                 className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
                                 <EventIcon fontSize='small'/>
                                 <span className="flex-1 ml-3 whitespace-nowrap">My Event</span>
+                                {
+                                    myEvent ? 
+                                    <KeyboardArrowDownIcon/>
+                                    : 
+                                    <KeyboardArrowUpIcon/>
+                                    
+                                }
                                 </a>
                             </li>
+                            <div className={`${myEvent ? `hidden` : `block w-full`}`}>
+                                <li>
+                                    <a
+                                    className="cursor-pointer text-xs flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
+                                    <span className="flex-1 ml-8 whitespace-nowrap">Tambah Event Baru</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                    className="cursor-pointer text-xs flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
+                                    <span className="flex-1 ml-8 whitespace-nowrap">Event Aktif</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                    className="cursor-pointer text-xs flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
+                                    <span className="flex-1 ml-8 whitespace-nowrap">Event Lalu</span>
+                                    </a>
+                                </li>
+                            </div>
                             <li>
                                 <a
                                 className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
@@ -81,24 +125,66 @@ function Sidebar() {
                                 <span className="flex-1 ml-3 whitespace-nowrap">Transaction</span>
                                 </a>
                             </li>
-                            <li>
+                            <li onClick={openHelpCenter}>
                                 <a
                                 className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
                                 <SupportAgentIcon fontSize='small'/>
                                 <span className="flex-1 ml-3 whitespace-nowrap">Help Center</span>
+                                {
+                                    helpCenter ? 
+                                    <KeyboardArrowDownIcon/>
+                                    : 
+                                    <KeyboardArrowUpIcon/>
+                                    
+                                }
                                 </a>
                             </li>
-                            <li>
+                            <div className={`${helpCenter ? `hidden` : `block w-full`}`}>
+                                <li>
+                                    <a
+                                    className="cursor-pointer text-xs flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
+                                    <span className="flex-1 ml-8 whitespace-nowrap">Edukasi</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                    className="cursor-pointer text-xs flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
+                                    <span className="flex-1 ml-8 whitespace-nowrap">Bantuan</span>
+                                    </a>
+                                </li>
+                            </div>
+                            <li onClick={openKataPengunjung}>
                                 <a
                                 className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
                                 <ForumIcon fontSize='small'/>
                                 <span className="flex-1 ml-3 whitespace-nowrap">Kata Pengunjung</span>
+                                {
+                                    kataPengunjung ? 
+                                    <KeyboardArrowDownIcon/>
+                                    : 
+                                    <KeyboardArrowUpIcon/>
+                                    
+                                }
                                 </a>
                             </li>
+                            <div className={`${kataPengunjung ? `hidden` : `block w-full absolute`}`}>
+                                <li>
+                                    <a
+                                    className="cursor-pointer text-xs flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
+                                    <span className="flex-1 ml-8 whitespace-nowrap">Chat Pengunjung</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                    className="cursor-pointer text-xs flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
+                                    <span className="flex-1 ml-8 whitespace-nowrap">Ulasan Pengunjung</span>
+                                    </a>
+                                </li>
+                            </div>
                         </ul>
                     </div>
 
-                    <div className='mx-3 '>
+                    <div className='mx-3'>
                         <ul className="space-y-3">
                             <li>
                                 <a
