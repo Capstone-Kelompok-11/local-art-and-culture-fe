@@ -1,4 +1,4 @@
-import Saly from '../assets/img/Saly.svg';
+import Saly from "../../../assets/img/Saly.svg";
 
 const Penjualan = () => {
   return (

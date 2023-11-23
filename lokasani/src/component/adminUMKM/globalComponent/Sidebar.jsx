@@ -5,13 +5,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import ChatIcon from "@mui/icons-material/Chat";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import EventNoteIcon from "@mui/icons-material/EventNote";
-import TransactionIcon from "../assets/icon/transaction.svg";
+import TransactionIcon from "../../../assets/icon/transaction.svg";
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import ForumIcon from "@mui/icons-material/Forum";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
-import logo from "../assets/img/logo_admin.png";
+import logo from "../../../assets/img/logo_admin.png";
 
 function Sidebar() {
     const navigate = useNavigate();

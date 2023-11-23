@@ -1,12 +1,12 @@
-import Sidebar from "../../component/Sidebar";
-import Header from "../../component/Header";
-import Penjualan from "../../component/Penjualan";
-import ChartPenghasilan from "../../component/ChartPenghasilan";
-import GrafikBulanan from "../../component/GrafikBulanan";
-import Prospek from "../../component/Prospek";
-import Statistik from "../../component/Statistik";
-import Transaksi from "../../component/transaksi";
-import ProdukPopuler from "../../component/ProdukPopuler";
+import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
+import Header from "../../component/adminUMKM/globalComponent/Header";
+import Penjualan from "../../component/adminUMKM/dashboard/Penjualan";
+import ChartPenghasilan from "../../component/adminUMKM/dashboard/ChartPenghasilan";
+import GrafikBulanan from "../../component/adminUMKM/dashboard/GrafikBulanan";
+import Prospek from "../../component/adminUMKM/dashboard/Prospek";
+import Statistik from "../../component/adminUMKM/dashboard/Statistik";
+import Transaksi from "../../component/adminUMKM/dashboard/Transaksi";
+import ProdukPopuler from "../../component/adminUMKM/dashboard/ProdukPopuler";
 
 const Home = () => {
     return (
