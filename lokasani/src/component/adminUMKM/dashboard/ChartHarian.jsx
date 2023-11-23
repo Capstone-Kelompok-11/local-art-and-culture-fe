@@ -28,7 +28,7 @@ const options = {
   },
 };
 
-const GrafikBulanan = () => {
+const ChartHarian = () => {
   return (
     <div className="bg-white text-black p-6 rounded-lg">
       <div className="mb-1">
@@ -41,4 +41,4 @@ const GrafikBulanan = () => {
   );
 };
 
-export default GrafikBulanan;
+export default ChartHarian;

@@ -2,7 +2,7 @@ import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
 import Penjualan from "../../component/adminUMKM/dashboard/Penjualan";
 import ChartPenghasilan from "../../component/adminUMKM/dashboard/ChartPenghasilan";
-import GrafikBulanan from "../../component/adminUMKM/dashboard/GrafikBulanan";
+import ChartHarian from "../../component/adminUMKM/dashboard/ChartHarian";
 import Prospek from "../../component/adminUMKM/dashboard/Prospek";
 import Statistik from "../../component/adminUMKM/dashboard/Statistik";
 import Transaksi from "../../component/adminUMKM/dashboard/Transaksi";
@@ -31,7 +31,7 @@ const Home = () => {
                     <div className="flex gap-6 w-full px-5 mt-6">
                         <div className="w-2/5">
                             <div>
-                                <GrafikBulanan />
+                                <ChartHarian />
                             </div>
                             <div>
                                 <Prospek />
