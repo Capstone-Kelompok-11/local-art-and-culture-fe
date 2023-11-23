@@ -28,12 +28,12 @@ const Prospek = () => {
         <div className="bg-white text-black p-6 rounded-lg mt-6">
             <div className="flex items-center">
                 <div className="w-1/2">
-                    <h1 className="text-2xl font-bold">Prospek</h1>
-                    <p className="text-xs">Laporan Bulanan</p>
+                    <h1 className="text-xl font-bold">Prospek</h1>
+                    <p className="text-base">Laporan Bulanan</p>
                 </div>
                 <div className="w-1/3">
-                    <h1 className="text-lg font-bold">4,350</h1>
-                    <p className="text-lg">15,8%</p>
+                    <h1 className="text-lg font-semibold tracking-wider">4,350</h1>
+                    <p className="text-base text-green-500 tracking-wider">15,8%</p>
                 </div>
                 <div className="w-[80px]">
                     <Doughnut height={80} data={data} options={options} />
