@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/dashboard-admin-umkm";
+import Home from "./pages/adminUMKM/Home";
 
 function App() {
   return (
