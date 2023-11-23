@@ -49,7 +49,7 @@ const Home = () => {
                             <ProdukPopuler/>
                         </div>
                     </div>
-                    <div className="w-full flex gap-6 px-5 mt-6">
+                    <div className="w-full px-5 mt-6">
                         <InfoiceData/>
                     </div>
                 </div>
