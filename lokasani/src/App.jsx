@@ -6,6 +6,7 @@ import DataUser from './pages/superadmin/dataUser/DataUser'
 import DaftarAdminEvent from './pages/superadmin/dataUser/DaftarAdminEvent'
 import DaftarAdminUmkm from './pages/superadmin/dataUser/DaftarAdminUmkm'
 import DaftarPengguna from './pages/superadmin/dataUser/DaftarPengguna'
+import ProductAdminUMKM from './pages/adminUMKM/Product'
 
 
 function App() {
@@ -17,8 +18,10 @@ function App() {
         <Route element={<DataUser/>} path='/dataUser'/>
         <Route element={<DaftarAdminEvent/>} path='/daftarAdminEvent'/>
         <Route element={<DaftarAdminUmkm/>} path='/daftarAdminUmkm'/>
+        <Route element={<DaftarAdminUmkm/>} path='/daftarAdminUmkm'/>
         <Route element={<DaftarPengguna/>} path='/daftarPengguna'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
+        <Route element={<ProductAdminUMKM/>} path='/adminumkmProduct'/>
       </Routes>
     </BrowserRouter>
   )
