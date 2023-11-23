@@ -7,6 +7,7 @@ import Prospek from "../../component/adminUMKM/dashboard/Prospek";
 import Statistik from "../../component/adminUMKM/dashboard/Statistik";
 import Transaksi from "../../component/adminUMKM/dashboard/Transaksi";
 import ProdukPopuler from "../../component/adminUMKM/dashboard/ProdukPopuler";
+import InfoiceData from "../../component/adminUMKM/dashboard/InfoiceData";
 
 const Home = () => {
     return (
@@ -47,6 +48,9 @@ const Home = () => {
                         <div className="w-1/2">
                             <ProdukPopuler/>
                         </div>
+                    </div>
+                    <div className="w-full flex gap-6 px-5 mt-6">
+                        <InfoiceData/>
                     </div>
                 </div>
             </div>
