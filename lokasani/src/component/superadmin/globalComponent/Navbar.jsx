@@ -4,16 +4,16 @@ import iconSms from "../../../assets/icon/textsms.svg";
 
 const Navbar = ({ title }) => {
   return (
-    <nav className="fixed inset-x-0 sm:ml-[300px] bg-white border-gray-200 dark:bg-gray-900 shadow-md">
-      <div className="flex flex-wrap items-center justify-between mx-auto py-6 px-6">
-        <p className="text-4xl font-bold text-gray-900 ">{title}</p>
+    <nav className="fixed inset-x-0 sm:ml-[250px] bg-white border-gray-200 shadow-md">
+      <div className="flex flex-wrap items-center justify-between py-6 px-6">
+        <p className="text-3xl font-bold text-gray-900 ">{title}</p>
 
-        <div className="flex md:order-2 gap-8">
+        <div className="flex md:order-2 gap-8 ">
           <button type="button">
-            <img src={iconSms} alt="" />
+            <img src={iconSms} alt="" className="w-[30px]"/>
           </button>
           <button type="button">
-            <img src={iconNotif} alt="" />
+            <img src={iconNotif} alt="" className="w-[30px]"/>
           </button>
           <button
             type="button"
@@ -23,7 +23,7 @@ const Navbar = ({ title }) => {
           >
             <span className="sr-only">Open user menu</span>
             <img
-              className="w-10 h-10 rounded-full"
+              className="w-[30px] h-[30px] rounded-full"
               src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
               alt="user photo"
             />
