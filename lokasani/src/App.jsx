@@ -6,6 +6,7 @@ import DataUser from './pages/superadmin/dataUser/DataUser'
 import DaftarAdminEvent from './pages/superadmin/dataUser/DaftarAdminEvent'
 import DaftarAdminUmkm from './pages/superadmin/dataUser/DaftarAdminUmkm'
 import DaftarPengguna from './pages/superadmin/dataUser/DaftarPengguna'
+import VerifikasiAkun from './pages/superadmin/dataUser/VerifikasiAkun'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route element={<DaftarAdminUmkm/>} path='/daftarAdminUmkm'/>
         <Route element={<DaftarPengguna/>} path='/daftarPengguna'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
+        <Route element={<VerifikasiAkun/>} path='/verifikasiAkun'/>
       </Routes>
     </BrowserRouter>
   )

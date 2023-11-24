@@ -13,7 +13,7 @@ const DataUser = () => {
     <div className="bg-[#F2F2F2]">
       <Sidebar />
       <Navbar title="DATA USER" />
-      <div className="px-4 py-28 sm:ml-[316px]">
+      <div className="px-4 py-28 sm:ml-[266px]">
         <div className="grid w-full gap-6 px-10 md:grid-cols-3">
           {usersData.map((pengguna, index) => (
             <CardUser
