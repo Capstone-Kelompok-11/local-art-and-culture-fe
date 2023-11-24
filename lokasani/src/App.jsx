@@ -14,13 +14,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Home/>} path='/'/>
-        <Route element={<HomeSuperAdmin/>} path='/homeSuperAdmin'/>
-        <Route element={<DataUser/>} path='/dataUser'/>
-        <Route element={<DaftarAdminEvent/>} path='/daftarAdminEvent'/>
-        <Route element={<DaftarAdminUmkm/>} path='/daftarAdminUmkm'/>
-        <Route element={<DaftarPengguna/>} path='/daftarPengguna'/>
+        <Route element={<HomeSuperAdmin/>} path='/superadmin/homeSuperAdmin'/>
+        <Route element={<DataUser/>} path='/superadmin/dataUser'/>
+        <Route element={<DaftarAdminEvent/>} path='/superadmin/daftarAdminEvent'/>
+        <Route element={<DaftarAdminUmkm/>} path='/superadmin/daftarAdminUmkm'/>
+        <Route element={<DaftarPengguna/>} path='/superadmin/daftarPengguna'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
-        <Route element={<VerifikasiAkun/>} path='/verifikasiAkun'/>
+        <Route element={<VerifikasiAkun/>} path='/superadmin/verifikasiAkun'/>
       </Routes>
     </BrowserRouter>
   )
