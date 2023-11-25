@@ -43,7 +43,7 @@ const Media = () => {
                 <div>
                     <p
                         onClick={handlePopupUploadImage}
-                        className="text-blue-800 text-base font-semibold"
+                        className="text-blue-800 text-base font-semibold cursor-pointer"
                     >
                         Tambahkan Media dari URL
                     </p>

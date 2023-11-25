@@ -10,7 +10,7 @@ const InformasiProduct = () => {
         </div>
         <div>
           <p
-            className="text-blue-800 text-base font-semibold"
+            className="text-blue-800 text-base font-semibold cursor-pointer"
           >
             Tambahkan Produk dari CSV
           </p>
