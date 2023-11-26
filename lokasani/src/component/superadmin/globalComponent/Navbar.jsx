@@ -1,19 +1,31 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import iconNotif from "../../../assets/icon/notifications_active.svg";
 import iconSms from "../../../assets/icon/textsms.svg";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
-const Navbar = ({ title }) => {
+const Navbar = ({ title,showButtonBack }) => {
+  const navigate = useNavigate();
   return (
     <nav className="fixed inset-x-0 sm:ml-[250px] bg-white border-gray-200 shadow-md">
       <div className="flex flex-wrap items-center justify-between py-6 px-6">
-        <p className="text-3xl font-bold text-gray-900 ">{title}</p>
-
+        <div className="flex">
+          
+          {showButtonBack &&(<ArrowBackIosIcon
+            onClick={() => {
+              navigate("/superAdmin/dataUser");
+            }}
+            fontSize="large"
+            className="text-[#3653B0] mr-3 cursor-pointer"
+          />)}
+          <p className="text-3xl font-bold text-gray-900 ">{title}</p>
+        </div>
         <div className="flex md:order-2 gap-8 ">
           <button type="button">
-            <img src={iconSms} alt="" className="w-[30px]"/>
+            <img src={iconSms} alt="" className="w-[30px]" />
           </button>
           <button type="button">
-            <img src={iconNotif} alt="" className="w-[30px]"/>
+            <img src={iconNotif} alt="" className="w-[30px]" />
           </button>
           <button
             type="button"
