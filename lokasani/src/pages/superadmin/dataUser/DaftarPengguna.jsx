@@ -7,7 +7,7 @@ const DaftarPengguna = () => {
   return (
     <div className="bg-[#F2F2F2]">
       <Sidebar />
-      <Navbar title="Daftar Pengguna" />
+      <Navbar title="Daftar Pengguna" showButtonBack={true}/>
 
       <div className="px-4 py-28 sm:ml-[266px] flex flex-col gap-6">
         <div>
