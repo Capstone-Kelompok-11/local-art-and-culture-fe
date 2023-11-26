@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Logotype from '../../../assets/icon/Logotype.svg';
 import logoHome from '../../../assets/icon/home.svg'
 import logoArtickel from '../../../assets/icon/receipt.svg'
@@ -28,8 +29,7 @@ const Sidebar = () => {
         </div>
         <ul className="space-y-2 font-medium">
           <li>
-            <a
-              href="#"
+            <Link to={"/superAdmin/homeSuperAdmin"}
               className="flex items-center py-2 px-4  text-gray-900 rounded-lg hover:bg-[#768DD5] group "
             >
               <img
@@ -37,11 +37,10 @@ const Sidebar = () => {
                 className="w-[25px] h-8 "
               />
               <span className="ms-3 text-[#E6E6E6]">Home</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link to={"/superAdmin/artikel"}
               className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
             >
               <img
@@ -50,11 +49,10 @@ const Sidebar = () => {
               />
               <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Artikel</span>
               
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link to={""}
               className="flex items-center py-2 px-4 text-gray-900 rounded-lg  hover:bg-[#768DD5] "
             >
               <img
@@ -63,11 +61,10 @@ const Sidebar = () => {
               />
               <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Transaksi</span>
               
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link to={"/superAdmin/dataUser"}
               className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
             >
               <img
@@ -75,31 +72,29 @@ const Sidebar = () => {
                 className="w-[25px] h-8"
               />
               <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Data user</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="flex items-center py-2 px-4 text-gray-900 rounded-lghover:bg-[#768DD5] "
+            <Link to={""}
+              className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
             >
               <img
               src={logoEmail}
                 className="w-[25px] h-8"
               />
-              <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Pemasaran</span>
-            </a>
+              <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6] hover:bg-[#768DD5]">Pemasaran</span>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="flex items-center py-2 px-4 text-gray-900 rounded-lghover:bg-[#768DD5] "
+            <Link to={""}
+              className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
             >
               <img
               src={logoAgent}
                 className="w-[25px] h-8 "
               />
-              <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Pusat Bantuan</span>
-            </a>
+              <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6] ">Pusat Bantuan</span>
+            </Link>
           </li>
         </ul>
         </div>
@@ -107,8 +102,7 @@ const Sidebar = () => {
         <div className="pb-16">
       <ul className="space-y-2 font-medium">
         <li>
-            <a
-              href="#"
+            <Link to={""}
               className="flex items-center py-2 px-4 text-gray-900 rounded-lg  hover:bg-[#768DD5] "
             >
               <img
@@ -116,11 +110,10 @@ const Sidebar = () => {
                 className="w-[25px] h-8"
               />
               <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Pengaturan</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link to={""}
               className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
             >
               <img
@@ -128,7 +121,7 @@ const Sidebar = () => {
                 className="w-[25px] h-8"
               />
               <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Keluar</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
