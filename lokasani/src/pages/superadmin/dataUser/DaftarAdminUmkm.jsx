@@ -10,7 +10,7 @@ const DaftarAdminUmkm = () => {
 
       <div className="px-4 py-28 sm:ml-[266px] flex flex-col gap-6">
         <div>
-          <Search />
+          <Search showSearch={true} />
         </div>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
