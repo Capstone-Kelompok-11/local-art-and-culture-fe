@@ -4,6 +4,7 @@ import object1 from "../../assets/img/object1.png";
 import object2 from "../../assets/img/object2.png";
 import object3 from "../../assets/img/object3.png";
 import object4 from "../../assets/img/object4.png";
+import DownloadApp from "../../component/landingpage/DownloadApp";
 
 const Landing = () => {
   return (
@@ -454,20 +455,17 @@ const Landing = () => {
                 untuk produk anda!
               </p>
             </div>
-
+          </div>
         </div>
       </div>
 
-      </div>
-
       <div>
-      <div className="flex items-center justify-center mt-20 relative z-10">
+        <div className="flex items-center justify-center mt-20 relative z-10">
           <div className="grid grid-cols-3  ">
             <a
               href="#"
               className=" flex flex-col items-center justify-center max-w-[350px] h-[600px] px-20 py-[100px] border border-gray-200 rounded-[40px] shadow bg-blue-800 text-left absoulte left-0 "
             >
-
               <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Dukungan Ekonomi Lokal
               </h2>
@@ -481,7 +479,6 @@ const Landing = () => {
               href="#"
               className=" flex flex-col items-center justify-center max-w-[350px] h-[600px] px-20 py-[100px] border border-gray-200 rounded-[40px] shadow bg-blue-800 text-left "
             >
-
               <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Keunikan dan Keaslian
               </h2>
@@ -495,7 +492,6 @@ const Landing = () => {
               href="#"
               className=" flex flex-col items-center justify-center max-w-[350px] h-[600px] px-20 py-[100px] border border-gray-200 rounded-[40px] shadow bg-blue-800 text-left"
             >
-
               <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Kualitas dan Kreativias
               </h2>
@@ -507,6 +503,7 @@ const Landing = () => {
           </div>
         </div>
       </div>
+      <DownloadApp />
     </section>
   );
 };
