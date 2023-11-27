@@ -9,7 +9,7 @@ import DaftarPengguna from './pages/superadmin/dataUser/DaftarPengguna'
 import VerifikasiAkun from './pages/superadmin/dataUser/VerifikasiAkun'
 import SuperAdminArtikel from './pages/superadmin/artikel/index'
 import SuperAdminKelolaArtikel from './pages/superadmin/artikel/KelolaArtikel'
-
+import NewEvent from './pages/adminEvent/newevent'
 
 
 function App() {
@@ -26,6 +26,7 @@ function App() {
         <Route element={<VerifikasiAkun/>} path='/superadmin/verifikasiAkun'/>
         <Route element={<SuperAdminArtikel/>} path='/superadmin/artikel'/>
         <Route element={<SuperAdminKelolaArtikel/>} path='/superadmin/kelolaartikel'/>
+        <Route element={<NewEvent/>} path='/newevent'/>
       </Routes>
     </BrowserRouter>
   )
