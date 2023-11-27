@@ -1,16 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import AdminEvent from './pages/adminEvent/Index'
 import Home from "./pages/home"
-import HomeSuperAdmin from './pages/superadmin/dashboard/HomeSuperAdmin'
-import DataUser from './pages/superadmin/dataUser/DataUser'
-import DaftarAdminEvent from './pages/superadmin/dataUser/DaftarAdminEvent'
-import DaftarAdminUmkm from './pages/superadmin/dataUser/DaftarAdminUmkm'
-import DaftarPengguna from './pages/superadmin/dataUser/DaftarPengguna'
-import VerifikasiAkun from './pages/superadmin/dataUser/VerifikasiAkun'
-import SuperAdminArtikel from './pages/superadmin/artikel/index'
-import SuperAdminKelolaArtikel from './pages/superadmin/artikel/KelolaArtikel'
-import NewEvent from './pages/adminEvent/newevent'
-
 
 function App() {
   return (
@@ -23,10 +13,6 @@ function App() {
         <Route element={<DaftarAdminUmkm/>} path='/superadmin/daftarAdminUmkm'/>
         <Route element={<DaftarPengguna/>} path='/superadmin/daftarPengguna'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
-        <Route element={<VerifikasiAkun/>} path='/superadmin/verifikasiAkun'/>
-        <Route element={<SuperAdminArtikel/>} path='/superadmin/artikel'/>
-        <Route element={<SuperAdminKelolaArtikel/>} path='/superadmin/kelolaartikel'/>
-        <Route element={<NewEvent/>} path='/newevent'/>
       </Routes>
     </BrowserRouter>
   )

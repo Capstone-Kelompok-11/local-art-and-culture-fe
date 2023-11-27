@@ -581,4 +581,4 @@ function NewEvent() {
   );
 }
 
-export default NewEvent;
+export default NewEvent;
