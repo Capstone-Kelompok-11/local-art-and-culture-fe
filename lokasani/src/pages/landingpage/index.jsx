@@ -1,9 +1,14 @@
 import React from "react";
 import logoLokasani from "../../assets/img/logo.png";
+import object1 from "../../assets/img/object1.png";
+import object2 from "../../assets/img/object2.png";
+import object3 from "../../assets/img/object3.png";
+import object4 from "../../assets/img/object4.png";
 
 const Landing = () => {
   return (
     <section>
+      {/* navbar */}
       <body className="">
         <nav className="relative px-[100px] py-4  bg-blue-200 flex justify-between items-center bg-white">
           <a className="text-3xl font-bold leading-none" href="#">
@@ -150,6 +155,7 @@ const Landing = () => {
         </div>
       </div>
 
+      {/* Why us */}
       <div className=" h-screen relative bg-blue-100">
         <div className="text-center">
           <div className="text-6xl pt-10 font-bold uppercase">
@@ -321,6 +327,185 @@ const Landing = () => {
             fill="#E8644B"
           />
         </svg>
+      </div>
+
+      {/* page 3 */}
+      <div className="h-screen relative bg-[#243775] ">
+        <div className="text-6xl font-bold uppercase text-white px-20 pt-[100px] flex justify-between">
+          <div className="flex gap-3">
+            <p>Kembangkan </p>
+            <p className="text-[#F3B502]">Produk Lokal </p>
+            <p>Anda Sekarang</p>
+          </div>
+          <div className="font-medium text-[30px] justify-end items-center">
+            <button className="bg-[#F3B502] p-5 rounded-[20px]">
+              Register Now!
+            </button>
+          </div>
+        </div>
+        <div className="flex items-center justify-center mt-20 relative z-10 m-40">
+          <div className="grid grid-cols-4 gap-6 ">
+            <div>
+              <a className=" flex flex-col items-center justify-center max-w-[300px] h-[400px] px-5 py-[100px] border border-gray-200 rounded-[20px] shadow bg-[#31499B] text-left absoulte left-0 ">
+                <img src={object1} alt="" />
+              </a>
+              <p className="text-[24px] font-semibold text-white ml-5 pt-10">
+                Raih Ulasan Terbaik
+              </p>
+              <p className="text-[14px] font-regular text-white ml-5 pt-2">
+                Ketahui dengan mudah mengenai masukan-masukan yang didapatkan
+                untuk produk anda!
+              </p>
+            </div>
+
+            <div>
+              <a className=" flex flex-col items-center justify-center max-w-[300px] h-[400px] px-5 py-[100px] border border-gray-200 rounded-[20px] shadow bg-[#31499B] text-left absoulte left-0 ">
+                <img src={object2} alt="" />
+              </a>
+              <p className="text-[24px] font-semibold text-white ml-2 pt-10">
+                Lihat Daftar Pesananmu{" "}
+              </p>
+              <p className="text-[14px] font-regular text-white ml-2 pt-2">
+                Nikmati kemudahan melihat semua transaksi produk-mu secara
+                praktis dengan beberapa klik saja.
+              </p>
+            </div>
+
+            <div>
+              <a className=" flex flex-col items-center justify-center max-w-[300px] h-[400px] px-5 py-[100px] border border-gray-200 rounded-[20px] shadow bg-[#31499B] text-left absoulte left-0 ">
+                <img src={object3} alt="" />
+              </a>
+              <p className="text-[24px] font-semibold text-white ml-2 pt-10">
+                Tambah Produk di LokaSani
+              </p>
+              <p className="text-[14px] font-regular text-white ml-2 pt-2">
+                Menambah produk dengan mudah dan cepat! Sehingga dapat
+                meningkatkan katalog anda dengan efisien{" "}
+              </p>
+            </div>
+
+            <div className="">
+              <a className=" flex flex-col items-center justify-center max-w-[300px] h-[400px] px-5 py-[100px] border border-gray-200 rounded-[20px] shadow bg-[#31499B] text-left absoulte left-0 ">
+                <img src={object4} className="h-[300px]" />
+              </a>
+              <p className="text-[24px] font-semibold text-white ml-2 pt-10">
+                RInteraksi dengan Pembeli
+              </p>
+              <p className="text-[14px] font-regular text-white ml-2 ">
+                Tidak hanya untuk berjualan. Bangun hubungan interaksi yang kuat
+                dengan para pembeli!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="h-screen relative bg-white">
+        <div className="text-6xl font-bold uppercase text-white px-20 pt-[100px] flex justify-between">
+          <div className="flex gap-3">
+            <p className="text-black">Kembangkan </p>
+            <p className="text-[#F3B502]">Produk Lokal </p>
+            <p className="text-black">Anda Sekarang</p>
+          </div>
+          <div className="font-medium text-[30px] justify-end items-center">
+            <button className="bg-[#F3B502] p-5 rounded-[20px]">
+              Register Now!
+            </button>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-center mt-20 relative z-10 m-40">
+          <div className="grid grid-cols-3 gap-20 ">
+            <div>
+              <a className="flex flex-col items-center justify-center max-w-[300px] h-[300px] px-5 py-[100px] border border-gray-200 rounded-[20px] shadow bg-[#768DD5] ">
+                <img src={object1} alt="" />
+              </a>
+              <p className="text-[24px] font-semibold text-white ml-5 pt-10">
+                Raih Ulasan Terbaik
+              </p>
+              <p className="text-[14px] font-regular text-white ml-5 pt-2">
+                Ketahui dengan mudah mengenai masukan-masukan yang didapatkan
+                untuk produk anda!
+              </p>
+            </div>
+
+            <div>
+              <a className=" flex flex-col items-center justify-center max-w-[300px] h-[300px] px-5 py-[100px] border border-gray-200 rounded-[20px] shadow bg-[#768DD5] ">
+                <img src={object1} alt="" />
+              </a>
+              <p className="text-[24px] font-semibold text-white ml-5 pt-10">
+                Raih Ulasan Terbaik
+              </p>
+              <p className="text-[14px] font-regular text-white ml-5 pt-2">
+                Ketahui dengan mudah mengenai masukan-masukan yang didapatkan
+                untuk produk anda!
+              </p>
+            </div>
+
+            <div>
+              <a className=" flex flex-col items-center justify-center max-w-[300px] h-[300px] px-5 py-[100px] border border-gray-200 rounded-[20px] shadow bg-[#768DD5] ">
+                <img src={object1} alt="" />
+              </a>
+              <p className="text-[24px] font-semibold text-white ml-5 pt-10">
+                Raih Ulasan Terbaik
+              </p>
+              <p className="text-[14px] font-regular text-white ml-5 pt-2">
+                Ketahui dengan mudah mengenai masukan-masukan yang didapatkan
+                untuk produk anda!
+              </p>
+            </div>
+
+        </div>
+      </div>
+
+      </div>
+
+      <div>
+      <div className="flex items-center justify-center mt-20 relative z-10">
+          <div className="grid grid-cols-3  ">
+            <a
+              href="#"
+              className=" flex flex-col items-center justify-center max-w-[350px] h-[600px] px-20 py-[100px] border border-gray-200 rounded-[40px] shadow bg-blue-800 text-left absoulte left-0 "
+            >
+
+              <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Dukungan Ekonomi Lokal
+              </h2>
+              <p className="text-white text-2xl py-10 ">
+                Membeli produk lokal berarti memberikan dukungan dan membantu
+                meningkatkan pendapatan dan pertumbuhan ekonomi.
+              </p>
+            </a>
+
+            <a
+              href="#"
+              className=" flex flex-col items-center justify-center max-w-[350px] h-[600px] px-20 py-[100px] border border-gray-200 rounded-[40px] shadow bg-blue-800 text-left "
+            >
+
+              <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Keunikan dan Keaslian
+              </h2>
+              <p className="text-white text-2xl py-10 ">
+                Admin yang menggunakan produk lokal dapat menambahkan nilai
+                tambah ini pada layanan atau produk yang Admin tawarkan.
+              </p>
+            </a>
+
+            <a
+              href="#"
+              className=" flex flex-col items-center justify-center max-w-[350px] h-[600px] px-20 py-[100px] border border-gray-200 rounded-[40px] shadow bg-blue-800 text-left"
+            >
+
+              <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Kualitas dan Kreativias
+              </h2>
+              <p className="text-white text-2xl py-10 ">
+                Kami percaya bahwa produk lokal yang Anda hasilkan adalah produk
+                terbaik Anda. Pasarkan karya terbaik Anda di Lokasani.
+              </p>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
