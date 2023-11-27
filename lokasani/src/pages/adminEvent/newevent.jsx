@@ -568,7 +568,6 @@ function NewEvent() {
           </div>  
         </div>
         <div className="grid grid-cols-1 gap-1 p-2">
-        
           <button className='flex items-center justify-center cursor-pointer bg-[#768DD5] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 w-full'>
             Simpan Draft Event
           </button>
