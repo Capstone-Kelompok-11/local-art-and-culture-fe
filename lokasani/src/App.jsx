@@ -9,6 +9,10 @@ import DaftarPengguna from './pages/superadmin/dataUser/DaftarPengguna'
 import VerifikasiAkun from './pages/superadmin/dataUser/VerifikasiAkun'
 import SuperAdminArtikel from './pages/superadmin/artikel/index'
 import SuperAdminKelolaArtikel from './pages/superadmin/artikel/KelolaArtikel'
+import RegisterOrganisasi from './pages/register/organisasi/Index'
+import CompleteFormOrganisasi from './pages/register/organisasi/CompleteForm'
+import RegisterToko from './pages/register/toko/Index'
+import CompleteFormToko from './pages/register/toko/CompleteForm'
 
 
 
@@ -26,6 +30,10 @@ function App() {
         <Route element={<VerifikasiAkun/>} path='/superadmin/verifikasiAkun'/>
         <Route element={<SuperAdminArtikel/>} path='/superadmin/artikel'/>
         <Route element={<SuperAdminKelolaArtikel/>} path='/superadmin/kelolaartikel'/>
+        <Route element={<RegisterOrganisasi/>} path='/auth/register/organisasi'/>
+        <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
+        <Route element={<RegisterToko/>} path='/auth/register/toko'/>
+        <Route element={<CompleteFormToko/>} path='/auth/register/toko/form'/>
       </Routes>
     </BrowserRouter>
   )
