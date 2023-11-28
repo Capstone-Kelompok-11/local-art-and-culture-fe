@@ -13,7 +13,7 @@ const Navbar = ({ title,showButtonBack }) => {
           
           {showButtonBack &&(<ArrowBackIosIcon
             onClick={() => {
-              navigate("/superAdmin/dataUser");
+              navigate(-1);
             }}
             fontSize="large"
             className="text-[#3653B0] mr-3 cursor-pointer"
