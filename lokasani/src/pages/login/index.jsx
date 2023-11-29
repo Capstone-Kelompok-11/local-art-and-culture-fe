@@ -31,10 +31,6 @@ const Login = () => {
                 <img className="w-6 h-6" src={googleIcon} alt="" />
                 <p className="font-bold text-xl">Google</p>
               </div>
-              <div className="w-full flex justify-center items-center gap-4 border border-gray-300 rounded-lg py-2 cursor-pointer">
-                <img className="w-6 h-6" src={facebookIcon} alt="" />
-                <p className="font-bold text-xl">Facebook</p>
-              </div>
             </div>
             <div className="flex justify-center items-center mb-[42px]">
               <div className="w-full h-[2px] rounded-full bg-gray-300"></div>
