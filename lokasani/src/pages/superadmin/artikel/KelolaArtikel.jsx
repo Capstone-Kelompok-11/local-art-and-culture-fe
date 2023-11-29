@@ -4,7 +4,7 @@ import Sidebar from '../../../component/superadmin/globalComponent/Sidebar';
 import Navbar from '../../../component/superadmin/artikel/Navbar';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import TextsmsIcon from '@mui/icons-material/Textsms';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PlaceImage from '../../../assets/img/placeimage-artikel.png'
 
@@ -66,7 +66,7 @@ function KelolaArtikel() {
                             <td className="px-6 py-4">
                                 <div className='flex items-center'>
                                     <VisibilityIcon fontSize='medium' />&nbsp;<span>20</span>
-                                    <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>20</span>
+                                    <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>20</span>
                                 </div>
                             </td>
                             <td className="px-6 py-4 text-right">
@@ -88,7 +88,7 @@ function KelolaArtikel() {
                             <td className="px-6 py-4">
                                 <div className='flex items-center'>
                                     <VisibilityIcon fontSize='medium' />&nbsp;<span>20</span>
-                                    <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>20</span>
+                                    <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>20</span>
                                 </div>
                             </td>
                             <td className="px-6 py-4 text-right">
@@ -110,7 +110,7 @@ function KelolaArtikel() {
                             <td className="px-6 py-4">
                                 <div className='flex items-center'>
                                     <VisibilityIcon fontSize='medium' />&nbsp;<span>20</span>
-                                    <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>20</span>
+                                    <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>20</span>
                                 </div>
                             </td>
                             <td className="px-6 py-4 text-right">
@@ -132,7 +132,7 @@ function KelolaArtikel() {
                             <td className="px-6 py-4">
                                 <div className='flex items-center'>
                                     <VisibilityIcon fontSize='medium' />&nbsp;<span>20</span>
-                                    <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>20</span>
+                                    <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>20</span>
                                 </div>
                             </td>
                             <td className="px-6 py-4 text-right">
@@ -154,7 +154,7 @@ function KelolaArtikel() {
                             <td className="px-6 py-4">
                                 <div className='flex items-center'>
                                     <VisibilityIcon fontSize='medium' />&nbsp;<span>20</span>
-                                    <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>20</span>
+                                    <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>20</span>
                                 </div>
                             </td>
                             <td className="px-6 py-4 text-right">
@@ -176,7 +176,7 @@ function KelolaArtikel() {
                             <td className="px-6 py-4">
                                 <div className='flex items-center'>
                                     <VisibilityIcon fontSize='medium' />&nbsp;<span>20</span>
-                                    <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>20</span>
+                                    <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>20</span>
                                 </div>
                             </td>
                             <td className="px-6 py-4 text-right">

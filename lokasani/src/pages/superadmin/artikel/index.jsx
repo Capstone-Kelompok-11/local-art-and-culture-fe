@@ -5,9 +5,10 @@ import {useNavigate} from 'react-router-dom'
 import Sidebar from '../../../component/superadmin/globalComponent/Sidebar';
 import Navbar from '../../../component/superadmin/globalComponent/Navbar';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import TextsmsIcon from '@mui/icons-material/Textsms';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import EditIcon from '@mui/icons-material/Edit';
 import PlaceImage from '../../../assets/img/placeimage-artikel.png'
 
@@ -48,7 +49,7 @@ function index() {
                     </div>
                 </div>
                 <div className='bg-slate-200 w-48 h-[110px] rounded-[16px] pl-3 pt-2'>
-                    <span>Laporan</span><ArrowRightIcon fontSize='small'/><br />
+                    <span>Laporan</span><KeyboardArrowRightIcon fontSize='small' className='bg-blue-500 cursor-pointer hover:bg-blue-600 rounded-full ml-2 text-white'/><br />
                     <div className='flex ml-3'>
                         <QuestionAnswerIcon fontSize='large' className='text-[#FF3B3B] mt-4'/>
                         <div className='font-semibold text-[40px] mt-1 ml-3'>76</div>
@@ -64,7 +65,7 @@ function index() {
                         <h1 className='font-semibold text-sm mt-2 ml-1'>Memaknai Wayang sebagai Khazanah Budaya Nusantara Masa Kini</h1>
                         <div className='ml-1 mt-3 flex items-center text-[#999999]'>
                             <VisibilityIcon fontSize='small'/>&nbsp;<span>12</span>
-                            <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
+                            <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
                             <h1 className='ml-6 text-sm'>12 November 2023</h1>
                         </div>
                     </div>
@@ -73,7 +74,7 @@ function index() {
                         <h1 className='font-semibold text-sm mt-2 ml-1'>Memaknai Wayang sebagai Khazanah Budaya Nusantara Masa Kini</h1>
                         <div className='ml-1 mt-3 flex items-center text-[#999999]'>
                             <VisibilityIcon fontSize='small'/>&nbsp;<span>12</span>
-                            <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
+                            <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
                             <h1 className='ml-6 text-sm'>12 November 2023</h1>
                         </div>
                     </div>
@@ -82,7 +83,7 @@ function index() {
                         <h1 className='font-semibold text-sm mt-2 ml-1'>Memaknai Wayang sebagai Khazanah Budaya Nusantara Masa Kini</h1>
                         <div className='ml-1 mt-3 flex items-center text-[#999999]'>
                             <VisibilityIcon fontSize='small'/>&nbsp;<span>12</span>
-                            <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
+                            <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
                             <h1 className='ml-6 text-sm'>12 November 2023</h1>
                         </div>
                     </div>
@@ -91,7 +92,7 @@ function index() {
                         <h1 className='font-semibold text-sm mt-2 ml-1'>Memaknai Wayang sebagai Khazanah Budaya Nusantara Masa Kini</h1>
                         <div className='ml-1 mt-3 flex items-center text-[#999999]'>
                             <VisibilityIcon fontSize='small'/>&nbsp;<span>12</span>
-                            <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
+                            <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
                             <h1 className='ml-6 text-sm'>12 November 2023</h1>
                         </div>
                     </div>
@@ -100,7 +101,7 @@ function index() {
                         <h1 className='font-semibold text-sm mt-2 ml-1'>Memaknai Wayang sebagai Khazanah Budaya Nusantara Masa Kini</h1>
                         <div className='ml-1 mt-3 flex items-center text-[#999999]'>
                             <VisibilityIcon fontSize='small'/>&nbsp;<span>12</span>
-                            <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
+                            <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
                             <h1 className='ml-6 text-sm'>12 November 2023</h1>
                         </div>
                     </div>
@@ -109,7 +110,7 @@ function index() {
                         <h1 className='font-semibold text-sm mt-2 ml-1'>Memaknai Wayang sebagai Khazanah Budaya Nusantara Masa Kini</h1>
                         <div className='ml-1 mt-3 flex items-center text-[#999999]'>
                             <VisibilityIcon fontSize='small'/>&nbsp;<span>12</span>
-                            <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
+                            <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
                             <h1 className='ml-6 text-sm'>12 November 2023</h1>
                         </div>
                     </div>
@@ -118,7 +119,7 @@ function index() {
                         <h1 className='font-semibold text-sm mt-2 ml-1'>Memaknai Wayang sebagai Khazanah Budaya Nusantara Masa Kini</h1>
                         <div className='ml-1 mt-3 flex items-center text-[#999999]'>
                             <VisibilityIcon fontSize='small'/>&nbsp;<span>12</span>
-                            <FavoriteIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
+                            <TextsmsIcon fontSize='small' className='ml-3'/>&nbsp;<span>8</span>
                             <h1 className='ml-6 text-sm'>12 November 2023</h1>
                         </div>
                     </div>
