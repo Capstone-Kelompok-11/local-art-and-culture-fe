@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 import React from 'react'
+import {useNavigate} from 'react-router-dom'
 import Sidebar from '../../../component/superadmin/globalComponent/Sidebar';
 import Navbar from '../../../component/superadmin/globalComponent/Navbar';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -10,17 +12,26 @@ import EditIcon from '@mui/icons-material/Edit';
 import PlaceImage from '../../../assets/img/placeimage-artikel.png'
 
 function index() {
+    const navigate = useNavigate();
   return (
     <section>
         <Sidebar />
-        <Navbar title="SuperAdmin" />
+        <Navbar title="Artikel" />
 
         {/* content start */}
         <div className='pt-[114px] h-screen sm:ml-[316px]'>
             <div className='flex flex-row justify-center items-center gap-x-10 px-4'>
                 <div className=' w-52 h-[110px] flex flex-col gap-y-3 '>
-                    <div className='bg-[#F3B502] hover:bg-amber-500 rounded-[16px] h-[50px] flex items-center justify-center gap-x-2 cursor-pointer'><EditIcon fontSize='small' className='text-white'/><span className='text-white text-sm font-medium'>Tulis Artikel</span></div>
-                    <div className='bg-[#3653B0] hover:bg-blue-900 rounded-[16px] h-[50px] flex items-center justify-center cursor-pointer'><span className='text-white text-sm font-medium'>Kelola Artikel</span></div>
+                    <div 
+                    onClick={() => {
+                        navigate('/superadmin/addartikel')
+                    }}
+                    className='bg-[#F3B502] hover:bg-amber-500 rounded-[16px] h-[50px] flex items-center justify-center gap-x-2 cursor-pointer'><EditIcon fontSize='small' className='text-white'/><span className='text-white text-sm font-medium'>Tulis Artikel</span></div>
+                    <div
+                        onClick={() => {
+                            navigate('/superadmin/kelolaartikel')
+                        }}
+                     className='bg-[#3653B0] hover:bg-blue-900 rounded-[16px] h-[50px] flex items-center justify-center cursor-pointer'><span className='text-white text-sm font-medium'>Kelola Artikel</span></div>
                 </div>
                 <div className='bg-slate-200 w-48 h-[110px] rounded-[16px] pl-3 pt-2'>
                     <span className=''>Feedback</span><br />

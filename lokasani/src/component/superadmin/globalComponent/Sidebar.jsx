@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Logotype from '../../../assets/icon/Logotype.svg';
 import logoHome from '../../../assets/icon/home.svg'
 import logoArtickel from '../../../assets/icon/receipt.svg'
@@ -12,106 +13,88 @@ const Sidebar = () => {
   return (
     <div
       id="logo-sidebar"
-      className="fixed top-0 left-0 z-40 w-[300px] bg-[#253E8D] h-screen transition-transform -translate-x-full sm:translate-x-0"
+      className="fixed top-0 left-0 z-40 w-[250px] bg-[#253E8D] h-screen transition-transform  sm:translate-x-0"
 
     >
-      <div className="h-full px-6 overflow-y-auto dark:bg-gray-800 pt-16 flex flex-col justify-between">
+      <div className="h-full px-4 overflow-y-auto  pt-16 flex flex-col justify-between">
         <div>
         <div className="flex items-center mb-8">
           <img
             src={Logotype}
-            className="w-15 me-3"
+            className="w-12 me-3"
           />
-          <span className="self-center text-2xl font-medium whitespace-nowrap text-[#E6E6E6]">
+          <span className="self-center text-xl font-medium whitespace-nowrap text-[#E6E6E6]">
             SUPER ADMIN
           </span>
         </div>
         <ul className="space-y-2 font-medium">
           <li>
-            <a
-              href="#"
+            <Link to={"/superAdmin/homeSuperAdmin"}
               className="flex items-center py-2 px-4  text-gray-900 rounded-lg hover:bg-[#768DD5] group "
             >
               <img
               src={logoHome}
-                className="w-[20] h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                className="w-[25px] h-8 "
               />
               <span className="ms-3 text-[#E6E6E6]">Home</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-[#768DD5] dark:hover:bg-gray-700 group"
+            <Link to={"/superAdmin/artikel"}
+              className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
             >
               <img
               src={logoArtickel}
-                className="w-[20] h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                className="w-[25px] h-8 "
               />
               <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Artikel</span>
               
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-[#768DD5] dark:hover:bg-gray-700 group"
+            <Link to={""}
+              className="flex items-center py-2 px-4 text-gray-900 rounded-lg  hover:bg-[#768DD5] "
             >
               <img
               src={logoTransaksi}
-                className="w-[20] h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                className="w-[25px] h-8"
               />
               <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Transaksi</span>
               
-            </a>
+            </Link>
           </li>
-          {/* <li>
-            <a
-              href="#"
-              className="flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-[#768DD5] dark:hover:bg-gray-700 group"
-            >
-              <img
-              src={logo}
-                className="w-5 h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-              />
-              <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Verifikasi</span>
-            </a>
-          </li> */}
           <li>
-            <a
-              href="#"
-              className="flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-[#768DD5] dark:hover:bg-gray-700 group"
+            <Link to={"/superAdmin/dataUser"}
+              className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
             >
               <img
               src={logoAgent}
-                className="w-[20] h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                className="w-[25px] h-8"
               />
               <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Data user</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-[#768DD5] dark:hover:bg-gray-700 group"
+            <Link to={""}
+              className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
             >
               <img
               src={logoEmail}
-                className="w-[20] h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                className="w-[25px] h-8"
               />
-              <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Pemasaran</span>
-            </a>
+              <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6] hover:bg-[#768DD5]">Pemasaran</span>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-[#768DD5] dark:hover:bg-gray-700 group"
+            <Link to={""}
+              className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
             >
               <img
               src={logoAgent}
-                className="w-[20] h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                className="w-[25px] h-8 "
               />
-              <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Pusat Bantuan</span>
-            </a>
+              <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6] ">Pusat Bantuan</span>
+            </Link>
           </li>
         </ul>
         </div>
@@ -119,28 +102,26 @@ const Sidebar = () => {
         <div className="pb-16">
       <ul className="space-y-2 font-medium">
         <li>
-            <a
-              href="#"
-              className="flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-[#768DD5] dark:hover:bg-gray-700 group"
+            <Link to={""}
+              className="flex items-center py-2 px-4 text-gray-900 rounded-lg  hover:bg-[#768DD5] "
             >
               <img
               src={logoAgent}
-                className="w-[20] h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                className="w-[25px] h-8"
               />
               <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Pengaturan</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-[#768DD5] dark:hover:bg-gray-700 group"
+            <Link to={""}
+              className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
             >
               <img
               src={logoLogOut}
-                className="w-[20] h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                className="w-[25px] h-8"
               />
               <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Keluar</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

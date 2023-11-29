@@ -1,25 +1,31 @@
 import React from 'react'
+import iconSearch from '../../../assets/icon/search.svg'
 
-const Search = () => {
+const Search = ({showSearch, showButtonVerif}) => {
   return (
     <div className='flex items-center justify-between'>
-        <div className=" bg-white dark:bg-gray-900 rounded-lg">
+      {showSearch &&(
+        <div className="flex items-center pl-3  bg-white  rounded-lg">
             <label htmlFor="table-search" className="sr-only">
               Search
             </label>
-            
-              {/* <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <div className="">
               <img src={iconSearch} alt="" width={20} />
-              </div> */}
+              </div>
               <input
                 type="text"
                 id="table-search"
-                className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block p-2 pl-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-white "
                 placeholder="Search for items"
               />
-          </div>
-        <div className='p-2 bg-white rounded-lg  dark:bg-gray-700 '>
-        <select name="" id="">
+          </div>)}
+          {showButtonVerif &&(<div>
+            <button className='bg-[#3653B0] w-[150px] h-[30px] rounded-full text-white'>
+              Verifikasi
+            </button>
+          </div>)}
+        <div>
+        <select name="" id="" className='p-2 bg-white rounded-lg  '>
             <option value="">Urut Berdasarkan</option>
             <option value="">Blalala</option>
             <option value="">Blalala</option>
