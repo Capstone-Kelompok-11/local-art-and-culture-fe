@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import SearchIcon from '@mui/icons-material/Search';
@@ -93,17 +94,17 @@ function NewEvent() {
         </div>
         {/* header end */}
         {/* content start */}
-        <div className='bg-gray-200'>
+        <div className='bg-gray-200 pl-3 pr-3'>
         <div className="grid grid-cols-1 gap-1 p-2">
           <div className="col-span-1 bg-white p-4 rounded-md relative">
             <h1 className='text-3xl font-bold text-sm'>Tentang Eventmu</h1>
             <span className='text-[#999999] ml-1'>Masukkan detail event-mu di sini!</span>
 
-            <div className="flex items-center mt-4 space-x-8">
+            <div className="flex items-center mt-4 space-x-8 justify-center">
               {/* Kolom Unggah */}
-              <div className="border-dashed border-2 border-gray-400 p-8 rounded-md aspect-w-1 aspect-h-1">
+              <div className="border-dashed border-2 w-1/2 h-[300px] border-gray-400 p-8 rounded-md aspect-w-1 aspect-h-1">
                 <div className="flex flex-col items-center">
-                  <AddAPhotoIcon className='text-[#768DD5]' />
+                  <AddAPhotoIcon className='text-[#768DD5] mt-10' />
                   <h1 className='text-3xl font-bold text-sm'>Unggah poster Event Anda di sini</h1>
                   <h1 className="block text-sm font-medium text-[#828282] ">
                     Upload gambar untuk poster event kamu Max ukuran 500kb
@@ -127,13 +128,13 @@ function NewEvent() {
                       type="text"
                       value={eventName}
                       onChange={(e) => setEventName(e.target.value)}
-                      placeholder="text"
+                      placeholder="nama..."
                       className="bg-[#F2F2F2] mt-2 p-2 rounded-md border border-gray-300 w-full"
                     />
                   </div>  
                     <div className="col-span-1">
                       <h1 className='text-3xl font-bold text-sm text-[#768DD5]'>Jenis Event:</h1>
-                      <select value={eventType} onChange={(e) => setEventType(e.target.value)} className="bg-[#F2F2F2] mt-2 p-2 rounded-md border border-gray-300 w-full text-[#768DD5]">
+                      <select value={eventType} onChange={(e) => setEventType(e.target.value)} className="bg-[#F2F2F2] mt-2 p-2 rounded-md border border-gray-300 w-full text-[#828282]">
                         <option value="">Pilih Jenis Event</option>
                         <option value="Conference">Conference</option>
                         <option value="Workshop">Workshop</option>
@@ -146,8 +147,9 @@ function NewEvent() {
                       type="text"
                       value={eventDescription}
                       onChange={(e) => setEventDescription(e.target.value)}
-                      placeholder="text"
-                      className="bg-[#F2F2F2] mt-2 p-5 rounded-md border border-gray-300 w-full"
+                      placeholder="deskirpsi..."
+                      className="bg-[#F2F2F2] mt-2 resize-none py-2 pl-2 pr-2 rounded-md border border-gray-300 w-full"
+                      rows={5}
                     />
                   </div>
                 </div>
@@ -281,22 +283,24 @@ function NewEvent() {
         + Tambah Tiket
       </button>
     </div>
+
+    {/* tiket start */}
     <div className='mb-4 rounded-md relative flex flex-col p-20 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-2'>
-      <div className='flex'>
-        <button className="cursor-pointer bg-[#CA9702] hover:bg-yellow-600 text-white py-2 px-4 rounded-full ml-2 text-sm">
+      <div className='flex mb-4'>
+        <button className="cursor-pointer bg-[#CA9702] hover:bg-yellow-600 text-white py-2 px-4 rounded-full text-sm">
           Workshop
         </button>
         <button className="cursor-pointer bg-[#768DD5] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 text-sm">
           Reguler
         </button>
         <div className='ml-auto'>
-        <CreateIcon/>
+        <CreateIcon className='mr-2'/>
         <DeleteIcon/>
         </div>
       </div>
-      <h1 className='text-3xl font-bold text-sm'>Workshop Keramik Jawa Timur bersama Kak Seto</h1>
+      <h1 className='text-3xl font-bold text-sm mb-1'>Workshop Keramik Jawa Timur bersama Kak Seto</h1>
       <span className='text-[#999999]'>Lorem ipsum dolor sit amet consectetur. Amet varius turpis habitasse tempus. Eros eu aliquet enim rutrum etiam venenatis dolor tortor.</span>
-      <div className="text-sm flex items-center">
+      <div className="text-sm flex items-center mb-1">
       <CloseIcon color="primary"/>
       <span className='ml-2'>500 Tiket mulai dijual tanggal 25 Nov 2023</span>
       </div>
@@ -304,6 +308,7 @@ function NewEvent() {
       <div className="absolute left-1 top-0 bg-[#CA9702] w-2 h-full ml-2"></div>
       <h1 className='text-3xl font-bold text-sm mt-5'>Rp.85.000</h1>
     </div>
+    {/* tiket end */}
     <div className='mb-4 relative'>
     <div className='mb-4 rounded-md relative flex flex-col p-20 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-2'>
       <div className='flex '>
@@ -482,7 +487,7 @@ function NewEvent() {
                       type="text"
                       value={eventNama}
                       onChange={(e) => setEventNama(e.target.value)}
-                      placeholder="text"
+                      placeholder="nama..."
                       className="bg-[#F2F2F2] mt-2 p-2 rounded-md border border-gray-300 w-full"
                     />
                   </div>
@@ -492,8 +497,8 @@ function NewEvent() {
                       type="text"
                       value={eventDeskripsi}
                       onChange={(e) => setEventDeskripsi(e.target.value)}
-                      placeholder="text"
-                      className="bg-[#F2F2F2] mt-2 p-5 rounded-md border border-gray-300 w-full"
+                      placeholder="deskripsi..."
+                      className="bg-[#F2F2F2] mt-2 px-3 py-3 resize-none rounded-md border border-gray-300 w-full"
                     />
                   </div>
                   <label className="text-3xl font-bold text-sm text-[#768DD5]">Harga:</label>
@@ -503,7 +508,7 @@ function NewEvent() {
                     </div>
                     <input
                       type="text"
-                      className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
+                      className="focus:ring-indigo-500 bg-[#F2F2F2] w-[400px] py-2 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
                       placeholder="0.00"
                       value={Price}
                       onChange={(e) => setPrice(e.target.value)}
@@ -513,14 +518,14 @@ function NewEvent() {
               </div>
               
             </div>
-            <div className="grid grid-cols-2 flex items-center mt-4 space-x-8">
+            <div className="grid grid-cols-2 flex items-center space-x-8">
               {/* Kolom Unggah */}
               <div className='rounded-md  flex flex-col p-20 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-1'>
               tempat gambar
               </div>
               {/* Kolom Nama sampai Deskripsi */}
               <div className="bg-white p-4 rounded-md flex flex-col">
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 gap-3">
                   <div className="col-span-1 " style={{ width: '400px' }}>
                     <h1 className='text-3xl font-bold text-sm text-[#768DD5]'>Nama:</h1>
                     <input
@@ -538,17 +543,17 @@ function NewEvent() {
                       value={eventDeskripsi1}
                       onChange={(e) => setEventDeskripsi1(e.target.value)}
                       placeholder="text"
-                      className="bg-[#F2F2F2] mt-2 p-5 rounded-md border border-gray-300 w-full"
+                      className="bg-[#F2F2F2] mt-2 py-2 px-3 resize-none rounded-md border border-gray-300 w-full"
                     />
                   </div>
                   <label className="text-3xl font-bold text-sm text-[#768DD5]">Harga:</label>
-                  <div className="mt-1 relative rounded-md shadow-sm">
+                  <div className="relative rounded-md shadow-sm">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <span className="text-gray-500 sm:text-sm">Rp</span>
                     </div>
                     <input
                       type="text"
-                      className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
+                      className="focus:ring-indigo-500 bg-[#F2F2F2] py-2 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
                       placeholder="0.00"
                       value={Price1}
                       onChange={(e) => setPrice1(e.target.value)}
