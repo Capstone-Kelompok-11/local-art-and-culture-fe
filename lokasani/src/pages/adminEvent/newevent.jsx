@@ -7,12 +7,13 @@ import TextsmsIcon from '@mui/icons-material/Textsms';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import Brightness1Icon from '@mui/icons-material/Brightness1';
 import user from '../../assets/img/user.svg';
 import Sidebar from '../../component/adminEvent/Sidebar';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import PopupInputImage from "../../component/adminEvent/new-event/PopupInputImage";
 
 function NewEvent() {
   const [poster, setPoster] = useState(null);
@@ -61,6 +62,11 @@ function NewEvent() {
     setSelectedOption(option);
   };
 
+  const [isPopupImageOpen, setIsPopupImageOpen] = useState(false);
+
+  const handlePopupUploadImage = () => {
+      setIsPopupImageOpen(true);
+  }
 
   return (
     <section>
@@ -105,15 +111,20 @@ function NewEvent() {
               <div className="border-dashed border-2 w-1/2 h-[300px] border-gray-400 p-8 rounded-md aspect-w-1 aspect-h-1">
                 <div className="flex flex-col items-center">
                   <AddAPhotoIcon className='text-[#768DD5] mt-10' />
-                  <h1 className='text-3xl font-bold text-sm'>Unggah poster Event Anda di sini</h1>
-                  <h1 className="block text-sm font-medium text-[#828282] ">
+                  <h1 className='text-3xl font-bold text-sm mt-1'>Unggah poster Event Anda di sini</h1>
+                  <h1 className="block text-sm mt-1 font-medium text-[#828282] ">
                     Upload gambar untuk poster event kamu Max ukuran 500kb
                   </h1>
-                  <div className="mt-1 flex items-center">
+                  <div className="mt-2 flex items-center">
                     <input type="file" accept="image/*" onChange={handlePosterUpload} id="poster" className="hidden" />
-                    <button htmlFor="poster" className="cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2">
+                    <button onClick={handlePopupUploadImage} htmlFor="poster" className="cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2">
                       Unggah Poster
                     </button>
+                    {isPopupImageOpen && (
+                        <PopupInputImage
+                        onClose={() => setIsPopupImageOpen(false)}
+                        />
+                    )}
                     {poster && (
                       <span className="ml-2 text-gray-500">{poster.name}</span>
                     )}
@@ -228,6 +239,7 @@ function NewEvent() {
 
           <div className="mt-4">
             <label className="block text-sm font-medium text-[#768DD5] mb-2">Jam Mulai:</label>
+            <AccessAlarmIcon fontSize='small' className='absolute ml-[8px] mt-[2px] z-10 text-[#828282]'/>
             <DatePicker
               selected={startTime}
               onChange={(time) => setStartTime(time)}
@@ -236,11 +248,13 @@ function NewEvent() {
               timeIntervals={15}
               timeCaption="Time"
               dateFormat="HH:mm"
+              className='bg-[#F2F2F2] px-2 pl-8 w-11/12 rounded-[10px]'
             />
           </div>
 
           <div className="mt-4">
             <label className="block text-sm font-medium text-[#768DD5] mb-2">Jam Selesai:</label>
+            <AccessAlarmIcon fontSize='small' className='absolute ml-[8px] mt-[2px] z-10 text-[#828282]'/>
             <DatePicker
               selected={endTime}
               onChange={(time) => setEndTime(time)}
@@ -249,6 +263,7 @@ function NewEvent() {
               timeIntervals={15}
               timeCaption="Time"
               dateFormat="HH:mm"
+              className='bg-[#F2F2F2] px-2 pl-8 w-11/12 rounded-[10px]'
             />
           </div>
           </div>
