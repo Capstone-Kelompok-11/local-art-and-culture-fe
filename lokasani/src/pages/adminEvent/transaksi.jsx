@@ -69,8 +69,8 @@ function Transaksi() {
                 </div>
                 </div>
 
-                <div className='grid grid-cols-1 gap-1 p-2'>
-                <div className="col-span-1 bg-white p-4 rounded-md shadow-md relative">
+                <div className='grid grid-cols-1 gap-1 p-4'>
+                <div className="col-span-1 bg-white p-3 rounded-md shadow-md relative">
                 <ul className="list-none p-0 m-0">
                     <li className="flex justify-between items-center border-b border-gray-200 py-1">
                     <span className='text-3xl font-bold text-sm text-[#243775] w-1/6'>#ID</span>
