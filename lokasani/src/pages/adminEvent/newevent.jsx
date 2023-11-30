@@ -13,15 +13,65 @@ import user from '../../assets/img/user.svg';
 import Sidebar from '../../component/adminEvent/Sidebar';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import PopupInputImage from "../../component/adminEvent/new-event/PopupInputImage";
+import imageSearching from "../../assets/img/image-searching.png";
 
 function NewEvent() {
+  // function poster
   const [poster, setPoster] = useState(null);
-
   const handlePosterUpload = (event) => {
+    setIsPopupImageOpen(false);
+    console.log(poster)
+  };
+  const [imagePreview, setImagePreview] = useState(null);
+  const [isPopupImageOpen, setIsPopupImageOpen] = useState(false);
+
+  const handlePopupUploadImage = () => {
+      setIsPopupImageOpen(true);
+  }
+  const handleFileChange = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = () => {
+              setImagePreview(reader.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      setPoster(file)
+  };
+  const handleDragOver = (event) => {
+      event.preventDefault();
+  };
+  const handleDrop = (event) => {
+      event.preventDefault();
+      const file = event.dataTransfer.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = () => {
+              setImagePreview(reader.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      setPoster(file)
+  };
+
+  // function gueststar
+  const [guest, setGuest] = useState(null);
+  const [imageGuestPreview, setImageGuestPreview] = useState(null);
+  const handleFileGuestChange = (event) => {
     const file = event.target.files[0];
-   
-    setPoster(file);
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          setImageGuestPreview(reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+      setGuest(file)
+  };
+  const handleCloseGuestIconClick = () => {
+    setGuest(null);
+    setImageGuestPreview(null);
   };
 
   const [poster1, setPoster1] = useState(null);
@@ -48,12 +98,13 @@ function NewEvent() {
   const [namaDescription, setNamaDescription] = useState('');
   const [alamatDescription, setAlamatDescription] = useState(''); 
 
-// fungsi tanggal mulai-selesai
+  // fungsi tanggal mulai-selesai
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
-// fungsi gomaps
+
+  // fungsi gomaps
   const [showGoogleMaps, setShowGoogleMaps] = useState(false);
 
   const [selectedOption, setSelectedOption] = useState(null);
@@ -61,12 +112,6 @@ function NewEvent() {
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
-
-  const [isPopupImageOpen, setIsPopupImageOpen] = useState(false);
-
-  const handlePopupUploadImage = () => {
-      setIsPopupImageOpen(true);
-  }
 
   return (
     <section>
@@ -115,19 +160,70 @@ function NewEvent() {
                   <h1 className="block text-sm mt-1 font-medium text-[#828282] ">
                     Upload gambar untuk poster event kamu Max ukuran 500kb
                   </h1>
-                  <div className="mt-2 flex items-center">
+                  <div className="mt-2 flex flex-col items-center">
                     <input type="file" accept="image/*" onChange={handlePosterUpload} id="poster" className="hidden" />
+                    {poster && (
+                      <span className="ml-2 text-gray-500 mb-2">{poster.name}</span>
+                    )}
                     <button onClick={handlePopupUploadImage} htmlFor="poster" className="cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2">
                       Unggah Poster
                     </button>
+
+                    {/* popup poster start */}
                     {isPopupImageOpen && (
-                        <PopupInputImage
-                        onClose={() => setIsPopupImageOpen(false)}
-                        />
+                        <div>
+                        <div className="fixed inset-0 flex items-center justify-center z-40">
+                            <div className="absolute inset-0 bg-gray-800 opacity-50" onClick={() => setIsPopupImageOpen(false)}></div>
+                            <div
+                                className="w-5/12 bg-white p-4 rounded-lg z-50"
+                                onDragOver={handleDragOver}
+                                onDrop={handleDrop}
+                            >
+                                <h1 className="text-xl font-semibold mb-3 pb-2 border-b-2">Unggah Gambar</h1>
+                                <div className="rounded-lg text-center">
+                                    {imagePreview ? (
+                                        <img
+                                            src={imagePreview}
+                                            alt="Preview"
+                                            className="w-60 h-52 mx-auto"
+                                        />
+                                    ) : (
+                                        <img
+                                            src={imageSearching}
+                                            alt="Searching"
+                                            className="w-60 h-52 mx-auto"
+                                        />
+                                    )}
+                                </div>
+                                <div className="flex justify-center flex-col items-center my-3">
+                                    <label
+                                        htmlFor="uploadImage"
+                                        className="font-bold cursor-pointer"
+                                    >
+                                        Tarik dan Lepaskan Poster
+                                    </label>
+                                    <p className="text-[14px] text-[#828282]">*Unggah gambar untuk poster event kamu Max ukuran 500kb</p>
+                                    <input
+                                        type="file"
+                                        id="uploadImage"
+                                        className="hidden"
+                                        accept="image/*"
+                                        onChange={handleFileChange}
+                                    />
+                                </div>
+                                <div>
+                                    <h3 className="font-semibold">Atau tambahkan dari URL</h3>
+                                    <div className="mt-2 flex gap-3">
+                                        <input className="w-7/12 px-4 py-2 rounded-[20px] border-2 outline outline-1 outline-black" type="text" placeholder="https://lokasani..."/>
+                                        <button className="w-5/12 px-4 py-2 rounded-[20px] focus:outline-none text-white bg-[#253E8D]" onClick={() => handlePosterUpload()}>Tambahkan</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
                     )}
-                    {poster && (
-                      <span className="ml-2 text-gray-500">{poster.name}</span>
-                    )}
+                    {/* popup poster end */}
+
                   </div>
                 </div>
               </div>
@@ -139,7 +235,7 @@ function NewEvent() {
                       type="text"
                       value={eventName}
                       onChange={(e) => setEventName(e.target.value)}
-                      placeholder="nama..."
+                      placeholder="Nama..."
                       className="bg-[#F2F2F2] mt-2 p-2 rounded-md border border-gray-300 w-full"
                     />
                   </div>  
@@ -158,7 +254,7 @@ function NewEvent() {
                       type="text"
                       value={eventDescription}
                       onChange={(e) => setEventDescription(e.target.value)}
-                      placeholder="deskirpsi..."
+                      placeholder="Deskirpsi..."
                       className="bg-[#F2F2F2] mt-2 resize-none py-2 pl-2 pr-2 rounded-md border border-gray-300 w-full"
                       rows={5}
                     />
@@ -185,7 +281,7 @@ function NewEvent() {
                           type="text"
                           value={namaDescription}
                           onChange={(e) => setNamaDescription(e.target.value)}
-                          placeholder="text"
+                          placeholder="Nama venue..."
                           className="bg-[#F2F2F2] mt-2 p-5 rounded-md border border-gray-300 w-full"
                         />
                       </div>
@@ -195,7 +291,7 @@ function NewEvent() {
                           type="text"
                           value={alamatDescription}
                           onChange={(e) => setAlamatDescription(e.target.value)}
-                          placeholder="text"
+                          placeholder="Alamat venue..."
                           className="bg-[#F2F2F2] mt-2 p-5 rounded-md border border-gray-300 w-full"
                         />
                       </div>
@@ -270,19 +366,28 @@ function NewEvent() {
         </div>
 
           {/* Guest start */}
-            <div className="col-span-4 sm:col-span-4 md:col-span-1 bg-white p-4 rounded-md relative">
+            <div className="col-span-4 sm:col-span-4 md:col-span-1 bg-white mt-2 p-4 rounded-md relative">
               <div className="flex flex-col justify-between ">
-              <h1 className='text-3xl font-bold text-sm'>Guest Start</h1>
+              <h1 className='text-3xl font-bold text-sm'>Guest Star</h1>
             <span className='text-[#999999] ml-1'>Tambahkan Pemeriah Acara!</span>
-            <div className='grid grid-cols-2 gap-x-4'>
-              <div className="border-dashed border-2 border-gray-400 p-8 rounded-md aspect-w-1 aspect-h-1">
-              <label htmlFor="poster" className="block text-sm font-medium text-[#828282] mt-2">
+            <div className='flex justify-center'>
+              <div className="border-dashed border-2 mt-2 border-gray-400 flex items-center p-5 py-7 mx-2 rounded-md aspect-w-1 aspect-h-1">
+              <label htmlFor="guest" className="block text-sm font-medium cursor-pointer text-[#828282] mt-2">
               + Tambah Guest Star 
-                  </label>
+              </label>
+              <input type="file" accept="image/*" id="guest" onChange={handleFileGuestChange} className="hidden" />
               </div>
-              <div className='rounded-md   flex flex-col p-2 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-1'>
-              <img src='guest.png' alt="Deskripsi gambar" />
-              </div>
+              {
+                imageGuestPreview ? (
+                  <div className='rounded-md relative w-4/12 flex flex-col mt-2 mx-2 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-1'>
+                    <CloseIcon onClick={handleCloseGuestIconClick} fontSize='small' className='absolute -mt-[8px] bg-[#3653B0] rounded-full text-white -mr-[10px] right-0 cursor-pointer'/>
+                    <img src={imageGuestPreview} className='object-cover h-[90px]' alt="Deskripsi gambar" />
+                  </div>
+                ) : (
+                  <div></div>
+                )
+              }
+              
             </div>
               </div>
             </div>
