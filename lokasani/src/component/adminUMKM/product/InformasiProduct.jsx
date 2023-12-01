@@ -30,14 +30,14 @@ const InformasiProduct = () => {
       <div className="flex justify-between items-center gap-6 mb-4">
         <div className="w-full">
           <div className="mb-2">
-            <label className="font-semibold text-base" htmlFor="sku">SKU</label>
+            <label className="font-semibold text-base" htmlFor="sku">Kategori</label>
           </div>
-          <input
-            type="text"
-            name="sku"
-            placeholder="SKU"
-            className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
-          />
+          <select className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none" name="kategori" id="kategori">
+            <option value="handmade">HandMade</option>
+            <option value="fashion">Fashion</option>
+            <option value="buku">Buku</option>
+            <option value="3D">3D</option>
+          </select>
         </div>
         <div className="w-full">
           <div className="mb-2">
