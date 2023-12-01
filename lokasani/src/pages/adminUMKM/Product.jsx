@@ -3,7 +3,6 @@ import Header from "../../component/adminUMKM/globalComponent/Header";
 import InformasiProduct from "../../component/adminUMKM/product/InformasiProduct";
 import Harga from "../../component/adminUMKM/product/Harga";
 import Varian from "../../component/adminUMKM/product/Varian";
-import Mengatur from "../../component/adminUMKM/product/Mengatur";
 import Media from "../../component/adminUMKM/product/Media";
 
 const Product = () => {
@@ -54,9 +53,6 @@ const Product = () => {
             <div className="w-2/5">
               <div className="w-full">
                 <Harga />
-              </div>
-              <div>
-                <Mengatur/>
               </div>
             </div>
           </div>
