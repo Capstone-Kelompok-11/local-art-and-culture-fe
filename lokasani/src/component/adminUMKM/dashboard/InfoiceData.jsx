@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
 import data from "../../../data/data";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const Table = () => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -57,13 +59,13 @@ const Table = () => {
                 pageRangeDisplayed={5}
                 marginPagesDisplayed={2}
                 onPageChange={handlePageChange}
-                previousLabel={"Sebelumnya"}
-                nextLabel={"Selanjutnya"}
+                previousLabel={<ArrowBackIosIcon fontSize="medium" />}
+                nextLabel={<ArrowForwardIosIcon fontSize="medium"/>}
                 containerClassName={"pagination flex justify-end gap-2 mt-6 px-6"}
-                activeClassName={"bg-blue-900 text-white text-sm px-4 py-2 rounded-md"}
-                pageClassName={"page-item bg-[#3653B0] text-white text-sm px-4 py-2 rounded-md"}
-                previousClassName={"bg-[#3653B0] text-white text-sm px-4 py-2 rounded-md"}
-                nextClassName={"bg-[#3653B0] text-white text-sm px-4 py-2 rounded-md"}
+                activeClassName={"bg-gray-800 text-white text-sm px-4 py-2 rounded-lg"}
+                pageClassName={"page-item bg-[#CCCCCC] text-white text-sm px-4 py-2 rounded-lg"}
+                previousClassName={"flex items-center font-bold text-gray-500"}
+                nextClassName={"flex items-center font-bold text-gray-500"}
                 breakClassName={"break-item"}
                 disabledClassName={"disabled-item"}
                 pageLinkClassName={"page-link"}
