@@ -21,7 +21,7 @@ function App() {
         <Route element={<DaftarAdminUmkm/>} path='/daftarAdminUmkm'/>
         <Route element={<DaftarPengguna/>} path='/daftarPengguna'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
-        <Route element={<ProductAdminUMKM/>} path='/adminumkmProduct'/>
+        <Route element={<ProductAdminUMKM/>} path='/adminumkm/tambahproduct'/>
       </Routes>
     </BrowserRouter>
   )
