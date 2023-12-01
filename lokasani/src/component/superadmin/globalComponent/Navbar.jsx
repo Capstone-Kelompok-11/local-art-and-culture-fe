@@ -7,7 +7,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 const Navbar = ({ title,showButtonBack }) => {
   const navigate = useNavigate();
   return (
-    <nav className="fixed inset-x-0 sm:ml-[250px] bg-white border-gray-200 shadow-md">
+    <nav className="fixed inset-x-0 sm:ml-[250px] bg-white border-gray-200 shadow-md z-50">
       <div className="flex flex-wrap items-center justify-between py-6 px-6">
         <div className="flex">
           

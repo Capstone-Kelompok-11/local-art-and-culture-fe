@@ -102,7 +102,7 @@ const Sidebar = () => {
         <div className="pb-16">
       <ul className="space-y-2 font-medium">
         <li>
-            <Link to={""}
+            <Link to={"/superAdmin/pengaturan"}
               className="flex items-center py-2 px-4 text-gray-900 rounded-lg  hover:bg-[#768DD5] "
             >
               <img
