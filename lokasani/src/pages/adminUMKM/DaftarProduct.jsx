@@ -4,7 +4,8 @@ import data from "../../data/data";
 import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const DaftarProduct = () => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -133,22 +134,22 @@ const DaftarProduct = () => {
                             </table>
 
                             <div className="pagination mt-4">
-                                <ReactPaginate
-                                    pageCount={totalPages}
-                                    pageRangeDisplayed={5}
-                                    marginPagesDisplayed={2}
-                                    onPageChange={handlePageChange}
-                                    previousLabel={"Sebelumnya"}
-                                    nextLabel={"Selanjutnya"}
-                                    containerClassName={"pagination flex justify-end gap-2 mt-6 px-6"}
-                                    activeClassName={"bg-blue-900 text-white text-sm px-4 py-2 rounded-md"}
-                                    pageClassName={"page-item bg-[#3653B0] text-white text-sm px-4 py-2 rounded-md"}
-                                    previousClassName={"bg-[#3653B0] text-white text-sm px-4 py-2 rounded-md"}
-                                    nextClassName={"bg-[#3653B0] text-white text-sm px-4 py-2 rounded-md"}
-                                    breakClassName={"break-item"}
-                                    disabledClassName={"disabled-item"}
-                                    pageLinkClassName={"page-link"}
-                                />
+                            <ReactPaginate
+                                pageCount={totalPages}
+                                pageRangeDisplayed={5}
+                                marginPagesDisplayed={2}
+                                onPageChange={handlePageChange}
+                                previousLabel={<ArrowBackIosIcon fontSize="medium" />}
+                                nextLabel={<ArrowForwardIosIcon fontSize="medium"/>}
+                                containerClassName={"pagination flex justify-end gap-2 mt-6 px-6"}
+                                activeClassName={"bg-gray-800 text-white text-sm px-4 py-2 rounded-lg"}
+                                pageClassName={"page-item bg-[#CCCCCC] text-white text-sm px-4 py-2 rounded-lg"}
+                                previousClassName={"flex items-center font-bold text-gray-500"}
+                                nextClassName={"flex items-center font-bold text-gray-500"}
+                                breakClassName={"break-item"}
+                                disabledClassName={"disabled-item"}
+                                pageLinkClassName={"page-link"}
+                            />
 
                             </div>
                         </div>
