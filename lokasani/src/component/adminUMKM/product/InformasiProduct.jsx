@@ -1,6 +1,12 @@
-
+import { useState } from "react";
+import PopupInputCSV from "./PopupInputCSV";
 
 const InformasiProduct = () => {
+  const [isPopupCSVOpen, setIsPopupCSVOpen] = useState(false);
+
+  const handlePopupUploadCSV = () => {
+    setIsPopupCSVOpen(true);
+}
 
   return (
     <div className="w-full p-6 bg-white rounded-lg mt-5">
@@ -10,10 +16,16 @@ const InformasiProduct = () => {
         </div>
         <div>
           <p
+            onClick={handlePopupUploadCSV}
             className="text-blue-800 text-base font-semibold cursor-pointer"
           >
-            Tambahkan Produk dari CSV
+              Tambahkan Produk Dari CSV
           </p>
+          {isPopupCSVOpen && (
+              <PopupInputCSV
+              onClose={() => setIsPopupCSVOpen(false)}
+              />
+          )}
         </div>
       </div>
       <div className="mb-4">
