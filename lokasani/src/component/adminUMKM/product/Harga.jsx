@@ -34,10 +34,10 @@ const Harga = () => {
           <div>
           <label
             htmlFor="buttonStock"
-            className={`block ${isButtonStoctChecked ? "bg-[#253E8D]" : "bg-gray-300"} transition duration-300 w-14 h-8 rounded-full cursor-pointer flex items-center`}
+            className={`block ${isButtonStoctChecked ? "bg-[#253E8D]" : "bg-gray-300"} transition duration-300 w-12 h-7 rounded-full cursor-pointer flex items-center`}
           >
           <div
-            className={`w-6 h-6 rounded-full bg-white shadow-md transform transition-transform duration-300 ease-in-out ${isButtonStoctChecked ? 'translate-x-7' : 'translate-x-1'}`}
+            className={`w-5 h-5 rounded-full bg-white shadow-md transform transition-transform duration-300 ease-in-out ${isButtonStoctChecked ? 'translate-x-6' : 'translate-x-1'}`}
           ></div>
           </label>
           <input
