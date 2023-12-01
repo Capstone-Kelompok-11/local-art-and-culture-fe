@@ -26,29 +26,6 @@ const Harga = () => {
           className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
         />
       </div>
-      <div className="mb-4">
-        <div className="mb-2">
-          <label className="font-semibold text-base" htmlFor="hargaSetelahDiskon">Harga Setelah Diskon</label>
-        </div>
-        <input
-          type="text"
-          id="hargaSetelahDiskon"
-          name="hargaSetelahDiskon"
-          placeholder="Harga setelah diskon"
-          className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
-        />
-      </div>
-      <div className="mb-8">
-        <label className="flex items-center cursor-pointer">
-          <input
-            type="checkbox"
-            className="h-5 w-5 text-blue-500"
-          />
-          <span className="ml-2 text-sm text-gray-700">
-            Kenakan pajak pada produk ini
-          </span>
-        </label>
-      </div>
       <div>
         <div className="flex justify-between items-center">
           <div>
