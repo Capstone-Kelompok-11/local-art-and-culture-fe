@@ -18,46 +18,43 @@ const Pengaturan = () => {
         <Sidebar/>
         <Navbar title="Pengaturan"/>
         <div className="px-4 py-28 sm:ml-[266px]">
-      <div className="text-sm font-medium text-center text-gray-500 border-b-2 border-gray-900 dark:text-gray-400 dark:border-gray-700">
+      <div className="text-sm font-medium text-center text-gray-500 border-b-black border-gray-900 dark:text-gray-400 dark:border-gray-700">
         <ul className="flex justify-between flex-wrap -mb-px">
           <li>
             <Link
-              to={""}
-              className={`w-full p-4 border-b-2 border-transparent rounded-t-lg hover:text-black hover:border-blue-600 duration-300 ${
-                activeTab === "akun"
-                  ? "text-gray-500  border-b-2 !border-blue-500" 
-                  : ""
-              }`}
-              onClick={() => handleTabClick("akun")}
-            >
-              Akun
-            </Link>
+           to={""}
+           className={`w-full p-4 border-b-black border-transparent rounded-t-lg hover:text-black hover:border-black duration-300 ${
+             activeTab === "akun" ? "text-gray-500 border-b-black border-blue-500" : ""
+           }`}
+           onClick={() => handleTabClick("akun")}
+         >
+           Akun
+         </Link>
+         
           </li>
           <li>
-            <Link
-              to={""}
-              className={`w-full p-4 border-b-2 border-transparent rounded-t-lg hover:text-black hover:border-cloud-burst-600 transition duration-300 ${
-                activeTab === "keamanan"
-                  ? "text-gray-500 border-b-2 !border-cloud-burst-500"
-                  : ""
-              }`}
-              onClick={() => handleTabClick("keamanan")}
-            >
-              Keamanan
-            </Link>
+          <Link
+           to={""}
+           className={`w-full p-4 border-b-black border-transparent rounded-t-lg hover:text-black hover:border-black duration-300 ${
+             activeTab === "keamanan" ? "text-gray-500 border-b-black border-blue-500" : ""
+           }`}
+           onClick={() => handleTabClick("keamanan")}
+         >
+           Keamanan
+         </Link>
+            
           </li>
           <li>
-            <Link
-              to={""}
-              className={`w-full p-4 border-b-2 border-transparent rounded-t-lg hover:text-black hover:border-cloud-burst-600 transition duration-300 ${
-                activeTab === "notifikasi"
-                  ? "text-gray-500  border-b-2 !border-cloud-burst-500"
-                  : ""
-              }`}
-              onClick={() => handleTabClick("notifikasi")}
-            >
-              Notifikasi
-            </Link>
+          <Link
+           to={""}
+           className={`w-full p-4 border-b-black border-transparent rounded-t-lg hover:text-black hover:border-black duration-300 ${
+             activeTab === "notifikasi" ? "text-gray-500 border-b-black border-blue-500" : ""
+           }`}
+           onClick={() => handleTabClick("notifikasi")}
+         >
+           Notifikasi
+         </Link>
+           
           </li>
         </ul>
         <div className="my-4">
