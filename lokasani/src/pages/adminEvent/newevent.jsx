@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
@@ -14,6 +13,7 @@ import Sidebar from "../../component/adminEvent/Sidebar";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import imageSearching from "../../assets/img/image-searching.png";
+import imageGmaps from "../../assets/img/img-gmaps.png";
 
 function NewEvent() {
   // function poster
@@ -67,15 +67,11 @@ function NewEvent() {
 
   const handleGuestUpload = (event) => {
     event.preventDefault();
-    setGuest([
-      ...guest,
-      { nama: nameGuest, peran: jobGuest, image: imageGuestPreview },
-    ]);
     setIsPopupGuestOpen(false);
     setNameGuest("");
     setJobGuest("");
     setImageGuestPreview(null);
-    console.log(guest);
+    console.log(guest, nameGuest, jobGuest);
   };
   const handlePopupUploadGuest = () => {
     setIsPopupGuestOpen(true);
@@ -89,13 +85,7 @@ function NewEvent() {
       };
       reader.readAsDataURL(file);
     }
-    setGuest((prevGuests) => {
-      const lastGuest = prevGuests[prevGuests.length - 1];
-      return [
-        ...prevGuests.slice(0, prevGuests.length - 1),
-        { ...lastGuest, image: file },
-      ];
-    });
+    setGuest({ image: file });
   };
   const handleDragOverGuest = (event) => {
     event.preventDefault();
@@ -110,13 +100,7 @@ function NewEvent() {
       };
       reader.readAsDataURL(file);
     }
-    setGuest((prevGuests) => {
-      const lastGuest = prevGuests[prevGuests.length - 1];
-      return [
-        ...prevGuests.slice(0, prevGuests.length - 1),
-        { ...lastGuest, image: file },
-      ];
-    });
+    setGuest({ image: file });
   };
   const handleGuestClick = () => {
     document.getElementById("uploadGuest").click();
@@ -124,6 +108,28 @@ function NewEvent() {
   const handleCloseGuestIconClick = () => {
     setGuest(null);
     setImageGuestPreview(null);
+  };
+
+  // function Gmaps
+  const [gmaps, setGmaps] = useState(null);
+  const [isPopupGmapsOpen, setIsPopupGmapsOpen] = useState(false);
+  const handleGmapsUpload = (event) => {
+    setIsPopupGmapsOpen(false);
+    console.log(gmaps);
+  };
+  const handlePopupUploadGmaps = () => {
+    setIsPopupGmapsOpen(true);
+  };
+
+  // function Denah Lokasi
+  const [denah, setDenah] = useState(null);
+  const [isPopupDenahOpen, setIsPopupDenahOpen] = useState(false);
+  const handleDenahUpload = (event) => {
+    setIsPopupDenahOpen(false);
+    console.log(denah);
+  };
+  const handlePopupUploadDenah = () => {
+    setIsPopupDenahOpen(true);
   };
 
   const [poster1, setPoster1] = useState(null);
@@ -171,20 +177,10 @@ function NewEvent() {
         {/* header start */}
         <div className="bg-white flex items-center justify-between py-7 rounded-sm">
           <div className="pl-5">
-            <h1 className="text-3xl font-bold">Add New Event</h1>
+            <h1 className="text-4xl font-bold">Tambah Event Baru</h1>
           </div>
           <div>
             <div className="flex items-center">
-              <div className="flex items-center relative mr-5">
-                <SearchIcon className="ml-3 cursor-pointer absolute" />
-                <CloseIcon className="ml-[315px] cursor-pointer absolute" />
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Cari apa"
-                  className="w-[350px] py-1 pl-12 bg-[#F2F2F2] rounded-full"
-                />
-              </div>
               <div className="flex mr-16 gap-x-6">
                 <a className="cursor-pointer">
                   <TextsmsIcon className="text-[#253E8D]" />
@@ -208,12 +204,13 @@ function NewEvent() {
         <div className="bg-gray-200 pl-3 pr-3">
           <div className="grid grid-cols-1 gap-1 p-2">
             <div className="col-span-1 bg-white p-4 rounded-md relative">
-              <h1 className="text-3xl font-bold text-sm">Tentang Eventmu</h1>
-              <span className="text-[#999999] ml-1">
+              <h1 className="text-3xl font-bold mt-2 text-[30px] ml-4">
+                Tentang Eventmu
+              </h1>
+              <span className="text-[#999999] ml-4">
                 Masukkan detail event-mu di sini!
               </span>
-
-              <div className="flex items-center mt-4 space-x-8 justify-center">
+              <div className="flex items-center space-x-8 justify-center">
                 {/* Kolom Unggah */}
                 <div className="border-dashed border-2 w-1/2 h-[300px] border-gray-400 p-8 rounded-md aspect-w-1 aspect-h-1">
                   <div className="flex flex-col items-center">
@@ -320,7 +317,7 @@ function NewEvent() {
                   <div className="grid grid-cols-1 gap-4">
                     <div className="col-span-1 " style={{ width: "400px" }}>
                       <h1 className="text-3xl font-bold text-sm text-[#768DD5]">
-                        Nama:
+                        Nama*
                       </h1>
                       <input
                         type="text"
@@ -332,7 +329,7 @@ function NewEvent() {
                     </div>
                     <div className="col-span-1">
                       <h1 className="text-3xl font-bold text-sm text-[#768DD5]">
-                        Jenis Event:
+                        Jenis Event*
                       </h1>
                       <select
                         value={eventType}
@@ -347,7 +344,7 @@ function NewEvent() {
                     </div>
                     <div className="col-span-1 " style={{ width: "400px" }}>
                       <h1 className="text-3xl font-bold text-sm text-[#768DD5]">
-                        Deskripsi:
+                        Deskripsi*
                       </h1>
                       <textarea
                         type="text"
@@ -364,93 +361,203 @@ function NewEvent() {
             </div>
           </div>
 
-          {/* lokasi event */}
+          {/* lokasi event start */}
           <div className="grid grid-cols-2 gap-3 p-2">
             <div className="col-span-4 sm:col-span-2 md:col-span-1 bg-white p-1 rounded-md relative">
-              <h1 className="text-3xl font-bold text-sm">Lokasi Event</h1>
-              <span className="text-[#999999] ml-1">
+              <h1 className="text-3xl font-bold text-2xl ml-3 mt-5">
+                Lokasi Event
+              </h1>
+              <span className="text-[#999999] text-sm ml-3 mt-5">
                 Jabarkan lokasi event Anda di sini!
               </span>
-              <button className="flex items-center justify-center cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full  w-full">
-                + Unggah Link Venue (Gomaps)
-              </button>
-              <div className="grid grid-cols-2">
-                <div className="col-span-1 p-2 " style={{ width: "200px" }}>
+              <div className="mt-3 p-3">
+                <img src={imageGmaps} alt="Maps" />
+              </div>
+              <div className="flex justify-center">
+                <button
+                  onClick={handlePopupUploadGmaps}
+                  className="mt-2 mx-auto cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 rounded-full w-11/12"
+                >
+                  + Unggah Link Venue (Gomaps)
+                </button>
+
+                {/* popup Gmaps start */}
+                {isPopupGmapsOpen && (
+                  <div>
+                    <div className="fixed inset-0 flex items-center justify-center z-40">
+                      <div
+                        className="absolute inset-0 bg-gray-800 opacity-50"
+                        onClick={() => setIsPopupGmapsOpen(false)}
+                      ></div>
+                      <div className="w-6/12 bg-white p-4 rounded-lg z-50">
+                        <h1 className="text-2xl px-5 mt-3 font-semibold mb-3 pb-2 border-b-2">
+                          Unggah Link Lokasi Gmaps
+                        </h1>
+                        <div className="mx-auto mt-3 flex items-center justify-center rounded-lg text-center w-[600px] h-[222px] border-dashed border-[#828282]">
+                          <label className="text-[#828282] text-sm">
+                            * Maps akan muncul setelah kamu unggah link Google
+                            Maps Venue
+                          </label>
+                        </div>
+                        <div className="flex flex-col items-start mt-4 px-5">
+                          <label
+                            className="font-semibold text-xl"
+                            htmlFor="uploadGmaps"
+                          >
+                            Tambahkan Link Google Maps Venue
+                          </label>
+                        </div>
+                        <div className="mb-4">
+                          <div className="flex justify-between mt-2 px-5 w-full">
+                            <input
+                              type="text"
+                              id="uploadGmaps"
+                              className="outline outline-1 outline-[#828282] rounded-full w-8/12 px-4"
+                              placeholder="https://maps"
+                              onChange={(e) => setGmaps(e.target.value)}
+                            />
+                            <button
+                              className="px-10 py-2 rounded-[20px] focus:outline-none text-white bg-[#253E8D]"
+                              onClick={() => handleGmapsUpload()}
+                            >
+                              Tambahkan
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {/* popup Gmaps end */}
+              </div>
+              <div className="flex justify-between mt-3 ml-3">
+                <div className="col-span-1 p-2 " style={{ width: "240px" }}>
                   <h1 className="text-3xl font-bold text-sm text-[#768DD5]">
-                    Nama Venue:
+                    Nama Venue*
                   </h1>
                   <textarea
                     type="text"
                     value={namaDescription}
                     onChange={(e) => setNamaDescription(e.target.value)}
                     placeholder="Nama venue..."
-                    className="bg-[#F2F2F2] mt-2 p-5 rounded-md border border-gray-300 w-full"
+                    className="bg-[#F2F2F2] mt-2 p-5 resize-none rounded-md border border-gray-300 w-full"
                   />
                 </div>
-                <div className="col-span-1 p-2" style={{ width: "200px" }}>
+                <div className="col-span-1 p-2 mr-3" style={{ width: "240px" }}>
                   <h1 className="text-3xl font-bold text-sm text-[#768DD5]">
-                    Alamat Venue:
+                    Alamat Venue*
                   </h1>
                   <textarea
                     type="text"
                     value={alamatDescription}
                     onChange={(e) => setAlamatDescription(e.target.value)}
                     placeholder="Alamat venue..."
-                    className="bg-[#F2F2F2] mt-2 p-5 rounded-md border border-gray-300 w-full"
+                    className="bg-[#F2F2F2] mt-2 p-5 resize-none rounded-md border border-gray-300 w-full"
                   />
                 </div>
-                <div>
-                  <label
-                    htmlFor="poster"
-                    className="cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 text-sm"
-                  >
-                    + Unggah Denah Venue
-                  </label>
-                </div>
-                <div>
-                  <label
-                    htmlFor="poster"
-                    className="cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 text-sm"
-                  >
-                    + Unggah Denah Venue
-                  </label>
-                </div>
+              </div>
+              <div className="flex justify-center mb-3">
+                <button
+                  onClick={handlePopupUploadDenah}
+                  className="mt-2 mx-auto cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 rounded-full w-11/12"
+                >
+                  + Unggah Denah Lokasi
+                </button>
+                {/* popup Denah Lokasi start */}
+                {isPopupDenahOpen && (
+                  <div>
+                    <div className="fixed inset-0 flex items-center justify-center z-40">
+                      <div
+                        className="absolute inset-0 bg-gray-800 opacity-50"
+                        onClick={() => setIsPopupDenahOpen(false)}
+                      ></div>
+                      <div className="w-6/12 bg-white p-4 rounded-[24px] z-50">
+                        <h1 className="text-2xl px-5 mt-3 font-semibold mb-3 pb-2 border-b-2">
+                          Unggah Denah Lokasi
+                        </h1>
+                        <div className="mx-auto mt-3 flex items-center justify-center rounded-lg text-center w-[600px] h-[222px] border-dashed border-[#828282]">
+                          <label className="text-[#828282] text-sm">
+                            *Gambar Denah akan Muncul setelah Anda Unggah Foto
+                            Denah
+                          </label>
+                        </div>
+                        <div className="mb-2">
+                          <div className="mt-4 px-5 w-full flex flex-col">
+                            <div className="w-full text-center bg-[#3653B0] py-2 rounded-full cursor-pointer">
+                              <label
+                                htmlFor="thumbnailDenah"
+                                className="text-white text-center cursor-pointer"
+                              >
+                                + Unggah Gambar Thumbnail Denah Venue
+                              </label>
+                            </div>
+                            <input
+                              type="file"
+                              id="thumbnailDenah"
+                              className="hidden"
+                              accept="image/*"
+                            />
+                            <div className="w-full mt-2 text-center bg-[#3653B0] py-2 rounded-full cursor-pointer">
+                              <label
+                                htmlFor="denahPDF"
+                                className="text-white text-center cursor-pointer"
+                              >
+                                + Unggah Denah Venue (PDF)
+                              </label>
+                            </div>
+
+                            <input
+                              type="file"
+                              id="denahPDF"
+                              className="hidden"
+                              accept=".pdf"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {/* popup Denah Lokasi end */}
               </div>
             </div>
+            {/* lokasi event end */}
 
             {/* Waktu event */}
             <div className="grid grid-cols-1 gap-1">
               <div className="col-span-4 sm:col-span-2 md:col-span-1 bg-white p-4 rounded-md relative">
-                <h1 className="text-3xl font-bold text-sm">Waktu Event</h1>
-                <span className="text-[#999999] ml-1">
+                <h1 className="text-3xl font-bold mt-2">Waktu Event</h1>
+                <span className="text-[#999999] ml-1 text-sm">
                   Kapan Event Anda dilaksanakan?
                 </span>
                 <div className="grid grid-cols-2">
                   <div className="mt-4">
-                    <label className="block text-sm font-medium text-[#768DD5] mb-2">
-                      Tanggal Mulai:
+                    <label className="block text-medium font-semibold text-[#768DD5] mb-2">
+                      Tanggal Mulai*
                     </label>
                     <DatePicker
                       selected={startDate}
                       onChange={(date) => setStartDate(date)}
                       dateFormat="dd/MM/yyyy"
+                      className="bg-[#F2F2F2] px-2 pl-3 w-11/12 rounded-[10px]"
                     />
                   </div>
 
                   <div className="mt-4">
-                    <label className="block text-sm font-medium text-[#768DD5] mb-2">
-                      Tanggal Selesai:
+                    <label className="block text-medium font-semibold text-[#768DD5] mb-2">
+                      Tanggal Selesai*
                     </label>
                     <DatePicker
                       selected={endDate}
                       onChange={(date) => setEndDate(date)}
                       dateFormat="dd/MM/yyyy"
+                      className="bg-[#F2F2F2] px-2 pl-3 w-11/12 rounded-[10px]"
                     />
                   </div>
 
                   <div className="mt-4">
-                    <label className="block text-sm font-medium text-[#768DD5] mb-2">
-                      Jam Mulai:
+                    <label className="block text-medium font-semibold text-[#768DD5] mb-2">
+                      Jam Mulai*
                     </label>
                     <AccessAlarmIcon
                       fontSize="small"
@@ -469,8 +576,8 @@ function NewEvent() {
                   </div>
 
                   <div className="mt-4">
-                    <label className="block text-sm font-medium text-[#768DD5] mb-2">
-                      Jam Selesai:
+                    <label className="block text-medium font-semibold text-[#768DD5] mb-2">
+                      Jam Selesai*
                     </label>
                     <AccessAlarmIcon
                       fontSize="small"
@@ -491,16 +598,16 @@ function NewEvent() {
               </div>
 
               {/* Guest start */}
-              <div className="col-span-4 sm:col-span-4 md:col-span-1 bg-white mt-2 p-4 rounded-md relative">
+              <div className="col-span-4 sm:col-span-4 md:col-span-1 bg-white mt-2 pb-6 p-4 rounded-md relative">
                 <div className="flex flex-col justify-between ">
-                  <h1 className="text-3xl font-bold text-sm">Guest Star</h1>
-                  <span className="text-[#999999] ml-1">
+                  <h1 className="text-3xl font-bold">Guest Star</h1>
+                  <span className="text-[#999999] ml-1 text-sm">
                     Tambahkan Pemeriah Acara!
                   </span>
-                  <div className="flex justify-center">
-                    <div className="border-dashed border-2 mt-2 border-gray-400 flex items-center p-5 py-7 mx-2 rounded-md aspect-w-1 aspect-h-1">
+                  <div className="flex mt-5 items-center justify-center">
+                    <div className="border-dashed h-32 border-2 mt-2 border-gray-400 justify-center flex items-center p-5 py-7 mx-2 rounded-[24px] aspect-w-1 aspect-h-1">
                       <label
-                        className="block text-sm font-medium cursor-pointer text-[#828282] mt-2"
+                        className="block text-sm font-medium cursor-pointer text-[#828282]"
                         onClick={handlePopupUploadGuest}
                       >
                         + Tambah Guest Star
@@ -513,27 +620,29 @@ function NewEvent() {
                         className="hidden"
                       />
                     </div>
-                    {guest ? (
+                    {/* {guest ? (
                       guest.map((guest, index) => (
                         <div
                           key={index}
-                          className="rounded-md relative w-4/12 flex flex-col mt-2 mx-2 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-1"
+                          className="rounded-md relative h-32 w-4/12 flex flex-col mt-2 mx-2 bg-light-yellow rounded-[24px] shadow-md hover:bg-tan ring-[#768DD5] ring-1"
                         >
                           <CloseIcon
                             onClick={handleCloseGuestIconClick}
                             fontSize="small"
                             className="absolute -mt-[8px] bg-[#3653B0] rounded-full text-white -mr-[10px] right-0 cursor-pointer"
                           />
-                          <img
-                            src={guest.image}
-                            className="object-cover h-[90px]"
-                            alt="Deskripsi gambar"
-                          />
+                          {guest.image && (
+                            <img
+                              src={URL.createObjectURL(guest.image)}
+                              className="object-cover h-[90px]"
+                              alt="Deskripsi gambar"
+                            />
+                          )}
                         </div>
                       ))
                     ) : (
                       <div></div>
-                    )}
+                    )} */}
                   </div>
                 </div>
                 {/* popup guest start */}
@@ -644,13 +753,15 @@ function NewEvent() {
 
           <div className="grid grid-cols-1 gap-1 p-2">
             <div className="col-span-1 bg-white p-4 rounded-md relative">
-              <h1 className="text-3xl font-bold text-sm">Detail Tiketing</h1>
-              <span className="text-[#999999] ml-1">
-                Jabarkan Tiket yang ingin Anda daftarkan
-              </span>
-              <div className="flex p-4">
-                <button className="ml-auto cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 text-sm">
-                  + Tambah Tiket
+              <div className="flex justify-between items-center mb-4">
+                <div>
+                  <h1 className="text-3xl font-bold">Detail Tiketing</h1>
+                  <span className="text-[#999999] text-sm">
+                    Jabarkan Tiket yang ingin Anda daftarkan
+                  </span>
+                </div>
+                <button className="cursor-pointer bg-[#3653B0] py-2 hover:bg-blue-800 text-white px-5 rounded-full text-sm">
+                  + Tambah Tiket*
                 </button>
               </div>
 
