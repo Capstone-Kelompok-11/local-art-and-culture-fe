@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
 import Sidebar from "../../components/admin-event/Sidebar";
 import TextsmsIcon from "@mui/icons-material/Textsms";
@@ -11,11 +11,20 @@ import user from "../../assets/img/user.svg";
 import TransactionIcon from "../../assets/icon/transaction.svg";
 import StatusUp from "../../assets/icon/status-up.svg";
 import PersonalCard from "../../assets/icon/personalcard.svg";
+import MoneyNotifIcon from "@mui/icons-material/MonetizationOnRounded";
 import Receipt from "../../assets/icon/receipt.svg";
+import CloseIcon from "@mui/icons-material/Close";
+import InfoIcon from "@mui/icons-material/Info";
 
 function Index() {
-  const chartContainer = useRef(null);
+  // Notification Popup
+  const [notifPopup, setNotifPopup] = useState(false);
+  const notificationRef = useRef(null);
+  const toggleNotifPopup = () => {
+    setNotifPopup(!notifPopup);
+  };
 
+  const chartContainer = useRef(null);
   useEffect(() => {
     let myChart;
 
@@ -89,14 +98,117 @@ function Index() {
           </div>
           <div>
             <div className="flex items-center">
-              <div className="flex mr-16 gap-x-6">
+              <div className="flex mr-16 gap-x-6 relative">
                 <a className="cursor-pointer">
                   <TextsmsIcon className="text-[#253E8D]" />
                 </a>
-                <a className="cursor-pointer">
+                <a className="cursor-pointer" onClick={toggleNotifPopup}>
                   <NotificationsActiveIcon className="text-[#253E8D]" />
                 </a>
-                <a href="">
+
+                {/* Notification start */}
+                {notifPopup && (
+                  <div className="absolute z-50 bg-white shadow-2xl w-[520px] h-[465px] right-0 px-5 z-20 mt-10 rounded-[12px] pb-10 pt-8 mr-10">
+                    <div className="z-50 bg-white">
+                      <div className="flex justify-between relative">
+                        <h1 className="text-4xl font-semibold">Notifikasi</h1>
+                        <CloseIcon
+                          fontSize="large"
+                          className="cursor-pointer"
+                          onClick={() => {
+                            setNotifPopup(!notifPopup);
+                          }}
+                        />
+                      </div>
+                      <div className="mt-6">
+                        <a
+                          href=""
+                          className="border-b-4 border-indigo-500 px-4 mr-3 py-2"
+                        >
+                          Terbaru
+                        </a>
+                        <a
+                          href=""
+                          className="border-b-4 border-indigo-500 px-4 mr-3 py-2"
+                        >
+                          Transaksi
+                        </a>
+                        <a
+                          href=""
+                          className="border-b-4 border-indigo-500 px-4 mr-3 py-2"
+                        >
+                          Info
+                        </a>
+                      </div>
+                      <div className="mt-4 overflow-y-auto overflow-hidden h-[310px]">
+                        <div className="pl-12 relative pr-5 mt-2">
+                          <div className="flex justify-between">
+                            <InfoIcon
+                              className="absolute left-0 ml-1 text-[#3653B0]"
+                              fontSize="large"
+                            />
+                            <h1 className="text-[#999999] text-sm">Info</h1>
+                            <h1 className="text-[#999999] text-sm">5 Jam</h1>
+                          </div>
+                          <div>
+                            <h1 className="font-semibold text-lg">
+                              Kini Lokasani Creator Hadir dalam Tampilan Baru
+                            </h1>
+                            <p>
+                              Cek tampilan halaman akun lokasani yuk! Fitur
+                              history hadir untuk melihat transaksi terakhirmu.
+                              Makin nyaman bertransaksi bersama Lokasani
+                            </p>
+                          </div>
+                        </div>
+                        <div className="pl-12 relative pr-5 mt-2">
+                          <div className="flex justify-between">
+                            <MoneyNotifIcon
+                              className="absolute left-0 ml-1 text-[#3653B0]"
+                              fontSize="large"
+                            />
+                            <h1 className="text-[#999999] text-sm">
+                              Transaksi
+                            </h1>
+                            <h1 className="text-[#999999] text-sm">5 Jam</h1>
+                          </div>
+                          <div>
+                            <h1 className="font-semibold text-lg">
+                              Kini Lokasani Creator Hadir dalam Tampilan Baru
+                            </h1>
+                            <p>
+                              Cek tampilan halaman akun lokasani yuk! Fitur
+                              history hadir untuk melihat transaksi terakhirmu.
+                              Makin nyaman bertransaksi bersama Lokasani
+                            </p>
+                          </div>
+                        </div>
+                        <div className="pl-12 relative pr-5 mt-2">
+                          <div className="flex justify-between">
+                            <InfoIcon
+                              className="absolute left-0 ml-1 text-[#3653B0]"
+                              fontSize="large"
+                            />
+                            <h1 className="text-[#999999] text-sm">Info</h1>
+                            <h1 className="text-[#999999] text-sm">5 Jam</h1>
+                          </div>
+                          <div>
+                            <h1 className="font-semibold text-lg">
+                              Kini Lokasani Creator Hadir dalam Tampilan Baru
+                            </h1>
+                            <p>
+                              Cek tampilan halaman akun lokasani yuk! Fitur
+                              history hadir untuk melihat transaksi terakhirmu.
+                              Makin nyaman bertransaksi bersama Lokasani
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {/* Notification end */}
+                <a>
                   <img
                     className="w-6 h-6 rounded-full"
                     src={user}
@@ -121,8 +233,8 @@ function Index() {
             </div>
 
             <div className="flex items-center">
-              <div className="flex justify-end items-center mr-2 border-2 border-black">
-                <h1 className="font-semibold">Tampilkan</h1>
+              <div className="flex justify-end items-center mr-2">
+                <h1 className="font-semibold text-[18px] mr-1">Tampilkan</h1>
                 <select className="bg-white text-[#999999] p-1 px-2 py-2 rounded-md outline outline-black outline-1 ml-2">
                   <option>Data Terbaru</option>
                   <option>Filter 2</option>
@@ -134,8 +246,16 @@ function Index() {
                   className="ml-5 text-white absolute"
                 />
                 <select className="bg-[#243775] text-white py-2 px-4 pl-10 rounded-md m-2 flex items-center">
-                  <option>Export Sebagai</option>
-                  <option>Filter 2</option>
+                  <option
+                    className="bg-white text-black"
+                    hidden
+                    disabled
+                    selected
+                  >
+                    Export Sebagai
+                  </option>
+                  <option className="bg-white text-black">Excel (.xls)</option>
+                  <option className="bg-white text-black">Pdf (.pdf)</option>
                 </select>
               </div>
             </div>
