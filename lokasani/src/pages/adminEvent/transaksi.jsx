@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../../component/adminEvent/Sidebar'
 import TextsmsIcon from '@mui/icons-material/Textsms';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
@@ -6,9 +6,18 @@ import user from '../../assets/img/user.svg'
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import InfoIcon from '@mui/icons-material/Info';
+import TransactionDetailsPopup from '../../component/adminEvent/transaksidetail';
 
 function Transaksi() {
-  
+  const [isDetailsPopupOpen, setIsDetailsPopupOpen] = useState(false);
+
+  const handleInfoIconClick = () => {
+    setIsDetailsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsDetailsPopupOpen(false);
+  };
   
   return (
     <section>
@@ -90,7 +99,10 @@ function Transaksi() {
                     <span className='text-[#3653B0] w-1/6'>$100.00</span>
                     <span className='text-[#7EB4A7] w-1/6'>Paid</span>
                     <span className='text-[#3653B0] w-1/6'>
-                    <InfoIcon />
+                      {isDetailsPopupOpen && <TransactionDetailsPopup onClose={handleClosePopup} />}
+                    <span className='text-[#3653B0] w-1/6 cursor-pointer' onClick={handleInfoIconClick}>
+                  <InfoIcon />
+                </span>
                     <DeleteOutlineIcon/>
                     </span>
                     </li>
