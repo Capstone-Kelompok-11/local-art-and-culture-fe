@@ -4,6 +4,7 @@ import Home from "./pages/home"
 import NewEvent from './pages/adminEvent/newevent'
 import Transaksi from './pages/adminEvent/transaksi'
 import MyEvent from './pages/adminEvent/myevent'
+import Chat from './pages/adminEvent/chat'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route element={<NewEvent/>} path='/newevent'/>
         <Route element ={<Transaksi/>} path='/transaksi'/>
         <Route element={<MyEvent/>} path='/myevent'/>
+        <Route element={<Chat/>} path='chat'/>
       </Routes>
     </BrowserRouter>
   )
