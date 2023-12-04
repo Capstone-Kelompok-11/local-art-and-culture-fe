@@ -8,6 +8,11 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import InfoIcon from '@mui/icons-material/Info';
 import TransactionDetailsPopup from '../../component/adminEvent/transaksidetail';
 
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { Icon } from '@mui/material';
+
 function Transaksi() {
   const [isDetailsPopupOpen, setIsDetailsPopupOpen] = useState(false);
 
@@ -18,6 +23,19 @@ function Transaksi() {
   const handleClosePopup = () => {
     setIsDetailsPopupOpen(false);
   };
+
+  // kalender
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleExportButtonClick = () => {
+    // Lakukan ekspor dengan selectedDate jika diperlukan
+    console.log('Mengekspor:', selectedDate);
+  };
+
   
   return (
     <section>
@@ -64,17 +82,22 @@ function Transaksi() {
                     </button>
                 </div>
                 <div className="flex items-center">
-                    <div className="flex justify-end items-center mr-2 border-2 border-black">
-                    <h1 className='font-semibold'>Tampilkan</h1>
-                    <select className="bg-white text-[#999999] p-1 px-2 py-2 rounded-md outline outline-black outline-1 ml-2">
-                        <option>Tanggal/bulan</option>
-                        <option>Filter 2</option>
-                    </select>
-                    </div>
-                    <button className="bg-[#243775] text-white py-[6px] px-4 rounded-md m-2 flex items-center">
-                    <FileDownloadIcon fontSize='small' className='mr-1'/>
+                  <div className="flex justify-end items-center mr-2 border-2 border-black">
+                    <h1 className="font-semibold">Tampilkan</h1>
+                    <DatePicker
+                      selected={selectedDate}
+                      onChange={handleDateChange}
+                      dateFormat="dd/MM/yyyy"
+                      placeholderText="Tanggal/bulan"
+                      className="bg-white text-[#3653B0] p-2 py-2 rounded-md outline outline-black outline-1 ml-2"
+                    />
+                  </div>
+                  <button
+                    className="bg-[#243775] text-white py-[6px] px-4 rounded-md m-2 flex items-center"
+                    onClick={handleExportButtonClick}
+                  >
                     Export
-                    </button>
+                  </button>
                 </div>
                 </div>
 
