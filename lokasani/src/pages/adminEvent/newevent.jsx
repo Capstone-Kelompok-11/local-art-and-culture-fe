@@ -6,6 +6,8 @@ import TextsmsIcon from "@mui/icons-material/Textsms";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CreateIcon from "@mui/icons-material/Create";
+import DownloadIcon from "@mui/icons-material/Download";
+import AddIcon from "@mui/icons-material/Add";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import Brightness1Icon from "@mui/icons-material/Brightness1";
 import user from "../../assets/img/user.svg";
@@ -141,6 +143,21 @@ function NewEvent() {
   };
   const handlePopupUploadAddTiket = () => {
     setIsPopupAddTiketOpen(true);
+  };
+
+  // function Import File
+  const [importFile, setImportFile] = useState();
+  const [isPopupImportFileOpen, setIsPopupImportFileOpen] = useState(false);
+  const handleImportFileUpload = (event) => {
+    setIsPopupImportFileOpen(false);
+    console.log(importFile);
+  };
+  const handleImportFileChange = (e) => {
+    const file = e.target.files[0];
+    setImportFile(file);
+  };
+  const handlePopupUploadImportFile = () => {
+    setIsPopupImportFileOpen(true);
   };
 
   const [poster1, setPoster1] = useState(null);
@@ -335,7 +352,7 @@ function NewEvent() {
                         value={eventName}
                         onChange={(e) => setEventName(e.target.value)}
                         placeholder="Nama..."
-                        className="bg-[#F2F2F2] mt-2 p-2 rounded-md border border-gray-300 w-full"
+                        className="bg-[#F2F2F2] mt-2 p-2 rounded-md w-full"
                       />
                     </div>
                     <div className="col-span-1">
@@ -345,7 +362,7 @@ function NewEvent() {
                       <select
                         value={eventType}
                         onChange={(e) => setEventType(e.target.value)}
-                        className="bg-[#F2F2F2] mt-2 p-2 rounded-md border border-gray-300 w-full text-[#828282]"
+                        className="bg-[#F2F2F2] mt-2 p-2 rounded-md w-full text-[#828282]"
                       >
                         <option value="">Pilih Jenis Event</option>
                         <option value="Conference">Conference</option>
@@ -362,7 +379,7 @@ function NewEvent() {
                         value={eventDescription}
                         onChange={(e) => setEventDescription(e.target.value)}
                         placeholder="Deskirpsi..."
-                        className="bg-[#F2F2F2] mt-2 resize-none py-2 pl-2 pr-2 rounded-md border border-gray-300 w-full"
+                        className="bg-[#F2F2F2] mt-2 resize-none py-2 pl-2 pr-2 rounded-md w-full"
                         rows={5}
                       />
                     </div>
@@ -451,7 +468,7 @@ function NewEvent() {
                     value={namaDescription}
                     onChange={(e) => setNamaDescription(e.target.value)}
                     placeholder="Nama venue..."
-                    className="bg-[#F2F2F2] mt-2 p-5 resize-none rounded-md border border-gray-300 w-full"
+                    className="bg-[#F2F2F2] mt-2 p-5 resize-none rounded-md w-full"
                   />
                 </div>
                 <div className="col-span-1 p-2 mr-3" style={{ width: "240px" }}>
@@ -463,7 +480,7 @@ function NewEvent() {
                     value={alamatDescription}
                     onChange={(e) => setAlamatDescription(e.target.value)}
                     placeholder="Alamat venue..."
-                    className="bg-[#F2F2F2] mt-2 p-5 resize-none rounded-md border border-gray-300 w-full"
+                    className="bg-[#F2F2F2] mt-2 p-5 resize-none rounded-md w-full"
                   />
                 </div>
               </div>
@@ -945,7 +962,7 @@ function NewEvent() {
               </div>
 
               {/* tiket start */}
-              <div className="mb-4 rounded-md relative flex flex-col px-20 py-11 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-2">
+              <div className="mb-4 rounded-md relative flex flex-col px-20 pt-11 pb-8 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-2">
                 <div className="flex mb-4">
                   <button className="cursor-pointer bg-[#CA9702] hover:bg-yellow-600 text-white py-2 px-4 rounded-full text-sm">
                     Workshop
@@ -962,24 +979,26 @@ function NewEvent() {
                   Workshop Keramik Jawa Timur bersama Kak Seto
                 </h1>
                 <span className="text-[#999999]">
-                  Lorem ipsum dolor sit amet consectetur. Amet varius turpis
-                  habitasse tempus. Eros eu aliquet enim rutrum etiam venenatis
-                  dolor tortor.
+                  Ayo ikuti keseruan dari workshop bersama Kak Seto tentang
+                  bagaimana proses pembuatan keramik yang mudah dan murah!
                 </span>
                 <div className="text-sm flex items-center mb-1">
                   <CloseIcon color="primary" />
-                  <span className="ml-2">
-                    500 Tiket mulai dijual tanggal 25 Nov 2023
-                  </span>
+                  <p className="ml-2 text-[#768DD5]">
+                    <span className="font-semibold">500</span> Tiket mulai
+                    dijual tanggal{" "}
+                    <span className="font-semibold">25 Nov 2023</span> |{" "}
+                    <span>00:00</span>
+                  </p>
                 </div>
                 <div className="border-b border-dashed border-[#768DD5] mt-1"></div>
                 <div className="absolute left-1 top-0 bg-[#CA9702] w-2 h-full ml-2"></div>
-                <h1 className="text-3xl font-bold text-sm mt-5">Rp.85.000</h1>
+                <h1 className="text-3xl font-bold mt-5">Rp.85.000</h1>
               </div>
               {/* tiket end */}
               <div className="flex w-full">
                 <div className="col-span-1 bg-white w-9/12 p-4 rounded-md relative">
-                  <h1 className="text-3xl font-bold text-sm text-[#3653B0]">
+                  <h1 className="text-lg font-bold text-[#3653B0]">
                     Formulir Pemesanan*
                   </h1>
 
@@ -1044,7 +1063,7 @@ function NewEvent() {
                   </div>
                 </div>
                 <div className="col-span-1 w-full bg-white p-4 rounded-md relative">
-                  <h1 className="text-3xl font-bold text-sm text-[#3653B0]">
+                  <h1 className="text-lg  font-bold text-[#3653B0]">
                     Pengaturan Tambahan*
                   </h1>
                   <div className="flex items-center justify-between">
@@ -1096,9 +1115,84 @@ function NewEvent() {
                   </span>
                 </div>
                 <div className="flex">
-                  <button className="ml-auto cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 text-sm">
+                  <button
+                    onClick={handlePopupUploadImportFile}
+                    className="ml-auto cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 text-sm"
+                  >
                     + Import Data dari File
                   </button>
+                  {/* popup Import File start */}
+                  {isPopupImportFileOpen && (
+                    <div>
+                      <div className="fixed inset-0 flex items-center justify-center z-40">
+                        <div
+                          className="absolute inset-0 bg-gray-800 opacity-50"
+                          onClick={() => setIsPopupImportFileOpen(false)}
+                        ></div>
+                        <div className="w-5/12 bg-white py-5 pb-8 rounded-[24px] z-50 px-8">
+                          <h1 className="text-xl font-semibold mb-3 pb-2">
+                            Tambahkan Data Merch kamu
+                          </h1>
+                          <button className="w-full bg-[#768DD5] text-white py-2 rounded-full">
+                            <DownloadIcon />
+                            <span>Unduh Template File</span>
+                          </button>
+                          <div className="mt-2">
+                            <label className="font-medium text-lg">
+                              Unggah File di sini
+                            </label>
+                            <br />
+                            <div className="flex justify-between mt-2">
+                              <div className="w-[90%] border-[1px] py-2 rounded-full px-4">
+                                {importFile ? importFile.name : ""}
+                              </div>
+                              <div>
+                                <label
+                                  htmlFor="importFileMerch"
+                                  className="bg-[#768DD5] flex items-center justify-center cursor-pointer w-10 h-10 rounded-full"
+                                >
+                                  <AddIcon
+                                    fontSize="large"
+                                    className="text-white"
+                                  />
+                                </label>
+                                <input
+                                  type="file"
+                                  id="importFileMerch"
+                                  name="importFileMerch"
+                                  accept=".xls, .xlsx"
+                                  className="hidden"
+                                  onChange={handleImportFileChange}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="mt-2 flex items-center">
+                            <input
+                              type="checkbox"
+                              id="sesuaiTemplate"
+                              name="sesuaiTemplate"
+                              className="mr-2"
+                            />
+                            <label
+                              htmlFor="sesuaiTemplate"
+                              className="text-[#333333] text-xs"
+                            >
+                              Pastikan file kamu sesuai dengan template yang
+                              tersedia
+                            </label>
+                          </div>
+                          <button
+                            className="w-full mt-4 py-2 rounded-[20px] focus:outline-none text-white bg-[#253E8D]"
+                            onClick={handleImportFileUpload}
+                          >
+                            Tambah Data Merch
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {/* popup Import File end */}
                 </div>
               </div>
               <div className="col-span-1 bg-white p-3 rounded-md relative">
@@ -1147,7 +1241,7 @@ function NewEvent() {
                           value={eventNama}
                           onChange={(e) => setEventNama(e.target.value)}
                           placeholder="nama..."
-                          className="bg-[#F2F2F2] mt-2 p-2 rounded-md border border-gray-300 w-full"
+                          className="bg-[#F2F2F2] mt-2 p-2 rounded-md w-full"
                         />
                       </div>
                       <div>
@@ -1159,7 +1253,7 @@ function NewEvent() {
                           value={eventDeskripsi}
                           onChange={(e) => setEventDeskripsi(e.target.value)}
                           placeholder="deskripsi..."
-                          className="bg-[#F2F2F2] mt-2 px-3 py-3 resize-none rounded-md border border-gray-300 w-full"
+                          className="bg-[#F2F2F2] mt-2 px-3 py-3 resize-none rounded-md w-full"
                         />
                       </div>
                       <div className="flex">
@@ -1250,7 +1344,7 @@ function NewEvent() {
                           value={eventNama}
                           onChange={(e) => setEventNama(e.target.value)}
                           placeholder="nama..."
-                          className="bg-[#F2F2F2] mt-2 p-2 rounded-md border border-gray-300 w-full"
+                          className="bg-[#F2F2F2] mt-2 p-2 rounded-md w-full"
                         />
                       </div>
                       <div>
@@ -1262,7 +1356,7 @@ function NewEvent() {
                           value={eventDeskripsi}
                           onChange={(e) => setEventDeskripsi(e.target.value)}
                           placeholder="deskripsi..."
-                          className="bg-[#F2F2F2] mt-2 px-3 py-3 resize-none rounded-md border border-gray-300 w-full"
+                          className="bg-[#F2F2F2] mt-2 px-3 py-3 resize-none rounded-md w-full"
                         />
                       </div>
                       <div className="flex">
