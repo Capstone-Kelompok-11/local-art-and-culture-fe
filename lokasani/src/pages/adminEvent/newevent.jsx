@@ -132,6 +132,17 @@ function NewEvent() {
     setIsPopupDenahOpen(true);
   };
 
+  // function Tambah Tiket
+  const [addTiket, setAddTiket] = useState(null);
+  const [isPopupAddTiketOpen, setIsPopupAddTiketOpen] = useState(false);
+  const handleAddTiketUpload = (event) => {
+    setIsPopupAddTiketOpen(false);
+    console.log(addTiket);
+  };
+  const handlePopupUploadAddTiket = () => {
+    setIsPopupAddTiketOpen(true);
+  };
+
   const [poster1, setPoster1] = useState(null);
 
   const handlePosterUpload1 = (event) => {
@@ -755,18 +766,186 @@ function NewEvent() {
             <div className="col-span-1 bg-white p-4 rounded-md relative">
               <div className="flex justify-between items-center mb-4">
                 <div>
-                  <h1 className="text-3xl font-bold">Detail Tiketing</h1>
+                  <h1 className="text-3xl font-bold">Detail Tiket</h1>
                   <span className="text-[#999999] text-sm">
                     Jabarkan Tiket yang ingin Anda daftarkan
                   </span>
                 </div>
-                <button className="cursor-pointer bg-[#3653B0] py-2 hover:bg-blue-800 text-white px-5 rounded-full text-sm">
+                <button
+                  onClick={handlePopupUploadAddTiket}
+                  className="cursor-pointer bg-[#3653B0] py-2 hover:bg-blue-800 text-white px-5 rounded-full text-sm"
+                >
                   + Tambah Tiket*
                 </button>
+                {/* popup Tambah Tiket start */}
+                {isPopupAddTiketOpen && (
+                  <div>
+                    <div className="fixed inset-0 flex items-center justify-center z-[70]">
+                      <div
+                        className="absolute inset-0 bg-gray-800 opacity-50"
+                        onClick={() => setIsPopupAddTiketOpen(false)}
+                      ></div>
+                      <div className="w-5/12 bg-white p-4 rounded-lg z-[80] ">
+                        <div className="overflow-y-auto overflow-hidden h-[440px] px-4">
+                          <h1 className="text-2xl mt-3 font-semibold mb-3 pb-2 border-b-2">
+                            Detail Tiket
+                          </h1>
+                          <div>
+                            <label
+                              htmlFor=""
+                              className="text-[#768DD5] font-semibold"
+                            >
+                              Nama Tiket
+                            </label>
+                            <br />
+                            <input
+                              type="text"
+                              className="bg-[#F2F2F2] py-[8px] px-3 mb-2 rounded-lg w-full"
+                            />
+                          </div>
+                          <div>
+                            <label
+                              htmlFor=""
+                              className="text-[#768DD5] font-semibold"
+                            >
+                              Jenis Tiket
+                            </label>
+                            <br />
+                            <input
+                              type="text"
+                              className="bg-[#F2F2F2] py-[8px] px-3 mb-2 rounded-lg w-full"
+                            />
+                          </div>
+                          <div className="flex w-full mb-2">
+                            <div className="w-1/2 mr-2">
+                              <label
+                                htmlFor=""
+                                className="text-[#768DD5] font-semibold"
+                              >
+                                Jenis Tiket
+                              </label>
+                              <br />
+                              <input
+                                type="text"
+                                className="bg-[#F2F2F2] py-[8px] px-3 rounded-lg w-full"
+                              />
+                            </div>
+                            <div className="w-1/2">
+                              <label
+                                htmlFor=""
+                                className="text-[#768DD5] font-semibold"
+                              >
+                                Jenis Tiket
+                              </label>
+                              <br />
+                              <input
+                                type="text"
+                                className="bg-[#F2F2F2] py-[8px] px-3 rounded-lg w-full"
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <label
+                              htmlFor=""
+                              className="text-[#768DD5] font-semibold"
+                            >
+                              Deskripsi Tiket
+                            </label>
+                            <br />
+                            <textarea
+                              name=""
+                              id=""
+                              cols="30"
+                              rows="5"
+                              className="bg-[#F2F2F2] resize-none py-[8px] px-3 rounded-lg w-full"
+                            />
+                          </div>
+                          <h1 className="text-2xl mt-8 font-semibold mb-3">
+                            Waktu Penjualan Tiket
+                          </h1>
+                          <div className="w-full">
+                            <div className="flex mt-4 w-full">
+                              <div className="w-1/2">
+                                <label className="block text-medium font-semibold text-[#768DD5] mb-2">
+                                  Tanggal Mulai
+                                </label>
+                                <DatePicker
+                                  selected={startDate}
+                                  onChange={(date) => setStartDate(date)}
+                                  dateFormat="dd/MM/yyyy"
+                                  className="bg-[#F2F2F2] px-2 w-[220px] rounded-lg py-[8px]"
+                                />
+                              </div>
+
+                              <div className="w-1/2">
+                                <label className="block text-medium font-semibold text-[#768DD5] mb-2">
+                                  Tanggal Selesai
+                                </label>
+                                <DatePicker
+                                  selected={endDate}
+                                  onChange={(date) => setEndDate(date)}
+                                  dateFormat="dd/MM/yyyy"
+                                  className="bg-[#F2F2F2] px-2 w-[234px] rounded-lg py-[8px]"
+                                />
+                              </div>
+                            </div>
+                            <div className="flex w-full mt-4">
+                              <div className="w-1/2 relative">
+                                <label className="block text-medium font-semibold text-[#768DD5] mb-2">
+                                  Jam Mulai
+                                </label>
+                                <AccessAlarmIcon
+                                  fontSize="small"
+                                  className="absolute ml-[8px] z-[90] mt-[9px] z-10 text-[#828282]"
+                                />
+                                <DatePicker
+                                  selected={startTime}
+                                  onChange={(time) => setStartTime(time)}
+                                  showTimeSelect
+                                  showTimeSelectOnly
+                                  timeIntervals={15}
+                                  timeCaption="Time"
+                                  dateFormat="HH:mm"
+                                  className="bg-[#F2F2F2] px-2 pl-8 w-[220px] rounded-lg py-[8px]"
+                                />
+                              </div>
+
+                              <div className="w-1/2 relative">
+                                <label className="block text-medium font-semibold text-[#768DD5] mb-2">
+                                  Jam Selesai
+                                </label>
+                                <AccessAlarmIcon
+                                  fontSize="small"
+                                  className="absolute ml-[8px] z-[90] mt-[9px] text-[#828282]"
+                                />
+                                <DatePicker
+                                  selected={endTime}
+                                  onChange={(time) => setEndTime(time)}
+                                  showTimeSelect
+                                  showTimeSelectOnly
+                                  timeIntervals={15}
+                                  timeCaption="Time"
+                                  dateFormat="HH:mm"
+                                  className="bg-[#F2F2F2] px-2 pl-8 w-full rounded-lg py-[8px]"
+                                />
+                              </div>
+                            </div>
+                            <div className="w-full mt-6">
+                              <button className="w-full rounded-full bg-[#3653B0] text-white py-2">
+                                Buat Tiket
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {/* popup Tambah Tiket end */}
               </div>
 
               {/* tiket start */}
-              <div className="mb-4 rounded-md relative flex flex-col p-20 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-2">
+              <div className="mb-4 rounded-md relative flex flex-col px-20 py-11 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-2">
                 <div className="flex mb-4">
                   <button className="cursor-pointer bg-[#CA9702] hover:bg-yellow-600 text-white py-2 px-4 rounded-full text-sm">
                     Workshop
@@ -798,41 +977,8 @@ function NewEvent() {
                 <h1 className="text-3xl font-bold text-sm mt-5">Rp.85.000</h1>
               </div>
               {/* tiket end */}
-              <div className="mb-4 relative">
-                <div className="mb-4 rounded-md relative flex flex-col p-20 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-2">
-                  <div className="flex ">
-                    <button className="cursor-pointer bg-[#CA9702] hover:bg-yellow-600 text-white py-2 px-4 rounded-full ml-2 text-sm">
-                      Workshop
-                    </button>
-                    <button className="cursor-pointer bg-[#768DD5] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 text-sm">
-                      Reguler
-                    </button>
-                    <div className="ml-auto">
-                      <CreateIcon />
-                      <DeleteIcon />
-                    </div>
-                  </div>
-                  <h1 className="text-3xl font-bold text-sm">
-                    Workshop Keramik Jawa Timur bersama Kak Seto
-                  </h1>
-                  <span className="text-[#999999]">
-                    Lorem ipsum dolor sit amet consectetur. Amet varius turpis
-                    habitasse tempus. Eros eu aliquet enim rutrum etiam
-                    venenatis dolor tortor.
-                  </span>
-                  <div className="text-sm flex items-center">
-                    <CloseIcon color="primary" />
-                    <span className="ml-2">
-                      500 Tiket mulai dijual tanggal 25 Nov 2023
-                    </span>
-                  </div>
-                  <div className="border-b border-dashed border-[#768DD5] mt-1"></div>
-                  <div className="absolute left-1 top-0 bg-[#CA9702] w-2 h-full ml-2"></div>
-                  <h1 className="text-3xl font-bold text-sm mt-5">Rp.85.000</h1>
-                </div>
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="col-span-1 bg-white p-4 rounded-md relative">
+              <div className="flex w-full">
+                <div className="col-span-1 bg-white w-9/12 p-4 rounded-md relative">
                   <h1 className="text-3xl font-bold text-sm text-[#3653B0]">
                     Formulir Pemesanan*
                   </h1>
@@ -848,7 +994,7 @@ function NewEvent() {
                       className="mr-2"
                     />
                     <label htmlFor="nama" className="ml-2">
-                      Nama
+                      Nama Lengkap
                     </label>
                   </div>
 
@@ -893,49 +1039,19 @@ function NewEvent() {
                       className="mr-2"
                     />
                     <label htmlFor="nomorKTP" className="ml-2">
-                      Nomor KTP
-                    </label>
-                  </div>
-
-                  {/* Tanggal Lahir */}
-                  <div className="flex items-center mt-4">
-                    <input
-                      type="radio"
-                      id="tanggalLahir"
-                      name="option"
-                      checked={selectedOption === "tanggalLahir"}
-                      onChange={() => handleOptionChange("tanggalLahir")}
-                      className="mr-2"
-                    />
-                    <label htmlFor="tanggalLahir" className="ml-2">
-                      Tanggal Lahir
-                    </label>
-                  </div>
-
-                  {/* Jenis Kelamin */}
-                  <div className="flex items-center mt-4">
-                    <input
-                      type="radio"
-                      id="jenisKelamin"
-                      name="option"
-                      checked={selectedOption === "jenisKelamin"}
-                      onChange={() => handleOptionChange("jenisKelamin")}
-                      className="mr-2"
-                    />
-                    <label htmlFor="jenisKelamin" className="ml-2">
-                      Jenis Kelamin
+                      NIK
                     </label>
                   </div>
                 </div>
-                <div className="col-span-1 bg-white p-4 rounded-md relative">
+                <div className="col-span-1 w-full bg-white p-4 rounded-md relative">
                   <h1 className="text-3xl font-bold text-sm text-[#3653B0]">
                     Pengaturan Tambahan*
                   </h1>
-                  <div className="flex items-center">
+                  <div className="flex items-center justify-between">
                     <h1 className="mr-2 text-3xl font-bold text-sm">
                       Jumlah maks. tiket per transaksi
                     </h1>
-                    <select className="bg-white text-[#999999] px-2 py-2 rounded-md outline outline-black outline-1 ml-auto ">
+                    <select className="bg-white text-[#999999] px-2 py-2 rounded-md outline outline-black outline-1 right-0 ">
                       <option>Jumlah Tiket</option>
                       <option>1</option>
                       <option>2</option>
@@ -945,10 +1061,11 @@ function NewEvent() {
                       <option>dll</option>
                     </select>
                   </div>
-                  <span className="text-[#999999] ml-1">
-                    Jabarkan Tiket yang ingin Anda daftarkan
+                  <span className="text-[#999999] text-sm ml-1">
+                    Jumlah maksimal tiket yang dapat dibeli dalam 1 transaksi
                   </span>
-                  <div className="col-span-1 bg-white  rounded-md relative mt-20">
+                  <hr className="h-[1px] mt-6 bg-[#CCCCCC]" />
+                  <div className="col-span-1 bg-white  rounded-md relative mt-5">
                     <h1 className="text-3xl font-bold text-sm p-">
                       Pengaturan Tambahan*
                     </h1>
@@ -971,16 +1088,20 @@ function NewEvent() {
           {/* kolom Tambah Merch */}
           <div className="grid grid-cols-1 gap-1 p-2">
             <div className="col-span-1 bg-white p-4 rounded-md relative">
-              <h1 className="text-3xl font-bold text-sm">Tambah Merch</h1>
-              <span className="text-[#999999] ml-1">
-                Masukkan Mech untuk Menambah Keseruan Event Kamu!
-              </span>
-              <div className="flex">
-                <button className="ml-auto cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 text-sm">
-                  + Import Data dari File
-                </button>
+              <div className="flex justify-between items-center">
+                <div>
+                  <h1 className="text-3xl font-bold">Tambah Merch</h1>
+                  <span className="text-[#999999] ml-1 mt-1 text-sm">
+                    Masukkan Mech untuk Menambah Keseruan Event Kamu!
+                  </span>
+                </div>
+                <div className="flex">
+                  <button className="ml-auto cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 text-sm">
+                    + Import Data dari File
+                  </button>
+                </div>
               </div>
-              <div className="col-span-1 bg-white p-4 rounded-md relative">
+              <div className="col-span-1 bg-white p-3 rounded-md relative">
                 <div className="grid grid-cols-2 flex items-center mt-4 space-x-8">
                   {/* Kolom Unggah */}
                   <div className="border-dashed border-2 border-gray-400 p-20 rounded-md aspect-w-1 aspect-h-1">
@@ -989,10 +1110,10 @@ function NewEvent() {
                       <h1 className="text-3xl font-bold text-sm">
                         Unggah poster Event Anda di sini
                       </h1>
-                      <h1 className="block text-sm font-medium text-[#828282]">
+                      <h1 className="block text-xs text-center font-medium text-[#828282]">
                         Upload gambar untuk poster event kamu Max ukuran 500kb
                       </h1>
-                      <div className="mt-1 flex items-center">
+                      <div className="mt-5 flex items-center">
                         <input
                           type="file"
                           accept="image/*"
@@ -1016,11 +1137,11 @@ function NewEvent() {
                   </div>
                   {/* Kolom Nama sampai Deskripsi */}
                   <div className="bg-white p-4 rounded-md flex flex-col">
-                    <div className="grid grid-cols-1 gap-4">
-                      <div className="col-span-1 " style={{ width: "400px" }}>
-                        <h1 className="text-3xl font-bold text-sm text-[#768DD5]">
-                          Nama:
-                        </h1>
+                    <div className="flex flex-col gap-y-3">
+                      <div>
+                        <label className="text-3xl font-bold text-sm text-[#768DD5]">
+                          Nama Merch
+                        </label>
                         <input
                           type="text"
                           value={eventNama}
@@ -1029,10 +1150,10 @@ function NewEvent() {
                           className="bg-[#F2F2F2] mt-2 p-2 rounded-md border border-gray-300 w-full"
                         />
                       </div>
-                      <div className="col-span-1 " style={{ width: "400px" }}>
-                        <h1 className="text-3xl font-bold text-sm text-[#768DD5]">
-                          Deskripsi:
-                        </h1>
+                      <div>
+                        <label className="text-3xl font-bold text-sm text-[#768DD5]">
+                          Deskripsi Merch
+                        </label>
                         <textarea
                           type="text"
                           value={eventDeskripsi}
@@ -1041,75 +1162,153 @@ function NewEvent() {
                           className="bg-[#F2F2F2] mt-2 px-3 py-3 resize-none rounded-md border border-gray-300 w-full"
                         />
                       </div>
-                      <label className="text-3xl font-bold text-sm text-[#768DD5]">
-                        Harga:
-                      </label>
-                      <div className="mt-1 relative rounded-md shadow-sm">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <span className="text-gray-500 sm:text-sm">Rp</span>
+                      <div className="flex">
+                        <div className="w-1/2 mx-2">
+                          <label className="text-3xl font-bold text-sm text-[#768DD5]">
+                            Harga:
+                          </label>
+                          <div className="mt-1 relative rounded-md shadow-sm">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <span className="text-gray-500 sm:text-sm">
+                                Rp -
+                              </span>
+                            </div>
+                            <input
+                              type="text"
+                              className="focus:ring-indigo-500 bg-[#F2F2F2] w-11/12 py-2 focus:border-indigo-500 block w-full pl-11 sm:text-sm border-gray-300 rounded-md"
+                              placeholder="0.00"
+                              value={Price}
+                              onChange={(e) => setPrice(e.target.value)}
+                            />
+                          </div>
                         </div>
-                        <input
-                          type="text"
-                          className="focus:ring-indigo-500 bg-[#F2F2F2] w-[400px] py-2 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
-                          placeholder="0.00"
-                          value={Price}
-                          onChange={(e) => setPrice(e.target.value)}
-                        />
+                        <div className="w-1/2 mx-3">
+                          <label className="text-3xl font-bold text-sm text-[#768DD5]">
+                            Harga:
+                          </label>
+                          <div className="mt-1 relative rounded-md shadow-sm">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <span className="text-gray-500 sm:text-sm">
+                                Rp -
+                              </span>
+                            </div>
+                            <input
+                              type="text"
+                              className="focus:ring-indigo-500 bg-[#F2F2F2] w-11/12 py-2 focus:border-indigo-500 block w-full pl-11 sm:text-sm border-gray-300 rounded-md"
+                              placeholder="0.00"
+                              value={Price}
+                              onChange={(e) => setPrice(e.target.value)}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 flex items-center space-x-8">
+                <div className="grid grid-cols-2 flex items-center mt-4 space-x-8">
                   {/* Kolom Unggah */}
-                  <div className="rounded-md  flex flex-col p-20 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-1">
-                    tempat gambar
+                  <div className="border-dashed border-2 border-gray-400 p-20 rounded-md aspect-w-1 aspect-h-1">
+                    <div className="flex flex-col items-center">
+                      <AddAPhotoIcon className="text-[#768DD5]" />
+                      <h1 className="text-3xl font-bold text-sm">
+                        Unggah poster Event Anda di sini
+                      </h1>
+                      <h1 className="block text-xs text-center font-medium text-[#828282]">
+                        Upload gambar untuk poster event kamu Max ukuran 500kb
+                      </h1>
+                      <div className="mt-5 flex items-center">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handlePosterUpload1}
+                          id="poster1"
+                          className="hidden"
+                        />
+                        <label
+                          htmlFor="poster"
+                          className="cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2"
+                        >
+                          Unggah Poster
+                        </label>
+                        {poster1 && (
+                          <span className="ml-2 text-gray-500">
+                            {poster1.name}
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   </div>
                   {/* Kolom Nama sampai Deskripsi */}
                   <div className="bg-white p-4 rounded-md flex flex-col">
-                    <div className="grid grid-cols-1 gap-3">
-                      <div className="col-span-1 " style={{ width: "400px" }}>
-                        <h1 className="text-3xl font-bold text-sm text-[#768DD5]">
-                          Nama:
-                        </h1>
+                    <div className="flex flex-col gap-y-3">
+                      <div>
+                        <label className="text-3xl font-bold text-sm text-[#768DD5]">
+                          Nama Merch
+                        </label>
                         <input
                           type="text"
-                          value={eventNama1}
-                          onChange={(e) => setEventNama1(e.target.value)}
-                          placeholder="text"
+                          value={eventNama}
+                          onChange={(e) => setEventNama(e.target.value)}
+                          placeholder="nama..."
                           className="bg-[#F2F2F2] mt-2 p-2 rounded-md border border-gray-300 w-full"
                         />
                       </div>
-                      <div className="col-span-1 " style={{ width: "400px" }}>
-                        <h1 className="text-3xl font-bold text-sm text-[#768DD5]">
-                          Deskripsi:
-                        </h1>
+                      <div>
+                        <label className="text-3xl font-bold text-sm text-[#768DD5]">
+                          Deskripsi Merch
+                        </label>
                         <textarea
                           type="text"
-                          value={eventDeskripsi1}
-                          onChange={(e) => setEventDeskripsi1(e.target.value)}
-                          placeholder="text"
-                          className="bg-[#F2F2F2] mt-2 py-2 px-3 resize-none rounded-md border border-gray-300 w-full"
+                          value={eventDeskripsi}
+                          onChange={(e) => setEventDeskripsi(e.target.value)}
+                          placeholder="deskripsi..."
+                          className="bg-[#F2F2F2] mt-2 px-3 py-3 resize-none rounded-md border border-gray-300 w-full"
                         />
                       </div>
-                      <label className="text-3xl font-bold text-sm text-[#768DD5]">
-                        Harga:
-                      </label>
-                      <div className="relative rounded-md shadow-sm">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <span className="text-gray-500 sm:text-sm">Rp</span>
+                      <div className="flex">
+                        <div className="w-1/2 mx-2">
+                          <label className="text-3xl font-bold text-sm text-[#768DD5]">
+                            Harga:
+                          </label>
+                          <div className="mt-1 relative rounded-md shadow-sm">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <span className="text-gray-500 sm:text-sm">
+                                Rp -
+                              </span>
+                            </div>
+                            <input
+                              type="text"
+                              className="focus:ring-indigo-500 bg-[#F2F2F2] w-11/12 py-2 focus:border-indigo-500 block w-full pl-11 sm:text-sm border-gray-300 rounded-md"
+                              placeholder="0.00"
+                              value={Price}
+                              onChange={(e) => setPrice(e.target.value)}
+                            />
+                          </div>
                         </div>
-                        <input
-                          type="text"
-                          className="focus:ring-indigo-500 bg-[#F2F2F2] py-2 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
-                          placeholder="0.00"
-                          value={Price1}
-                          onChange={(e) => setPrice1(e.target.value)}
-                        />
+                        <div className="w-1/2 mx-3">
+                          <label className="text-3xl font-bold text-sm text-[#768DD5]">
+                            Harga:
+                          </label>
+                          <div className="mt-1 relative rounded-md shadow-sm">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <span className="text-gray-500 sm:text-sm">
+                                Rp -
+                              </span>
+                            </div>
+                            <input
+                              type="text"
+                              className="focus:ring-indigo-500 bg-[#F2F2F2] w-11/12 py-2 focus:border-indigo-500 block w-full pl-11 sm:text-sm border-gray-300 rounded-md"
+                              placeholder="0.00"
+                              value={Price}
+                              onChange={(e) => setPrice(e.target.value)}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center mt-5">
                   <button className="flex items-center justify-center cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 w-full">
                     + Tambah Merch
                   </button>
