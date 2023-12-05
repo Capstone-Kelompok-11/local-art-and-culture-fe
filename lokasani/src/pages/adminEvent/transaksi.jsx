@@ -3,15 +3,12 @@ import Sidebar from '../../component/adminEvent/Sidebar'
 import TextsmsIcon from '@mui/icons-material/Textsms';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import user from '../../assets/img/user.svg'
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import InfoIcon from '@mui/icons-material/Info';
 import TransactionDetailsPopup from '../../component/adminEvent/transaksidetail';
-
-
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Icon } from '@mui/material';
+
 
 function Transaksi() {
   const [isDetailsPopupOpen, setIsDetailsPopupOpen] = useState(false);
@@ -36,6 +33,12 @@ function Transaksi() {
     console.log('Mengekspor:', selectedDate);
   };
 
+  // fungsi utk button aktif nya
+  const [activeButton, setActiveButton] = useState('all');
+
+  const handleButtonClick = (button) => {
+    setActiveButton(button);
+  };
   
   return (
     <section>
@@ -66,21 +69,34 @@ function Transaksi() {
             </div>
             {/* header end */}
             {/* content start */}
-                 <div className='bg-gray-100 flex items-center justify-between rounded-sm'>
-                <div className="flex items-center">
-                    <button className="bg-[#3653B0] text-white py-[6px] px-3 rounded-md m-2">
+                 <div className='bg-white flex items-center justify-between rounded-sm'>
+                            <div className="flex items-center ">
+                  <button
+                    className={`bg-${activeButton === 'all' ? 'blue-500' : 'gray-200'} text-white py-[6px] px-3 rounded-md m-2`}
+                    onClick={() => handleButtonClick('all')}
+                  >
                     All
-                    </button>
-                    <button className="bg-[#CCCCCC] text-white py-[6px] px-3 rounded-md m-2">
+                  </button>
+                  <button
+                    className={`bg-${activeButton === 'paid' ? 'blue-500' : 'gray-200'} text-white  py-[6px] px-3 rounded-md m-2`}
+                    onClick={() => handleButtonClick('paid')}
+                  >
                     Paid
-                    </button>
-                    <button className="bg-[#CCCCCC] text-white py-[6px] px-3 rounded-md m-2">
+                  </button>
+                  <button
+                    className={`bg-${activeButton === 'pending' ? 'blue-500' : 'gray-200'} text-white py-[6px] px-3 rounded-md m-2`}
+                    onClick={() => handleButtonClick('pending')}
+                  >
                     Pending
-                    </button>
-                    <button className="bg-[#CCCCCC] text-white py-[6px] px-3 rounded-md m-2">
+                  </button>
+                  <button
+                    className={`bg-${activeButton === 'canceled' ? 'blue-500' : 'gray-200'} text-white py-[6px] px-3 rounded-md m-2`}
+                    onClick={() => handleButtonClick('canceled')}
+                  >
                     Canceled
-                    </button>
+                  </button>
                 </div>
+
                 <div className="flex items-center">
                   <div className="flex justify-end items-center mr-2 border-2 border-black">
                     <h1 className="font-semibold">Tampilkan</h1>
