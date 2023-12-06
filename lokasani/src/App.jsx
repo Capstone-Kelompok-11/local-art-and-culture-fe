@@ -1,19 +1,19 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/login";
 import Home from "./pages/home";
 import Landing from "./pages/landingpage";
+import DownloadApp from "./component/landingpage/DownloadApp";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Home/>} path="/"/>
-        <Route element={<Login/>} path="/auth/login"/>
-        <Route element={<Landing/>} path="/landing"/>
+        <Route element={<Home />} path="/" />
+        <Route element={<Login />} path="/auth/login" />
+        <Route element={<DownloadApp />} path="/landing" />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
