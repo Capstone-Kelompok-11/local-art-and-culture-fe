@@ -161,8 +161,8 @@ function MyEvent() {
                     >
                       Pengunjung
                     </div>
-                    <div className="ml-auto">
-                      <button className="bg-[#253E8D] text-white py-2 px-4 rounded-full">
+                    <div className="ml-auto p-2">
+                      <button className="bg-[#253E8D] text-white py-2 px-4 rounded-md">
                         + Download Event Aktif
                       </button>
                     </div>
@@ -312,10 +312,10 @@ function MyEvent() {
                     </span>
                     </li>
                 </ul>
+               </div>
               </div>
              </div>
-                </div>
-              </div>
+          </div>
       </main>
   </section>
   )

@@ -4,13 +4,13 @@ import TextsmsIcon from '@mui/icons-material/Textsms';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import user from '../../assets/img/user.svg'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import InfoIcon from '@mui/icons-material/Info';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import TransactionDetailsPopup from '../../component/adminEvent/transaksidetail';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
-function Transaksi() {
+function Payout() {
   const [isDetailsPopupOpen, setIsDetailsPopupOpen] = useState(false);
 
   const handleInfoIconClick = () => {
@@ -49,7 +49,7 @@ function Transaksi() {
             {/* header start */}
             <div className="bg-white flex items-center justify-between py-7 rounded-sm">
               <div className='pl-5'>
-                <h1 className='text-3xl font-bold'>Transaksi</h1>
+                <h1 className='text-3xl font-bold'>Payout</h1>
               </div>
               <div>
                 <div className="flex items-center">
@@ -69,8 +69,8 @@ function Transaksi() {
             </div>
             {/* header end */}
             {/* content start */}
-                 <div className='bg-white flex items-center justify-between rounded-sm'>
-                    <div className="flex items-center ">
+                 <div className='flex items-center justify-between rounded-sm'>
+                            <div className="flex items-center ">
                   <button
                     className={`bg-${activeButton === 'all' ? 'blue-500' : 'gray-200'} text-white py-[6px] px-3 rounded-md m-2`}
                     onClick={() => handleButtonClick('all')}
@@ -123,26 +123,24 @@ function Transaksi() {
                     <li className="flex justify-between items-center border-b border-gray-200 py-1">
                     <span className='text-3xl font-bold text-sm text-[#243775] w-1/6'>#ID</span>
                     <span className='text-3xl font-bold text-sm text-[#243775] w-1/6'>Tanggal</span>
-                    <span className='text-3xl font-bold text-sm text-[#243775] w-1/6'>Username</span>
-                    <span className='text-3xl font-bold text-sm text-[#243775] w-1/6'>Detail</span>
-                    <span className='text-3xl font-bold text-sm text-[#243775] w-1/6'>Total Transaksi</span>
-                    <span className='text-3xl font-bold text-sm text-[#243775] w-1/6'>Status</span>
+                    <span className='text-3xl font-bold text-sm text-[#243775] w-1/6'>Nama Event</span>
+                    <span className='text-3xl font-bold text-sm text-[#243775] w-1/6'>Total Pendapatan</span>
+                    <span className='text-3xl font-bold text-sm text-[#243775] w-1/6'>Status Payout</span>
                     <span className='text-3xl font-bold text-sm text-[#243775] w-1/6'>Aksi</span>
                     </li>
-                    {/* Tambahkan item-item transaksi di sini */}
+                    {/* Tambahkan item-item payout di sini */}
                     <li className="flex justify-between items-center border-b border-gray-200 py-2">
                     <span className='text-[#3653B0] w-1/6'>1</span>
                     <span className='text-[#3653B0] w-1/6'>2023-11-29</span>
                     <span className='text-[#3653B0] w-1/6'>John Doe</span>
-                    <span className='text-[#3653B0] w-1/6'>Detail transaksi</span>
                     <span className='text-[#3653B0] w-1/6'>$100.00</span>
                     <span className='text-[#7EB4A7] w-1/6'>Paid</span>
                     <span className='text-[#3653B0] w-1/6'>
                       {isDetailsPopupOpen && <TransactionDetailsPopup onClose={handleClosePopup} />}
                     <span className='text-[#3653B0] w-1/6 cursor-pointer' onClick={handleInfoIconClick}>
-                  <InfoIcon />
-                </span>
-                    <DeleteOutlineIcon/>
+                    <InfoOutlinedIcon style={{ color: 'black' }}/>
+                    </span>
+                    <DeleteOutlineIcon style={{ color: 'black' }}/>
                     </span>
                     </li>
 
@@ -150,12 +148,11 @@ function Transaksi() {
                     <span className='text-[#3653B0] w-1/6'>2</span>
                     <span className='text-[#3653B0] w-1/6'>2023-11-29</span>
                     <span className='text-[#3653B0] w-1/6'>John Doe</span>
-                    <span className='text-[#3653B0] w-1/6'>Detail transaksi</span>
                     <span className='text-[#3653B0] w-1/6'>$100.00</span>
                     <span className='text-[#F3B1A5] w-1/6'>Canceled</span>
                     <span className='text-[#3653B0] w-1/6'>
-                    <InfoIcon/>
-                    <DeleteOutlineIcon/>
+                    <InfoOutlinedIcon style={{ color: 'black' }}/>
+                    <DeleteOutlineIcon style={{ color: 'black' }}/>
                     </span>
                     </li>
 
@@ -163,12 +160,11 @@ function Transaksi() {
                     <span className='text-[#3653B0] w-1/6'>3</span>
                     <span className='text-[#3653B0] w-1/6'>2023-11-29</span>
                     <span className='text-[#3653B0] w-1/6'>John Doe</span>
-                    <span className='text-[#3653B0] w-1/6'>Detail transaksi</span>
                     <span className='text-[#3653B0] w-1/6'>$100.00</span>
                     <span className='text-[#F8D46D] w-1/6'>Pending</span>
                     <span className='text-[#3653B0] w-1/6'>
-                    <InfoIcon/>
-                    <DeleteOutlineIcon/>
+                    <InfoOutlinedIcon style={{ color: 'black' }}/>
+                    <DeleteOutlineIcon style={{ color: 'black' }}/>
                     </span>
                     </li>
 
@@ -176,12 +172,11 @@ function Transaksi() {
                     <span className='text-[#3653B0] w-1/6'>4</span>
                     <span className='text-[#3653B0] w-1/6'>2023-11-29</span>
                     <span className='text-[#3653B0] w-1/6'>John Doe</span>
-                    <span className='text-[#3653B0] w-1/6'>Detail transaksi</span>
                     <span className='text-[#3653B0] w-1/6'>$100.00</span>
                     <span className='text-[#F8D46D] w-1/6'>Pending</span>
                     <span className='text-[#3653B0] w-1/6'>
-                    <InfoIcon/>
-                    <DeleteOutlineIcon/>
+                    <InfoOutlinedIcon style={{ color: 'black' }}/>
+                    <DeleteOutlineIcon style={{ color: 'black' }}/>
                     </span>
                     </li>
 
@@ -189,12 +184,11 @@ function Transaksi() {
                     <span className='text-[#3653B0] w-1/6'>5</span>
                     <span className='text-[#3653B0] w-1/6'>2023-11-29</span>
                     <span className='text-[#3653B0] w-1/6'>John Doe</span>
-                    <span className='text-[#3653B0] w-1/6'>Detail transaksi</span>
                     <span className='text-[#3653B0] w-1/6'>$100.00</span>
                     <span className='text-[#F8D46D] w-1/6'>Pending</span>
                     <span className='text-[#3653B0] w-1/6'>
-                    <InfoIcon/>
-                    <DeleteOutlineIcon/>
+                    <InfoOutlinedIcon style={{ color: 'black' }}/>
+                    <DeleteOutlineIcon style={{ color: 'black' }}/>
                     </span>
                     </li>
 
@@ -202,12 +196,11 @@ function Transaksi() {
                     <span className='text-[#3653B0] w-1/6'>6</span>
                     <span className='text-[#3653B0] w-1/6'>2023-11-29</span>
                     <span className='text-[#3653B0] w-1/6'>John Doe</span>
-                    <span className='text-[#3653B0] w-1/6'>Detail transaksi</span>
                     <span className='text-[#3653B0] w-1/6'>$100.00</span>
                     <span className='text-[#3653B0] w-1/6'>Paid</span>
                     <span className='text-[#3653B0] w-1/6'>
-                    <InfoIcon/>
-                    <DeleteOutlineIcon/>
+                    <InfoOutlinedIcon style={{ color: 'black' }}/>
+                    <DeleteOutlineIcon style={{ color: 'black' }}/>
                     </span>
                     </li>
 
@@ -215,12 +208,11 @@ function Transaksi() {
                     <span className='text-[#3653B0] w-1/6'>7</span>
                     <span className='text-[#3653B0] w-1/6'>2023-11-29</span>
                     <span className='text-[#3653B0] w-1/6'>John Doe</span>
-                    <span className='text-[#3653B0] w-1/6'>Detail transaksi</span>
                     <span className='text-[#3653B0] w-1/6'>$100.00</span>
                     <span className='text-[#3653B0] w-1/6'>Paid</span>
                     <span className='text-[#3653B0] w-1/6'>
-                    <InfoIcon/>
-                    <DeleteOutlineIcon/>
+                    <InfoOutlinedIcon style={{ color: 'black' }}/>
+                    <DeleteOutlineIcon style={{ color: 'black' }}/>
                     </span>
                     </li>
 
@@ -228,12 +220,11 @@ function Transaksi() {
                     <span className='text-[#3653B0] w-1/6'>8</span>
                     <span className='text-[#3653B0] w-1/6'>2023-11-29</span>
                     <span className='text-[#3653B0] w-1/6'>John Doe</span>
-                    <span className='text-[#3653B0] w-1/6'>Detail transaksi</span>
                     <span className='text-[#3653B0] w-1/6'>$100.00</span>
                     <span className='text-[#F3B1A5] w-1/6'>Canceled</span>
                     <span className='text-[#3653B0] w-1/6'>
-                    <InfoIcon/>
-                    <DeleteOutlineIcon/>
+                    <InfoOutlinedIcon style={{ color: 'black' }}/>
+                    <DeleteOutlineIcon style={{ color: 'black' }}/>
                     </span>
                     </li>
 
@@ -241,12 +232,11 @@ function Transaksi() {
                     <span className='text-[#3653B0] w-1/6'>9</span>
                     <span className='text-[#3653B0] w-1/6'>2023-11-29</span>
                     <span className='text-[#3653B0] w-1/6'>John Doe</span>
-                    <span className='text-[#3653B0] w-1/6'>Detail transaksi</span>
                     <span className='text-[#3653B0] w-1/6'>$100.00</span>
                     <span className='text-[#3653B0] w-1/6'>Paid</span>
                     <span className='text-[#3653B0] w-1/6'>
-                    <InfoIcon/>
-                    <DeleteOutlineIcon/>
+                    <InfoOutlinedIcon style={{ color: 'black' }}/>
+                    <DeleteOutlineIcon style={{ color: 'black' }}/>
                     </span>
                     </li>
 
@@ -254,12 +244,11 @@ function Transaksi() {
                     <span className='text-[#3653B0] w-1/6'>10</span>
                     <span className='text-[#3653B0] w-1/6'>2023-11-29</span>
                     <span className='text-[#3653B0] w-1/6'>John Doe</span>
-                    <span className='text-[#3653B0] w-1/6'>Detail transaksi</span>
                     <span className='text-[#3653B0] w-1/6'>$100.00</span>
                     <span className='text-[#F8D46D] w-1/6'>Pending</span>
                     <span className='text-[#3653B0] w-1/6'>
-                    <InfoIcon/>
-                    <DeleteOutlineIcon/>
+                    <InfoOutlinedIcon style={{ color: 'black' }}/>
+                    <DeleteOutlineIcon style={{ color: 'black' }}/>
                     </span>
                     </li>
                 </ul>
@@ -270,4 +259,4 @@ function Transaksi() {
   )
 }
 
-export default Transaksi
+export default Payout
