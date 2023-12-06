@@ -70,10 +70,14 @@ function NewEvent() {
   const handleGuestUpload = (event) => {
     event.preventDefault();
     setIsPopupGuestOpen(false);
+    // setGuest([
+    //   ...guest,
+    //   { name: nameGuest, job: jobGuest, image: imageGuestPreview },
+    // ]);
     setNameGuest("");
     setJobGuest("");
     setImageGuestPreview(null);
-    console.log(guest, nameGuest, jobGuest);
+    console.log(guest);
   };
   const handlePopupUploadGuest = () => {
     setIsPopupGuestOpen(true);
@@ -84,10 +88,13 @@ function NewEvent() {
       const reader = new FileReader();
       reader.onload = () => {
         setImageGuestPreview(reader.result);
+        setGuest([
+          ...guest,
+          { name: nameGuest, job: jobGuest, image: reader.result },
+        ]);
       };
       reader.readAsDataURL(file);
     }
-    setGuest({ image: file });
   };
   const handleDragOverGuest = (event) => {
     event.preventDefault();
@@ -99,10 +106,13 @@ function NewEvent() {
       const reader = new FileReader();
       reader.onload = () => {
         setImageGuestPreview(reader.result);
+        setGuest([
+          ...guest,
+          { name: nameGuest, job: jobGuest, image: reader.result },
+        ]);
       };
       reader.readAsDataURL(file);
     }
-    setGuest({ image: file });
   };
   const handleGuestClick = () => {
     document.getElementById("uploadGuest").click();
@@ -626,51 +636,48 @@ function NewEvent() {
               </div>
 
               {/* Guest start */}
-              <div className="col-span-4 sm:col-span-4 md:col-span-1 bg-white mt-2 pb-6 p-4 rounded-md relative">
-                <div className="flex flex-col justify-between ">
-                  <h1 className="text-3xl font-bold">Guest Star</h1>
-                  <span className="text-[#999999] ml-1 text-sm">
-                    Tambahkan Pemeriah Acara!
-                  </span>
-                  <div className="flex mt-5 items-center justify-center">
-                    <div className="border-dashed h-32 border-2 mt-2 border-gray-400 justify-center flex items-center p-5 py-7 mx-2 rounded-[24px] aspect-w-1 aspect-h-1">
-                      <label
-                        className="block text-sm font-medium cursor-pointer text-[#828282]"
-                        onClick={handlePopupUploadGuest}
+              <div className="bg-white mt-2 pb-6 p-4 rounded-md">
+                <div>
+                  <div>
+                    <h1 className="text-3xl font-bold">Guest Star</h1>
+                    <span className="text-[#999999] ml-1 text-sm">
+                      Tambahkan Pemeriah Acara!
+                    </span>
+                  </div>
+                </div>
+                <div className="flex relative mt-5 justify-center pb-3">
+                  <div className="border-dashed w-[180px] h-32 border-2 mt-2 flex items-center justify-center border-gray-400 p-5 py-7 mx-2 rounded-[24px]">
+                    <label
+                      onClick={handlePopupUploadGuest}
+                      className="block cursor-pointer text-sm font-medium text-center py-auto text-[#828282]"
+                    >
+                      + Tambah Guest Star
+                    </label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      id="guest"
+                      onChange={handleFileGuestChange}
+                      className="hidden"
+                    />
+                  </div>
+                  <div className="flex overflow-x-auto pb-1">
+                    {guest.map((guest, index) => (
+                      <div
+                        key={index}
+                        className="rounded-md h-32 w-[180px] flex  mt-2 mx-2 bg-light-yellow rounded-[24px] shadow-md hover:bg-tan ring-[#768DD5] ring-1"
                       >
-                        + Tambah Guest Star
-                      </label>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        id="guest"
-                        onChange={handleFileGuestChange}
-                        className="hidden"
-                      />
-                    </div>
-                    {/* {guest ? (
-                      guest.map((guest, index) => (
-                        <div
-                          key={index}
-                          className="rounded-md relative h-32 w-4/12 flex flex-col mt-2 mx-2 bg-light-yellow rounded-[24px] shadow-md hover:bg-tan ring-[#768DD5] ring-1"
-                        >
-                          <CloseIcon
-                            onClick={handleCloseGuestIconClick}
-                            fontSize="small"
-                            className="absolute -mt-[8px] bg-[#3653B0] rounded-full text-white -mr-[10px] right-0 cursor-pointer"
-                          />
-                          {guest.image && (
-                            <img
-                              src={URL.createObjectURL(guest.image)}
-                              className="object-cover h-[90px]"
-                              alt="Deskripsi gambar"
-                            />
-                          )}
-                        </div>
-                      ))
-                    ) : (
-                      <div></div>
-                    )} */}
+                        {/* <CloseIcon
+                          fontSize="small"
+                          className="absolute -mt-[8px] bg-[#3653B0] rounded-full text-white -mr-[10px] right-0 cursor-pointer"
+                        /> */}
+                        <img
+                          src={guest.image}
+                          alt={`Guest ${index + 1}`}
+                          className="object-cover w-[200px]"
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
                 {/* popup guest start */}
@@ -702,6 +709,7 @@ function NewEvent() {
                                 type="text"
                                 id="namaGuest"
                                 value={nameGuest}
+                                required
                                 onChange={(e) => setNameGuest(e.target.value)}
                                 placeholder="Nama guest..."
                                 className="bg-[#F2F2F2] px-3 py-2 rounded-md text-sm"
@@ -717,6 +725,7 @@ function NewEvent() {
                               <input
                                 type="text"
                                 id="peranGuest"
+                                required
                                 value={jobGuest}
                                 onChange={(e) => setJobGuest(e.target.value)}
                                 placeholder="Peran guest..."
@@ -809,7 +818,7 @@ function NewEvent() {
                           </h1>
                           <div>
                             <label
-                              htmlFor=""
+                              htmlFor="namatiket"
                               className="text-[#768DD5] font-semibold"
                             >
                               Nama Tiket
@@ -817,12 +826,14 @@ function NewEvent() {
                             <br />
                             <input
                               type="text"
+                              id="namatiket"
+                              placeholder="Nama tiket"
                               className="bg-[#F2F2F2] py-[8px] px-3 mb-2 rounded-lg w-full"
                             />
                           </div>
                           <div>
                             <label
-                              htmlFor=""
+                              htmlFor="jenistiket"
                               className="text-[#768DD5] font-semibold"
                             >
                               Jenis Tiket
@@ -830,40 +841,46 @@ function NewEvent() {
                             <br />
                             <input
                               type="text"
+                              id="jenistiket"
+                              placeholder="Jenis tiket"
                               className="bg-[#F2F2F2] py-[8px] px-3 mb-2 rounded-lg w-full"
                             />
                           </div>
                           <div className="flex w-full mb-2">
                             <div className="w-1/2 mr-2">
                               <label
-                                htmlFor=""
+                                htmlFor="jumlahtiket"
                                 className="text-[#768DD5] font-semibold"
                               >
-                                Jenis Tiket
+                                Jumlah Tiket
                               </label>
                               <br />
                               <input
                                 type="text"
+                                id="jumlahtiket"
+                                placeholder="Jumlah tiket"
                                 className="bg-[#F2F2F2] py-[8px] px-3 rounded-lg w-full"
                               />
                             </div>
                             <div className="w-1/2">
                               <label
-                                htmlFor=""
+                                htmlFor="hargatiket"
                                 className="text-[#768DD5] font-semibold"
                               >
-                                Jenis Tiket
+                                Harga
                               </label>
                               <br />
                               <input
                                 type="text"
+                                id="hargatiket"
+                                placeholder="Harga"
                                 className="bg-[#F2F2F2] py-[8px] px-3 rounded-lg w-full"
                               />
                             </div>
                           </div>
                           <div>
                             <label
-                              htmlFor=""
+                              htmlFor="deskripsitiket"
                               className="text-[#768DD5] font-semibold"
                             >
                               Deskripsi Tiket
@@ -871,9 +888,10 @@ function NewEvent() {
                             <br />
                             <textarea
                               name=""
-                              id=""
+                              id="deskripsitiket"
                               cols="30"
                               rows="5"
+                              placeholder="Deskripsi tiket"
                               className="bg-[#F2F2F2] resize-none py-[8px] px-3 rounded-lg w-full"
                             />
                           </div>
