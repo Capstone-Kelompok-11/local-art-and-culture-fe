@@ -4,14 +4,14 @@ const Notifikasi = () => {
   return (
     <div className="flex justify-center items-center pt-10">
       <div className="w-2/3 gap-5">
-        <div className="flex flex-col mt-4 md:mt-6">
+        <div className="flex justify-start">
           <h5 className="mb-1 text-xl font-semibold  text-gray-900 ">
             Notifikasi
           </h5>
           
         </div>
         <div>
-          <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+          <hr className="h-px my-8 bg-gray-200 border-0 "></hr>
           <div className="flex justify-between pr-6 ">
             <div className="flex flex-col items-start">
               <p className="text-lg text-black">Notifikasi Pengingat</p>
@@ -25,7 +25,7 @@ const Notifikasi = () => {
           </div>
         </div>
         <div>
-          <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+          <hr className="h-px my-8 bg-gray-200 border-0 "></hr>
           <div className="flex justify-between pr-6 ">
             <div className="flex flex-col items-start">
               <p className="text-lg text-black">Transaksi</p>
@@ -39,10 +39,10 @@ const Notifikasi = () => {
           </div>
         </div>
         <div>
-          <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+          <hr className="h-px my-8 bg-gray-200 border-0 "></hr>
           <div className="flex justify-between pr-6 ">
             <div className="flex flex-col items-start">
-              <p className="text-lg text-black">laporan</p>
+              <p className="text-lg text-black">Laporan</p>
               <p>Menampilkan laporan terbaru</p>
             </div>
             <label className="relative items-center mb-5 cursor-pointer">
@@ -53,7 +53,7 @@ const Notifikasi = () => {
           </div>
         </div>
         <div>
-          <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+          <hr className="h-px my-8 bg-gray-200 border-0 "></hr>
           <div className="flex justify-between pr-6 ">
             <div className="flex flex-col items-start">
               <p className="text-lg text-black">Pesan</p>
@@ -67,7 +67,7 @@ const Notifikasi = () => {
           </div>
         </div>
         <div>
-          <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+          <hr className="h-px my-8 bg-gray-200 border-0 "></hr>
           <div className="flex justify-between pr-6 ">
             <div className="flex flex-col items-start">
               <p className="text-lg text-black">Verifikasi</p>

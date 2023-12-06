@@ -5,7 +5,7 @@ const Akun = () => {
   return (
     <div className="flex justify-center items-center pt-10">
       <div className="w-2/3 gap-5">
-        <div className="flex justify-center gap-5">
+        <div className="flex justify-start gap-5">
           <div>
             <img
               className="w-24 h-24 mb-3 rounded-full shadow-lg"
@@ -27,7 +27,7 @@ const Akun = () => {
           </div>
         </div>
         <div>
-          <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+          <hr className="h-px my-8 bg-gray-200 border-0 "></hr>
           <div className="flex justify-between pr-6 ">
             <p>Nomor Telepon</p>
             <div className="flex">
@@ -41,7 +41,7 @@ const Akun = () => {
           </div>
         </div>
         <div>
-          <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+          <hr className="h-px my-8 bg-gray-200 border-0 "></hr>
           <div className="flex justify-between pr-6 ">
             <p>Email</p>
             <div className="flex">
@@ -55,7 +55,7 @@ const Akun = () => {
           </div>
         </div>
         <div>
-        <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+        <hr className="h-px my-8 bg-gray-200 border-0 "></hr>
         <div className="flex justify-between pr-6 ">
             <p>Lokasi</p>
             <div className="flex">
@@ -67,7 +67,7 @@ const Akun = () => {
           />
             </div>
           </div>
-          <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+          <hr className="h-px my-8 bg-gray-200 border-0 "></hr>
         </div>
       </div>
     </div>

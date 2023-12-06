@@ -4,9 +4,11 @@ import Logotype from '../../../assets/icon/Logotype.svg';
 import logoHome from '../../../assets/icon/home.svg'
 import logoArtickel from '../../../assets/icon/receipt.svg'
 import logoTransaksi from '../../../assets/icon/money.svg'
+import logoUser from '../../../assets/icon/person.svg'
 import logoAgent from '../../../assets/icon/support_agent.svg'
 import logoLogOut from '../../../assets/icon/Logout.svg'
 import logoEmail from '../../../assets/icon/email.svg'
+import logoSetting from '../../../assets/icon/settings.svg'
 
 
 const Sidebar = () => {
@@ -68,7 +70,7 @@ const Sidebar = () => {
               className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
             >
               <img
-              src={logoAgent}
+              src={logoUser}
                 className="w-[25px] h-8"
               />
               <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Data user</span>
@@ -106,7 +108,7 @@ const Sidebar = () => {
               className="flex items-center py-2 px-4 text-gray-900 rounded-lg  hover:bg-[#768DD5] "
             >
               <img
-              src={logoAgent}
+              src={logoSetting}
                 className="w-[25px] h-8"
               />
               <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6]">Pengaturan</span>
