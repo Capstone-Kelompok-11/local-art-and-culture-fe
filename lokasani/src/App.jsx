@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route element={<Home />} path="/" />
         <Route element={<Login />} path="/auth/login" />
-        <Route element={<DownloadApp />} path="/landing" />
+        <Route element={<Landing />} path="/landing" />
       </Routes>
     </BrowserRouter>
   );

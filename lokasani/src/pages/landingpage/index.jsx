@@ -140,7 +140,7 @@ const Landing = () => {
 
         <div className="h-[1000px] flex items-center text-center justify-center ">
           {/* Hero content */}
-          <div className="pt-32 pb-10 md:pt-40 md:pb-16">
+          <div className="pt-32 pb-10  md:pb-16">
             <div className="text-6xl font-bold text-center uppercase">
               Eksplorasi Seni Lokal <br />
               Secara Lebih Mendalam!
