@@ -49,6 +49,17 @@ function Add() {
     document.getElementById("uploadThumbnail").click();
   };
 
+  // Function Unggah
+  const [unggah, setUnggah] = useState(null);
+  const [isPopupUnggahOpen, setIsPopupUnggahOpen] = useState(false);
+  const handleUnggah = (event) => {
+    setIsPopupUnggahOpen(false);
+    console.log(unggah);
+  };
+  const handlePopupUnggah = () => {
+    setIsPopupUnggahOpen(true);
+  };
+
   return (
     <section>
       <Sidebar />
@@ -222,9 +233,37 @@ function Add() {
               <button className="bg-[#F3B502] text-white px-7 rounded-full py-1 mr-6">
                 Simpan Draf
               </button>
-              <button className="bg-[#3653B0] text-white px-10 rounded-full py-1">
+              <button
+                onClick={handlePopupUnggah}
+                className="bg-[#3653B0] text-white px-10 rounded-full py-1"
+              >
                 Unggah
               </button>
+              {/* popup Unggah start */}
+              {isPopupUnggahOpen && (
+                <div>
+                  <div className="fixed inset-0 flex items-center justify-center z-40">
+                    <div
+                      className="absolute inset-0 bg-gray-800 opacity-50"
+                      onClick={() => setIsPopupUnggahOpen(false)}
+                    ></div>
+                    <div className="w-3/12 bg-white p-4 pb-8 rounded-[15px] z-50">
+                      <h1 className="text-2xl px-5 text-center mt-3 font-semibold mb-3 pb-2 border-b-2">
+                        Unggah artikel?
+                      </h1>
+                      <div className="flex items-center justify-center gap-x-3">
+                        <button className="bg-[#828282] py-2 px-8 rounded-full text-white font-medium">
+                          Tidak
+                        </button>
+                        <button className="bg-[#3653B0] py-2 px-10 rounded-full text-white font-medium">
+                          Ya
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {/* popup Denah Lokasi end */}
             </div>
           </div>
         </div>
