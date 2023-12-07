@@ -1,14 +1,32 @@
 import { useState } from "react";
+import axios from "axios";
 import bgLogin from "../../assets/img/bg-login.png";
 import googleIcon from "../../assets/icon/google-icon.png";
-import facebookIcon from "../../assets/icon/facebook-icon.png";
 import lokasaniLogo from "../../assets/img/lokasani-logo.png";
 
 const Login = () => {
   const [isTetapMasukChecked, setIsTetapMasukChecked] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleTetapMasukChange = () => {
     setIsTetapMasukChecked(!isTetapMasukChecked);
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('https://nama-domain-anda.com/api/login', {
+        email: email,
+        password: password
+      });
+      localStorage.setItem('token', response.data.token);
+      console.log(response.data.token)
+
+    } catch (error) {
+      console.error('Terjadi kesalahan:', error);
+    }
   };
 
   return (
@@ -38,14 +56,26 @@ const Login = () => {
               <div className="w-full h-[2px] rounded-full bg-gray-300"></div>
             </div>
             <div className="mb-4">
-              <form action="">
+              <form onSubmit={handleLogin}>
                 <div className="mb-[12px]">
                   <label className="block font-semibold text-[#768DD5]" htmlFor="email">Email kamu</label>
-                  <input className="p-3 w-full rounded-lg bg-[#F2F2F2] focus:outline-none" id="email" type="text" />
+                  <input
+                    className="p-3 w-full rounded-lg bg-[#F2F2F2] focus:outline-none"
+                    id="email"
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
                 <div className="mb-[42px]">
                   <label className="block font-semibold text-[#768DD5]" htmlFor="password">Password</label>
-                  <input className="p-3 w-full rounded-lg bg-[#F2F2F2] focus:outline-none" id="password" type="password" />
+                  <input
+                    className="p-3 w-full rounded-lg bg-[#F2F2F2] focus:outline-none"
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </div>
                 <div className="flex items-center mb-2">
                   <input
