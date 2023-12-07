@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
+import axios from 'axios';
 import data from "../../data/data";
 import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
@@ -10,6 +11,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 const DaftarProduct = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 10;
+    const [products, setProducts] = useState([]);
 
     const offset = currentPage * itemsPerPage;
     const currentItems = data.slice(offset, offset + itemsPerPage);
@@ -19,6 +21,20 @@ const DaftarProduct = () => {
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
     };
+
+    const fetchProducts = async () => {
+        try {
+            const response = await axios.get('https://ec2-13-213-65-172.ap-southeast-1.compute.amazonaws.com:8080/product');
+            setProducts(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Terjadi kesalahan:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchProducts()
+    }, [])
 
     return (
         <div className="bg-[#F2F2F2]">
