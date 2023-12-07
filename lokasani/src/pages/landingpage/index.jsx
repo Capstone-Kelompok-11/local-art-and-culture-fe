@@ -5,6 +5,7 @@ import WhyUs from "../../component/landingpage/Whyus"
 import ProductFeature from '../../component/landingpage/Productfeature';
 import EventFeature from '../../component/landingpage/Eventfeature';
 import ContactUs from '../../component/landingpage/Contactus'
+import Footer from '../../component/landingpage/Footer'
 
 const landing = () => {
   return (
@@ -15,6 +16,7 @@ const landing = () => {
       <ProductFeature/>
       <EventFeature/>
       <ContactUs />
+      <Footer />
     </div>
 
   )
