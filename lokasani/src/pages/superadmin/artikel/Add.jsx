@@ -56,7 +56,7 @@ function Add() {
       <main className="pt-[100px] h-full sm:ml-[249px] bg-[#D9D9D9]">
         <div className="mx-5 bg-white rounded-md mt-2 px-6 pt-6 pb-3">
           <div className="flex gap-x-3 mb-4 w-full">
-            <div className="h-[250px] w-[500px] rounded-[15px] flex flex-col justify-center items-center bg-white outline-dashed outline-1 outline-[#828282]">
+            <div className="h-[310px] w-[500px] rounded-[15px] flex flex-col justify-center items-center bg-white outline-dashed outline-1 outline-[#828282]">
               <div className="bg-[#768DD5] w-10 h-10 flex justify-center items-center rounded-md">
                 <AddAPhotoIcon className="text-white" />
               </div>
@@ -183,6 +183,24 @@ function Add() {
                   placeholder="Penulis..."
                   className="bg-[#F2F2F2] rounded-[12px] py-2 px-4 w-full mt-1 mb-5"
                 />
+              </div>
+              <div className="flex">
+                <div className="h-[120px] w-[120px] rounded-lg border-dashed border-[2px] border-[#828282] flex justify-center items-center">
+                  <div className="w-8 h-8 bg-[#768DD5] flex items-center justify-center rounded-md">
+                    <AddAPhotoIcon className="text-white" />
+                  </div>
+                </div>
+                <div className="ml-5 pt-3">
+                  <h1 className="text-[#768DD5] font-semibold">
+                    Unggah foto penulis artikel di sini*
+                  </h1>
+                  <h1 className="text-[#828282] text-sm">
+                    *Upload gambar Max ukuran 500kb
+                  </h1>
+                  <button className="bg-[#3653B0] text-white rounded-full px-3 py-1 mt-3">
+                    + Unggah
+                  </button>
+                </div>
               </div>
             </div>
           </div>

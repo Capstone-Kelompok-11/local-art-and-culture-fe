@@ -22,7 +22,7 @@ function index() {
       {/* content start */}
       <div className="pt-[114px] h-screen sm:ml-[316px]">
         <div className="flex flex-row justify-center items-center gap-x-10 px-4">
-          <div className=" w-52 h-[110px] flex flex-col gap-y-3 ">
+          <div className=" w-56 h-[150px] flex justify-center-center flex-col gap-y-3 pt-3">
             <div
               onClick={() => {
                 navigate("/superadmin/addartikel");
@@ -45,38 +45,39 @@ function index() {
               </span>
             </div>
           </div>
-          <div className="bg-slate-200 w-48 h-[110px] rounded-[16px] pl-3 pt-2">
-            <span className="">Feedback</span>
-            <br />
-            <div className="flex ml-3">
-              <FavoriteIcon fontSize="large" className="text-[#FF3B3B] mt-4" />
-              <div className="font-semibold text-[40px] mt-1 ml-3">76</div>
+          <div className="bg-slate-200 w-52 h-[150px] rounded-[16px] pl-3">
+            <div className="ml-3">
+              <FavoriteIcon fontSize="large" className="text-[#FF3B3B] mt-3" />
+              <div className="flex">
+                <div className="h-17 bg-[#3653B0] w-2 mt-4 mb-1"></div>
+                <div className="flex flex-col mt-3 ml-3">
+                  <span className="">Feedback</span>
+                  <span className="font-semibold text-[35px]">76</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="bg-slate-200 w-48 h-[110px] rounded-[16px] pl-3 pt-2">
-            <span>Pembaca</span>
-            <br />
-            <div className="flex ml-3">
-              <VisibilityIcon
-                fontSize="large"
-                className="text-[#339981] mt-4"
-              />
-              <div className="font-semibold text-[40px] mt-1 ml-3">76</div>
+          <div className="bg-slate-200 w-52 h-[150px] rounded-[16px] pl-4">
+            <VisibilityIcon fontSize="large" className="text-[#339981] mt-3" />
+            <div className="flex">
+              <div className="h-17 bg-[#3653B0] w-2 mt-4 mb-1"></div>
+              <div className="flex flex-col mt-3 ml-3">
+                <span>Pembaca</span>
+                <span className="font-semibold text-[35px]">76</span>
+              </div>
             </div>
           </div>
-          <div className="bg-slate-200 w-48 h-[110px] rounded-[16px] pl-3 pt-2">
-            <span>Laporan</span>
-            <KeyboardArrowRightIcon
-              fontSize="small"
-              className="bg-blue-500 cursor-pointer hover:bg-blue-600 rounded-full ml-2 text-white"
+          <div className="bg-slate-200 w-52 h-[150px] rounded-[16px] pl-4">
+            <QuestionAnswerIcon
+              fontSize="large"
+              className="text-[#FF3B3B] mt-3"
             />
-            <br />
-            <div className="flex ml-3">
-              <QuestionAnswerIcon
-                fontSize="large"
-                className="text-[#FF3B3B] mt-4"
-              />
-              <div className="font-semibold text-[40px] mt-1 ml-3">76</div>
+            <div className="flex">
+              <div className="h-17 bg-[#3653B0] w-2 mt-4 mb-3"></div>
+              <div className="flex flex-col mt-3 ml-3">
+                <span>Laporan</span>
+                <span className="font-semibold text-[40px]">76</span>
+              </div>
             </div>
           </div>
         </div>
@@ -94,7 +95,7 @@ function index() {
               <div className="ml-1 mt-3 flex items-center text-[#999999]">
                 <VisibilityIcon fontSize="small" />
                 &nbsp;<span>12</span>
-                <TextsmsIcon fontSize="small" className="ml-3" />
+                <FavoriteIcon fontSize="small" className="ml-3" />
                 &nbsp;<span>8</span>
                 <h1 className="ml-6 text-sm">12 November 2023</h1>
               </div>
@@ -107,7 +108,7 @@ function index() {
               <div className="ml-1 mt-3 flex items-center text-[#999999]">
                 <VisibilityIcon fontSize="small" />
                 &nbsp;<span>12</span>
-                <TextsmsIcon fontSize="small" className="ml-3" />
+                <FavoriteIcon fontSize="small" className="ml-3" />
                 &nbsp;<span>8</span>
                 <h1 className="ml-6 text-sm">12 November 2023</h1>
               </div>
@@ -120,7 +121,7 @@ function index() {
               <div className="ml-1 mt-3 flex items-center text-[#999999]">
                 <VisibilityIcon fontSize="small" />
                 &nbsp;<span>12</span>
-                <TextsmsIcon fontSize="small" className="ml-3" />
+                <FavoriteIcon fontSize="small" className="ml-3" />
                 &nbsp;<span>8</span>
                 <h1 className="ml-6 text-sm">12 November 2023</h1>
               </div>
@@ -133,7 +134,7 @@ function index() {
               <div className="ml-1 mt-3 flex items-center text-[#999999]">
                 <VisibilityIcon fontSize="small" />
                 &nbsp;<span>12</span>
-                <TextsmsIcon fontSize="small" className="ml-3" />
+                <FavoriteIcon fontSize="small" className="ml-3" />
                 &nbsp;<span>8</span>
                 <h1 className="ml-6 text-sm">12 November 2023</h1>
               </div>
@@ -146,7 +147,7 @@ function index() {
               <div className="ml-1 mt-3 flex items-center text-[#999999]">
                 <VisibilityIcon fontSize="small" />
                 &nbsp;<span>12</span>
-                <TextsmsIcon fontSize="small" className="ml-3" />
+                <FavoriteIcon fontSize="small" className="ml-3" />
                 &nbsp;<span>8</span>
                 <h1 className="ml-6 text-sm">12 November 2023</h1>
               </div>
@@ -159,7 +160,7 @@ function index() {
               <div className="ml-1 mt-3 flex items-center text-[#999999]">
                 <VisibilityIcon fontSize="small" />
                 &nbsp;<span>12</span>
-                <TextsmsIcon fontSize="small" className="ml-3" />
+                <FavoriteIcon fontSize="small" className="ml-3" />
                 &nbsp;<span>8</span>
                 <h1 className="ml-6 text-sm">12 November 2023</h1>
               </div>
@@ -172,7 +173,7 @@ function index() {
               <div className="ml-1 mt-3 flex items-center text-[#999999]">
                 <VisibilityIcon fontSize="small" />
                 &nbsp;<span>12</span>
-                <TextsmsIcon fontSize="small" className="ml-3" />
+                <FavoriteIcon fontSize="small" className="ml-3" />
                 &nbsp;<span>8</span>
                 <h1 className="ml-6 text-sm">12 November 2023</h1>
               </div>
