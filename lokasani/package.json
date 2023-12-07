@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@emotion/styled": "^11.11.0",
+    "@heroicons/react": "^2.0.18",
+    "@material-tailwind/react": "^2.1.5",
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
     "chart.js": "^4.4.0",

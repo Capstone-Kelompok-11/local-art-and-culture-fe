@@ -14,6 +14,7 @@ import CompleteFormOrganisasi from './pages/register/organisasi/CompleteForm'
 import RegisterToko from './pages/register/toko/Index'
 import CompleteFormToko from './pages/register/toko/CompleteForm'
 import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
+import Transaksi from './pages//superadmin/transaksi/index'
 
 
 
@@ -36,6 +37,7 @@ function App() {
         <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
         <Route element={<RegisterToko/>} path='/auth/register/toko'/>
         <Route element={<CompleteFormToko/>} path='/auth/register/toko/form'/>
+        <Route element={<Transaksi/>} path='/transaksi'/> 
       </Routes>
     </BrowserRouter>
   )
