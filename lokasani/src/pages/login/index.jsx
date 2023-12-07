@@ -17,7 +17,7 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('https://ec2-13-213-65-172.ap-southeast-1.compute.amazonaws.com:8080/admin/login', {
+      const response = await axios.post('https://nama-domain-anda.com/api/login', {
         email: email,
         password: password
       });
@@ -28,7 +28,6 @@ const Login = () => {
       console.error('Terjadi kesalahan:', error);
     }
   };
-
   return (
     <>
       <div className="w-screen h-screen flex">
