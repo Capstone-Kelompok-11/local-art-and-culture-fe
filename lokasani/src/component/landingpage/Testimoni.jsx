@@ -8,9 +8,9 @@ import Testi5 from "../../assets/img/dlapp2.png";
 function Testimoni() {
   return (
     <>
-      <div className=" h-[1000px] mx-auto py-14 relative bg-blue-900">
-        <div className="h-full mr-24 relative">
-          <div className="self-stretch h-full w-full mr-24 flex-row  items-center inline-flex  relative space-x-16  ">
+      <div className="  h-[1000px]  mx-auto py-14 pr-20 relative flex justify-center items-center bg-blue-900">
+        <div className="h-full  relative">
+          <div className="self-stretch h-full w-full flex-row  items-center inline-flex  relative space-x-16  ">
             <div className="w-[500px] h-[500px] bg-white rounded-tr-[80px] rounded-br-[80px]  ">
               <div className="p-20 space-y-8">
                 <h3 className="  text-5xl font-extrabold text-black leading-normal ">
