@@ -12,10 +12,13 @@ const DataUser = () => {
     { name: "Admin UMKM", quantity: 8, link: "/superAdmin/daftaradminumkm" },
   ];
 
-  const totalQuantity = usersData.reduce((total, user) => total + user.quantity, 0);
+  const totalQuantity = usersData.reduce(
+    (total, user) => total + user.quantity,
+    0
+  );
 
   const chartData = {
-    labels: [...usersData.map((user) => user.name), 'Total'],
+    labels: [...usersData.map((user) => user.name), "Total"],
     datasets: [
       {
         label: "Quantity",
@@ -54,23 +57,23 @@ const DataUser = () => {
             />
           ))}
         </div>
-<div className="flex w-full gap-6 px-10 ">
-        <div className='w-[800px] rounded-lg bg-white'>
-          <Bar
-            data={chartData}
-            options={{
-              scales: {
-                x: {
-                  beginAtZero: true,
+        <div className="flex w-full gap-6 px-10 ">
+          <div className="w-[800px] rounded-lg bg-white">
+            <Bar
+              data={chartData}
+              options={{
+                scales: {
+                  x: {
+                    beginAtZero: true,
+                  },
                 },
-              },
-              indexAxis: 'y', 
-            }}
-          />
-        </div>
-        <div className="w-[400px]">
-<CardVerifikasi/>
-        </div>
+                indexAxis: "y",
+              }}
+            />
+          </div>
+          <div className="w-[400px]">
+            <CardVerifikasi />
+          </div>
         </div>
       </div>
     </div>

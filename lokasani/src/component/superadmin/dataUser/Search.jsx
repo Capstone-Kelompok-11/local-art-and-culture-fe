@@ -27,13 +27,14 @@ const Search = ({ showSearch, showButtonVerif }) => {
           </button>
         </div>
       )}
-      <div className='border-2 border-red-500 rounded-lg'>
+      <div className='border-2 border-red-500 rounded-lg flex items-center gap-2'>
+        <p className='font-semibold'>Tampilkan</p>
   <select
     name=""
     id=""
     className='p-2 bg-white text-[#999999] rounded-lg focus:outline-none'
   >
-    <option value="">Urut Berdasarkan</option>
+    <option value="">Tanggal/Bulan</option>
     <option value="">Blalala</option>
     <option value="">Blalala</option>
   </select>
