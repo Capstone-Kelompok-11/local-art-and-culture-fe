@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import axios from 'axios';
+import Swal from 'sweetalert2'
 import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -26,7 +27,29 @@ const DaftarProduct = () => {
         fetchProducts();
     }, [currentPage]);
 
-
+    const handleDeleteProduct = async (productId) => {
+        const confirmation = await Swal.fire({
+            title: 'Are you sure?',
+            text: 'Konfirmasi menghapus data product',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        });
+    
+        if (confirmation.isConfirmed) {
+            try {
+                await axios.delete(`https://lokasani.my.id/product/${productId}`);
+                fetchProducts();
+                await Swal.fire('Deleted!', 'data berhasil dihapus', 'success');
+            } catch (error) {
+                console.error('Gagal menghapus data:', error.ressponse.data);
+                await Swal.fire('Error!', 'gagal menghapus data', 'error');
+            }
+        }
+    };
+    
 
     const offset = currentPage * itemsPerPage;
     const currentItems = products.slice(offset, offset + itemsPerPage);
@@ -145,7 +168,7 @@ const DaftarProduct = () => {
                                             <td className="border-t-2 border-b-2 px-4 py-2"></td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">{item.status}</td>
                                             <td className="border-t-2 border-b-2 px-4 py-2 cursor-pointer">
-                                                <button>
+                                                <button onClick={handleDeleteProduct}>
                                                     <DeleteOutlineIcon/>
                                                 </button>
                                             </td>
