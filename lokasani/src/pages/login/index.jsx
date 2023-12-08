@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom"
 import bgLogin from "../../assets/img/bg-login.png";
 import googleIcon from "../../assets/icon/google-icon.png";
 import lokasaniLogo from "../../assets/img/lokasani-logo.png";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [isTetapMasukChecked, setIsTetapMasukChecked] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,17 +17,17 @@ const Login = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-
+    console.log("submitting login request...")
     try {
+      console.log(`email ${email}, password ${password}`)
       const response = await axios.post('https://lokasani.my.id/admin/login', {
         email: email,
         password: password
       });
       localStorage.setItem('token', response.data.token);
-      console.log(response.data.token)
-
+      navigate("/")
     } catch (error) {
-      console.error('Terjadi kesalahan:', error);
+      console.error('Terjadi kesalahan:', error.response.data);
     }
   };
   return (
