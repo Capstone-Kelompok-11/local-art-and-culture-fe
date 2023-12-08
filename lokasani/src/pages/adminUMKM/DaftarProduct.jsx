@@ -14,7 +14,7 @@ const DaftarProduct = () => {
     const [products, setProducts] = useState([]);
 
     const offset = currentPage * itemsPerPage;
-    const currentItems = data.slice(offset, offset + itemsPerPage);
+    const currentItems = products.slice(offset, offset + itemsPerPage);
 
     const totalPages = Math.ceil(data.length / itemsPerPage);
 
@@ -24,7 +24,7 @@ const DaftarProduct = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('https://ec2-13-213-65-172.ap-southeast-1.compute.amazonaws.com:8080/product');
+            const response = await axios.get('https:lokasani.my.id/product');
             setProducts(response.data);
             console.log(response.data);
         } catch (error) {
