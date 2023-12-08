@@ -15,7 +15,12 @@ const DaftarProduct = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('https://lokasani.my.id/product');
+            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjowLCJleHAiOjE3MDIwMTkxNDcsImlkIjoyNiwibmFtZSI6IiIsInJvbGUiOiJVU0VSIiwicm9sZV9pZCI6MH0.6WDHdirJkjZXx3CnsoUOmwKxSqQ_q5Q8t_O-uY754n8"
+            const response = await axios.get('https://lokasani.my.id/product', {
+                headers: {
+                    Authorization:`Bearer ${token}`
+                }
+            })
             setProducts(response.data.data.data);
             console.log(response.data.data.data)
         } catch (error) {
