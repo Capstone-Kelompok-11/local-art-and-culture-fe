@@ -15,7 +15,7 @@ const DaftarProduct = () => {
 
     const fetchProducts = async () => {
         try {
-            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjowLCJleHAiOjE3MDIwMTkxNDcsImlkIjoyNiwibmFtZSI6IiIsInJvbGUiOiJVU0VSIiwicm9sZV9pZCI6MH0.6WDHdirJkjZXx3CnsoUOmwKxSqQ_q5Q8t_O-uY754n8"
+            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjozOCwiZXhwIjoxNzAyMDI0NTAxLCJpZCI6MzgsIm5hbWUiOiJmYXR1ckBnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsInJvbGVfaWQiOjB9.rY5sjQpPeeACYyEiSu71470S6Oh6OBQ57tIRorYjKWI"
             const response = await axios.get('https://lokasani.my.id/product', {
                 headers: {
                     Authorization:`Bearer ${token}`
