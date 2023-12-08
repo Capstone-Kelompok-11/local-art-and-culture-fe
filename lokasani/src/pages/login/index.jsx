@@ -17,7 +17,7 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('https://nama-domain-anda.com/api/login', {
+      const response = await axios.post('https://lokasani.my.id/admin/login', {
         email: email,
         password: password
       });
