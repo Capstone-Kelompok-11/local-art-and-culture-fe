@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../../../component/superadmin/globalComponent/Sidebar";
 import Navbar from "../../../component/superadmin/artikel/Navbar";
 import AddIcon from "@mui/icons-material/Add";
@@ -7,6 +8,8 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import imageSearching from "../../../assets/img/image-searching.png";
 
 function Add() {
+  const navigate = useNavigate();
+
   // function thumbnail
   const [thumbnail, setThumbnail] = useState(null);
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
@@ -47,6 +50,22 @@ function Add() {
   };
   const handleThumbnailClick = () => {
     document.getElementById("uploadThumbnail").click();
+  };
+
+  // function Foto Penulis
+  const [fotoPenulis, setFotoPenulis] = useState(null);
+  const [penulisPreview, setPenulisPreview] = useState(null);
+  const handleFotoPenulisChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setPenulisPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+    console.log(file);
+    setFotoPenulis(file);
   };
 
   // Function Unggah
@@ -197,20 +216,40 @@ function Add() {
               </div>
               <div className="flex">
                 <div className="h-[120px] w-[120px] rounded-lg border-dashed border-[2px] border-[#828282] flex justify-center items-center">
-                  <div className="w-8 h-8 bg-[#768DD5] flex items-center justify-center rounded-md">
-                    <AddAPhotoIcon className="text-white" />
-                  </div>
+                  {fotoPenulis !== null ? (
+                    <img
+                      src={penulisPreview}
+                      alt=""
+                      className="object-contain	"
+                      height={120}
+                      width={120}
+                    />
+                  ) : (
+                    <div className="w-8 h-8 bg-[#768DD5] flex items-center justify-center rounded-md">
+                      <AddAPhotoIcon className="text-white" />
+                    </div>
+                  )}
                 </div>
                 <div className="ml-5 pt-3">
                   <h1 className="text-[#768DD5] font-semibold">
                     Unggah foto penulis artikel di sini*
                   </h1>
-                  <h1 className="text-[#828282] text-sm">
+                  <h1 className="text-[#828282] text-sm mb-4">
                     *Upload gambar Max ukuran 500kb
                   </h1>
-                  <button className="bg-[#3653B0] text-white rounded-full px-3 py-1 mt-3">
+                  <label
+                    htmlFor="fotoPenulis"
+                    className="bg-[#3653B0] cursor-pointer text-white rounded-full px-3 py-1 mt-"
+                  >
                     + Unggah
-                  </button>
+                  </label>
+                  <input
+                    type="file"
+                    id="fotoPenulis"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleFotoPenulisChange}
+                  />
                 </div>
               </div>
             </div>
@@ -226,7 +265,12 @@ function Add() {
             placeholder="Tulis isi artikel di sini"
           />
           <div className="flex justify-between mt-3">
-            <button className="bg-[#E8644B] text-white px-10 rounded-full py-1">
+            <button
+              onClick={() => {
+                navigate(-1);
+              }}
+              className="bg-[#E8644B] text-white px-10 rounded-full py-1"
+            >
               Batal
             </button>
             <div>
@@ -252,7 +296,10 @@ function Add() {
                         Unggah artikel?
                       </h1>
                       <div className="flex items-center justify-center gap-x-3">
-                        <button className="bg-[#828282] py-2 px-8 rounded-full text-white font-medium">
+                        <button
+                          onClick={() => setIsPopupUnggahOpen(false)}
+                          className="bg-[#828282] py-2 px-8 rounded-full text-white font-medium"
+                        >
                           Tidak
                         </button>
                         <button className="bg-[#3653B0] py-2 px-10 rounded-full text-white font-medium">
@@ -263,7 +310,7 @@ function Add() {
                   </div>
                 </div>
               )}
-              {/* popup Denah Lokasi end */}
+              {/* popup Unggah end */}
             </div>
           </div>
         </div>
