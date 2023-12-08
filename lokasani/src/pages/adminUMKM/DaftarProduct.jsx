@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import axios from 'axios';
-import data from "../../data/data";
 import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -13,28 +12,30 @@ const DaftarProduct = () => {
     const itemsPerPage = 10;
     const [products, setProducts] = useState([]);
 
-    const offset = currentPage * itemsPerPage;
-    const currentItems = products.slice(offset, offset + itemsPerPage);
-
-    const totalPages = Math.ceil(data.length / itemsPerPage);
-
-    const handlePageChange = ({ selected }) => {
-        setCurrentPage(selected);
-    };
-
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('https:lokasani.my.id/product');
-            setProducts(response.data);
-            console.log(response.data);
+            const response = await axios.get('https://lokasani.my.id/product');
+            setProducts(response.data.data.data);
+            console.log(response.data.data.data)
         } catch (error) {
             console.error('Terjadi kesalahan:', error);
         }
     };
 
     useEffect(() => {
-        fetchProducts()
-    }, [])
+        fetchProducts();
+    }, [currentPage]);
+
+
+
+    const offset = currentPage * itemsPerPage;
+    const currentItems = products.slice(offset, offset + itemsPerPage);
+
+    const totalPages = Math.ceil(products.length / itemsPerPage);
+
+    const handlePageChange = ({ selected }) => {
+        setCurrentPage(selected);
+    };
 
     return (
         <div className="bg-[#F2F2F2]">
@@ -113,12 +114,12 @@ const DaftarProduct = () => {
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-10 h-10 bg-[#253E8D] rounded-lg"></div>
                                                     <div>
-                                                        <p className="font-semibold">Kain Batik</p>
-                                                        <p className="font-light text-sm">Kain batik dibuat di yogyakarta</p>
+                                                        <p className="font-semibold">{item.name}</p>
+                                                        <p className="font-light text-sm">{item.description}</p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.kategori}</td>
+                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.category.category}</td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">
                                                 {item.stock ? (
                                                     <label
@@ -140,10 +141,14 @@ const DaftarProduct = () => {
                                                     </label>
                                                 )}
                                             </td>
-                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.harga}</td>
-                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.jumlah}</td>
+                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.price}</td>
+                                            <td className="border-t-2 border-b-2 px-4 py-2"></td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">{item.status}</td>
-                                            <td className="border-t-2 border-b-2 px-4 py-2 cursor-pointer"><DeleteOutlineIcon/></td>
+                                            <td className="border-t-2 border-b-2 px-4 py-2 cursor-pointer">
+                                                <button>
+                                                    <DeleteOutlineIcon/>
+                                                </button>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
