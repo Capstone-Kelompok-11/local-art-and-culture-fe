@@ -73,8 +73,8 @@ function MyEvent() {
                 <button className="bg-[#E8644B] text-white py-1 px-1 rounded-full absolute top-2 left-2 m-2 flex items-center">
                   <ArrowForwardIosIcon/>
                 </button>
-                <div className="flex flex-col justify-between">
-                  <div className="absolute left-2 top-1/2 bg-[#E8644B] mt-4 w-1 h-12 transform -translate-y-1/2"></div>
+                <div className="flex flex-col justify-between p-2">
+                  <div className="absolute left-2 top-1/2 bg-[#E8644B] mt-4 w-2 h-12 transform -translate-y-1/2"></div>
                   <div className='mt-14'>
                     <span className="text-[#999999] text-sm mt-10">Total Income (Rp)</span><br />
                     <span className="text-lg font-bold text-sm font-plus-jakarta-sans">35.440.000</span><br />
@@ -93,8 +93,8 @@ function MyEvent() {
                 <button className="bg-[#E8644B] text-white py-1 px-1 rounded-full absolute top-2 left-2 m-2 flex items-center">
                   <ArrowForwardIosIcon/>
                 </button>
-                <div className="flex flex-col justify-between">
-                  <div className="absolute left-2 top-1/2 bg-[#E8644B] mt-4 w-1 h-12 transform -translate-y-1/2"></div>
+                <div className="flex flex-col justify-between p-2">
+                  <div className="absolute left-2 top-1/2 bg-[#E8644B] mt-4 w-2 h-12 transform -translate-y-1/2"></div>
                   <div className='mt-14'>
                     <span className="text-[#999999] text-sm mt-10">Total Income (Rp)</span><br />
                     <span className="text-lg font-bold text-sm font-plus-jakarta-sans">35.440.000</span><br />
@@ -113,8 +113,8 @@ function MyEvent() {
                 <button className="bg-[#E8644B] text-white py-1 px-1 rounded-full absolute top-2 left-2 m-2 flex items-center">
                   <ArrowForwardIosIcon/>
                 </button>
-                <div className="flex flex-col justify-between">
-                  <div className="absolute left-2 top-1/2 bg-[#E8644B] mt-4 w-1 h-12 transform -translate-y-1/2"></div>
+                <div className="flex flex-col justify-between p-2">
+                  <div className="absolute left-2 top-1/2 bg-[#E8644B] mt-4 w-2 h-12 transform -translate-y-1/2"></div>
                   <div className='mt-14'>
                     <span className="text-[#999999] text-sm mt-10">Total Income (Rp)</span><br />
                     <span className="text-lg font-bold text-sm font-plus-jakarta-sans">35.440.000</span><br />

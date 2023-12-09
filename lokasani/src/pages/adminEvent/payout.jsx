@@ -78,10 +78,10 @@ function Payout() {
                     All
                   </button>
                   <button
-                    className={`bg-${activeButton === 'paid' ? 'blue-500' : 'gray-200'} text-white  py-[6px] px-3 rounded-md m-2`}
-                    onClick={() => handleButtonClick('paid')}
+                    className={`bg-${activeButton === 'belum diajukan' ? 'blue-500' : 'gray-200'} text-white  py-[6px] px-3 rounded-md m-2`}
+                    onClick={() => handleButtonClick('belum diajukan')}
                   >
-                    Paid
+                    Belium Diajukan
                   </button>
                   <button
                     className={`bg-${activeButton === 'pending' ? 'blue-500' : 'gray-200'} text-white py-[6px] px-3 rounded-md m-2`}
@@ -90,10 +90,16 @@ function Payout() {
                     Pending
                   </button>
                   <button
-                    className={`bg-${activeButton === 'canceled' ? 'blue-500' : 'gray-200'} text-white py-[6px] px-3 rounded-md m-2`}
-                    onClick={() => handleButtonClick('canceled')}
+                    className={`bg-${activeButton === 'selesai' ? 'blue-500' : 'gray-200'} text-white py-[6px] px-3 rounded-md m-2`}
+                    onClick={() => handleButtonClick('selesai')}
                   >
-                    Canceled
+                    Selesai
+                  </button>
+                  <button
+                    className={`bg-${activeButton === 'gagal' ? 'blue-500' : 'gray-200'} text-white py-[6px] px-3 rounded-md m-2`}
+                    onClick={() => handleButtonClick('gagal')}
+                  >
+                    Gagal
                   </button>
                 </div>
 
