@@ -1,10 +1,25 @@
-import React from "react";
-import logoLokasani from "../../assets/img/logo.png"
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import logoLokasani from "../../assets/img/logo.png";
+// import Aboutus from "../landingpage/Whyus";
+
 
 const Navbar = () => {
+  const navigate = useNavigate(); 
+  const [showLogin, setShowLogin] = useState(false);
+
+  const handleLogin = () => {
+    setShowLogin(true);
+    navigate("/auth/login");
+  };
+
+  const handleNavbarClose = () => {
+    setShowLogin(false);
+  };
+
   return (
     <div>
-      <body className="">
+      <body className="fix">
         <nav className="relative px-[100px] py-4  bg-blue-200 flex justify-between items-center bg-white">
           <a className="text-3xl font-bold leading-none" href="#">
             <img className=" w-[50px]" src={logoLokasani} />
@@ -25,12 +40,12 @@ const Navbar = () => {
           <div className="lg:flex lg:items-center lg:w-auto lg:space-x-6 justify-end">
             <ul className="lg:flex lg:items-center lg:space-x-[50px]">
               <li>
-                <a className="text-xl text-black hover:text-gray-500 " href="#">
+                <a className="text-xl text-black hover:text-gray-500 " href="/article">
                   Article
                 </a>
               </li>
               <li>
-                <a className="text-xl  text-black hover:text-gray-500" href="#">
+                <a className="text-xl  text-black hover:text-gray-500" href="/whyUs">
                   About Us
                 </a>
               </li>
@@ -41,7 +56,8 @@ const Navbar = () => {
               </li>
               <a
                 className="hidden lg:inline-block py-2 px-10 bg-blue-800 hover:bg-blue-600 text-xl text-white font-bold rounded-xl transition duration-200"
-                href="#"
+                href="/auth/login"
+                onClick={handleLogin}
               >
                 Login
               </a>
@@ -109,7 +125,10 @@ const Navbar = () => {
               <div className="pt-6">
                 <a
                   className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold  hover:bg-blue-900 "
-                  href="#"
+                  onClick={() => {
+                    navigate("/auth/login"); // Use navigate to go to the login page
+                    handleNavbarClose(); // Close the navbar
+                  }}
                 >
                   Login
                 </a>
