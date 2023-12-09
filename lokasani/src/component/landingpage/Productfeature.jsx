@@ -1,10 +1,11 @@
-import React from "react";
+import React, {} from "react";
 import object1 from "../../assets/img/object1.png";
 import object2 from "../../assets/img/object2.png";
 import object3 from "../../assets/img/object3.png";
 import object4 from "../../assets/img/object4.png";
 
 const Productfeature = () => {
+
   return (
     <div className=" bg-[#243775] ">
       <div className="h-screen relative container mx-auto">
