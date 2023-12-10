@@ -8,7 +8,7 @@ import Perjalanan from "./Perjalanan";
 function DownloadApp() {
   return (
     <>
-      <div className=" h-[900px] mx-auto p-20 relative  ">
+      <div className=" h-[900px] mx-auto p-20 relative ">
         <div className="h-4/6 mx-12 mt-36 bg-blue-800 rounded-3xl relative">
           <div className="self-stretch h-[584px] w-auto flex-row justify-start items-start inline-flex ">
             <div className="w-[600px] mx-16 pt-12 ">
