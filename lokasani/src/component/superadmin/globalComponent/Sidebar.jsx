@@ -81,17 +81,6 @@ const Sidebar = () => {
               className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
             >
               <img
-              src={logoEmail}
-                className="w-[25px] h-8"
-              />
-              <span className="flex-1 ms-3 whitespace-nowrap text-[#E6E6E6] hover:bg-[#768DD5]">Pemasaran</span>
-            </Link>
-          </li>
-          <li>
-            <Link to={""}
-              className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
-            >
-              <img
               src={logoAgent}
                 className="w-[25px] h-8 "
               />
