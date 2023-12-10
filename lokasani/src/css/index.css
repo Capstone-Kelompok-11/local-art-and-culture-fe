@@ -35,3 +35,23 @@ body {
   letter-spacing: 1px;
   font-size: 24px;
 }
+
+.custom-font-register {
+  font-family: "MangoGrotesque", sans-serif;
+  letter-spacing: 1px;
+  font-size: 55px;
+}
+
+.custom-bg-register-organisasi {
+  background-image: url(../assets/img/bg-register-organisasi.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.custom-bg-register-toko {
+  background-image: url(../assets/img/bg-register-toko.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
