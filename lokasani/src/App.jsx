@@ -1,7 +1,6 @@
 
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import AdminEvent from './pages/adminEvent/Index'
-import Home from "./pages/home"
 import HomeSuperAdmin from './pages/superadmin/dashboard/HomeSuperAdmin'
 import DataUser from './pages/superadmin/dataUser/DataUser'
 import DaftarAdminEvent from './pages/superadmin/dataUser/DaftarAdminEvent'
@@ -21,7 +20,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Home/>} path='/'/>
         <Route element={<HomeSuperAdmin/>} path='/superadmin/homeSuperAdmin'/>
         <Route element={<DataUser/>} path='/superadmin/dataUser'/>
         <Route element={<DaftarAdminEvent/>} path='/superadmin/daftarAdminEvent'/>
@@ -36,8 +34,7 @@ function App() {
         <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
         <Route element={<RegisterToko/>} path='/auth/register/toko'/>
         <Route element={<CompleteFormToko/>} path='/auth/register/toko/form'/>
-        <Route element={<Home/>} path="/"/>
-        <Route element={<Landing/>} path="/landing"/>
+        <Route element={<Landing/>} path="/"/>
       </Routes>
     </BrowserRouter>
   )
