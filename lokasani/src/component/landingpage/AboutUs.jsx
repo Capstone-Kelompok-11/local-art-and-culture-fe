@@ -12,8 +12,8 @@ function AboutUs() {
               Rayakan <span className="text-yellow-500">Kreativitas! </span>
             </h3>
           </div>
-          <div className="p-8 bg-blue-800 rounded-3xl">
-            <p className="text-white text-justify font-base text-xl">
+          <div className="w-[650px] p-8 bg-blue-800 rounded-3xl">
+            <p className="text-white text-justify font-base text-2xl">
               <span className="text-yellow-500">LokaSani </span>menjadi tonggak
               dalam mendukung dan mengangkat karya seni lokal serta
               produk-produk kreatif dari UKM. Dengan fokus pada penjualan produk
@@ -25,7 +25,7 @@ function AboutUs() {
           </div>
         </div>
         <img
-          className="w-[632px] h-[604px] rounded-3xl object-cover -mt-32 md:-mt-0 md:ml-16"
+          className="w-[702px] h-[674px] rounded-3xl object-cover -mt-32 md:-mt-0 md:ml-16"
           src={Tari}
           alt="phone"
         />
