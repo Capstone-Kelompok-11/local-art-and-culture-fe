@@ -45,7 +45,12 @@ const DaftarProduct = () => {
     
         if (confirmation.isConfirmed) {
             try {
-                await axios.delete(`https://lokasani.my.id/product/${productId}`);
+                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjozOCwiZXhwIjoxNzAyMDI0NTAxLCJpZCI6MzgsIm5hbWUiOiJmYXR1ckBnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsInJvbGVfaWQiOjB9.rY5sjQpPeeACYyEiSu71470S6Oh6OBQ57tIRorYjKWI"
+                await axios.delete(`https://lokasani.my.id/product/${productId}`, {
+                    headers: {
+                        Authorization:`Bearer ${token}`
+                    }
+                });
                 fetchProducts();
                 await Swal.fire('Deleted!', 'data berhasil dihapus', 'success');
             } catch (error) {
@@ -173,7 +178,7 @@ const DaftarProduct = () => {
                                             <td className="border-t-2 border-b-2 px-4 py-2"></td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">{item.status}</td>
                                             <td className="border-t-2 border-b-2 px-4 py-2 cursor-pointer">
-                                                <button onClick={handleDeleteProduct}>
+                                                <button onClick={() => handleDeleteProduct(item.id)}>
                                                     <DeleteOutlineIcon/>
                                                 </button>
                                             </td>
