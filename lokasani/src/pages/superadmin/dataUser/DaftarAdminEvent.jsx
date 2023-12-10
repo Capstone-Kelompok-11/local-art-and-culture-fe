@@ -1,31 +1,27 @@
-import React, { useState } from "react";
+import { React, useState } from "react";
+import Swal from "sweetalert2";
 import Search from "../../../component/superadmin/dataUser/Search";
 import Sidebar from "../../../component/superadmin/globalComponent/Sidebar";
 import Navbar from "../../../component/superadmin/globalComponent/Navbar";
+import warningImage from "../../../assets/img/warningImage.svg";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import Pagination from "../../../component/superadmin/globalComponent/Pagination";
 
-const DaftarAdminEvent = () => {
+const DaftarAdminUmkm = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-
-  const toggleDropdown = (id) => {
-    setActiveDropdown(activeDropdown === id ? null : id);
-  };
-
-  const userData = [
+  const [userData, setUserData] = useState([
     {
       id: 1,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-      name: "Kelvin Bramnan",
+      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-1.jpg",
+      name: "John Doe",
       createDate: "12 November 2023",
       status: "Aktif",
     },
     {
       id: 2,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-      name: "Kelvin Bramnan",
+      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-2.jpg",
+      name: "Jane Doe",
       createDate: "13 November 2023",
       status: "Tidak Aktif",
     },
@@ -92,7 +88,44 @@ const DaftarAdminEvent = () => {
       createDate: "13 November 2023",
       status: "Tidak Aktif",
     },
-  ];
+  ]);
+  const itemsPerPage = 10;
+
+  const toggleDropdown = (id) => {
+    setActiveDropdown(activeDropdown === id ? null : id);
+  };
+  const handleDelete = (itemId) => {
+    Swal.fire({
+      title: "Yakin Hapus Akun?",
+      text: "Sekalinya kamu menghapus, Akun tidak akan kembali,loh",
+      imageUrl: warningImage,
+      imageWidth: 180,
+      imageHeight: 180,
+      showCancelButton: true,
+      cancelButtonText: "Urungkan",
+      confirmButtonText: "Hapus Akun",
+      buttonsStyling: false,
+      customClass: {
+        title: "text-lg font-bold mb-1",
+        text: "text-base font-normal",
+        cancelButton:
+          "w-full max-w-md mt-1 py-1 bg-[#3653B0] hover:bg-blue-500 text-white rounded-full",
+        confirmButton:
+          "w-full max-w-md  px-44 py-1 bg-[#FF3B3B] hover:bg-red-400 text-white rounded-full",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteItem(itemId);
+      }
+    });
+  };
+
+  const deleteItem = (itemId) => {
+    const updatedUserData = userData.filter((item) => item.id !== itemId);
+    setUserData(updatedUserData);
+    Swal.fire("Berhasil Menghapus!", "", "success");
+  };
+
   const totalPages = Math.ceil(userData.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -170,7 +203,10 @@ const DaftarAdminEvent = () => {
                           <p className="cursor-pointer mb-4 text-[#1A1A1A] ">
                             Lihat Detail
                           </p>
-                          <p className="cursor-pointer text-[#FF3B3B] ">
+                          <p
+                            className="cursor-pointer text-[#FF3B3B]"
+                            onClick={() => handleDelete(item.id)}
+                          >
                             Hapus Pengguna
                           </p>
                         </div>
@@ -201,4 +237,4 @@ const DaftarAdminEvent = () => {
   );
 };
 
-export default DaftarAdminEvent;
+export default DaftarAdminUmkm;
