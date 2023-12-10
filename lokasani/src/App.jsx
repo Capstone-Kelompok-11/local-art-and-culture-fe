@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import AdminEvent from './pages/adminEvent/Index'
 import Home from "./pages/home"
@@ -15,12 +16,18 @@ import RegisterToko from './pages/register/toko/Index'
 import CompleteFormToko from './pages/register/toko/CompleteForm'
 import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
 
+=======
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+>>>>>>> 68cc50b23989d1375f7b4c2667451092839cf082
 
+import Home from "./pages/home";
+import Landing from "./pages/landingpage/index"
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+<<<<<<< HEAD
         <Route element={<Home/>} path='/'/>
         <Route element={<HomeSuperAdmin/>} path='/superadmin/homeSuperAdmin'/>
         <Route element={<DataUser/>} path='/superadmin/dataUser'/>
@@ -36,6 +43,10 @@ function App() {
         <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
         <Route element={<RegisterToko/>} path='/auth/register/toko'/>
         <Route element={<CompleteFormToko/>} path='/auth/register/toko/form'/>
+=======
+        <Route element={<Home/>} path="/"/>
+        <Route element={<Landing/>} path="/landing"/>
+>>>>>>> 68cc50b23989d1375f7b4c2667451092839cf082
       </Routes>
     </BrowserRouter>
   )
