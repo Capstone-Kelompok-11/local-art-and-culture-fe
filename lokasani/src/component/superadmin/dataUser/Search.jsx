@@ -1,9 +1,10 @@
-import React from 'react';
-import iconSearch from '../../../assets/icon/search.svg';
+import React from "react";
+import RangeDate from "./RangeDate";
+import iconSearch from "../../../assets/icon/search.svg";
 
 const Search = ({ showSearch, showButtonVerif }) => {
   return (
-    <div className='flex items-center justify-between'>
+    <div className="flex items-center justify-between">
       {showSearch && (
         <div className="flex items-center pl-3 bg-white rounded-lg">
           <label htmlFor="table-search" className="sr-only">
@@ -22,14 +23,15 @@ const Search = ({ showSearch, showButtonVerif }) => {
       )}
       {showButtonVerif && (
         <div>
-          <button className='bg-[#3653B0] w-[150px] h-[30px] rounded-full text-white'>
+          <button className="bg-[#3653B0] w-[150px] h-[30px] rounded-full text-white">
             Verifikasi
           </button>
         </div>
       )}
-      <div className='border-2 border-red-500 rounded-lg flex items-center gap-2'>
-        <p className='font-semibold'>Tampilkan</p>
-  <select
+      <div className="border-2 border-red-500 rounded-lg flex items-center gap-2">
+        <p className="font-semibold">Tampilkan</p>
+        <RangeDate />
+        {/* <select
     name=""
     id=""
     className='p-2 bg-white text-[#999999] rounded-lg focus:outline-none'
@@ -37,9 +39,8 @@ const Search = ({ showSearch, showButtonVerif }) => {
     <option value="">Tanggal/Bulan</option>
     <option value="">Blalala</option>
     <option value="">Blalala</option>
-  </select>
-</div>
-
+  </select> */}
+      </div>
     </div>
   );
 };
