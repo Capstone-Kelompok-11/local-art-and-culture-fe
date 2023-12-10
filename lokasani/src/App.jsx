@@ -5,6 +5,7 @@ import NewEvent from './pages/adminEvent/newevent'
 import Transaksi from './pages/adminEvent/transaksi'
 import MyEvent from './pages/adminEvent/myevent'
 import Payout from './pages/adminEvent/payout'
+import Marchandise from './pages/adminEvent/marchandise'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route element ={<Transaksi/>} path='/transaksi'/>
         <Route element={<MyEvent/>} path='/myevent'/>
         <Route element= {<Payout/>} path='/payout'/>
+        <Route element= {<Marchandise/>} path='/marchandise'/>
       </Routes>
     </BrowserRouter>
   )
