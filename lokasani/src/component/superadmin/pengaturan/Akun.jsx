@@ -9,7 +9,7 @@ const Akun = () => {
           <div>
             <img
               className="w-24 h-24 mb-3 rounded-full shadow-lg"
-              src=""
+              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
               alt=""
             />
           </div>
@@ -31,12 +31,11 @@ const Akun = () => {
           <div className="flex justify-between pr-6 ">
             <p>Nomor Telepon</p>
             <div className="flex">
-            <p>082233445577</p>
-            <ArrowForwardIos
-
-            fontSize="medium"
-            className="text-[#3653B0]  cursor-pointer"
-          />
+              <p>082233445577</p>
+              <ArrowForwardIos
+                fontSize="medium"
+                className="text-[#3653B0]  cursor-pointer"
+              />
             </div>
           </div>
         </div>
@@ -45,26 +44,24 @@ const Akun = () => {
           <div className="flex justify-between pr-6 ">
             <p>Email</p>
             <div className="flex">
-            <p>Kelvin@lokasani.co.id</p>
-            <ArrowForwardIos
-
-            fontSize="medium"
-            className="text-[#3653B0]  cursor-pointer"
-          />
+              <p>Kelvin@lokasani.co.id</p>
+              <ArrowForwardIos
+                fontSize="medium"
+                className="text-[#3653B0]  cursor-pointer"
+              />
             </div>
           </div>
         </div>
         <div>
-        <hr className="h-px my-8 bg-gray-200 border-0 "></hr>
-        <div className="flex justify-between pr-6 ">
+          <hr className="h-px my-8 bg-gray-200 border-0 "></hr>
+          <div className="flex justify-between pr-6 ">
             <p>Lokasi</p>
             <div className="flex">
-            <p>jakarta Indonesia</p>
-            <ArrowForwardIos
-
-            fontSize="medium"
-            className="text-[#3653B0]  cursor-pointer"
-          />
+              <p>jakarta Indonesia</p>
+              <ArrowForwardIos
+                fontSize="medium"
+                className="text-[#3653B0]  cursor-pointer"
+              />
             </div>
           </div>
           <hr className="h-px my-8 bg-gray-200 border-0 "></hr>
