@@ -8,11 +8,14 @@ const Eventfeature = () => {
     <div className="">
       <div className="h-screen relative bg-white container mx-auto  ">
         <div className="text-6xl font-bold uppercase text-white px-20 pt-[100px] flex justify-between">
+          <div className="headline-3">
           <div className="flex gap-3">
             <p className="text-black">Jelajahi Fitur </p>
             <p className="text-[#F3B502]">Event Creator</p>
             <p className="text-black">Lokasani</p>
           </div>
+          </div>
+
           <div className="font-medium text-[30px] justify-end items-center">
             <button className="bg-[#F3B502] p-5 rounded-[20px]">
               Daftar Sekarang!

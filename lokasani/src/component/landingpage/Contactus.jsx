@@ -9,9 +9,12 @@ const Contactus = () => {
     <div className="container mx-auto  ">
       <div className="flex gap-x-10 h-screen relative bg-white">
         <div className="w-1/2">
-          <h1 className="text-6xl font-bold uppercase text-black ">
+          <div className="headline-4">
+          <h1 className="font-bold uppercase text-black ">
             Hubungi kami
           </h1>
+          </div>
+
           <h2 className="pt-7 text-3xl font-semibold text-[#3653B0]">
             Tertarik dengan kami?
           </h2>

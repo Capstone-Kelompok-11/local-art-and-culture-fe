@@ -10,11 +10,14 @@ const Productfeature = () => {
     <div className=" bg-[#243775] ">
       <div className="h-screen relative container mx-auto">
         <div className="text-6xl font-bold uppercase text-white px-20 pt-[100px] flex justify-between">
+          <div className="headline-2">
           <div className="flex gap-3">
             <p>Kembangkan </p>
             <p className="text-[#F3B502]">Produk Lokal </p>
             <p>Anda Sekarang</p>
           </div>
+          </div>
+
           <div className="font-medium text-[30px] justify-end items-center">
             <button className="bg-[#F3B502] p-5 rounded-[20px]">
               Daftar Sekarang!
@@ -22,7 +25,7 @@ const Productfeature = () => {
           </div>
         </div>
         <div className="flex items-center justify-center mt-20 relative z-10 m-40">
-          <div className="grid grid-cols-4 gap-6 ">
+          <div className="grid grid-cols-4 gap-6">
             <div>
               <a className=" flex flex-col items-center justify-center max-w-[300px] h-[400px] px-5 py-[100px] border border-gray-200 rounded-[20px] shadow bg-[#31499B] text-left absoulte left-0 ">
                 <img src={object1} alt="" />
