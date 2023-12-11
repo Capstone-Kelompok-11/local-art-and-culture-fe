@@ -37,7 +37,7 @@ function Sidebar() {
                 </svg>
             </button>
 
-            <aside className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${sidebar ? "translate-x-0" : "-translate-x-full"} sm:translate-x-0`} id="logo-sidebar">
+            <aside className={`fixed top-0 left-0 z-40 w-[255px] h-screen transition-transform ${sidebar ? "translate-x-0" : "-translate-x-full"} sm:translate-x-0`} id="logo-sidebar">
                 <div className="h-screen px-3 py-3 overflow-y-auto bg-[#253E8D]">
                     <h2 href="https://flowbite.com/" className="flex items-center pl-2.5 mb-9 mt-6">
                         <img src={logo} className="h-6 mr-3 sm:h-7" alt="Flowbite Logo" />
