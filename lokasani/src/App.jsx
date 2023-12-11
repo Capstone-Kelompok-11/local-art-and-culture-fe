@@ -12,6 +12,9 @@ import RegisterOrganisasi from './pages/register/organisasi/Index'
 import CompleteFormOrganisasi from './pages/register/organisasi/CompleteForm'
 import RegisterToko from './pages/register/toko/Index'
 import CompleteFormToko from './pages/register/toko/CompleteForm'
+import DaftarPesanan from './pages/adminUMKM/DaftarPesanan'
+
+
 import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
 import Landing from "./pages/landingpage/index"
 import Login from "./pages/login"
@@ -36,6 +39,7 @@ function App() {
         <Route element={<RegisterToko/>} path='/auth/register/toko'/>
         <Route element={<CompleteFormToko/>} path='/auth/register/toko/form'/>
         <Route element={<Landing/>} path="/"/>
+        <Route element={<DaftarPesanan/>} path='/adminumkm/daftarpesanan'/>
       </Routes>
     </BrowserRouter>
   );
