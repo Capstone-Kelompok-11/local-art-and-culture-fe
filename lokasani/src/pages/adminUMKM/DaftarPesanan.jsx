@@ -2,7 +2,7 @@ import {useState} from "react";
 import ReactPaginate from "react-paginate";
 import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
-import data from "../../data/data";
+import dataListOrder from "../../data/dataListOrder";
 import DownloadIcon from '@mui/icons-material/Download';
 import InfoIcon from '@mui/icons-material/Info';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -14,9 +14,9 @@ const DaftarPesanan = () => {
     const itemsPerPage = 10;
 
     const offset = currentPage * itemsPerPage;
-    const currentItems = data.slice(offset, offset + itemsPerPage);
+    const currentItems = dataListOrder.slice(offset, offset + itemsPerPage);
 
-    const totalPages = Math.ceil(data.length / itemsPerPage);
+    const totalPages = Math.ceil(dataListOrder.length / itemsPerPage);
 
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
-import data from "../../../data/data";
+import dataDashboard from "../../../data/dataDashboard";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -9,9 +9,9 @@ const Table = () => {
     const itemsPerPage = 5;
 
     const offset = currentPage * itemsPerPage;
-    const currentItems = data.slice(offset, offset + itemsPerPage);
+    const currentItems = dataDashboard.slice(offset, offset + itemsPerPage);
 
-    const totalPages = Math.ceil(data.length / itemsPerPage);
+    const totalPages = Math.ceil(dataDashboard.length / itemsPerPage);
 
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
