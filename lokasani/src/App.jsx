@@ -14,6 +14,7 @@ import RegisterToko from './pages/register/toko/Index'
 import CompleteFormToko from './pages/register/toko/CompleteForm'
 import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
 import Landing from "./pages/landingpage/index"
+import Login from "./pages/login"
 
 function App() {
   return (
