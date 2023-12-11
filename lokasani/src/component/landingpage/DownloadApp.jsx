@@ -1,9 +1,7 @@
 import React from "react";
+import Img1 from "../../assets/img/dlapp2.png";
 import Img2 from "../../assets/img/dlapp2.png";
 import Img3 from "../../assets/img/button-dl.png";
-import Testimoni from "./Testimoni";
-import AboutUs from "./AboutUs";
-import Perjalanan from "./Perjalanan";
 
 function DownloadApp() {
   return (
@@ -11,6 +9,11 @@ function DownloadApp() {
       <div className=" h-[900px] mx-auto p-20 relative ">
         <div className="h-4/6 mx-12 mt-36 bg-blue-800 rounded-3xl relative">
           <div className="self-stretch h-[584px] w-auto flex-row justify-start items-start inline-flex ">
+            {/* <img
+              className=" w-[1400px] h-[384px] object-cover  "
+              src={Img1}
+              alt="bg-dlapp"
+            /> */}
             <div className="w-[600px] mx-16 pt-12 ">
               <h3 className="text-5xl font-bold text-white leading-normal">
                 Mulai jelajahi <span className="text-yellow-500">produk</span> &
@@ -31,19 +34,8 @@ function DownloadApp() {
           </div>
         </div>
       </div>
-      <Testimoni />
-      <AboutUs />
-      <Perjalanan />
     </>
   );
 }
 
 export default DownloadApp;
-
-{
-  /* <img
-            className=" w-[1400px] h-[384px] flex justify-end  "
-            src={Img1}
-            alt="bg-dlapp"
-          /> */
-}
