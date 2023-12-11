@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -5,12 +6,60 @@ import lokasaniLogo from "../../../assets/img/lokasani-logo-register.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const CompleteForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [outletName, setOutletName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [addressId, setAddressId] = useState("");
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
+  const [showAgreementWarning, setShowAgreementWarning] = useState(false);
 
+  const handleSumbit = async (e) => {
+    e.preventDefault();
+    if (!isAgreementChecked) {
+      setShowAgreementWarning(true);
+      return;
+    }
+    setShowAgreementWarning(false);
+    const newData = {
+      email: email,
+      password: password,
+      outletName: outletName,
+      phoneNumber: phoneNumber,
+      addressId: addressId,
+      role: "Event Creator",
+    };
+    try {
+      const response = await axios.post(
+        "https://lokasani.my.id/creator",
+        newData
+      );
+
+      if (response.status === 201) {
+        Swal.fire({
+          icon: "success",
+          title: "Berhasil Registrasi",
+          confirmButtonText: "OK",
+        });
+        console.log("Data berhasil ditambahkan:", response.data);
+        navigate("/auth/login");
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal Registrasi",
+        confirmButtonText: "OK",
+      });
+    }
+    console.log(newData);
+  };
+
+  const { state } = location;
+  const { email, password } = state;
   const handleAgreement = () => {
     setIsAgreementChecked(!isAgreementChecked);
   };
@@ -38,7 +87,7 @@ const CompleteForm = () => {
               </p>
             </div>
             <div className="mb-4">
-              <form action="">
+              <form onSubmit={handleSumbit}>
                 <div className="mb-[12px] relative">
                   <label
                     className="block font-semibold text-sm text-[#768DD5]"
@@ -54,7 +103,10 @@ const CompleteForm = () => {
                     className="p-2 pl-10 w-full rounded-lg bg-[#F2F2F2] mt-1 focus:outline-none"
                     id="nama"
                     type="text"
-                    placeholder="nama..."
+                    name="outletName"
+                    required
+                    placeholder="Nama organisasi"
+                    onChange={(e) => setOutletName(e.target.value)}
                   />
                 </div>
                 <div className="mb-[12px] relative">
@@ -71,8 +123,11 @@ const CompleteForm = () => {
                   <input
                     className="p-2 pl-10 w-full rounded-lg bg-[#F2F2F2] mt-1 focus:outline-none"
                     id="nomer"
+                    name="phoneNumber"
                     type="text"
-                    placeholder="nomer..."
+                    required
+                    placeholder="Nomer handphone"
+                    onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                 </div>
                 <div className="mb-[50px] relative">
@@ -90,10 +145,13 @@ const CompleteForm = () => {
                     className="p-2 pl-10 w-full rounded-lg bg-[#F2F2F2] mt-1 focus:outline-none"
                     id="alamat"
                     type="text"
-                    placeholder="alamat..."
+                    name="addressId"
+                    required
+                    placeholder="Alamat organisasi"
+                    onChange={(e) => setAddressId(e.target.value)}
                   />
                 </div>
-                <div className="flex items-center mb-2">
+                <div className="flex items-center">
                   <input
                     id="agreement"
                     type="checkbox"
@@ -111,12 +169,20 @@ const CompleteForm = () => {
                       }`}
                     ></div>
                   </label>
-                  <span className="text-gray-700 text-medium">
+                  <label
+                    className="text-gray-700 text-medium"
+                    htmlFor="agreement"
+                  >
                     Saya menyetujui syarat & ketentuan
-                  </span>
+                  </label>
                 </div>
+                {showAgreementWarning && (
+                  <p className="text-red-500 text-xs ml-6">
+                    Harap menyetujui persyaratan pendaftaran.
+                  </p>
+                )}
                 <button
-                  className="w-full py-2 px-3 rounded-full text-white text-xl font-semibold bg-[#3653B0]"
+                  className="w-full py-2 px-3 mt-2 rounded-full text-white text-xl font-semibold bg-[#3653B0]"
                   type="submit"
                 >
                   Daftar

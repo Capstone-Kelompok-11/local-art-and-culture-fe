@@ -2,9 +2,9 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import lokasaniLogo from "../../../assets/img/lokasani-logo-register.png";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import StoreIcon from "@mui/icons-material/Store";
 
 const CompleteForm = () => {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const CompleteForm = () => {
                   >
                     Nama toko
                   </label>
-                  <PersonOutlineIcon
+                  <StoreIcon
                     fontSize="medium"
                     className="absolute left-0 mt-3 ml-2 text-[#3653B0]"
                   />

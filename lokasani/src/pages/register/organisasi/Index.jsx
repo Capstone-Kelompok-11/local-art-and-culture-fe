@@ -13,14 +13,31 @@ const Register = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
+  const [showAgreementWarning, setShowAgreementWarning] = useState(false);
+
+  const handleSumbit = (e) => {
+    e.preventDefault();
+    if (!isAgreementChecked) {
+      setShowAgreementWarning(true);
+      return;
+    }
+    setShowAgreementWarning(false);
+    navigate("/auth/register/organisasi/form", {
+      state: {
+        email: email,
+        password: password,
+      },
+    });
+  };
 
   const handleAgreement = () => {
     setIsAgreementChecked(!isAgreementChecked);
   };
 
   const [showPassword, setShowPassword] = useState(false);
-
   const handleShowPassword = (e) => {
     e.preventDefault();
     setShowPassword(!showPassword);
@@ -67,7 +84,7 @@ const Register = () => {
               <div className="w-full h-[2px] rounded-full bg-gray-300"></div>
             </div>
             <div className="mb-4">
-              <form action="">
+              <form onSubmit={handleSumbit}>
                 <div className="mb-[12px] relative">
                   <label
                     className="block font-semibold text-sm text-[#768DD5]"
@@ -83,7 +100,10 @@ const Register = () => {
                     className="p-2 pl-10 w-full rounded-lg bg-[#F2F2F2] mt-1 focus:outline-none"
                     id="email"
                     type="email"
+                    name="email"
                     placeholder="Email"
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="mb-[40px] relative">
@@ -110,11 +130,14 @@ const Register = () => {
                   <input
                     className="p-2 pl-10 w-full rounded-lg mt-1 bg-[#F2F2F2] focus:outline-none"
                     id="password"
+                    name="password"
                     type={`${showPassword == false ? `password` : `text`}`}
                     placeholder="Password"
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <div className="flex items-center mb-2">
+                <div className="flex items-center">
                   <input
                     id="agreement"
                     type="checkbox"
@@ -132,12 +155,20 @@ const Register = () => {
                       }`}
                     ></div>
                   </label>
-                  <span className="text-gray-700 text-medium">
+                  <label
+                    className="text-gray-700 text-medium"
+                    htmlFor="agreement"
+                  >
                     Saya menyetujui syarat & ketentuan
-                  </span>
+                  </label>
                 </div>
+                {showAgreementWarning && (
+                  <p className="text-red-500 text-xs ml-6">
+                    Harap menyetujui persyaratan pendaftaran.
+                  </p>
+                )}
                 <button
-                  className="w-full py-2 px-3 rounded-full text-white text-xl font-semibold bg-[#3653B0]"
+                  className="w-full py-2 px-3 mt-2 rounded-full text-white text-xl font-semibold bg-[#3653B0]"
                   type="submit"
                 >
                   Daftar
