@@ -16,12 +16,13 @@ import DaftarPesanan from './pages/adminUMKM/DaftarPesanan'
 import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
 import Landing from "./pages/landingpage/index"
 import Login from "./pages/login"
+import React from "react";
+import Home from "./pages/adminUMKM/Home";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Login/>} path="/auth/login"/>
         <Route element={<HomeSuperAdmin/>} path='/superadmin/homeSuperAdmin'/>
         <Route element={<DataUser/>} path='/superadmin/dataUser'/>
         <Route element={<DaftarAdminEvent/>} path='/superadmin/daftarAdminEvent'/>
@@ -32,12 +33,14 @@ function App() {
         <Route element={<SuperAdminArtikel/>} path='/superadmin/artikel'/>
         <Route element={<SuperAdminKelolaArtikel/>} path='/superadmin/kelolaartikel'/>
         <Route element={<Pengaturan/>} path='/superadmin/pengaturan'/>
+        <Route element={<Home />} path="/adminumkm" />
+        <Route element={<DaftarPesanan/>} path='/adminumkm/daftarpesanan'/>
+        <Route element={<Login/>} path="/auth/login"/>
         <Route element={<RegisterOrganisasi/>} path='/auth/register/organisasi'/>
         <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
         <Route element={<RegisterToko/>} path='/auth/register/toko'/>
         <Route element={<CompleteFormToko/>} path='/auth/register/toko/form'/>
         <Route element={<Landing/>} path="/"/>
-        <Route element={<DaftarPesanan/>} path='/adminumkm/daftarpesanan'/>
       </Routes>
     </BrowserRouter>
   );
