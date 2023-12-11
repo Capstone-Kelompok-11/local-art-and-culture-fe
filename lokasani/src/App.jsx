@@ -5,6 +5,7 @@ import DataUser from './pages/superadmin/dataUser/DataUser'
 import DaftarAdminEvent from './pages/superadmin/dataUser/DaftarAdminEvent'
 import DaftarAdminUmkm from './pages/superadmin/dataUser/DaftarAdminUmkm'
 import DaftarPengguna from './pages/superadmin/dataUser/DaftarPengguna'
+import TambahProductAdminUMKM from './pages/adminUMKM/TambahProduct'
 import VerifikasiAkun from './pages/superadmin/dataUser/VerifikasiAkun'
 import SuperAdminArtikel from './pages/superadmin/artikel/index'
 import SuperAdminKelolaArtikel from './pages/superadmin/artikel/KelolaArtikel'
@@ -35,6 +36,7 @@ function App() {
         <Route element={<Pengaturan/>} path='/superadmin/pengaturan'/>
         <Route element={<HomeAdminUMKM />} path="/adminumkm" />
         <Route element={<DaftarPesananAdmimUMKM/>} path='/adminumkm/daftarpesanan'/>
+        <Route element={<TambahProductAdminUMKM/>} path='/adminumkm/tambahproduct'/>
         <Route element={<Login/>} path="/auth/login"/>
         <Route element={<RegisterOrganisasi/>} path='/auth/register/organisasi'/>
         <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
