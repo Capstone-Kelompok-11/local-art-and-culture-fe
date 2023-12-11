@@ -18,7 +18,7 @@ const Home = () => {
                 </div>
                 <div className="w-full ml-[255px]">
                     <div>
-                        <Header />
+                        <Header headerTitle={"Home"}/>
                     </div>
 					<div className="flex pt-6 gap-6 px-5">
 						<div className="w-2/5">
