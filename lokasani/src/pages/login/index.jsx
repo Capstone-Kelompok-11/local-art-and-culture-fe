@@ -42,7 +42,7 @@ const Login = () => {
         <div className="w-1/2 h-full px-[5%] flex items-center">
           <div className="w-full">
             <div className="mb-[42px]">
-              <h1 className="font-black text-4xl tracking-wide oswal mb-1">HALO LAGI KAMU!</h1>
+              <h1 className="font-black text-4xl tracking-wide .custom-font mb-1">HALO LAGI KAMU!</h1>
               <p className="font-extralight text-lg">Lama tak berjumpa ya~</p>
             </div>
             <div className="flex gap-5 mb-[42px]">
