@@ -12,12 +12,12 @@ import RegisterOrganisasi from './pages/register/organisasi/Index'
 import CompleteFormOrganisasi from './pages/register/organisasi/CompleteForm'
 import RegisterToko from './pages/register/toko/Index'
 import CompleteFormToko from './pages/register/toko/CompleteForm'
-import DaftarPesanan from './pages/adminUMKM/DaftarPesanan'
+import DaftarPesananAdmimUMKM from './pages/adminUMKM/DaftarPesanan'
 import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
 import Landing from "./pages/landingpage/index"
 import Login from "./pages/login"
 import React from "react";
-import Home from "./pages/adminUMKM/Home";
+import HomeAdminUMKM from "./pages/adminUMKM/Home";
 
 function App() {
   return (
@@ -33,8 +33,8 @@ function App() {
         <Route element={<SuperAdminArtikel/>} path='/superadmin/artikel'/>
         <Route element={<SuperAdminKelolaArtikel/>} path='/superadmin/kelolaartikel'/>
         <Route element={<Pengaturan/>} path='/superadmin/pengaturan'/>
-        <Route element={<Home />} path="/adminumkm" />
-        <Route element={<DaftarPesanan/>} path='/adminumkm/daftarpesanan'/>
+        <Route element={<HomeAdminUMKM />} path="/adminumkm" />
+        <Route element={<DaftarPesananAdmimUMKM/>} path='/adminumkm/daftarpesanan'/>
         <Route element={<Login/>} path="/auth/login"/>
         <Route element={<RegisterOrganisasi/>} path='/auth/register/organisasi'/>
         <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
