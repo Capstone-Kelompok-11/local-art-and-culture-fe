@@ -53,7 +53,7 @@ const Login = () => {
             </div>
             <div className="flex justify-center items-center mb-[42px]">
               <div className="w-full h-[2px] rounded-full bg-gray-300"></div>
-              <p className="block w-[330px] mx-1 font-semibold text-gray-400 text-sm">Atau masuk dengan</p>
+              <p className="block w-[350px] mx-1 font-semibold text-gray-400 text-sm">Atau masuk dengan</p>
               <div className="w-full h-[2px] rounded-full bg-gray-300"></div>
             </div>
             <div className="mb-4">
