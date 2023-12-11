@@ -19,6 +19,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route element={<Login/>} path="/auth/login"/>
         <Route element={<HomeSuperAdmin/>} path='/superadmin/homeSuperAdmin'/>
         <Route element={<DataUser/>} path='/superadmin/dataUser'/>
         <Route element={<DaftarAdminEvent/>} path='/superadmin/daftarAdminEvent'/>
