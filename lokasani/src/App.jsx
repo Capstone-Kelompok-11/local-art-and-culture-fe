@@ -5,7 +5,6 @@ import DataUser from './pages/superadmin/dataUser/DataUser'
 import DaftarAdminEvent from './pages/superadmin/dataUser/DaftarAdminEvent'
 import DaftarAdminUmkm from './pages/superadmin/dataUser/DaftarAdminUmkm'
 import DaftarPengguna from './pages/superadmin/dataUser/DaftarPengguna'
-import TambahProductAdminUMKM from './pages/adminUMKM/TambahProduct'
 import VerifikasiAkun from './pages/superadmin/dataUser/VerifikasiAkun'
 import SuperAdminArtikel from './pages/superadmin/artikel/index'
 import SuperAdminKelolaArtikel from './pages/superadmin/artikel/KelolaArtikel'
@@ -13,12 +12,14 @@ import RegisterOrganisasi from './pages/register/organisasi/Index'
 import CompleteFormOrganisasi from './pages/register/organisasi/CompleteForm'
 import RegisterToko from './pages/register/toko/Index'
 import CompleteFormToko from './pages/register/toko/CompleteForm'
-import DaftarPesananAdmimUMKM from './pages/adminUMKM/DaftarPesanan'
 import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
 import Landing from "./pages/landingpage/index"
-import Login from "./pages/login"
 import React from "react";
+import Login from "./pages/login"
 import HomeAdminUMKM from "./pages/adminUMKM/Home";
+import TambahProductAdminUMKM from './pages/adminUMKM/TambahProduct'
+import DaftarPesananAdmimUMKM from './pages/adminUMKM/DaftarPesanan'
+import DaftarProduct from './pages/adminUMKM/DaftarProduct'
 
 function App() {
   return (
@@ -35,8 +36,9 @@ function App() {
         <Route element={<SuperAdminKelolaArtikel/>} path='/superadmin/kelolaartikel'/>
         <Route element={<Pengaturan/>} path='/superadmin/pengaturan'/>
         <Route element={<HomeAdminUMKM />} path="/adminumkm" />
-        <Route element={<DaftarPesananAdmimUMKM/>} path='/adminumkm/daftarpesanan'/>
+        <Route element={<DaftarProduct/>} path='/adminumkm/daftarproduct'/>
         <Route element={<TambahProductAdminUMKM/>} path='/adminumkm/tambahproduct'/>
+        <Route element={<DaftarPesananAdmimUMKM/>} path='/adminumkm/daftarpesanan'/>
         <Route element={<Login/>} path="/auth/login"/>
         <Route element={<RegisterOrganisasi/>} path='/auth/register/organisasi'/>
         <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
