@@ -13,8 +13,6 @@ import CompleteFormOrganisasi from './pages/register/organisasi/CompleteForm'
 import RegisterToko from './pages/register/toko/Index'
 import CompleteFormToko from './pages/register/toko/CompleteForm'
 import DaftarPesanan from './pages/adminUMKM/DaftarPesanan'
-
-
 import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
 import Landing from "./pages/landingpage/index"
 import Login from "./pages/login"
