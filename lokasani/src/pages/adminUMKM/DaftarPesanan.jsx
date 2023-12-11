@@ -27,7 +27,7 @@ const DaftarPesanan = () => {
 				<div>
 					<Sidebar/>
 				</div>
-				<div className="w-full ml-[255px]">
+				<div className="w-full pl-[255px]">
 					<div>
 						<Header headerTitle={"Daftar Pesanan"} />
 					</div>
