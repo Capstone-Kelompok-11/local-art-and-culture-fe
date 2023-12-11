@@ -1,4 +1,3 @@
-
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import AdminEvent from './pages/adminEvent/Index'
 import HomeSuperAdmin from './pages/superadmin/dashboard/HomeSuperAdmin'
@@ -37,7 +36,7 @@ function App() {
         <Route element={<Landing/>} path="/"/>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
