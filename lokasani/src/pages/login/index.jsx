@@ -24,8 +24,18 @@ const Login = () => {
         email: email,
         password: password
       });
-      localStorage.setItem('token', response.data.token);
-      navigate("/")
+      const token = response.data.data.token
+      localStorage.setItem('token', token);
+
+      const userRole = response.data.data.role.role.toLowerCase();
+      if ( userRole == "product creator" ) {
+        navigate("/adminumkm")
+      } else if ( userRole == "event creator" ) {
+        navigate("/adminevent")
+      }else {
+        navigate("/superadmin/homesuperadmin")
+      }
+
     } catch (error) {
       console.error('Terjadi kesalahan:', error.response.data);
     }
