@@ -25,7 +25,7 @@ const Login = () => {
         password: password
       });
       localStorage.setItem('token', response.data.token);
-      navigate("/")
+      navigate("/superAdmin/homeSuperAdmin")
     } catch (error) {
       console.error('Terjadi kesalahan:', error.response.data);
     }
