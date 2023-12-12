@@ -6,7 +6,7 @@ const Pagination = ({ currentPage, totalPages, paginate }) => {
   return (
     <div>
       <button
-        className={`px-4 py-2 mx-1 border rounded ${
+        className={`px-4 py-2 mx-1 rounded ${
           currentPage === 1 ? "text-[#CCCCCC]" : "text-[#253E8D]"
         }`}
         onClick={() => paginate(currentPage - 1)}
@@ -18,7 +18,7 @@ const Pagination = ({ currentPage, totalPages, paginate }) => {
       {Array.from({ length: totalPages }, (_, index) => (
         <button
           key={index}
-          className={`px-4 py-2 mx-1 border rounded-xl ${
+          className={`px-4 py-2 mx-1  rounded-xl ${
             currentPage === index + 1
               ? "bg-[#253E8D] text-white"
               : "bg-[#CCCCCC] text-white"
@@ -30,7 +30,7 @@ const Pagination = ({ currentPage, totalPages, paginate }) => {
       ))}
 
       <button
-        className={`px-4 py-2 mx-1 border rounded ${
+        className={`px-4 py-2 mx-1  rounded ${
           currentPage === totalPages ? "text-[#CCCCCC]" : "text-[#253E8D]"
         }`}
         onClick={() => paginate(currentPage + 1)}
