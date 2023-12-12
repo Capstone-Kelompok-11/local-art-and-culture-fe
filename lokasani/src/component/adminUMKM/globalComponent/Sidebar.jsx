@@ -77,7 +77,7 @@ function Sidebar() {
           </h2>
 
           <div className="mx-2 mb-10">
-            <a className="cursor-pointer flex items-center justify-center py-3 p-2 rounded-full text-white bg-[#768DD5]">
+            <a href="/adminumkm/tambahproduct" className="cursor-pointer flex items-center justify-center py-3 p-2 rounded-full text-white bg-[#768DD5]">
               Tambahkan Produk
             </a>
           </div>
@@ -86,7 +86,7 @@ function Sidebar() {
             <div className="mx-3">
               <ul className="space-y-3">
                 <li>
-                  <a className="cursor-pointer text-sm flex items-center px-2 py-1 text-white rounded-sm hover:bg-gray-700 group">
+                  <a href="/adminumkm" className="cursor-pointer text-sm flex items-center px-2 py-1 text-white rounded-sm hover:bg-gray-700 group">
                     <HomeIcon fontSize="small" />
                     <span className="flex-1 ml-3 whitespace-nowrap ">Home</span>
                   </a>
@@ -98,7 +98,7 @@ function Sidebar() {
                   </a>
                 </li>
                 <li>
-                  <a className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
+                  <a href="/adminumkm/daftarproduct" className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
                     <ShoppingCartIcon fontSize="small" />
                     <span className="flex-1 ml-3 whitespace-nowrap">
                       Produk
@@ -106,7 +106,7 @@ function Sidebar() {
                   </a>
                 </li>
                 <li>
-                  <a className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
+                  <a href="/adminumkm/daftarpesanan" className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
                     <EventNoteIcon fontSize="small" />
                     <span className="flex-1 ml-3 whitespace-nowrap">
                       Pesanan
@@ -114,7 +114,7 @@ function Sidebar() {
                   </a>
                 </li>
                 <li>
-                  <a className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
+                  <a href="" className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
                     <img
                       src={TransactionIcon}
                       alt="Transaction"
