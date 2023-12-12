@@ -53,7 +53,7 @@ const DaftarAdminUmkm = () => {
     Swal.fire({
       title: "Yakin Hapus Akun?",
       text: "Sekalinya kamu menghapus, Akun tidak akan kembali, loh",
-      imageUrl: warningImage, // Ganti dengan URL gambar peringatan jika diperlukan
+      imageUrl: warningImage,
       imageWidth: 180,
       imageHeight: 180,
       showCancelButton: true,

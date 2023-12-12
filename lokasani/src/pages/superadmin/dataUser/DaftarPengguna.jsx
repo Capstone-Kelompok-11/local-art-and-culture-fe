@@ -9,7 +9,7 @@ import Navbar from "../../../component/superadmin/globalComponent/Navbar";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import Pagination from "../../../component/superadmin/globalComponent/Pagination";
 
-const DaftarAdminUmkm = () => {
+const DaftarPengguna = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [userData, setUserData] = useState([]);
@@ -20,7 +20,7 @@ const DaftarAdminUmkm = () => {
     try {
       setIsLoading(true);
 
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjowLCJleHAiOjE3MDIzNjcxNjEsImlkIjo0NSwicm9sZV9pZCI6MH0.7eZk0kIkJ1cJ4VU1jX8emuJDoQwYxPSG6p7BAvHR43g";
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjowLCJleHAiOjE3MDIzOTY1NzMsImlkIjo0NSwicm9sZV9pZCI6MH0.CpHzaDp-LUnjYwDlyckuWMFK0BSIXHaPzSpFQb1Yb7U";
       const response = await axios.get("https://lokasani.my.id/users", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -53,7 +53,7 @@ const DaftarAdminUmkm = () => {
     Swal.fire({
       title: "Yakin Hapus Akun?",
       text: "Sekalinya kamu menghapus, Akun tidak akan kembali, loh",
-      imageUrl: warningImage, // Ganti dengan URL gambar peringatan jika diperlukan
+      imageUrl: warningImage, 
       imageWidth: 180,
       imageHeight: 180,
       showCancelButton: true,
@@ -77,7 +77,7 @@ const DaftarAdminUmkm = () => {
 
   const deleteItem = async (itemId) => {
     try {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjowLCJleHAiOjE3MDIzNjcxNjEsImlkIjo0NSwicm9sZV9pZCI6MH0.7eZk0kIkJ1cJ4VU1jX8emuJDoQwYxPSG6p7BAvHR43g";
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjowLCJleHAiOjE3MDIzOTY1NzMsImlkIjo0NSwicm9sZV9pZCI6MH0.CpHzaDp-LUnjYwDlyckuWMFK0BSIXHaPzSpFQb1Yb7U";
       const response = await axios.delete(`https://lokasani.my.id/users/4/${itemId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -225,4 +225,4 @@ const DaftarAdminUmkm = () => {
   );
 };
 
-export default DaftarAdminUmkm;
+export default DaftarPengguna;
