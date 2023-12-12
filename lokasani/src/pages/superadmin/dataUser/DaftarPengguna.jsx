@@ -1,109 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
+import warningImage from "../../../assets/img/warningImage.svg";
 import Search from "../../../component/superadmin/dataUser/Search";
 import Sidebar from "../../../component/superadmin/globalComponent/Sidebar";
 import Navbar from "../../../component/superadmin/globalComponent/Navbar";
-import warningImage from "../../../assets/img/warningImage.svg";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import Pagination from "../../../component/superadmin/globalComponent/Pagination";
 
-const DaftarPengguna = () => {
+const DaftarAdminUmkm = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [userData, setUserData] = useState([
-    {
-      id: 1,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-1.jpg",
-      name: "John Doe",
-      createDate: "12 November 2023",
-      status: "Aktif",
-    },
-    {
-      id: 2,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-2.jpg",
-      name: "Jane Doe",
-      createDate: "13 November 2023",
-      status: "Tidak Aktif",
-    },
-    {
-      id: 3,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-      name: "Kelvin Bramnan",
-      createDate: "12 November 2023",
-      status: "Aktif",
-    },
-    {
-      id: 4,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-      name: "Kelvin Bramnan",
-      createDate: "13 November 2023",
-      status: "Tidak Aktif",
-    },
-    {
-      id: 5,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-      name: "Kelvin Bramnan",
-      createDate: "12 November 2023",
-      status: "Aktif",
-    },
-    {
-      id: 6,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-      name: "Kelvin Bramnan",
-      createDate: "13 November 2023",
-      status: "Tidak Aktif",
-    },
-    {
-      id: 7,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-      name: "Kelvin Bramnan",
-      createDate: "12 November 2023",
-      status: "Aktif",
-    },
-    {
-      id: 8,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-      name: "Kelvin Bramnan",
-      createDate: "13 November 2023",
-      status: "Tidak Aktif",
-    },
-    {
-      id: 9,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-      name: "Kelvin Bramnan",
-      createDate: "13 November 2023",
-      status: "Tidak Aktif",
-    },
-    {
-      id: 10,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-      name: "Kelvin Bramnan",
-      createDate: "12 November 2023",
-      status: "Aktif",
-    },
-    {
-      id: 11,
-      imageSrc: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-      name: "Kelvin Bramnan",
-      createDate: "13 November 2023",
-      status: "Tidak Aktif",
-    },
-  ]);
+  const [userData, setUserData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const itemsPerPage = 10;
 
-  const toggleDropdown = (id) => {
-    setActiveDropdown(activeDropdown === id ? null : id);
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjowLCJleHAiOjE3MDIzNjcxNjEsImlkIjo0NSwicm9sZV9pZCI6MH0.7eZk0kIkJ1cJ4VU1jX8emuJDoQwYxPSG6p7BAvHR43g";
+      const response = await axios.get("https://lokasani.my.id/users", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = response.data;
+
+      const dataArray = data?.data?.data;
+
+      if (Array.isArray(dataArray)) {
+        const filteredData = dataArray.filter(
+          (item) => item.role?.role === ""
+        );
+        setUserData(filteredData);
+      } else {
+        console.error("Struktur data tidak sesuai yang diharapkan");
+      }
+    } catch (error) {
+      console.error("Error mengambil data:", error);
+    } finally {
+      setIsLoading(false); 
+    }
   };
 
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleDelete = (itemId) => {
     Swal.fire({
       title: "Yakin Hapus Akun?",
-      text: "Sekalinya kamu menghapus, Akun tidak akan kembali,loh",
-      imageUrl: warningImage,
+      text: "Sekalinya kamu menghapus, Akun tidak akan kembali, loh",
+      imageUrl: warningImage, // Ganti dengan URL gambar peringatan jika diperlukan
       imageWidth: 180,
       imageHeight: 180,
       showCancelButton: true,
@@ -125,16 +75,42 @@ const DaftarPengguna = () => {
     });
   };
 
-  const deleteItem = (itemId) => {
-    const updatedUserData = userData.filter((item) => item.id !== itemId);
-    setUserData(updatedUserData);
-    Swal.fire("Berhasil Menghapus!", "", "success");
+  const deleteItem = async (itemId) => {
+    try {
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjowLCJleHAiOjE3MDIzNjcxNjEsImlkIjo0NSwicm9sZV9pZCI6MH0.7eZk0kIkJ1cJ4VU1jX8emuJDoQwYxPSG6p7BAvHR43g";
+      const response = await axios.delete(`https://lokasani.my.id/users/4/${itemId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.status === 200) {
+        const updatedUserData = userData.filter((item) => item.id !== itemId);
+        setUserData(updatedUserData);
+
+        Swal.fire("Berhasil Menghapus!", "", "success");
+      } else {
+        console.error("Gagal menghapus data");
+        Swal.fire("Gagal Menghapus!", "", "error");
+      }
+    } catch (error) {
+      console.error("Error menghapus data:", error);
+      Swal.fire("Gagal Menghapus!", "", "error");
+    }
   };
 
   const totalPages = Math.ceil(userData.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = userData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const toggleDropdown = (itemId) => {
+    setActiveDropdown(activeDropdown === itemId ? null : itemId);
+  };
+
 
   return (
     <div className="bg-[#F2F2F2]">
@@ -146,8 +122,13 @@ const DaftarPengguna = () => {
           <Search showSearch={true} />
         </div>
         <div className="overflow-x-auto shadow-md sm:rounded-lg relative">
-          <table className="w-full text-sm text-left rtl:text-right text-gray-500 z-10">
-            <thead className="text-xs font-semibold text-[#243775] uppercase #987201">
+          {isLoading ? ( 
+            <div className="flex justify-center items-center p-4">
+              <CircularProgress />
+            </div>
+          ) : (userData.length > 0 ? (
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 z-10">
+              <thead className="text-xs font-semibold text-[#243775] uppercase #987201">
               <tr>
                 <th scope="col" className="px-6 py-3">
                   Image
@@ -161,7 +142,7 @@ const DaftarPengguna = () => {
                 <th scope="col" className="px-1 py-3">
                   Status
                 </th>
-                <th scope="col" className="px-8 py-3">
+                <th scope="col" className="px-10 py-3">
                   Aksi
                 </th>
               </tr>
@@ -179,9 +160,9 @@ const DaftarPengguna = () => {
                       alt="Image"
                     />
                   </td>
-                  <td className="px-1 py-4 text-[#3653B0]">{item.name}</td>
+                  <td className="px-1 py-4 text-[#3653B0]">{item.first_name} {item.last_name}</td>
                   <td className="px-1 py-4 text-[#3653B0]">
-                    {item.createDate}
+                    {item.date}
                   </td>
                   <td className="font-semibold ">
                     <p
@@ -194,14 +175,14 @@ const DaftarPengguna = () => {
                       {item.status}
                     </p>
                   </td>
-                  <td className="px-8 py-4 relative">
+                  <td className="px-10 py-4 relative">
                     <MoreVertOutlinedIcon
                       onClick={() => toggleDropdown(item.id)}
                     />
                     {activeDropdown === item.id && (
-                      <div className="absolute left-16 top-[20px] z-20 px-3 py-4 rounded-md shadow-md shadow-gray-400 bg-white">
+                      <div className="absolute left-16 top-[20px] z-20 w-32 py-4 rounded-md shadow-md shadow-gray-400 bg-white">
                         <div className="flex flex-col items-center">
-                          <p className="cursor-pointer mb-4 text-[#1A1A1A]">
+                          <p className="cursor-pointer mb-4 text-[#1A1A1A] ">
                             Lihat Detail
                           </p>
                           <p
@@ -217,7 +198,13 @@ const DaftarPengguna = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+            </table>
+             ) : (
+              <div className="flex justify-center items-center p-4">
+                <p>No Data</p>
+              </div>
+            )
+          )}
         </div>
         <div className="flex justify-between items-center mt-4 mx-4">
           <div className="text-[#828282]">
@@ -238,4 +225,4 @@ const DaftarPengguna = () => {
   );
 };
 
-export default DaftarPengguna;
+export default DaftarAdminUmkm;
