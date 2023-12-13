@@ -26,18 +26,17 @@ const CompleteForm = () => {
     }
     setShowAgreementWarning(false);
     const newData = {
+      outlet_name: outletName,
       email: email,
+      phone_number: phoneNumber,
       password: password,
-      outletName: outletName,
-      phoneNumber: phoneNumber,
-      addressId: addressId,
-      role: "Event Creator",
+      address_id: addressId,
+      role: {
+        role: "EVENT CREATOR",
+      },
     };
     try {
-      const response = await axios.post(
-        "https://lokasani.my.id/creator",
-        newData
-      );
+      const response = await axios.post("", newData);
 
       if (response.status === 201) {
         Swal.fire({
