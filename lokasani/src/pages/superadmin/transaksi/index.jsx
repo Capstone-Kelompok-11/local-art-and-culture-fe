@@ -2,7 +2,8 @@ import React from "react";
 import Sidebar from "../../../component/superadmin/globalComponent/Sidebar";
 import Navbar from "../../../component/superadmin/globalComponent/Navbar";
 import CardTranksasi from "../../../component/superadmin/globalComponent/CardTransaksi";
-
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 const HomeSuperAdmin = () => {
   const usersData = [
     { judul: "Pemasukan Keseluruhan (Rp)", quantity: 35440000 },
@@ -11,6 +12,8 @@ const HomeSuperAdmin = () => {
     { judul: "Permintaan Payout", quantity: 32 },
   ];
 
+  
+
   const transaction = [
     {
       id: 1,
@@ -18,7 +21,7 @@ const HomeSuperAdmin = () => {
       nama: "Icha",
       detail: "Tiket",
       total: "Rp.10000",
-      status: " ",
+      status: "gagal",
     },
     {
       id: 2,
@@ -26,7 +29,7 @@ const HomeSuperAdmin = () => {
       nama: "Icha",
       detail: "Tiket",
       total: "Rp.10000",
-      status: " ",
+      status: "berhasil",
     },
     {
       id: 3,
@@ -34,41 +37,40 @@ const HomeSuperAdmin = () => {
       nama: "Icha",
       detail: "Tiket",
       total: "Rp.10000",
-      status: " ",
+      status: "berhasil",
     },
     {
-      id: 3,
+      id: 4,
       tanggal: "25 November 2023",
       nama: "Icha",
       detail: "Tiket",
       total: "Rp.10000",
-      status: " ",
+      status: "diproses",
     },
     {
-      id: 3,
+      id: 5,
       tanggal: "25 November 2023",
       nama: "Icha",
       detail: "Tiket",
       total: "Rp.10000",
-      status: " ",
+      status: "gagal",
     },
     {
-      id: 3,
+      id: 6,
       tanggal: "25 November 2023",
       nama: "Icha",
       detail: "Tiket",
       total: "Rp.10000",
-      status: " ",
+      status: "gagal",
     },
     {
-      id: 3,
+      id: 7,
       tanggal: "25 November 2023",
       nama: "Icha",
       detail: "Tiket",
       total: "Rp.10000",
-      status: " ",
+      status: "berhasil",
     },
-    
   ];
 
   return (
@@ -85,47 +87,41 @@ const HomeSuperAdmin = () => {
             />
           ))}
         </div>
-        <div className="sm:flex items-center justify-between">
-          <div className="flex items-center mb-8">
-            <a
-              className="rounded-full focus:outline-none focus:ring-2  focus:bg-indigo-50 focus:ring-indigo-800"
-              href=" javascript:void(0)"
-            >
-              <div className="py-2 px-8 bg-[#3653B0] text-white rounded-xl">
-                <p>Semua</p>
+
+        <div className="bg-gray-100">
+          <div className="bg-gray-100 flex items center justify-between rounded-sm">
+            <div className="pl-1 flex items-center">
+              <button className="py-2 px-8 bg-white outline outline-blue-500 outline-1 hover:bg-[#3653B0] text-blue-800 hover:text-white rounded-xl">
+                Semua
+              </button>
+              <button className="py-2 px-8 bg-white outline outline-blue-500 outline-1 hover:bg-[#3653B0] text-blue-800 hover:text-white rounded-xl ml-3">
+                Berhasil
+              </button>
+              <button className="py-2 px-8 bg-white outline outline-blue-500 outline-1 hover:bg-[#3653B0] text-blue-800 hover:text-white rounded-xl ml-3">
+                Diproses
+              </button>
+              <button className="py-2 px-8 bg-white outline outline-blue-500 outline-1 hover:bg-[#3653B0] text-blue-800 hover:text-white rounded-xl ml-3">
+                Gagal
+              </button>
+            </div>
+
+            <div className="flex items-center">
+              <div className="flex justify-end items-center mr-2 border-2 border-black">
+                <h1 className="font-semibold">Tampilkan</h1>
+                <select className="bg-white text-[#999999] p-1 px-2 py-2 rounded-md outline outline-black outline-1 ml-2">
+                  <option>Data Terbaru</option>
+                  <option>Filter 2</option>
+                </select>
               </div>
-            </a>
-            <a
-              className="rounded-xl focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 ml-4 sm:ml-8 bg-white"
-              href="javascript:void(0)"
-            >
-              <div className="py-2 px-8 text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-xl bg-white">
-                <p>Berhasil</p>
-              </div>
-            </a>
-            <a
-              className="rounded-xl focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 ml-4 sm:ml-8"
-              href="javascript:void(0)"
-            >
-              <div className="py-2 px-8 text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-xl bg-white">
-                <p>Diproses</p>
-              </div>
-            </a>
-            <a
-              className="rounded-xl focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 ml-4 sm:ml-8"
-              href="javascript:void(0)"
-            >
-              <div className="py-2 px-8 text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full bg-white">
-                <p>Gagal</p>
-              </div>
-            </a>
-            <p className="py-2 px-8 justify-end"> Tampilan</p>
-            <input
-              id="datepicker"
-              className="border-2 border-gray-300 rounded px-3 py-2 w-56"
-              type="text"
-              placeholder="Select a date"
-            />
+              <button className="bg-[#243775] text-white py-[6px] px-4 rounded-md m-2 flex items-center">
+                <KeyboardArrowDownIcon fontSize="small" className="mr-1" />
+                Import
+              </button>
+              <button className="bg-[#243775] text-white py-[6px] px-4 rounded-md m-2 flex items-center">
+                <FileDownloadIcon fontSize="small" className="mr-1" />
+                Export
+              </button>
+            </div>
           </div>
         </div>
 
@@ -155,10 +151,10 @@ const HomeSuperAdmin = () => {
                 </tr>
               </thead>
               <tbody className="">
-                {transaction.map((item,index) => (
-                  <tr 
-                  key={index}
-                  className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}
+                {transaction.map((item, index) => (
+                  <tr
+                    key={index}
+                    className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
                   >
                     <td className="px-5 py-4 font-reguler text-[#3653B0]">
                       {item.id}
