@@ -28,7 +28,7 @@ const DaftarAdminUmkm = () => {
       });
       const data = response.data;
 
-      const dataArray = data?.data?.data;
+      const dataArray = data?.data?.allUsers;
 
       if (Array.isArray(dataArray)) {
         const filteredData = dataArray.filter(
@@ -53,7 +53,7 @@ const DaftarAdminUmkm = () => {
     Swal.fire({
       title: "Yakin Hapus Akun?",
       text: "Sekalinya kamu menghapus, Akun tidak akan kembali, loh",
-      imageUrl: warningImage, // Ganti dengan URL gambar peringatan jika diperlukan
+      imageUrl: warningImage,
       imageWidth: 180,
       imageHeight: 180,
       showCancelButton: true,
