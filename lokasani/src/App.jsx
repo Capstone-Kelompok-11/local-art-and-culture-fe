@@ -1,5 +1,7 @@
+
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import AdminEvent from './pages/adminEvent/Index'
+import NewEvent from "./pages/adminEvent/newevent";
 import HomeSuperAdmin from './pages/superadmin/dashboard/HomeSuperAdmin'
 import DataUser from './pages/superadmin/dataUser/DataUser'
 import DaftarAdminEvent from './pages/superadmin/dataUser/DaftarAdminEvent'
@@ -31,6 +33,7 @@ function App() {
         <Route element={<DaftarAdminUmkm/>} path='/superadmin/daftarAdminUmkm'/>
         <Route element={<DaftarPengguna/>} path='/superadmin/daftarPengguna'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
+        <Route element={<NewEvent />} path="/adminevent/newevent" />
         <Route element={<VerifikasiAkun/>} path='/superadmin/verifikasiAkun'/>
         <Route element={<SuperAdminArtikel/>} path='/superadmin/artikel'/>
         <Route element={<SuperAdminKelolaArtikel/>} path='/superadmin/kelolaartikel'/>
