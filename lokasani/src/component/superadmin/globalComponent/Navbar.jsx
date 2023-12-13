@@ -4,20 +4,21 @@ import iconNotif from "../../../assets/icon/notifications_active.svg";
 import iconSms from "../../../assets/icon/textsms.svg";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
-const Navbar = ({ title,showButtonBack }) => {
+const Navbar = ({ title, showButtonBack }) => {
   const navigate = useNavigate();
   return (
-    <nav className="fixed inset-x-0 sm:ml-[250px] bg-white border-gray-200 shadow-md">
+    <nav className="fixed inset-x-0 sm:ml-[250px] bg-white border-gray-200 shadow-md z-50">
       <div className="flex flex-wrap items-center justify-between py-6 px-6">
         <div className="flex">
-          
-          {showButtonBack &&(<ArrowBackIosIcon
-            onClick={() => {
-              navigate("/superAdmin/dataUser");
-            }}
-            fontSize="large"
-            className="text-[#3653B0] mr-3 cursor-pointer"
-          />)}
+          {showButtonBack && (
+            <ArrowBackIosIcon
+              onClick={() => {
+                navigate(-1);
+              }}
+              fontSize="large"
+              className="text-[#3653B0] mr-3 cursor-pointer"
+            />
+          )}
           <p className="text-3xl font-bold text-gray-900 ">{title}</p>
         </div>
         <div className="flex md:order-2 gap-8 ">
