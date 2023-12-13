@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
-import Sidebar from "../../components/admin-event/Sidebar";
+import Sidebar from "../../component/adminEvent/Sidebar";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
