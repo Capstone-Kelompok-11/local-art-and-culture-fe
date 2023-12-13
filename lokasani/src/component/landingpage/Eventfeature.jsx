@@ -1,23 +1,33 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import object1 from "../../assets/img/fitur-event-1.png";
 import object2 from "../../assets/img/fitur-event-2.png";
-import object3 from "../../assets/img/fitur-event-3.png"
+import object3 from "../../assets/img/fitur-event-3.png";
 
 const Eventfeature = () => {
+  const navigate = useNavigate();
+
+  const handleRegistrasi= () => {
+    navigate("/auth/register/toko/form");
+  };
+
   return (
     <div className="">
-      <div className="h-screen relative bg-white container mx-auto  ">
+      <div className="h-[1000px] mx-auto relative justify-center items-center overflow-hidden  ">
         <div className="text-6xl font-bold uppercase text-white px-20 pt-[100px] flex justify-between">
-          <div className="headline-3">
-          <div className="flex gap-3">
-            <p className="text-black">Jelajahi Fitur </p>
-            <p className="text-[#F3B502]">Event Creator</p>
-            <p className="text-black">Lokasani</p>
-          </div>
+          <div className="headline-2">
+            <div className="flex">
+              <h1 className="text-black">
+                Jelajahi Fitur
+                <span className="text-[#F3B502]"> Event creator </span>{" "}
+                <span>lokasani</span>
+              </h1>
+            </div>
           </div>
 
           <div className="font-medium text-[30px] justify-end items-center">
-            <button className="bg-[#F3B502] p-5 rounded-[20px]">
+            <button className="bg-[#F3B502] p-5 rounded-[20px]"
+            onClick={handleRegistrasi}>
               Daftar Sekarang!
             </button>
           </div>

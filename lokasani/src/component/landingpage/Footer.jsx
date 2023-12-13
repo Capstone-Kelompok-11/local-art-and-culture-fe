@@ -20,7 +20,7 @@ const currentYear = new Date().getFullYear();
 
 const Footer = () => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto relative justify-center items-center overflow-hidden ">
       <footer className="relative w-full">
         <div className="mx-auto px-8">
           <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
@@ -51,13 +51,24 @@ const Footer = () => {
             </div>
             <div className="bg-[#E6E6E6] h-full p-9 rounded-[10px]">
               <p className="text-[24px] font-semibold px-">Subscribe</p>
-              <input
-                type="email"
-                id="email"
-                className="shadow-sm mt-4  w-[500px]  px- border border-gray-300 text-black text-[15px] rounded-[10px] block w-full p-2.5   dark:placeholder-gray-400 "
-                placeholder="Masukkann email anda"
-                required
-              />
+              <form action="#" className="space-y-8 px-4 sm:px-8 lg:px-10 py-1">
+                  <div className="flex">
+                    <input
+                      type="email"
+                      id="email"
+                      className="shadow-sm mt-4 w-[500px] px- border border-gray-300 text-black text-[15px] rounded block w-full p-2.5 dark:placeholder-gray-400"
+                      placeholder="Masukkan email anda"
+                      required
+                    />
+                    <button
+                      type="submit"
+                      className="shadow-sm mt-4 ml-2 border border-gray-300 text-black text-[15px] rounded  block bg-blue-800 px-3"
+                    >
+                      Kirim
+                    </button>
+                  </div>
+                </form>
+
               <p className="mt-4 text-[15px]">
                 Langganan dengan kami sekarang untuk dapatkan informasi dan
                 berbagai kemudahan dalam menjual produk-produk serta event
