@@ -19,21 +19,20 @@ const DaftarPengguna = () => {
   const fetchData = async () => {
     try {
       setIsLoading(true);
+  
+      const token = localStorage.getItem("token");
 
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjowLCJleHAiOjE3MDIzOTY1NzMsImlkIjo0NSwicm9sZV9pZCI6MH0.CpHzaDp-LUnjYwDlyckuWMFK0BSIXHaPzSpFQb1Yb7U";
-      const response = await axios.get("https://lokasani.my.id/users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    const response = await axios.get("https://lokasani.my.id/users", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
       const data = response.data;
-
-      const dataArray = data?.data?.data;
-
+  
+      const dataArray = data?.data?.allUsers;
+  
       if (Array.isArray(dataArray)) {
-        const filteredData = dataArray.filter(
-          (item) => item.role?.role === ""
-        );
+        const filteredData = dataArray.filter((item) => item.role?.role === "");
         setUserData(filteredData);
       } else {
         console.error("Struktur data tidak sesuai yang diharapkan");
@@ -41,13 +40,15 @@ const DaftarPengguna = () => {
     } catch (error) {
       console.error("Error mengambil data:", error);
     } finally {
-      setIsLoading(false); 
+      setIsLoading(false);
     }
   };
+  
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+useEffect(() => {
+  fetchData();
+}, []);
+
 
   const handleDelete = (itemId) => {
     Swal.fire({
@@ -77,12 +78,13 @@ const DaftarPengguna = () => {
 
   const deleteItem = async (itemId) => {
     try {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjowLCJleHAiOjE3MDIzOTY1NzMsImlkIjo0NSwicm9sZV9pZCI6MH0.CpHzaDp-LUnjYwDlyckuWMFK0BSIXHaPzSpFQb1Yb7U";
-      const response = await axios.delete(`https://lokasani.my.id/users/4/${itemId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const token = localStorage.getItem("token");
+
+    const response = await axios.delete(`https://lokasani.my.id/users/4/${itemId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
       if (response.status === 200) {
         const updatedUserData = userData.filter((item) => item.id !== itemId);
         setUserData(updatedUserData);

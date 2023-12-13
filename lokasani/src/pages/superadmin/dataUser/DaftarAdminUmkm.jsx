@@ -28,7 +28,7 @@ const DaftarAdminUmkm = () => {
       });
       const data = response.data;
 
-      const dataArray = data?.data?.data;
+      const dataArray = data?.data?.allUsers;
 
       if (Array.isArray(dataArray)) {
         const filteredData = dataArray.filter(
