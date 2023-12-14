@@ -2,6 +2,7 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import AdminEvent from './pages/adminEvent/Index'
 import NewEvent from "./pages/adminEvent/newevent";
+import Chat from "./pages/adminEvent/chat";
 import HomeSuperAdmin from './pages/superadmin/dashboard/HomeSuperAdmin'
 import DataUser from './pages/superadmin/dataUser/DataUser'
 import DaftarAdminEvent from './pages/superadmin/dataUser/DaftarAdminEvent'
@@ -23,10 +24,12 @@ import TambahProductAdminUMKM from './pages/adminUMKM/TambahProduct'
 import DaftarPesananAdmimUMKM from './pages/adminUMKM/DaftarPesanan'
 import DaftarProduct from './pages/adminUMKM/DaftarProduct'
 
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route element={<Chat />} path="/adminevent/chat" />
         <Route element={<HomeSuperAdmin/>} path='/superadmin/homeSuperAdmin'/>
         <Route element={<DataUser/>} path='/superadmin/dataUser'/>
         <Route element={<DaftarAdminEvent/>} path='/superadmin/daftarAdminEvent'/>
