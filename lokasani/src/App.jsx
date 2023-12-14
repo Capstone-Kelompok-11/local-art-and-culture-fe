@@ -9,8 +9,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<AdminEvent/>} path='/adminevent'/>
-        <Route element={<NewEvent/>} path='/newevent'/>
-        <Route element={<DraftEvent/>} path='/draft'/>
+        <Route element={<NewEvent/>} path='/adminevent/newevent'/>
+        <Route element={<DraftEvent/>} path='/adminevent/draft'/>
       </Routes>
     </BrowserRouter>
   );
