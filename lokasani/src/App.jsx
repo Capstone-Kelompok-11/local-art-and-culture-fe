@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import AdminEvent from './pages/adminEvent/Index'
 import Home from "./pages/home"
 import NewEvent from './pages/adminEvent/newevent'
+import DraftEvent from './pages/adminEvent/draftevent'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Route element={<Home/>} path='/'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
         <Route element={<NewEvent/>} path='/newevent'/>
+        <Route element={<DraftEvent/>} path='/draft'/>
       </Routes>
     </BrowserRouter>
   )
