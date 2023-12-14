@@ -175,7 +175,7 @@ const DaftarProduct = () => {
                                                 )}
                                             </td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">{item.price}</td>
-                                            <td className="border-t-2 border-b-2 px-4 py-2"></td>
+                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.total_product}</td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">{item.status}</td>
                                             <td className="border-t-2 border-b-2 px-4 py-2 cursor-pointer">
                                                 <button onClick={() => handleDeleteProduct(item.id)}>
