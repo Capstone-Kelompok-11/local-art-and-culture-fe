@@ -70,38 +70,26 @@ function Payout() {
             {/* header end */}
             {/* content start */}
                  <div className='flex items-center justify-between rounded-sm'>
-                            <div className="flex items-center ">
-                  <button
-                    className={`bg-${activeButton === 'all' ? 'blue-500' : 'gray-200'} text-white py-[6px] px-3 rounded-md m-2`}
-                    onClick={() => handleButtonClick('all')}
-                  >
-                    All
-                  </button>
-                  <button
-                    className={`bg-${activeButton === 'belum diajukan' ? 'blue-500' : 'gray-200'} text-white  py-[6px] px-3 rounded-md m-2`}
-                    onClick={() => handleButtonClick('belum diajukan')}
-                  >
-                    Belium Diajukan
-                  </button>
-                  <button
-                    className={`bg-${activeButton === 'pending' ? 'blue-500' : 'gray-200'} text-white py-[6px] px-3 rounded-md m-2`}
-                    onClick={() => handleButtonClick('pending')}
-                  >
-                    Pending
-                  </button>
-                  <button
-                    className={`bg-${activeButton === 'selesai' ? 'blue-500' : 'gray-200'} text-white py-[6px] px-3 rounded-md m-2`}
-                    onClick={() => handleButtonClick('selesai')}
-                  >
-                    Selesai
-                  </button>
-                  <button
-                    className={`bg-${activeButton === 'gagal' ? 'blue-500' : 'gray-200'} text-white py-[6px] px-3 rounded-md m-2`}
-                    onClick={() => handleButtonClick('gagal')}
-                  >
-                    Gagal
-                  </button>
-                </div>
+                 <div className="flex items-center ">
+            {['semua', 'belum diajukan', 'tertunda', 'selesai', 'gagal'].map((button) => (
+              <button
+                key={button}
+                style={{
+                  backgroundColor: activeButton === button ? '#3653B0' : '#ccc',
+                  color: 'white',
+                  padding: '6px 12px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.3s ease',
+                  borderRadius: '4px',
+                  margin: '2px',
+                }}
+                onClick={() => handleButtonClick(button)}
+              >
+                {button.charAt(0).toUpperCase() + button.slice(1)}
+              </button>
+            ))}
+          </div>
 
                 <div className="flex items-center">
                   <div className="flex justify-end items-center mr-2 border-2 border-black">
