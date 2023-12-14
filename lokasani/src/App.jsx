@@ -12,10 +12,10 @@ function App() {
       <Routes>
         <Route element={<Home/>} path='/'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
-        <Route element={<NewEvent/>} path='/newevent'/>
-        <Route element ={<Transaksi/>} path='/transaksi'/>
-        <Route element={<MyEvent/>} path='/myevent'/>
-        <Route element= {<Payout/>} path='/payout'/>
+        <Route element={<NewEvent/>} path='/adminevent/newevent'/>
+        <Route element ={<Transaksi/>} path='/adminevent/transaksi'/>
+        <Route element={<MyEvent/>} path='/adminevent/myevent'/>
+        <Route element= {<Payout/>} path='/adminevent/payout'/>
       </Routes>
     </BrowserRouter>
   )
