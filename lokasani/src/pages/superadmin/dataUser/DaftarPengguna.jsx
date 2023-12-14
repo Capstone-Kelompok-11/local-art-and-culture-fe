@@ -79,16 +79,17 @@ useEffect(() => {
   const deleteItem = async (itemId) => {
     try {
       const token = localStorage.getItem("token");
-
-    const response = await axios.delete(`https://lokasani.my.id/users/4/${itemId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+      const response = await axios.delete(`https://lokasani.my.id/users/4/${itemId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      console.log('Server Response:', response);
+  
       if (response.status === 200) {
         const updatedUserData = userData.filter((item) => item.id !== itemId);
         setUserData(updatedUserData);
-
         Swal.fire("Berhasil Menghapus!", "", "success");
       } else {
         console.error("Gagal menghapus data");
@@ -99,6 +100,7 @@ useEffect(() => {
       Swal.fire("Gagal Menghapus!", "", "error");
     }
   };
+  
 
   const totalPages = Math.ceil(userData.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;

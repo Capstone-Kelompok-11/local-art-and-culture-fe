@@ -20,12 +20,13 @@ const DaftarAdminUmkm = () => {
     try {
       setIsLoading(true);
 
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjowLCJleHAiOjE3MDIzNjcxNjEsImlkIjo0NSwicm9sZV9pZCI6MH0.7eZk0kIkJ1cJ4VU1jX8emuJDoQwYxPSG6p7BAvHR43g";
-      const response = await axios.get("https://lokasani.my.id/users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const token = localStorage.getItem("token");
+
+    const response = await axios.get("https://lokasani.my.id/users", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
       const data = response.data;
 
       const dataArray = data?.data?.allUsers;
@@ -77,7 +78,7 @@ const DaftarAdminUmkm = () => {
 
   const deleteItem = async (itemId) => {
     try {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjowLCJleHAiOjE3MDIzNjcxNjEsImlkIjo0NSwicm9sZV9pZCI6MH0.7eZk0kIkJ1cJ4VU1jX8emuJDoQwYxPSG6p7BAvHR43g";
+      const token = localStorage.getItem("token");
       const response = await axios.delete(`https://lokasani.my.id/users/4/${itemId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
