@@ -204,9 +204,21 @@ function NewEvent() {
 
   const [selectedOption, setSelectedOption] = useState(null);
 
+ 
+
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  // Your handleOptionChange function
   const handleOptionChange = (option) => {
-    setSelectedOption(option);
+    const isOptionSelected = selectedOptions.includes(option);
+
+    if (isOptionSelected) {
+      setSelectedOptions(selectedOptions.filter((item) => item !== option));
+    } else {
+      setSelectedOptions([...selectedOptions, option]);
+    }
   };
+
 
   return (
     <section>
@@ -1023,10 +1035,10 @@ function NewEvent() {
                   {/* Nama */}
                   <div className="flex items-center mt-4">
                     <input
-                      type="radio"
+                      type="checkbox"
                       id="nama"
                       name="option"
-                      checked={selectedOption === "nama"}
+                      checked={selectedOptions.includes("nama")}
                       onChange={() => handleOptionChange("nama")}
                       className="mr-2"
                     />
@@ -1038,10 +1050,10 @@ function NewEvent() {
                   {/* Email */}
                   <div className="flex items-center mt-4">
                     <input
-                      type="radio"
+                      type="checkbox"
                       id="email"
                       name="option"
-                      checked={selectedOption === "email"}
+                      checked={selectedOptions.includes("email")}
                       onChange={() => handleOptionChange("email")}
                       className="mr-2"
                     />
@@ -1053,10 +1065,10 @@ function NewEvent() {
                   {/* Nomor Handphone */}
                   <div className="flex items-center mt-4">
                     <input
-                      type="radio"
+                      type="checkbox"
                       id="nomorHandphone"
                       name="option"
-                      checked={selectedOption === "nomorHandphone"}
+                      checked={selectedOptions.includes("nomorHandphone")}
                       onChange={() => handleOptionChange("nomorHandphone")}
                       className="mr-2"
                     />
@@ -1068,10 +1080,10 @@ function NewEvent() {
                   {/* Nomor KTP */}
                   <div className="flex items-center mt-4">
                     <input
-                      type="radio"
+                      type="checkbox"
                       id="nomorKTP"
                       name="option"
-                      checked={selectedOption === "nomorKTP"}
+                      checked={selectedOptions.includes("nomorKTP")}
                       onChange={() => handleOptionChange("nomorKTP")}
                       className="mr-2"
                     />
