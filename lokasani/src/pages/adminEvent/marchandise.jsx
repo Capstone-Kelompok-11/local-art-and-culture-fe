@@ -16,6 +16,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
+import myeventImage from '../../assets/img/myevent.jpg';
 
 function Marchandise() {
   //select button
@@ -106,11 +107,7 @@ function Marchandise() {
             <div className="grid grid-cols-1 gap-1 p-3">
             <div className="col-span-1 bg-white p-7 rounded-md relative ring-[#768DD5] ring-1">
             <div className="flex items-center mb-4">
-              <img
-                src="myevent.jpg"
-                alt="Event Image"
-                className="rounded-full object-cover mr-4"
-              />
+            <img src={myeventImage} alt="Event Image" className="rounded-md object-cover mr-4" />
               <div>
                 <span className="text-2xl font-bold">Workshop Keramik Jawa Timur bersama Kak Seto</span> <br />
                 <span className="text-[#999999] text-sm mt-2">28 Nov 2023 : Grand Plaza, Jakarta</span>
