@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import Swal from "sweetalert2";
 import SearchTiket from "../../../component/superadmin/pusatbantuan/SearchTiket";
 import Sidebar from "../../../component/superadmin/globalComponent/Sidebar";
 import Navbar from "../../../component/superadmin/globalComponent/Navbar";
-import warningImage from "../../../assets/img/warningImage.svg";
 import Pagination from "../../../component/superadmin/globalComponent/Pagination";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -11,8 +9,9 @@ function PusatBantuan() {
   const [currentPage, setCurrentPage] = useState(1);
   const [expandedRows, setExpandedRows] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
 
-  const [userData, setUserData] = useState([
+  const [userData] = useState([
     {
       id: 1001,
       subject: "Cara menambahkan produk merchandise",
@@ -169,7 +168,22 @@ function PusatBantuan() {
     );
   };
 
-  const filteredData = searchFilter(userData);
+  const filterDataByStatus = (status) => {
+    setStatusFilter(status);
+    setCurrentPage(1);
+  };
+
+  const clearStatusFilter = () => {
+    setStatusFilter("");
+    setCurrentPage(1);
+  };
+
+  const filteredData = searchFilter(userData).filter((item) => {
+    if (!statusFilter) {
+      return true;
+    }
+    return item.status === statusFilter;
+  });
 
   const totalPages = Math.ceil(userData.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -177,7 +191,7 @@ function PusatBantuan() {
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <div className="bg-[#F2F2F2]">
+    <div className=" h-auto bg-[#F2F2F2]">
       <Sidebar />
       <Navbar title="Pusat Bantuan" />
 
@@ -188,26 +202,54 @@ function PusatBantuan() {
           searchFilter={searchFilter}
         />
         <div className="w-[600px] h-10 justify-start items-center flex-row inline-flex gap-4 ">
-          <button className="w-24 h-11 px-4 py-3 bg-white rounded-xl justify-center items-center inline-flex hover:bg-blue-800 text-black hover:text-white">
+          <button
+            className={`w-24 h-11 px-4 py-3 rounded-xl justify-center items-center inline-flex hover:bg-blue-800 text-black hover:text-white ${
+              statusFilter === null
+                ? " text-white bg-blue-800"
+                : "bg-white text-black"
+            }`}
+            onClick={clearStatusFilter}
+          >
             <div className="justify-center items-center gap-2 flex">
               <div className="  text-sm font-semiboldleading-tight">Semua</div>
             </div>
           </button>
-          <button className="w-24 h-11 px-4 py-3 bg-white rounded-xl justify-center items-center inline-flex hover:bg-blue-800 text-black hover:text-white">
+          <button
+            className={`w-24 h-11 px-4 py-3 rounded-xl justify-center items-center inline-flex hover:bg-blue-800 text-black hover:text-white ${
+              statusFilter === "Tertunda"
+                ? " text-white bg-blue-800"
+                : "bg-white text-black"
+            }`}
+            onClick={() => filterDataByStatus("Tertunda")}
+          >
             <div className="justify-center items-center gap-2 flex">
               <div className="  text-sm font-semiboldleading-tight">
                 Tertunda
               </div>
             </div>
           </button>
-          <button className="w-24 h-11 px-4 py-3 bg-white rounded-xl justify-center items-center inline-flex hover:bg-blue-800 text-black hover:text-white">
+          <button
+            className={`w-24 h-11 px-4 py-3 rounded-xl justify-center items-center inline-flex hover:bg-blue-800 text-black hover:text-white ${
+              statusFilter === "Proses"
+                ? " text-white bg-blue-800"
+                : "bg-white text-black"
+            }`}
+            onClick={() => filterDataByStatus("Proses")}
+          >
             <div className="justify-center items-center gap-2 flex">
               <div className="  text-sm font-semiboldleading-tight">
                 Diproses
               </div>
             </div>
           </button>
-          <button className="w-24 h-11 px-4 py-3 bg-white rounded-xl justify-center items-center inline-flex hover:bg-blue-800 text-black hover:text-white">
+          <button
+            className={`w-24 h-11 px-4 py-3  rounded-xl justify-center items-center inline-flex hover:bg-blue-800 text-black hover:text-white ${
+              statusFilter === "Selesai"
+                ? " text-white bg-blue-800"
+                : "bg-white text-black"
+            }`}
+            onClick={() => filterDataByStatus("Selesai")}
+          >
             <div className="justify-center items-center gap-2 flex">
               <div className="  text-sm font-semiboldleading-tight">
                 Selesai
