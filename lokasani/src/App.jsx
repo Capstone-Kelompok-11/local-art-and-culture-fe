@@ -1,6 +1,10 @@
 
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import EditEvent from './pages/adminEvent/editevent';
+import AdminEvent from './pages/adminEvent/Index'
+import Transaksi from './pages/adminEvent/transaksi'
+import MyEvent from './pages/adminEvent/myevent'
+import Payout from './pages/adminEvent/payout'
 import NewEvent from "./pages/adminEvent/newevent";
 import Chat from "./pages/adminEvent/chat";
 import HomeSuperAdmin from './pages/superadmin/dashboard/HomeSuperAdmin'
@@ -11,11 +15,13 @@ import DaftarPengguna from './pages/superadmin/dataUser/DaftarPengguna'
 import VerifikasiAkun from './pages/superadmin/dataUser/VerifikasiAkun'
 import SuperAdminArtikel from './pages/superadmin/artikel/index'
 import SuperAdminKelolaArtikel from './pages/superadmin/artikel/KelolaArtikel'
+import SuperAdminAddArtikel from './pages/superadmin/artikel/Add'
 import RegisterOrganisasi from './pages/register/organisasi/Index'
 import CompleteFormOrganisasi from './pages/register/organisasi/CompleteForm'
 import RegisterToko from './pages/register/toko/Index'
 import CompleteFormToko from './pages/register/toko/CompleteForm'
 import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
+import TransaksiUMKM from './pages/adminUMKM/Transaction'
 import Landing from "./pages/landingpage/index"
 import React from "react";
 import Login from "./pages/login"
@@ -23,8 +29,6 @@ import HomeAdminUMKM from "./pages/adminUMKM/Home";
 import TambahProductAdminUMKM from './pages/adminUMKM/TambahProduct'
 import DaftarPesananAdmimUMKM from './pages/adminUMKM/DaftarPesanan'
 import DaftarProduct from './pages/adminUMKM/DaftarProduct'
-
-
 
 function App() {
   return (
@@ -38,9 +42,28 @@ function App() {
         <Route element={<DaftarAdminUmkm/>} path='/superadmin/daftarAdminUmkm'/>
         <Route element={<DaftarPengguna/>} path='/superadmin/daftarPengguna'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
-        <Route element={<NewEvent/>} path='/adminevent/newevent'/>
         <Route element={<DraftEvent/>} path='/adminevent/draft'/>
         <Route element={<EditEvent/>} path='/adminevent/editevent'/>
+        <Route element ={<Transaksi/>} path='/adminevent/transaksi'/>
+        <Route element={<MyEvent/>} path='/adminevent/myevent'/>
+        <Route element= {<Payout/>} path='/adminevent/payout'/>
+        <Route element={<NewEvent />} path="/adminevent/newevent" />
+        <Route element={<VerifikasiAkun/>} path='/superadmin/verifikasiAkun'/>
+        <Route element={<SuperAdminArtikel/>} path='/superadmin/artikel'/>
+        <Route element={<SuperAdminKelolaArtikel/>} path='/superadmin/kelolaartikel'/>
+        <Route element={<SuperAdminAddArtikel/>} path='/superadmin/addartikel'/>
+        <Route element={<Pengaturan/>} path='/superadmin/pengaturan'/>
+        <Route element={<HomeAdminUMKM />} path="/adminumkm" />
+        <Route element={<DaftarProduct/>} path='/adminumkm/daftarproduct'/>
+        <Route element={<TambahProductAdminUMKM/>} path='/adminumkm/tambahproduct'/>
+        <Route element={<DaftarPesananAdmimUMKM/>} path='/adminumkm/daftarpesanan'/>
+        <Route element={<TransaksiUMKM/>} path='/adminumkm/daftartransaksi'/>
+        <Route element={<Login/>} path="/auth/login"/>
+        <Route element={<RegisterOrganisasi/>} path='/auth/register/organisasi'/>
+        <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
+        <Route element={<RegisterToko/>} path='/auth/register/toko'/>
+        <Route element={<CompleteFormToko/>} path='/auth/register/toko/form'/>
+        <Route element={<Landing/>} path="/"/>
       </Routes>
     </BrowserRouter>
   );
