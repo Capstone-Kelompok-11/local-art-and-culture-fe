@@ -15,14 +15,9 @@ const DaftarProduct = () => {
 
     const fetchProducts = async () => {
         try {
-            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjozOCwiZXhwIjoxNzAyMDI0NTAxLCJpZCI6MzgsIm5hbWUiOiJmYXR1ckBnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsInJvbGVfaWQiOjB9.rY5sjQpPeeACYyEiSu71470S6Oh6OBQ57tIRorYjKWI"
-            const response = await axios.get('https://lokasani.my.id/product', {
-                headers: {
-                    Authorization:`Bearer ${token}`
-                }
-            })
-            setProducts(response.data.data.data);
-            console.log(response.data.data.data)
+            const response = await axios.get('https://657bab26394ca9e4af1498ba.mockapi.io/product')
+            setProducts(response.data);
+            console.log(response.data)
         } catch (error) {
             console.error('Terjadi kesalahan:', error);
         }
@@ -45,12 +40,7 @@ const DaftarProduct = () => {
     
         if (confirmation.isConfirmed) {
             try {
-                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjozOCwiZXhwIjoxNzAyMDI0NTAxLCJpZCI6MzgsIm5hbWUiOiJmYXR1ckBnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsInJvbGVfaWQiOjB9.rY5sjQpPeeACYyEiSu71470S6Oh6OBQ57tIRorYjKWI"
-                await axios.delete(`https://lokasani.my.id/product/${productId}`, {
-                    headers: {
-                        Authorization:`Bearer ${token}`
-                    }
-                });
+                await axios.delete(`https://lokasani.my.id/product/${productId}`);
                 fetchProducts();
                 await Swal.fire('Deleted!', 'data berhasil dihapus', 'success');
             } catch (error) {
@@ -152,7 +142,7 @@ const DaftarProduct = () => {
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.category.category}</td>
+                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.category}</td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">
                                                 {item.stock ? (
                                                     <label
@@ -176,7 +166,9 @@ const DaftarProduct = () => {
                                             </td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">{item.price}</td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">{item.total_product}</td>
-                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.status}</td>
+                                            <td className="border-t-2 border-b-2 px-4 py-2">
+                                                {item.status}
+                                            </td>
                                             <td className="border-t-2 border-b-2 px-4 py-2 cursor-pointer">
                                                 <button onClick={() => handleDeleteProduct(item.id)}>
                                                     <DeleteOutlineIcon/>
