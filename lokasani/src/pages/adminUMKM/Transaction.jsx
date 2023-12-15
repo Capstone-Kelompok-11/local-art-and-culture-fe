@@ -62,28 +62,19 @@ const DaftarPesanan = () => {
 									<tr key={item.id}>
 										<td className="border-t-2 border-b-2 px-4 py-3">{item.id}</td>
 										<td className="border-t-2 border-b-2 px-4 py-3">{item.tanggal}</td>
-										<td className="border-t-2 border-b-2 px-4 py-3">{item.nama_pelanggan}</td>
-										<td className={`border-t-2 border-b-2 px-4 py-3 font-semibold ${
-                                            item.pembayaran === "gagal" ? "text-red-500" :
-											item.pembayaran === "dibayar" ? "text-green-500" :
-											item.pembayaran === "dibatalkan" ? "text-orange-500" :
-											item.pembayaran === "tertunda" ? "text-blue-400" : ""
-										}`}>
-											{item.pembayaran}
-										</td>
-                                        <td className="border-t-2 border-b-2 px-4 py-3"></td>
+										<td className="border-t-2 border-b-2 px-4 py-3">{item.username}</td>
+										<td className={"border-t-2 border-b-2 px-4 py-3 font-semibold"}>{item.category}</td>
+                                        <td className="border-t-2 border-b-2 px-4 py-3">{item.total_tanssaction}</td>
 										<td className="text-white border-t-2 border-b-2 px-4 py-3 font-semibold">
 											<p className={`block w-fit text-white px-1 py-0 rounded-lg ${
-												item.status === "tidak dikirim" ? "bg-red-500" :
-												item.status === "dikirim" ? "bg-green-500" :
-												item.status === "dikemas" ? "bg-orange-500" :
-												item.status === "siap diambil" ? "bg-blue-400" : ""
+												item.status === "dibatalkan" ? "bg-red-500" :
+												item.status === "dibayar" ? "bg-green-500" :
+												item.status === "tertunda" ? "bg-orange-500" : ""
 											}`}
 											>
 												{item.status}
 											</p>
 										</td>
-										{/* <td className="border-t-2 border-b-2 px-4 py-3 font-semibold">{item.status}</td> */}
 										<td className="border-t-2 border-b-2 px-4 py-3 font-semibold flex items-center gap-2 text-gray-500">
 											<InfoIcon/>
 											<DeleteOutlineIcon/>
