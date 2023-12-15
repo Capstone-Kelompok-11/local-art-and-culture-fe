@@ -44,8 +44,9 @@ const Product = () => {
             <div className="w-3/5">
               <div className="w-full">
                 <InformasiProduct 
-                  valueName={},
-                  valueKategori={},
+                  valueName={productName}
+                  valueKategori={}
+                  
 
                 />
               </div>
