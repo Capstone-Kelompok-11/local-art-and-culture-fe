@@ -40,7 +40,7 @@ const DaftarProduct = () => {
     
         if (confirmation.isConfirmed) {
             try {
-                await axios.delete(`https://lokasani.my.id/product/${productId}`);
+                await axios.delete(`https://657bab26394ca9e4af1498ba.mockapi.io/product/${productId}`);
                 fetchProducts();
                 await Swal.fire('Deleted!', 'data berhasil dihapus', 'success');
             } catch (error) {
@@ -81,6 +81,7 @@ const DaftarProduct = () => {
                                     name="status" 
                                     id="status"
                                 >
+                                    <option value="all">Semua</option>
                                     <option value="diunggah">Diunggah</option>
                                     <option value="dijadwalkan">Dijadwalkan</option>
                                     <option value="tidak aktif">Tidak Aktif</option>
@@ -90,6 +91,7 @@ const DaftarProduct = () => {
                                     name="kategori" 
                                     id="kategori"
                                 >
+                                    <option value="all">Semua</option>
                                     <option value="handmade">Handmade</option>
                                     <option value="fashion">Fashion</option>
                                     <option value="buku">Buku</option>
@@ -100,6 +102,7 @@ const DaftarProduct = () => {
                                     name="stok" 
                                     id="stok"
                                 >
+                                    <option value="all">Semua</option>
                                     <option value="tersedia">Tersedia</option>
                                     <option value="tidak tersedia">Tidak Tersedia</option>
                                 </select>
@@ -135,7 +138,7 @@ const DaftarProduct = () => {
                                         <tr key={item.id}>
                                             <td className="border-t-2 border-b-2 px-4 py-2">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-10 h-10 bg-[#253E8D] rounded-lg"></div>
+                                                    <img src={item.image} className="w-10 h-10 object-cover rounded-lg"></img>
                                                     <div>
                                                         <p className="font-semibold">{item.name}</p>
                                                         <p className="font-light text-sm">{item.description}</p>
@@ -167,7 +170,19 @@ const DaftarProduct = () => {
                                             <td className="border-t-2 border-b-2 px-4 py-2">{item.price}</td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">{item.total_product}</td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">
-                                                {item.status}
+                                                <p
+                                                    className={`block w-fit text-white px-3 py-1 rounded-lg ${
+                                                    item.status === "tidak aktif"
+                                                        ? "bg-[#b3c7f9]"
+                                                        : item.status === "dijadwalkan"
+                                                        ? "bg-yellow-500"
+                                                        : item.status === "diunggah"
+                                                        ? "bg-[#267360]"
+                                                        : ""
+                                                    }`}
+                                                >
+                                                    {item.status}
+                                                </p>
                                             </td>
                                             <td className="border-t-2 border-b-2 px-4 py-2 cursor-pointer">
                                                 <button onClick={() => handleDeleteProduct(item.id)}>
