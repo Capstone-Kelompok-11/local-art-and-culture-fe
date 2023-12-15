@@ -42,7 +42,6 @@ function App() {
         <Route element={<DaftarAdminUmkm/>} path='/superadmin/daftarAdminUmkm'/>
         <Route element={<DaftarPengguna/>} path='/superadmin/daftarPengguna'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
-        <Route element={<DraftEvent/>} path='/adminevent/draft'/>
         <Route element={<EditEvent/>} path='/adminevent/editevent'/>
         <Route element ={<Transaksi/>} path='/adminevent/transaksi'/>
         <Route element={<MyEvent/>} path='/adminevent/myevent'/>
