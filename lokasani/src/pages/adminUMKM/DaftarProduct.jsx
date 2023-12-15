@@ -12,6 +12,10 @@ const DaftarProduct = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 10;
     const [products, setProducts] = useState([]);
+    const [statusFilter, setStatusFilter] = useState('all');
+    const [categoryFilter, setCategoryFilter] = useState('all');
+    const [stockFilter, setStockFilter] = useState('all');
+    const [searchTerm, setSearchTerm] = useState('');
 
     const fetchProducts = async () => {
         try {
@@ -49,15 +53,46 @@ const DaftarProduct = () => {
             }
         }
     };
+
+    const filteredProducts = products.filter((item) => {
+        const filterByStatus = statusFilter === 'all' || item.status === statusFilter;
+        const filterByCategory = categoryFilter === 'all' || item.category === categoryFilter;
+        const filterByStock = stockFilter === 'all' || (stockFilter === 'true' ? item.stock : !item.stock);
+        const filterBySearch = searchTerm.length === 0 || item.name.toLowerCase().includes(searchTerm.toLowerCase());
+        return filterByStatus && filterByCategory && filterByStock && filterBySearch;
+    });
+    
     
 
     const offset = currentPage * itemsPerPage;
-    const currentItems = products.slice(offset, offset + itemsPerPage);
-
-    const totalPages = Math.ceil(products.length / itemsPerPage);
+    const currentItems = filteredProducts.slice(offset, offset + itemsPerPage);
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
+    };
+
+    const handleStatusChange = (e) => {
+        setStatusFilter(e.target.value);
+        setCurrentPage(0);
+    };
+
+    const handleCategoryChange = (e) => {
+        setCategoryFilter(e.target.value);
+        setCurrentPage(0);
+    };
+
+    const handleStockChange = (e) => {
+        setStockFilter(e.target.value);
+        setCurrentPage(0);
+    };
+
+    const handleResetFilter = () => {
+        setStatusFilter('all');
+        setCategoryFilter('all');
+        setStockFilter('all');
+        setCurrentPage(0);
+        fetchProducts();
     };
 
     return (
@@ -78,8 +113,10 @@ const DaftarProduct = () => {
                             <div className="flex justify-between gap-6 mb-5">
                                 <select 
                                     className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
-                                    name="status" 
+                                    name="status"
                                     id="status"
+                                    onChange={handleStatusChange}
+                                    value={statusFilter}
                                 >
                                     <option value="all">Semua</option>
                                     <option value="diunggah">Diunggah</option>
@@ -88,8 +125,10 @@ const DaftarProduct = () => {
                                 </select>
                                 <select 
                                     className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
-                                    name="kategori" 
+                                    name="kategori"
                                     id="kategori"
+                                    onChange={handleCategoryChange}
+                                    value={categoryFilter}
                                 >
                                     <option value="all">Semua</option>
                                     <option value="handmade">Handmade</option>
@@ -99,13 +138,16 @@ const DaftarProduct = () => {
                                 </select>
                                 <select 
                                     className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
-                                    name="stok" 
+                                    name="stok"
                                     id="stok"
+                                    onChange={handleStockChange}
+                                    value={stockFilter}
                                 >
                                     <option value="all">Semua</option>
-                                    <option value="tersedia">Tersedia</option>
-                                    <option value="tidak tersedia">Tidak Tersedia</option>
+                                    <option value="true">Tersedia</option>
+                                    <option value="false">Tidak Tersedia</option>
                                 </select>
+                                <button onClick={handleResetFilter} className="bg-blue-400 text-white rounded-md py-1 px-3">Reset</button>
                             </div>
                             <div className="flex justify-between">
                                 <div>
@@ -113,8 +155,10 @@ const DaftarProduct = () => {
                                         type="text"
                                         placeholder="Cari Produk"
                                         className="w-64 py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
                                     />
-                                </div>
+                                </div> 
                                 <div>
                                     <a href="/adminumkm/tambahproduct" className="bg-[#253E8D] text-white rounded-md py-2 px-3">Tambah Product</a>
                                 </div>
