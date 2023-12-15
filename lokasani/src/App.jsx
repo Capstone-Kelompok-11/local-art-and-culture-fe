@@ -11,13 +11,13 @@ import DaftarPengguna from './pages/superadmin/dataUser/DaftarPengguna'
 import VerifikasiAkun from './pages/superadmin/dataUser/VerifikasiAkun'
 import SuperAdminArtikel from './pages/superadmin/artikel/index'
 import SuperAdminKelolaArtikel from './pages/superadmin/artikel/KelolaArtikel'
+import SuperAdminAddArtikel from './pages/superadmin/artikel/Add'
 import RegisterOrganisasi from './pages/register/organisasi/Index'
 import CompleteFormOrganisasi from './pages/register/organisasi/CompleteForm'
 import RegisterToko from './pages/register/toko/Index'
 import CompleteFormToko from './pages/register/toko/CompleteForm'
 import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
 import TransaksiUMKM from './pages/adminUMKM/Transaction'
-
 import Landing from "./pages/landingpage/index"
 import React from "react";
 import Login from "./pages/login"
@@ -42,6 +42,7 @@ function App() {
         <Route element={<VerifikasiAkun/>} path='/superadmin/verifikasiAkun'/>
         <Route element={<SuperAdminArtikel/>} path='/superadmin/artikel'/>
         <Route element={<SuperAdminKelolaArtikel/>} path='/superadmin/kelolaartikel'/>
+        <Route element={<SuperAdminAddArtikel/>} path='/superadmin/addartikel'/>
         <Route element={<Pengaturan/>} path='/superadmin/pengaturan'/>
         <Route element={<HomeAdminUMKM />} path="/adminumkm" />
         <Route element={<DaftarProduct/>} path='/adminumkm/daftarproduct'/>
