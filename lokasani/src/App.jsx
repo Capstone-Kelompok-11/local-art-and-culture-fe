@@ -16,6 +16,8 @@ import CompleteFormOrganisasi from './pages/register/organisasi/CompleteForm'
 import RegisterToko from './pages/register/toko/Index'
 import CompleteFormToko from './pages/register/toko/CompleteForm'
 import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
+import TransaksiUMKM from './pages/adminUMKM/Transaction'
+
 import Landing from "./pages/landingpage/index"
 import React from "react";
 import Login from "./pages/login"
@@ -45,6 +47,7 @@ function App() {
         <Route element={<DaftarProduct/>} path='/adminumkm/daftarproduct'/>
         <Route element={<TambahProductAdminUMKM/>} path='/adminumkm/tambahproduct'/>
         <Route element={<DaftarPesananAdmimUMKM/>} path='/adminumkm/daftarpesanan'/>
+        <Route element={<TransaksiUMKM/>} path='/adminumkm/daftartransaksi'/>
         <Route element={<Login/>} path="/auth/login"/>
         <Route element={<RegisterOrganisasi/>} path='/auth/register/organisasi'/>
         <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
