@@ -178,7 +178,7 @@ const DaftarProduct = () => {
                                                         ? "bg-yellow-500"
                                                         : item.status === "diunggah"
                                                         ? "bg-[#267360]"
-                                                        : ""
+                                                        : "text-black"
                                                     }`}
                                                 >
                                                     {item.status}
