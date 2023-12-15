@@ -2,7 +2,7 @@ import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
 import InformasiProduct from "../../component/adminUMKM/product/InformasiProduct";
 import Harga from "../../component/adminUMKM/product/Harga";
-import Varian from "../../component/adminUMKM/product/Varian";
+// import Varian from "../../component/adminUMKM/product/Varian";
 import Media from "../../component/adminUMKM/product/Media";
 
 const Product = () => {
@@ -46,9 +46,9 @@ const Product = () => {
               <div className="w-full">
                 <Media/>
               </div>
-              <div className="w-full">
+              {/* <div className="w-full">
                 <Varian/>
-              </div>
+              </div> */}
             </div>
             <div className="w-2/5">
               <div className="w-full">
