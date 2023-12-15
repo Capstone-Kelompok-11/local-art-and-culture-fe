@@ -16,7 +16,7 @@ const DaftarPesanan = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 10;
-  const [selectedStatus, setSelectedStatus] = useState("Semua"); // Tambahkan state untuk menyimpan status terpilih
+  const [selectedStatus, setSelectedStatus] = useState("Semua");
   const MySwal = withReactContent(Swal);
 
   const formatDate = (dateString) => {
@@ -51,7 +51,6 @@ const DaftarPesanan = () => {
 
   const handleStatusFilter = (status) => {
     setSelectedStatus(status);
-    // Memfilter data sesuai dengan status yang dipilih
     const filteredResults =
       status === "Semua"
         ? dataListOrder
@@ -101,7 +100,6 @@ const DaftarPesanan = () => {
           <div className="bg-white mx-6 mt-6 mb-2 px-6 py-2 flex justify-between rounded-md">
             <div>
               <div className="flex gap-3">
-                {/* Menggunakan fungsi handleStatusFilter untuk menyaring berdasarkan status */}
                 <button
                   className={`bg-[#253E8D] text-white px-4 py-2 rounded-lg ${
                     selectedStatus === "Semua" ? "bg-blue-600" : ""
