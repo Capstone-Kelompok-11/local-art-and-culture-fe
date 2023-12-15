@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
 import InformasiProduct from "../../component/adminUMKM/product/InformasiProduct";
@@ -6,6 +7,7 @@ import Harga from "../../component/adminUMKM/product/Harga";
 import Media from "../../component/adminUMKM/product/Media";
 
 const Product = () => {
+  const [productName, setProductName] = useState("")
 
   return (
     <div className="bg-[#F2F2F2]">
@@ -41,7 +43,11 @@ const Product = () => {
           <div className="px-6 w-full flex gap-6">
             <div className="w-3/5">
               <div className="w-full">
-                <InformasiProduct />
+                <InformasiProduct 
+                  valueName={},
+                  valueKategori={},
+
+                />
               </div>
               <div className="w-full">
                 <Media/>
