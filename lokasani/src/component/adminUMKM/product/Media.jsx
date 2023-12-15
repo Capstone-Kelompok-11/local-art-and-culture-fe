@@ -2,7 +2,8 @@ import {useState} from "react";
 import PopupInputImage from "./PopupInputImage";
 import cameraSearch from "../../../assets/img/camera-search.png"
 
-const Media = () => {
+// eslint-disable-next-line react/prop-types
+const Media = ({valueImageURL}) => {
     const [imagePreview, setImagePreview] = useState(null);
     const [isPopupImageOpen, setIsPopupImageOpen] = useState(false);
 
@@ -49,7 +50,8 @@ const Media = () => {
                     </p>
                     {isPopupImageOpen && (
                         <PopupInputImage
-                        onClose={() => setIsPopupImageOpen(false)}
+                            onClose={() => setIsPopupImageOpen(false)}
+                            valueImageURL={valueImageURL}
                         />
                     )}
                 </div>
@@ -76,10 +78,10 @@ const Media = () => {
                         <p className="font-semibold mt-2">Seret dan lepas gambar anda disini atau <br /> <span className="text-gray-400">atau</span></p>
                     </>
                 )}
-                    <div className="w-full justify-center flex items-center mt-5">
+                    <div className="w-full justify-center flex items-center mt-5 gap-3">
                         <label
                             htmlFor="upload"
-                            className="bg-[#253E8D] text-white text-sm py-2 px-4 rounded cursor-pointer"
+                            className="bg-[#253E8D] text-white text-sm py-2 px-4 rounded cursor-pointer border-2 border-[#253E8D]"
                         >
                             Jelajahi gambar
                         </label>
