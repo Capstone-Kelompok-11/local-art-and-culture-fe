@@ -1,5 +1,6 @@
 
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import EditEvent from './pages/adminEvent/editevent';
 import AdminEvent from './pages/adminEvent/Index'
 import Transaksi from './pages/adminEvent/transaksi'
 import MyEvent from './pages/adminEvent/myevent'
@@ -33,6 +34,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route element={<EditEvent/>} path='/adminevent/editevent'/>
         <Route element={<Chat />} path="/adminevent/chat" />
         <Route element={<HomeSuperAdmin/>} path='/superadmin/homeSuperAdmin'/>
         <Route element={<DataUser/>} path='/superadmin/dataUser'/>
@@ -40,6 +42,8 @@ function App() {
         <Route element={<DaftarAdminUmkm/>} path='/superadmin/daftarAdminUmkm'/>
         <Route element={<DaftarPengguna/>} path='/superadmin/daftarPengguna'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
+        <Route element={<DraftEvent/>} path='/adminevent/draft'/>
+        <Route element={<EditEvent/>} path='/adminevent/editevent'/>
         <Route element ={<Transaksi/>} path='/adminevent/transaksi'/>
         <Route element={<MyEvent/>} path='/adminevent/myevent'/>
         <Route element= {<Payout/>} path='/adminevent/payout'/>
