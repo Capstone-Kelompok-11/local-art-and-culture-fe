@@ -116,7 +116,7 @@ const DaftarProduct = () => {
                                     />
                                 </div>
                                 <div>
-                                    <button className="bg-[#253E8D] text-white rounded-md py-2 px-3">Tambah Product</button>
+                                    <a href="/adminumkm/tambahproduct" className="bg-[#253E8D] text-white rounded-md py-2 px-3">Tambah Product</a>
                                 </div>
                             </div>
                         </div>
