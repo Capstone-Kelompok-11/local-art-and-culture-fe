@@ -108,7 +108,7 @@ function Sidebar() {
                   </a>
                 </li>
                 <li>
-                  <a href="" className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
+                  <a href="/adminumkm/daftartransaksi" className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
                     <img
                       src={TransactionIcon}
                       alt="Transaction"
