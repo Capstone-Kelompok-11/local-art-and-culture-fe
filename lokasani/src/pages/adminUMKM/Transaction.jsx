@@ -31,13 +31,15 @@ const DaftarPesanan = () => {
 					<div>
 						<Header headerTitle={"Daftar Pesanan"} />
 					</div>
-					<div className="bg-white mx-6 mt-6 mb-2 px-6 py-2 flex justify-between">
+					<div className="bg-white mx-6 mt-6 mb-2 px-6 py-2 flex justify-between rounded-md">
 						<div>
-							<input 
-								type="text"
-								placeholder="Cari Infoice"
-								className="w-64 py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
-							/>
+							{/* <h2 className="font-semibold mb-2">Filter</h2> */}
+							<div className="flex gap-3">
+								<button className="bg-[#253E8D] text-white px-4 py-2 rounded-lg">Semua</button>
+								<button className="bg-[#253E8D] text-white px-4 py-2 rounded-lg">Dibayar</button>
+								<button className="bg-[#253E8D] text-white px-4 py-2 rounded-lg">Tertunda</button>
+								<button className="bg-[#253E8D] text-white px-4 py-2 rounded-lg">Dibatalkan</button>
+							</div>
 						</div>
 						<div>
 							<button className="bg-[#253E8D] text-white rounded-md py-2 px-3">
