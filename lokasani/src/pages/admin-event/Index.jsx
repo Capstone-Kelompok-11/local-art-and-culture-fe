@@ -15,6 +15,7 @@ import MoneyNotifIcon from "@mui/icons-material/MonetizationOnRounded";
 import Receipt from "../../assets/icon/receipt.svg";
 import CloseIcon from "@mui/icons-material/Close";
 import InfoIcon from "@mui/icons-material/Info";
+import axios from 'axios';
 
 function Index() {
   // Notification Popup
@@ -85,6 +86,61 @@ function Index() {
       }
     };
   }, []);
+
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://657c05c8394ca9e4af153c42.mockapi.io/draftevent');
+        setEvents(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const getStatusStyle = (status) => {
+    switch (status) {
+      case 'Siarkan':
+        return { backgroundColor: '#7EB4A7', color: 'white' };
+      case 'Canceled':
+        return { backgroundColor: '#F3B1A5', color: 'white' };
+      case 'Pending':
+        return { backgroundColor: '#F8D46D', color: 'black' };
+      default:
+        return { backgroundColor: '#999999', color: 'black' };
+    }
+  };
+
+  const [payouts, setPayouts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://657c05c8394ca9e4af153c42.mockapi.io/payout');
+        setPayouts(response.data);
+      } catch (error) {
+        console.error('Error fetching payout data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Paid':
+        return { backgroundColor: '#7EB4A7', color: 'white' };
+      case 'Pending':
+        return { backgroundColor: '#F8D46D', color: 'black' };
+      // Add more cases if needed
+      default:
+        return {};
+    }
+  };
 
   return (
     <section>
@@ -588,160 +644,70 @@ function Index() {
                 </div>
               </div>
               <div className="bg-white p-4 rounded-md shadow-md mt-3">
-                <h1 className="text-3xl font-bold">Payout</h1>
-                <p className="text-[#999999] text-sm">
-                  Lihat apakah Pembayaran Event Kamu sudah turun!
-                </p>
-                <table className="table-auto w-full mt-2">
-                  <thead className="text-left">
-                    <tr>
-                      <th className="px-3 py-3">Nama Event</th>
-                      <th className="px-3 py-3">Diajukan</th>
-                      <th className="px-3 py-3">Pendapatan</th>
-                      <th className="px-3 py-3">Transfer ke</th>
-                      <th className="px-3 py-3">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="bg-[#F2F2F2]">
-                      <td className="px-3 py-3 rounded-l-[12px] text-[#3653B0]">
-                        W run Woman
-                      </td>
-                      <td className="px-3 py-3 text-[#3653B0]">20/11/2023</td>
-                      <td className="px-3 py-3 text-[#3653B0]">
-                        Rp 12.550.000
-                      </td>
-                      <td className="px-3 py-3 text-[#3653B0]">
-                        Rekening utama{" "}
-                      </td>
-                      <td className="px-3 py-3 text-black rounded-r-[12px]">
-                        <span className="bg-[#9EC7BD] px-3 py-1 rounded-full">
-                          Paid
-                        </span>
-                      </td>
-                    </tr>
-                    <div className="h-3"></div>
-                    <tr className="bg-[#F2F2F2]">
-                      <td className="px-3 py-3 rounded-l-[12px] text-[#3653B0]">
-                        W run Woman
-                      </td>
-                      <td className="px-3 py-3 text-[#3653B0]">20/11/2023</td>
-                      <td className="px-3 py-3 text-[#3653B0]">
-                        Rp 12.550.000
-                      </td>
-                      <td className="px-3 py-3 text-[#3653B0]">
-                        Rekening utama{" "}
-                      </td>
-                      <td className="px-3 py-3 text-black rounded-r-[12px]">
-                        <span className="bg-[#F8D46D] px-3 py-1 rounded-full">
-                          Pending
-                        </span>
-                      </td>
-                    </tr>
-                    <div className="h-3"></div>
-                    <tr className="bg-[#F2F2F2]">
-                      <td className="px-3 py-3 rounded-l-[12px] text-[#3653B0]">
-                        W run Woman
-                      </td>
-                      <td className="px-3 py-3 text-[#3653B0]">20/11/2023</td>
-                      <td className="px-3 py-3 text-[#3653B0]">
-                        Rp 12.550.000
-                      </td>
-                      <td className="px-3 py-3 text-[#3653B0]">
-                        Rekening utama{" "}
-                      </td>
-                      <td className="px-3 py-3 text-black rounded-r-[12px]">
-                        <span className="bg-[#F8D46D] px-3 py-1 rounded-full">
-                          Pending
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div className="w-4/12 ml-4 shadow-md rounded-md px-5 py-5 bg-white">
-              <h1 className="text-3xl font-semibold">Event Draft</h1>
-              <p className="text-[#999999] text-xs mt-2">
-                Lihat apakah Event Draft kamu sudah disiarkan!
+              <h1 className="text-3xl font-bold">Payout</h1>
+              <p className="text-[#999999] text-sm">
+                Lihat apakah Pembayaran Event Kamu sudah turun!
               </p>
-              <table className="table-auto w-full mt-5">
+              <table className="table-auto w-full mt-2">
                 <thead className="text-left">
                   <tr>
                     <th className="px-3 py-3">Nama Event</th>
+                    <th className="px-3 py-3">Diajukan</th>
+                    <th className="px-3 py-3">Pendapatan</th>
+                    <th className="px-3 py-3">Transfer ke</th>
                     <th className="px-3 py-3">Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-[#F2F2F2]">
-                    <td className="px-3 py-3 rounded-l-[12px] text-[#3653B0]">
-                      W run Woman
-                    </td>
-                    <td className="px-3 py-3 text-black rounded-r-[12px]">
-                      <span className="bg-[#9EC7BD] px-3 py-1 rounded-full">
-                        Siarkan
-                      </span>
-                    </td>
-                  </tr>
-                  <div className="h-3"></div>
-                  <tr className="bg-[#F2F2F2]">
-                    <td className="px-3 py-3 rounded-l-[12px] text-[#3653B0]">
-                      W run Woman
-                    </td>
-                    <td className="px-3 py-3 text-black rounded-r-[12px]">
-                      <span className="bg-[#9EC7BD] px-3 py-1 rounded-full">
-                        Siarkan
-                      </span>
-                    </td>
-                  </tr>
-                  <div className="h-3"></div>
-                  <tr className="bg-[#F2F2F2]">
-                    <td className="px-3 py-3 rounded-l-[12px] text-[#3653B0]">
-                      W run Woman
-                    </td>
-                    <td className="px-3 py-3 text-black rounded-r-[12px]">
-                      <span className="bg-[#9EC7BD] px-3 py-1 rounded-full">
-                        Siarkan
-                      </span>
-                    </td>
-                  </tr>
-                  <div className="h-3"></div>
-                  <tr className="bg-[#F2F2F2]">
-                    <td className="px-3 py-3 rounded-l-[12px] text-[#3653B0]">
-                      W run Woman
-                    </td>
-                    <td className="px-3 py-3 text-black rounded-r-[12px]">
-                      <span className="bg-[#F8D46D]  px-3 py-1 rounded-full">
-                        Pending
-                      </span>
-                    </td>
-                  </tr>
-                  <div className="h-3"></div>
-                  <tr className="bg-[#F2F2F2]">
-                    <td className="px-3 py-3 rounded-l-[12px] text-[#3653B0]">
-                      W run Woman
-                    </td>
-                    <td className="px-3 py-3 text-black rounded-r-[12px]">
-                      <span className="bg-[#F8D46D]  px-3 py-1 rounded-full">
-                        Pending
-                      </span>
-                    </td>
-                  </tr>
-                  <div className="h-3"></div>
-                  <tr className="bg-[#F2F2F2]">
-                    <td className="px-3 py-3 rounded-l-[12px] text-[#3653B0]">
-                      W run Woman
-                    </td>
-                    <td className="px-3 py-3 text-black rounded-r-[12px]">
-                      <span className="bg-[#F3B1A5] px-3 py-1 rounded-full">
-                        Ditolak
-                      </span>
-                    </td>
-                  </tr>
-                  <div className="h-3"></div>
+                  {payouts.map((payout, index) => (
+                    <React.Fragment key={index}>
+                      <tr className="bg-[#F2F2F2]">
+                        <td className="px-3 py-3 rounded-l-[12px] text-[#3653B0]">
+                          {payout.nama_event}
+                        </td>
+                        <td className="px-3 py-3 text-[#3653B0]">{payout.diajukan}</td>
+                        <td className="px-3 py-3 text-[#3653B0]">{payout.pendapatan}</td>
+                        <td className="px-3 py-3 text-[#3653B0]">{payout.transfer}</td>
+                        <td className="px-3 py-3 text-black text-center rounded-md" style={getStatusColor(payout.status)}>
+                          <span>{payout.status}</span>
+                        </td>
+                      </tr>
+                      <div className="h-3"></div>
+                    </React.Fragment>
+                  ))}
                 </tbody>
               </table>
             </div>
+            </div>
+                  <div className="w-4/12 ml-4 shadow-md rounded-md px-5 py-5 bg-white">
+            <h1 className="text-3xl font-semibold">Event Draft</h1>
+            <p className="text-[#999999] text-xs mt-2">
+              Lihat apakah Event Draft kamu sudah disiarkan!
+            </p>
+            <table className="table-auto w-full mt-5">
+              <thead className="text-left">
+                <tr>
+                  <th className="px-3 py-3">Nama Event</th>
+                  <th className="px-3 py-3">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {events.map((event, index) => (
+                  <React.Fragment key={index}>
+                    <tr>
+                      <td className="px-3 py-3 rounded-l-[12px] text-[#3653B0]">
+                        {event.nama_event}
+                      </td>
+                      <td className="px-2 py-2 text-black rounded-md text-center" style={getStatusStyle(event.status)}>
+                        {event.status}
+                      </td>
+                    </tr>
+                    <div className="h-3"></div>
+                  </React.Fragment>
+                ))}
+              </tbody>
+            </table>
+          </div>
           </div>
         </div>
         {/* content end */}
