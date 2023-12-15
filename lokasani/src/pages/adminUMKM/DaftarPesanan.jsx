@@ -191,7 +191,7 @@ const DaftarPesanan = () => {
                     </td>
 
                     <td className="border-t-2 border-b-2 px-4 py-3 font-semibold flex items-center gap-2 text-gray-500">
-                      <InfoIcon />
+                      {/* <InfoIcon /> */}
                       <button onClick={() => handleDelete(item.id)}>
                         <DeleteOutlineIcon />
                       </button>
