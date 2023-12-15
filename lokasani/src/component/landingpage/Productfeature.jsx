@@ -1,28 +1,39 @@
 import React, {} from "react";
+import { useNavigate } from "react-router-dom";
 import object1 from "../../assets/img/object1.png";
 import object2 from "../../assets/img/object2.png";
 import object3 from "../../assets/img/object3.png";
 import object4 from "../../assets/img/object4.png";
 
 const Productfeature = () => {
+  const navigate = useNavigate();
+
+  const handleRegistrasi= () => {
+    navigate("/auth/register/toko/form");
+  };
 
   return (
     <div className=" bg-[#243775] ">
-      <div className="h-screen relative container mx-auto">
+      <div className="h-[1000px] mx-auto relative justify-center items-center overflow-hidden ">
         <div className="text-6xl font-bold uppercase text-white px-20 pt-[100px] flex justify-between">
-          <div className="flex gap-3">
-            <p>Kembangkan </p>
-            <p className="text-[#F3B502]">Produk Lokal </p>
-            <p>Anda Sekarang</p>
+          <div className="headline-2">
+          <div className="flex">
+            <h1>Kembangkan 
+            <span className="text-[#F3B502]"> Produk Lokal </span> <span>Anda Sekarang</span>
+            </h1>
+            
           </div>
+          </div>
+
           <div className="font-medium text-[30px] justify-end items-center">
-            <button className="bg-[#F3B502] p-5 rounded-[20px]">
+            <button className="bg-[#F3B502] p-5 rounded-[20px]"
+            onClick={handleRegistrasi}>
               Daftar Sekarang!
             </button>
           </div>
         </div>
         <div className="flex items-center justify-center mt-20 relative z-10 m-40">
-          <div className="grid grid-cols-4 gap-6 ">
+          <div className="grid grid-cols-4 gap-6">
             <div>
               <a className=" flex flex-col items-center justify-center max-w-[300px] h-[400px] px-5 py-[100px] border border-gray-200 rounded-[20px] shadow bg-[#31499B] text-left absoulte left-0 ">
                 <img src={object1} alt="" />

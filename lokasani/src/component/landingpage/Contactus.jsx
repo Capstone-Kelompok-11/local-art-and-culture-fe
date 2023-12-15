@@ -6,26 +6,31 @@ import Location from "../../assets/img/location.png";
 
 const Contactus = () => {
   return (
-    <div className="container mx-auto  ">
-      <div className="flex gap-x-10 h-screen relative bg-white">
-        <div className="w-1/2">
-          <h1 className="text-6xl font-bold uppercase text-black ">
-            Hubungi kami
-          </h1>
+  <div>
+        <div
+      className="h-[600px] mx-auto px-20 flex justify-center items-center bg-white"
+      id="contact"
+    >
+      <div className="flex bg-white">
+        <div className="w-full md:w-1/2">
+          <div className="headline-4">
+            <h1 className="font-bold uppercase text-black  ">Hubungi kami</h1>
+          </div>
+
           <h2 className="pt-7 text-3xl font-semibold text-[#3653B0]">
             Tertarik dengan kami?
           </h2>
-          <p className="text-[20px] mr-9 text-justify w-[600px] pt-3">
+          <p className="text-[20px] pt-3">
             Kami siap membantumu dengan pertanyaan, umpan balik, atau bantuan
             apa pun yang kamu butuhkan. Jangan ragu untuk menghubungi kami ya!
           </p>
-          <img src={Object} alt="" />
+          <img src={Object} alt="" className="w-auto" />
         </div>
 
-        <div className="w-1/2">
-          <div className=" h-[600px] w-[580px] bg-[#3653B0] rounded-[20px]">
-            <div className="py-6 mx-auto max-w-screen-md mx-auto">
-              <div></div>
+        <div className="w-full md:w-1/2">
+          <div className=" h-[600px] w-[580px] bg-[#3653B0] ml-[100px] rounded-[20px] md:w-auto ">
+            <div className="py-6 mx-auto">
+            
               <form action="#" className=" space-y-8  px-10 py-1">
                 <div className="">
                   <label
@@ -84,17 +89,54 @@ const Contactus = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4 mb-10">
-        <div className="bg-blue-800 rounded-[10px] ">
-          <div class="mb-2 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
+
+    </div>
+    <div className="grid grid-cols-3 gap-4 mb-10 mt-10 flex justify-center items-center m-10">
+        <div className="bg-blue-800 rounded-[10px]  ">
+          <div class="md:w-6/12 md:px-3 lg:px-6">
             <div class="flex items-start">
               <div class="shrink-0 flex items-center">
-                <div class="inline-block rounded-md bg-primary-100 p-4 text-primary mt-10">
-                  <img src={Email} className="" />
+                <div class="rounded-md bg-primary-100 p-4 text-primary ">
+                  <img src={Email} className="h-[70px]" />
                 </div>
-                <div class="ml-4 mt-7">
-                  <p class="font-bold text-[24px] dark:text-white">
-                    Email</p>
+                <div class="ml-4">
+                  <p class="font-bold text-[24px] dark:text-white">Telepon</p>
+                  <p class="text-neutral-500 text-[15px] dark:text-neutral-200">
+                    +62 8123 5764 981
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-blue-800 rounded-[10px]  ">
+          <div class="md:w-6/12 md:px-3 lg:px-6">
+            <div class="flex items-start">
+              <div class="shrink-0 flex items-center">
+                <div class="rounded-md bg-primary-100 p-4 text-primary ">
+                  <img src={Call} className="h-[70px]" />
+                </div>
+                <div class="ml-4">
+                  <p class="font-bold text-[24px] dark:text-white">Alamat</p>
+                  <p class="text-neutral-500 text-[15px] dark:text-neutral-200">
+                    Jl. Lokasani No.1, Jakarta Pusat
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-blue-800 rounded-[10px]  ">
+          <div class="md:w-6/12 md:px-3 lg:px-6">
+            <div class="flex items-start">
+              <div class="shrink-0 flex items-center">
+                <div class="rounded-md bg-primary-100 p-4 text-primary ">
+                  <img src={Location} className="h-[70px]" />
+                </div>
+                <div class="ml-4">
+                  <p class="font-bold text-[24px] dark:text-white">Email</p>
                   <p class="text-neutral-500 text-[15px] dark:text-neutral-200">
                     cs@lokasani.com
                   </p>
@@ -103,46 +145,10 @@ const Contactus = () => {
             </div>
           </div>
         </div>
-        <div className="bg-blue-800 rounded-[10px]">
-        <div class="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
-            <div class="flex items-start">
-              <div class="shrink-0 flex items-center">
-                <div class="inline-block rounded-md bg-primary-100 p-4 text-primary mt-10">
-                  <img src={Call} className="" />
-                </div>
-                <div class="ml-4 mt-7">
-                  <p class="font-bold text-[24px] dark:text-white">
-                    Telepon</p>
-                  <p class="text-neutral-500 text-[15px] dark:text-neutral-200">
-                    +62 812 9234 5678
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
 
-        <div className="bg-blue-800 rounded-[10px] ">
-        <div class="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
-            <div class="flex items-start">
-              <div class="shrink-0 flex items-center">
-                <div class="inline-block rounded-md bg-primary-100 p-4 text-primary mt-10">
-                  <img src={Location} className="" />
-                </div>
-                <div class="ml-4 mt-7">
-                  <p class="font-bold text-[24px] dark:text-white">
-                    Alamat</p>
-                  <p class="text-neutral-500 text-[15px] dark:text-neutral-200">
-                   Jl. Lokasani No.1, Jakarta Pusat
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
+  </div>
+
   );
 };
 
