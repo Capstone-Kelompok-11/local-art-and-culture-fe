@@ -274,9 +274,6 @@ function Add() {
               Batal
             </button>
             <div>
-              <button className="bg-[#F3B502] text-white px-7 rounded-full py-1 mr-6">
-                Simpan Draf
-              </button>
               <button
                 onClick={handlePopupUnggah}
                 className="bg-[#3653B0] text-white px-10 rounded-full py-1"
