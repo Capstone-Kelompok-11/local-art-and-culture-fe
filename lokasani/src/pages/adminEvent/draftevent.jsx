@@ -4,7 +4,6 @@ import TextsmsIcon from '@mui/icons-material/Textsms';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import user from '../../assets/img/user.svg';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import InfoIcon from '@mui/icons-material/Info';
 import EditIcon from '@mui/icons-material/Edit';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -26,12 +25,12 @@ function DraftEvent() {
   };
 
   useEffect(() => {
-    // Fetch data from the mock API
+  
     fetch('https://657c05c8394ca9e4af153c42.mockapi.io/draftevent')
       .then((response) => response.json())
       .then((data) => setEvents(data))
       .catch((error) => console.error('Error fetching data:', error));
-  }, []); // Empty dependency array to run the effect only once
+  }, []); 
 
   const filteredEvents = events.filter((event) => {
     if (activeButton === 'All') {
@@ -69,7 +68,7 @@ function DraftEvent() {
 
   const handleEditSubmit = async () => {
     let retryCount = 0;
-    const maxRetries = 3; // Set the maximum number of retries
+    const maxRetries = 3; 
   
     while (retryCount < maxRetries) {
       try {
@@ -87,14 +86,14 @@ function DraftEvent() {
           setEvents(updatedEvents);
           setIsEditModalOpen(false);
           setEditEvent(null);
-          return; // Exit the loop if the request is successful
+          return; 
         }
       } catch (error) {
         console.error('Error updating data:', error);
       }
   
       retryCount += 1;
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second before retrying
+      await new Promise((resolve) => setTimeout(resolve, 1000)); 
     }
   
     console.error('Max retries reached. Unable to update data.');
@@ -227,7 +226,7 @@ function DraftEvent() {
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700">Tanggal Diajukan</label>
                   <input
-                    type="text" // Ganti menjadi input tanggal jika diperlukan
+                    type="text" 
                     name="tanggal_diajukan"
                     value={editEvent.tanggal_diajukan}
                     onChange={(e) => setEditEvent({ ...editEvent, tanggal_diajukan: e.target.value })}
