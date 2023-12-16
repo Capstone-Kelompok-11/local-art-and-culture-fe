@@ -10,6 +10,7 @@ const Login = () => {
   const [isTetapMasukChecked, setIsTetapMasukChecked] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("")
 
   const handleTetapMasukChange = () => {
     setIsTetapMasukChecked(!isTetapMasukChecked);
@@ -37,7 +38,7 @@ const Login = () => {
       }
 
     } catch (error) {
-      console.error('Terjadi kesalahan:', error.response.data);
+      setError(error.response.data.message)
     }
   };
   return (
@@ -78,7 +79,7 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-                <div className="mb-[42px]">
+                <div className="mb-8">
                   <label className="block font-semibold text-[#768DD5]" htmlFor="password">Password</label>
                   <input
                     className="p-3 w-full rounded-lg bg-[#F2F2F2] focus:outline-none"
@@ -87,6 +88,9 @@ const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                </div>
+                <div className="flex justify-center mb-5">
+                  <p className="font-semibold text-white w-fit block px-5 py-1 bg-red-400 rounded-lg">{error}</p>
                 </div>
                 <div className="flex items-center mb-2">
                   <input
