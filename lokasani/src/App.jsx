@@ -29,8 +29,8 @@ import HomeAdminUMKM from "./pages/adminUMKM/Home";
 import TambahProductAdminUMKM from './pages/adminUMKM/TambahProduct'
 import DaftarPesananAdmimUMKM from './pages/adminUMKM/DaftarPesanan'
 import DaftarProduct from './pages/adminUMKM/DaftarProduct'
-import Transaksi from './pages/superadmin/transaksi/index'
-import Payout from './pages/superadmin/transaksi/Payout'
+import TransaksiSuperadmin from './pages/superadmin/transaksi/index'
+import PayoutSuperadmin from './pages/superadmin/transaksi/Payout'
 
 
 function App() {
@@ -65,9 +65,9 @@ function App() {
         <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
         <Route element={<RegisterToko/>} path='/auth/register/toko'/>
         <Route element={<CompleteFormToko/>} path='/auth/register/toko/form'/>
-        <Route element={<Transaksi/>} path='/superadmin/transaksi'/>
+        <Route element={<TransaksiSuperadmin/>} path='/superadmin/transaksi'/>
         <Route element={<Landing/>} path="/"/>
-        <Route element={<Payout/>} path='/superadmin/transaksi/payout'/>
+        <Route element={<PayoutSuperadmin/>} path='/superadmin/transaksi/payout'/>
 
 
       </Routes>

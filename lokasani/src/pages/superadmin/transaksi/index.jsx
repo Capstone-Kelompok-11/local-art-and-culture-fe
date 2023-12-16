@@ -10,7 +10,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import NorthIcon from "@mui/icons-material/North";
 import Pagination from "../.../../../../component/superadmin/globalComponent/Pagination";
 
-const HomeSuperAdmin = () => {
+const Transaksi = () => {
   const navigate = useNavigate();
   const [transactions, setTransactions] = useState([]);
   const [selectStatus, setSelectStatus] = useState("Semua");
@@ -290,4 +290,4 @@ const HomeSuperAdmin = () => {
   );
 };
 
-export default HomeSuperAdmin;
+export default Transaksi;
