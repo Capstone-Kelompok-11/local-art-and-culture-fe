@@ -89,9 +89,12 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <div className="flex justify-center mb-5">
-                  <p className="font-semibold text-white w-fit block px-5 py-1 bg-red-400 rounded-lg">{error}</p>
-                </div>
+                {error && 
+                  <div className="flex justify-center mb-5">
+                    <p className="text-white w-fit block px-5 py-1 bg-red-400 rounded-lg">{error}</p>
+                  </div>
+                }
+                
                 <div className="flex items-center mb-2">
                   <input
                     id="tetapMasuk"
