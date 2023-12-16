@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
 import InformasiProduct from "../../component/adminUMKM/product/InformasiProduct";
@@ -7,12 +8,33 @@ import Harga from "../../component/adminUMKM/product/Harga";
 import Media from "../../component/adminUMKM/product/Media";
 
 const Product = () => {
-  const [productName, setProductName] = useState("");
-  const [productCategory, setProductCategory] = useState("");
-  const [productJumlah, setProductJumlah] = useState("");
-  const [productDescription, setProductDescription] = useState("");
-  const [productHarga, setProductHarga] = useState("");
-  const [productStok, setProductStok] = useState("");
+  // const [productName, setProductName] = useState("");
+  // const [productCategory, setProductCategory] = useState("");
+  // const [productJumlah, setProductJumlah] = useState("");
+  // const [productDescription, setProductDescription] = useState("");
+  // const [productHarga, setProductHarga] = useState("");
+  // const [productStok, setProductStok] = useState("");
+
+  const [formDataProduct, setFormDataProduct] = useState({
+    productName: "",
+    productCategory: "",
+    productJumlah: "",
+    productDescription: "",
+    productHarga: "",
+    productStok: false,
+    productImageURL: "",
+    productStatus: ""
+  })
+
+  const postDataProduct = async () => {
+    try {
+      const response = await axios.post('https://657bab26394ca9e4af1498ba.mockapi.io/product', formDataProduct);
+
+      console.log('Data berhasil dipost:', response.data);
+    } catch (error) {
+      console.error('Terjadi kesalahan saat posting data:', error);
+    }
+  };
 
   return (
     <div className="bg-[#F2F2F2]">
@@ -49,14 +71,16 @@ const Product = () => {
             <div className="w-3/5">
               <div className="w-full">
                 <InformasiProduct 
-                  valueName={productName}
-                  valueKategori={productCategory}
-                  valueJumlah={productJumlah}
-                  valueDeskripsi={productDescription}
+                  valueName={formDataProduct.productName}
+                  valueKategori={formDataProduct.productCategory}
+                  valueJumlah={formDataProduct.productJumlah}
+                  valueDeskripsi={formDataProduct.productDescription}
                 />
               </div>
               <div className="w-full">
-                <Media/>
+                <Media
+                  valueImageURL={formDataProduct.productImageURL}
+                />
               </div>
               {/* <div className="w-full">
                 <Varian/>
@@ -65,8 +89,8 @@ const Product = () => {
             <div className="w-2/5">
               <div className="w-full">
                 <Harga 
-                  valueHarga={productHarga}
-                  valueStok={productStok}
+                  valueHarga={formDataProduct.productHarga}
+                  valueStok={formDataProduct.productStok}
                 />
               </div>
             </div>
