@@ -82,19 +82,13 @@ function Sidebar() {
             </a>
           </div>
 
-          <div className="flex flex-col space-y-[15vh]">
+          <div className="flex flex-col space-y-[30vh]">
             <div className="mx-3">
               <ul className="space-y-3">
                 <li>
                   <a href="/adminumkm" className="cursor-pointer text-sm flex items-center px-2 py-1 text-white rounded-sm hover:bg-gray-700 group">
                     <HomeIcon fontSize="small" />
                     <span className="flex-1 ml-3 whitespace-nowrap ">Home</span>
-                  </a>
-                </li>
-                <li>
-                  <a className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
-                    <ChatIcon fontSize="small" />
-                    <span className="flex-1 ml-3 whitespace-nowrap">Chat</span>
                   </a>
                 </li>
                 <li>
@@ -114,7 +108,7 @@ function Sidebar() {
                   </a>
                 </li>
                 <li>
-                  <a href="" className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
+                  <a href="/adminumkm/daftartransaksi" className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
                     <img
                       src={TransactionIcon}
                       alt="Transaction"
@@ -122,30 +116,6 @@ function Sidebar() {
                     />
                     <span className="flex-1 ml-3 whitespace-nowrap">
                       Transaksi
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
-                    <StackedLineChartIcon fontSize="small" />
-                    <span className="flex-1 ml-3 whitespace-nowrap">
-                      Statistik
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
-                    <SupportAgentIcon fontSize="small" />
-                    <span className="flex-1 ml-3 whitespace-nowrap">
-                      Pusat Bantuan
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a className="cursor-pointer text-sm  flex items-center px-2 py-1 rounded-sm text-white hover:bg-gray-700 group">
-                    <ForumIcon fontSize="small" />
-                    <span className="flex-1 ml-3 whitespace-nowrap">
-                      Ulasan
                     </span>
                   </a>
                 </li>

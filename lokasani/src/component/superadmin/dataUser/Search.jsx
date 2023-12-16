@@ -1,8 +1,16 @@
-import React from "react";
+import {React, useState} from "react";
 import RangeDate from "./RangeDate";
 import iconSearch from "../../../assets/icon/search.svg";
 
-const Search = ({ showSearch, showButtonVerif }) => {
+const Search = ({ showSearch, showButtonVerif, onSearch }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    onSearch(query);
+  };
+
   return (
     <div className="flex items-center justify-between">
       {showSearch && (
@@ -18,6 +26,8 @@ const Search = ({ showSearch, showButtonVerif }) => {
             id="table-search"
             className="block p-2 pl-2 text-sm text-gray-900  rounded-lg w-80 bg-white"
             placeholder="Search for items"
+            value={searchQuery}
+          onChange={handleSearch}
           />
         </div>
       )}
