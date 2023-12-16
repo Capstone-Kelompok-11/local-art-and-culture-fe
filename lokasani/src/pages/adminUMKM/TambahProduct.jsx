@@ -7,7 +7,12 @@ import Harga from "../../component/adminUMKM/product/Harga";
 import Media from "../../component/adminUMKM/product/Media";
 
 const Product = () => {
-  const [productName, setProductName] = useState("")
+  const [productName, setProductName] = useState("");
+  const [productCategory, setProductCategory] = useState("");
+  const [productJumlah, setProductJumlah] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const [productHarga, setProductHarga] = useState("");
+  const [productStok, setProductStok] = useState("");
 
   return (
     <div className="bg-[#F2F2F2]">
@@ -45,9 +50,9 @@ const Product = () => {
               <div className="w-full">
                 <InformasiProduct 
                   valueName={productName}
-                  valueKategori={}
-                  
-
+                  valueKategori={productCategory}
+                  valueJumlah={productJumlah}
+                  valueDeskripsi={productDescription}
                 />
               </div>
               <div className="w-full">
@@ -59,7 +64,10 @@ const Product = () => {
             </div>
             <div className="w-2/5">
               <div className="w-full">
-                <Harga />
+                <Harga 
+                  valueHarga={productHarga}
+                  valueStok={productStok}
+                />
               </div>
             </div>
           </div>
