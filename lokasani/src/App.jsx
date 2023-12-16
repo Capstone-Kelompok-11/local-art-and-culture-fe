@@ -6,6 +6,9 @@ import Transaksi from './pages/adminEvent/transaksi'
 import MyEvent from './pages/adminEvent/myevent'
 import Payout from './pages/adminEvent/payout'
 import Marchandise from './pages/adminEvent/marchandise'
+import PengunjungTable from './component/adminEvent/tabelpengunjung'
+import TiketTerjualTable from './component/adminEvent/tabelterjual'
+import MerchTable from './component/adminEvent/tabelmerch'
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
         <Route element={<MyEvent/>} path='/adminevent/myevent'/>
         <Route element= {<Payout/>} path='/admin/event/payout'/>
         <Route element= {<Marchandise/>} path='/adminevent/marchandise'/>
+        <Route element= {<PengunjungTable/>} path='/adminevent/tabelpengunjung'/>
+        <Route element= {<TiketTerjualTable/>} path='/adminevent/tabelterjual'/>
+        <Route element= {<MerchTable/>} path='/adminevent/tabelmerch'/>
       </Routes>
     </BrowserRouter>
   )

@@ -10,13 +10,11 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import SearchIcon from '@mui/icons-material/Search';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import TextField from '@mui/material/TextField';
 import myeventImage from '../../assets/img/myevent.jpg';
+import TiketTerjualTable from '../../component/adminEvent/tabelterjual';
+import PengunjungTable from '../../component/adminEvent/tabelpengunjung';
+import MerchTable from '../../component/adminEvent/tabelmerch';
 
 function Marchandise() {
   // select grid
@@ -33,25 +31,7 @@ function Marchandise() {
     setSelectedDate(date);
   };
 
-  // search
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    // Lakukan sesuatu dengan nilai searchTerm, misalnya, kirim ke server untuk pencarian
-    console.log('Searching for:', searchTerm);
-  };
-
-  // button aktif
-  const [activeButton, setActiveButton] = useState('semua');
-
-  const handleButtonClick = (button) => {
-    setActiveButton(button);
-  };
+  
 
   return (
     <section>
@@ -192,97 +172,11 @@ function Marchandise() {
               </div>
             </div>
           </div>
+ {/* Tampilkan tabel sesuai dengan selectedGrid */}
+ {selectedGrid === 0 && <PengunjungTable />}
+          {selectedGrid === 1 && <TiketTerjualTable />}
+          {selectedGrid === 2 && <MerchTable />}
 
-          <div className="grid grid-cols-1 gap-1 p-3">
-            <style>
-              {`
-                .tab {
-                  cursor: pointer;
-                  padding: 1rem;
-                }
-
-                .tab.active {
-                  border-bottom: 2px solid #0053AD; /* Ganti warna sesuai keinginan Anda */
-                }
-              `}
-            </style>
-            <div className="col-span-1 bg-white p-7 rounded-md relative">
-              <div className="flex justify-end items-center mr-2 border-2 border-black relative">
-                <div className="container mx-auto p-1 ">
-                  <form onSubmit={handleSearchSubmit} className="flex items-center">
-                    <TextField
-                      type="text"
-                      value={searchTerm}
-                      onChange={handleSearchChange}
-                      placeholder="Search..."
-                      variant="outlined"
-                      fullWidth
-                      size="small"
-                      style={{ width: '400px' }}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <IconButton type="submit" color="primary">
-                              <SearchIcon />
-                            </IconButton>
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </form>
-                </div>
-                <h1 className="font-semibold">Tampilkan</h1>
-                <DatePicker
-                  selected={selectedDate}
-                  onChange={handleDateChange}
-                  dateFormat="dd/MM/yyyy"
-                  placeholderText="Tanggal/bulan"
-                  className="bg-white text-[#3653B0] p-2 py-2 rounded-md outline outline-black outline-1 ml-2"
-                />
-              </div>
-              <div className="flex items-center ">
-                {['All', 'Paid', 'Canceled'].map((button) => (
-                  <button
-                    key={button}
-                    className={`${
-                      activeButton === button
-                        ? 'bg-[#3653B0] text-white py-[6px] px-4 rounded-md m-2'
-                        : 'bg-gray-200 text-white py-[6px] px-3 rounded-md m-2'
-                    }`}
-                    onClick={() => handleButtonClick(button)}
-                  >
-                    {button.charAt(0).toUpperCase() + button.slice(1)}
-                  </button>
-                ))}
-              </div>
-
-              <div className="col-span-1 p-3 bg-white rounded-md shadow-md relative mt-4">
-                <ul className="list-none p-0 m-0">
-                  <li className="flex justify-between bg-gray- items-center border-b border-gray-200 py-1">
-                    <span className="text-3xl font-bold text-sm w-1/6">#ID</span>
-                    <span className="text-3xl font-bold text-sm w-1/6">Tanggal</span>
-                    <span className="text-3xl font-bold text-sm w-1/6">Nama Pembeli</span>
-                    <span className="text-3xl font-bold text-sm w-1/6">Jenis</span>
-                    <span className="text-3xl font-bold text-sm w-1/6">Pembayaran</span>
-                    <span className="text-3xl font-bold text-sm w-1/6">Status</span>
-                    <span className="text-3xl font-bold text-sm w-1/6">Aksi</span>
-                  </li>
-                  {/* Tambahkan item-item transaksi di sini */}
-                  <li className="flex justify-between items-center border-b border-gray-200 py-2">
-                    <span className=" w-1/6">1</span>
-                    <span className=" w-1/6">2023-11-29</span>
-                    <span className=" w-1/6">John Doe</span>
-                    <span className=" w-1/6">tiket</span>
-                    <span className=" w-1/6">Rp.100.00</span>
-                    <span className=" w-1/6">Lunas</span>
-                    <span className=" w-1/6">
-                      <DeleteOutlineIcon />
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
       </main>
     </section>
