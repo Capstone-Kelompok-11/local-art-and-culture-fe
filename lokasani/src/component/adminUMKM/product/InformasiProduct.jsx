@@ -63,7 +63,7 @@ const InformasiProduct = ({valueName,valueKategori,valueJumlah,valueDeskripsi}) 
           <input
             type="text"
             name="kodeBatang"
-            placeholder="01234-5678"
+            placeholder="5"
             className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
             value={valueJumlah}
           />
