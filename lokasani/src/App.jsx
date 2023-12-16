@@ -1,6 +1,8 @@
+
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import AdminEvent from './pages/adminEvent/Index'
-import Home from "./pages/home"
+import NewEvent from "./pages/adminEvent/newevent";
+import Chat from "./pages/adminEvent/chat";
 import HomeSuperAdmin from './pages/superadmin/dashboard/HomeSuperAdmin'
 import DataUser from './pages/superadmin/dataUser/DataUser'
 import DaftarAdminEvent from './pages/superadmin/dataUser/DaftarAdminEvent'
@@ -14,7 +16,15 @@ import CompleteFormOrganisasi from './pages/register/organisasi/CompleteForm'
 import RegisterToko from './pages/register/toko/Index'
 import CompleteFormToko from './pages/register/toko/CompleteForm'
 import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
-import Transaksi from './pages//superadmin/transaksi/index'
+import Landing from "./pages/landingpage/index"
+import React from "react";
+import Login from "./pages/login"
+import HomeAdminUMKM from "./pages/adminUMKM/Home";
+import TambahProductAdminUMKM from './pages/adminUMKM/TambahProduct'
+import DaftarPesananAdmimUMKM from './pages/adminUMKM/DaftarPesanan'
+import DaftarProduct from './pages/adminUMKM/DaftarProduct'
+import Transaksi from './pages/superadmin/transaksi/index'
+import Payout from './pages/superadmin/transaksi/Payout'
 
 
 
@@ -22,25 +32,36 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Home/>} path='/'/>
+
+        <Route element={<Chat />} path="/adminevent/chat" />
         <Route element={<HomeSuperAdmin/>} path='/superadmin/homeSuperAdmin'/>
         <Route element={<DataUser/>} path='/superadmin/dataUser'/>
         <Route element={<DaftarAdminEvent/>} path='/superadmin/daftarAdminEvent'/>
         <Route element={<DaftarAdminUmkm/>} path='/superadmin/daftarAdminUmkm'/>
         <Route element={<DaftarPengguna/>} path='/superadmin/daftarPengguna'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
+        <Route element={<NewEvent />} path="/adminevent/newevent" />
         <Route element={<VerifikasiAkun/>} path='/superadmin/verifikasiAkun'/>
         <Route element={<SuperAdminArtikel/>} path='/superadmin/artikel'/>
         <Route element={<SuperAdminKelolaArtikel/>} path='/superadmin/kelolaartikel'/>
         <Route element={<Pengaturan/>} path='/superadmin/pengaturan'/>
+        <Route element={<HomeAdminUMKM />} path="/adminumkm" />
+        <Route element={<DaftarProduct/>} path='/adminumkm/daftarproduct'/>
+        <Route element={<TambahProductAdminUMKM/>} path='/adminumkm/tambahproduct'/>
+        <Route element={<DaftarPesananAdmimUMKM/>} path='/adminumkm/daftarpesanan'/>
+        <Route element={<Login/>} path="/auth/login"/>
         <Route element={<RegisterOrganisasi/>} path='/auth/register/organisasi'/>
         <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
         <Route element={<RegisterToko/>} path='/auth/register/toko'/>
         <Route element={<CompleteFormToko/>} path='/auth/register/toko/form'/>
-        <Route element={<Transaksi/>} path='/transaksi'/> 
+        <Route element={<Transaksi/>} path='/superadmin/transaksi'/>
+        <Route element={<Landing/>} path="/"/>
+        <Route element={<Payout/>} path='/superadmin/transaksi/payout'/>
+
+
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

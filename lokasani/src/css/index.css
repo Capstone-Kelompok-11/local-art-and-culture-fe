@@ -1,18 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-
 /* Webfont: MangoGrotesque-Regular */
 @font-face {
   font-family: 'MangoGrotesque';
-  src: url('MangoGrotesque-Regular.eot'); /* IE9 Compat Modes */
-  src: url('MangoGrotesque-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('MangoGrotesque-Regular.woff') format('woff'), /* Modern Browsers */
-       url('MangoGrotesque-Regular.woff2') format('woff2'), /* Modern Browsers */
-       url('MangoGrotesque-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
-           font-style: normal;
+  src: url('MangoGrotesque-Regular.eot');
+  /* IE9 Compat Modes */
+  src: url('MangoGrotesque-Regular.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('MangoGrotesque-Regular.woff') format('woff'),
+    /* Modern Browsers */
+    url('MangoGrotesque-Regular.woff2') format('woff2'),
+    /* Modern Browsers */
+    url('MangoGrotesque-Regular.ttf') format('truetype');
+  /* Safari, Android, iOS */
+  font-style: normal;
   font-weight: normal;
   text-rendering: optimizeLegibility;
 }
@@ -22,9 +26,10 @@
   padding: 0;
   box-sizing: border-box;
   outline: none;
-  border: none;
+  /* border: none; */
   text-decoration: none;
 }
+
 
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -54,4 +59,38 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   height: 100vh;
+}
+
+.hero-section {
+  font-family: "MangoGrotesque", sans-serif;
+  letter-spacing: 1px;
+  line-height: 1;
+  font-size: 24px;
+}
+
+.headline-1{
+  font-family: "MangoGrotesque", sans-serif;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.headline-2{
+  font-family: "MangoGrotesque", sans-serif;
+  letter-spacing: 1px;
+  line-height: 1;
+  font-size: 90px;
+}
+
+.headline-3{
+  font-family: "MangoGrotesque", sans-serif;
+  letter-spacing: 1px;
+  line-height: 1;
+  font-size: 90px;
+}
+
+.headline-4{
+  font-family: "MangoGrotesque", sans-serif;
+  letter-spacing: 1px;
+  line-height: 1;
+  font-size: 96px;
 }
