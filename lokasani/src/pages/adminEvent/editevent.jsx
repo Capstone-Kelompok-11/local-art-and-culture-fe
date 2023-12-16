@@ -17,7 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import imageSearching from "../../assets/img/image-searching.png";
 import imageGmaps from "../../assets/img/img-gmaps.png";
 
-function NewEvent() {
+function EditEvent() {
   // function poster
   const [poster, setPoster] = useState(null);
   const [posterPreview, setPosterPreview] = useState(null);
@@ -227,7 +227,7 @@ function NewEvent() {
         {/* header start */}
         <div className="bg-white flex items-center justify-between py-7 rounded-sm">
           <div className="pl-5">
-            <h1 className="text-4xl font-bold">Tambah Event Baru</h1>
+            <h1 className="text-4xl font-bold">Edit Event Tersimpan</h1>
           </div>
           <div>
             <div className="flex items-center">
@@ -1453,4 +1453,4 @@ function NewEvent() {
   );
 }
 
-export default NewEvent;
+export default EditEvent;
