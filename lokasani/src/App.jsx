@@ -1,4 +1,3 @@
-
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import EditEvent from './pages/adminEvent/editevent';
 import AdminEvent from './pages/adminEvent/Index'
@@ -24,14 +23,14 @@ import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
 import TransaksiUMKM from './pages/adminUMKM/Transaction'
 import Landing from "./pages/landingpage/index"
 import React from "react";
-import Login from "./pages/login"
+import Login from "./pages/login";
 import HomeAdminUMKM from "./pages/adminUMKM/Home";
 import TambahProductAdminUMKM from './pages/adminUMKM/TambahProduct'
 import DaftarPesananAdmimUMKM from './pages/adminUMKM/DaftarPesanan'
 import DaftarProduct from './pages/adminUMKM/DaftarProduct'
 import TransaksiSuperadmin from './pages/superadmin/transaksi/index'
 import PayoutSuperadmin from './pages/superadmin/transaksi/Payout'
-
+import PusatBantuan from "./pages/superadmin/pusatBantuan/PusatBantuan";
 
 function App() {
   return (
@@ -68,8 +67,7 @@ function App() {
         <Route element={<TransaksiSuperadmin/>} path='/superadmin/transaksi'/>
         <Route element={<Landing/>} path="/"/>
         <Route element={<PayoutSuperadmin/>} path='/superadmin/transaksi/payout'/>
-
-
+        <Route element={<PusatBantuan />} path="/superadmin/pusatbantuan" />
       </Routes>
     </BrowserRouter>
   );
