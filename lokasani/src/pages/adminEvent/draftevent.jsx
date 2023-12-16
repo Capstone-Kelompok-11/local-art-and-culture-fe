@@ -13,6 +13,9 @@ function DraftEvent() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [activeButton, setActiveButton] = useState('All');
   const [events, setEvents] = useState([]);
+  const [editEvent, setEditEvent] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -53,6 +56,51 @@ function DraftEvent() {
       })
       .catch((error) => console.error('Error deleting data:', error));
   };
+
+  const handleEdit = (event) => {
+    setEditEvent(event);
+    setIsEditModalOpen(true);
+  };
+
+  const handleEditModalClose = () => {
+    setIsEditModalOpen(false);
+    setEditEvent(null);
+  };
+
+  const handleEditSubmit = async () => {
+    let retryCount = 0;
+    const maxRetries = 3; // Set the maximum number of retries
+  
+    while (retryCount < maxRetries) {
+      try {
+        const response = await fetch(`https://657c05c8394ca9e4af153c42.mockapi.io/draftevent/${editEvent.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(editEvent),
+        });
+  
+        if (response.ok) {
+          const updatedEvent = await response.json();
+          const updatedEvents = events.map((event) => (event.id === updatedEvent.id ? updatedEvent : event));
+          setEvents(updatedEvents);
+          setIsEditModalOpen(false);
+          setEditEvent(null);
+          return; // Exit the loop if the request is successful
+        }
+      } catch (error) {
+        console.error('Error updating data:', error);
+      }
+  
+      retryCount += 1;
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second before retrying
+    }
+  
+    console.error('Max retries reached. Unable to update data.');
+  };
+  
+  
 
   return (
     <section>
@@ -128,36 +176,90 @@ function DraftEvent() {
               </li>
 
               {filteredEvents.map((event) => (
-                <li key={event.id} className="flex justify-between items-center border-b border-gray-200 py-2">
-                  <span className='text-[#3653B0] w-1/6'>{event.id}</span>
-                  <span className='text-[#3653B0] w-1/6'>{event.tanggal_diajukan}</span>
-                  <span className='text-[#3653B0] w-1/6'>{event.name}</span>
-                  <span
-                  className='text-sm text-center  w-1/6 rounded-md'
+              <li key={event.id} className="flex justify-between items-center border-b border-gray-200 py-2">
+                <span className='text-[#3653B0] w-1/6'>{event.id}</span>
+                <span className='text-[#3653B0] w-1/6'>{event.tanggal_diajukan}</span>
+                <span className='text-[#3653B0] w-1/6'>{event.name}</span>
+                <span
+                  className='text-sm text-center w-1/6 rounded-md'
                   style={{
                     backgroundColor:
-                      event.status.toLowerCase() === 'approved'
-                        ? '#00FF00' // Warna hijau untuk Approved
-                        : event.status.toLowerCase() === 'pending'
-                        ? '#FFA500' // Warna oren untuk Pending
-                        : event.status.toLowerCase() === 'canceled'
-                        ? '#FFC0CB' // Warna pink untuk Canceled
-                        : '#ccc', // Warna default untuk status lainnya
+                      event.status === 'siarkan'
+                        ? '#00FF00' 
+                        : event.status === 'pending'
+                        ? '#FFA500' 
+                        : event.status === 'canceled'
+                        ? '#FFC0CB' 
+                        : '#ccc', 
                   }}
                 >
                   {event.status}
                 </span>
-                  <span className='text-[#3653B0] w-1/6'>
-                    <span className='text-[#3653B0] w-1/6 cursor-pointer'>
-                    <EditIcon/>
-                    </span>
-                    <span className='text-[#3653B0] w-1/6 cursor-pointer' onClick={() => handleDelete(event.id)}>
-                    <DeleteOutlineIcon/>
-                    </span>
+                <span className='text-[#3653B0] w-1/6'>
+                  <span className='text-[#3653B0] w-1/6 cursor-pointer' onClick={() => handleEdit(event)}>
+                    <EditIcon />
                   </span>
-                </li>
-              ))}
+                  <span className='text-[#3653B0] w-1/6 cursor-pointer' onClick={() => handleDelete(event.id)}>
+                    <DeleteOutlineIcon/>
+                  </span>
+                </span>
+              </li>
+            ))}
+
             </ul>
+            
+            {isEditModalOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <div className="bg-white p-6 rounded-md">
+                <h2 className="text-2xl font-bold mb-4">Edit Event</h2>
+                
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700">Nama Event</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={editEvent.name}
+                    onChange={(e) => setEditEvent({ ...editEvent, name: e.target.value })}
+                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700">Tanggal Diajukan</label>
+                  <input
+                    type="text" // Ganti menjadi input tanggal jika diperlukan
+                    name="tanggal_diajukan"
+                    value={editEvent.tanggal_diajukan}
+                    onChange={(e) => setEditEvent({ ...editEvent, tanggal_diajukan: e.target.value })}
+                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700">Status</label>
+                  <select
+                    name="status"
+                    value={editEvent.status}
+                    onChange={(e) => setEditEvent({ ...editEvent, status: e.target.value })}
+                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  >
+                    <option value="siarkan">Siarkan</option>
+                    <option value="pending">Pending</option>
+                    <option value="canceled">Canceled</option>
+                  </select>
+                </div>
+
+                <div className="flex justify-end">
+                  <button onClick={handleEditSubmit} className="bg-blue-500 text-white px-4 py-2 rounded-md">
+                    Submit
+                  </button>
+                  <button onClick={handleEditModalClose} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md ml-2">
+                    Batal
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
           </div>
         </div>
       </main>
