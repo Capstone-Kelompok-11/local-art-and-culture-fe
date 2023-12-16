@@ -85,7 +85,7 @@ const Sidebar = () => {
             </li>
             <li>
               <Link
-                to={""}
+                to={"/superadmin/transaksi"}
                 className="flex items-center py-2 px-4 text-gray-900 rounded-lg  hover:bg-[#768DD5] "
               >
                 <img src={logoTransaksi} className="w-[25px] h-8" />

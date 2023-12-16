@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logoLokasani from "../../assets/img/logo.png";
 // import Aboutus from "../landingpage/Whyus";
 
@@ -40,27 +40,22 @@ const Navbar = () => {
           <div className="lg:flex lg:items-center lg:w-auto lg:space-x-6 justify-end">
             <ul className="lg:flex lg:items-center lg:space-x-[50px]">
               <li>
-                <a className="text-xl text-black hover:text-gray-500 " href="/article">
-                  Article
-                </a>
-              </li>
-              <li>
-                <a className="text-xl  text-black hover:text-gray-500" href="/whyUs">
+                <Link className="text-xl  text-black hover:text-gray-500" href="/whyUs">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-xl text-black hover:text-gray-500" href="#">
+                <Link className="text-xl text-black hover:text-gray-500" href="#">
                   Help
-                </a>
+                </Link>
               </li>
-              <a
+              <Link
                 className="hidden lg:inline-block py-2 px-10 bg-blue-800 hover:bg-blue-600 text-xl text-white font-bold rounded-xl transition duration-200"
-                href="/auth/login"
+                to="/auth/login"
                 onClick={handleLogin}
               >
                 Login
-              </a>
+              </Link>
             </ul>
           </div>
         </nav>
