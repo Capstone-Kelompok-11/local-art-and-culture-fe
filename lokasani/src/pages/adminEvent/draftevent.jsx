@@ -130,7 +130,7 @@ function DraftEvent() {
 
         <div className='bg-white flex items-center justify-between rounded-sm p-2'>
           <div className="flex items-center ">
-            {['All', 'Approved', 'Pending', 'Canceled'].map((button) => (
+            {['All', 'Siarkan', 'Pending', 'Canceled'].map((button) => (
               <button
                 key={button}
                 style={{
