@@ -49,7 +49,7 @@ function KelolaArtikel() {
               className="w-[250px] py-1 h-10 pl-12 bg-[#fff] rounded-[9px]"
             ></input>
           </div>
-          <div className="flex justify-end items-center border-2 border-black">
+          <div className="flex justify-end items-center">
             <span className="font-semibold">Tampilkan</span>
             <select className="bg-white text-[#999999] p-1 px-2 py-2 rounded-md ml-2">
               <option>Urut Berdasarkan</option>
