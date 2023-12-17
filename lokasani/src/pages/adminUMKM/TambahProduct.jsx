@@ -7,7 +7,7 @@ import Harga from "../../component/adminUMKM/product/Harga";
 // import Varian from "../../component/adminUMKM/product/Varian";
 import Media from "../../component/adminUMKM/product/Media";
 
-const Product = () => {
+const TambahProduct = () => {
   const [formDataProduct, setFormDataProduct] = useState({
     name: "",
     category: "",
@@ -143,4 +143,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default TambahProduct;
