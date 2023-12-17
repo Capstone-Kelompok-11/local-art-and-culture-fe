@@ -32,8 +32,14 @@ const Hero = () => {
 
 
   const handleProduct = () => {
-    navigate("/auth/register/toko/form");
+    navigate("/auth/register/toko");
   };
+
+  const handleCreator = () => {
+    navigate("/auth/register/organisasi");
+  };
+
+
   return (
     <div className="relative" style={heroStyle} id="Hero">
       <div className="container mx-auto">
@@ -62,7 +68,7 @@ const Hero = () => {
               <button
                 className="ml-3 hidden lg:inline-block py-7 px-20 bg-yellow-400 hover:bg-blue-600 text-2xl text-white font-medium rounded-3xl transition duration-200"
                 href="#"
-                onClick={handleProduct}
+                onClick={handleCreator}
               >
                 Event creator
               </button>

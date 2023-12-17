@@ -117,7 +117,7 @@ function Transaksi() {
           </div>
 
           <div className="flex items-center">
-            <div className="flex justify-end items-center mr-2 border-2 border-black">
+            <div className="flex justify-end items-center mr-2 ">
               <h1 className="font-semibold">Tampilkan</h1>
               <DatePicker
                 selected={selectedDate}
