@@ -5,6 +5,7 @@ import Transaksi from './pages/adminEvent/transaksi'
 import MyEvent from './pages/adminEvent/myevent'
 import Payout from './pages/adminEvent/payout'
 import NewEvent from "./pages/adminEvent/newevent";
+import DraftEvent from "./pages/adminEvent/draftevent";
 import Chat from "./pages/adminEvent/chat";
 import HomeSuperAdmin from './pages/superadmin/dashboard/HomeSuperAdmin'
 import DataUser from './pages/superadmin/dataUser/DataUser'
