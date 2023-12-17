@@ -12,7 +12,8 @@ function TiketTerjualTable() {
   const [transactions, setTransactions] = useState([]);
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; 
+  const [isPageChanging, setIsPageChanging] = useState(false);
+  const itemsPerPage = 10;
 
   const fetchData = async () => {
     try {
@@ -22,7 +23,8 @@ function TiketTerjualTable() {
       const sortedData = data.sort((a, b) => parseInt(a.id) - parseInt(b.id));
 
       setTransactions(sortedData);
-      setFilteredTransactions(sortedData.slice(0, itemsPerPage)); 
+      setFilteredTransactions(sortedData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
+      setIsPageChanging(false); // Set isPageChanging to false after updating data
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -30,9 +32,7 @@ function TiketTerjualTable() {
 
   useEffect(() => {
     fetchData();
-    setFilteredTransactions(transactions.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
-  }, [transactions, currentPage]);
-
+  }, [currentPage, isPageChanging]);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -50,6 +50,7 @@ function TiketTerjualTable() {
   const handleButtonClick = (button) => {
     setActiveButton(button);
     setCurrentPage(1);
+    setIsPageChanging(true); // Set isPageChanging to true when changing pages
 
     const filteredData =
       button === 'All'
@@ -67,13 +68,7 @@ function TiketTerjualTable() {
       });
 
       if (response.ok) {
-        await fetchData();
-        setFilteredTransactions((prevTransactions) =>
-          prevTransactions.map((transaction, index) => ({
-            ...transaction,
-            id: index + 1,
-          }))
-        );
+        setIsPageChanging(true); // Set isPageChanging to true when deleting data
       } else {
         console.error('Gagal menghapus data');
       }

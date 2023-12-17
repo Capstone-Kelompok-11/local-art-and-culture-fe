@@ -54,9 +54,14 @@ function PengunjungTable() {
     }
   };
 
+  const [isPageChanging, setIsPageChanging] = useState(false);
+
   useEffect(() => {
-    fetchData(activeButton);
-  }, [activeButton, currentPage]);
+    if (currentPage > 1 && isPageChanging) {
+      fetchData(activeButton);
+      setIsPageChanging(false); // Setelah fetchData dipanggil, atur kembali ke false
+    }
+  }, [currentPage, activeButton, isPageChanging]);
 
   const fetchData = async (status = '') => {
     try {
@@ -199,33 +204,38 @@ function PengunjungTable() {
             </li>
           ))}
         </ul>
-        <div className="flex justify-center mt-4">
-          <button
-            className={`${
-              currentPage === 1 ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'
-            } text-white py-[6px] px-3 rounded-md m-2`}
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-          >
-            Previous
-          </button>
-          <span className="text-lg font-semibold mx-4">
-            Page {currentPage} of {Math.ceil(transactions.length / itemsPerPage)}
-          </span>
-          <button
-            className={`${
-              currentPage === Math.ceil(transactions.length / itemsPerPage)
-                ? 'bg-blue-300 cursor-not-allowed'
-                : 'bg-gray-200 hover:bg-blue-500'
-            } text-white py-[6px] px-3 rounded-md m-2`}
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, Math.ceil(transactions.length / itemsPerPage)))
-            }
-            disabled={currentPage === Math.ceil(transactions.length / itemsPerPage)}
-          >
-            Next
-          </button>
-        </div>
+        {/* Tombol pagination */}
+            <div className="flex justify-center mt-4">
+                    <button
+              className={`${
+                currentPage === 1 ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'
+              } text-white py-[6px] px-3 rounded-md m-2`}
+              onClick={() => {
+                setCurrentPage((prev) => Math.max(prev - 1, 1));
+                setIsPageChanging(true); 
+              }}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <span className="text-lg font-semibold mx-4">
+              Page {currentPage} of {Math.ceil(transactions.length / itemsPerPage)}
+            </span>
+            <button
+              className={`${
+                currentPage === Math.ceil(transactions.length / itemsPerPage)
+                  ? 'bg-blue-300 cursor-not-allowed'
+                  : 'bg-gray-200 hover:bg-blue-500'
+              } text-white py-[6px] px-3 rounded-md m-2`}
+              onClick={() => {
+                setCurrentPage((prev) => Math.min(prev + 1, Math.ceil(transactions.length / itemsPerPage)));
+                setIsPageChanging(true); 
+              }}
+              disabled={currentPage === Math.ceil(transactions.length / itemsPerPage)}
+            >
+              Next
+            </button>
+          </div>
       </div>
     </div>
   );

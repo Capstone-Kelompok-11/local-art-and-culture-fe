@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, IconButton, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import DatePicker from 'react-datepicker';
@@ -11,15 +11,35 @@ function MerchTable() {
   const [activeButton, setActiveButton] = useState('All');
   const [transactions, setTransactions] = useState([]);
   const [filteredTransactions, setFilteredTransactions] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isPageChanging, setIsPageChanging] = useState(false);
   const itemsPerPage = 10;
 
- 
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://657eb63c3e3f5b189464014f.mockapi.io/merch');
+      const data = await response.json();
+      const sortedData = data.sort((a, b) => parseInt(a.id) - parseInt(b.id));
+
+      setTransactions(sortedData);
+      setFilteredTransactions(sortedData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
+      setIsPageChanging(false); // Set isPageChanging to false after updating data
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [currentPage, isPageChanging]);
+
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    fetchData();
   };
 
   const handleDateChange = (date) => {
@@ -28,29 +48,16 @@ function MerchTable() {
 
   const handleButtonClick = (button) => {
     setActiveButton(button);
+    setCurrentPage(1);
+    setIsPageChanging(true); // Set isPageChanging to true when changing pages
 
     const filteredData =
-    button === 'All'
-      ? transactions
-      : transactions.filter((transaction) => transaction.status.toLowerCase() === button.toLowerCase());
+      button === 'All'
+        ? transactions
+        : transactions.filter((transaction) => transaction.status.toLowerCase() === button.toLowerCase());
 
-  setFilteredTransactions(filteredData.slice(0, itemsPerPage));
-};
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://657eb63c3e3f5b189464014f.mockapi.io/merch');
-        const data = await response.json();
-        setTransactions(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, [])
+    setFilteredTransactions(filteredData.slice(0, itemsPerPage));
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -62,6 +69,8 @@ function MerchTable() {
       // Perbarui state transactions tanpa data yang dihapus
       const updatedTransactions = transactions.filter((transaction) => transaction.id !== id);
       setTransactions(updatedTransactions);
+
+      setIsPageChanging(true); // Set isPageChanging to true when deleting data
     } catch (error) {
       console.error('Error deleting data:', error);
     }
@@ -158,6 +167,38 @@ function MerchTable() {
             </li>
           ))}
         </ul>
+            {/* pagination */}
+                <div className="flex justify-center mt-4">
+                        <button
+                className={`${
+                    currentPage === 1 ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'
+                } text-white py-[6px] px-3 rounded-md m-2`}
+                onClick={() => {
+                    setCurrentPage((prev) => Math.max(prev - 1, 1));
+                    setIsPageChanging(true); 
+                }}
+                disabled={currentPage === 1}
+                >
+                Previous
+                </button>
+                <span className="text-lg font-semibold mx-4">
+                Page {currentPage} of {Math.ceil(transactions.length / itemsPerPage)}
+                </span>
+                <button
+                className={`${
+                    currentPage === Math.ceil(transactions.length / itemsPerPage)
+                    ? 'bg-blue-300 cursor-not-allowed'
+                    : 'bg-gray-200 hover:bg-blue-500'
+                } text-white py-[6px] px-3 rounded-md m-2`}
+                onClick={() => {
+                    setCurrentPage((prev) => Math.min(prev + 1, Math.ceil(transactions.length / itemsPerPage)));
+                    setIsPageChanging(true);
+                }}
+                disabled={currentPage === Math.ceil(transactions.length / itemsPerPage)}
+                >
+                Next
+                </button>
+         </div>
       </div>
     </div>
   );
