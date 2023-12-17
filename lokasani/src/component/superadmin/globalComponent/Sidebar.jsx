@@ -22,32 +22,30 @@ const Sidebar = () => {
   };
   const handleLogout = () => {
     Swal.fire({
-      title: 'Yakin Mau Keluar?',
-      text: 'Semoga Kembali lagi! Jangan lupa simpan perubahan kamu',
+      title: "Yakin Mau Keluar?",
+      text: "Semoga Kembali lagi! Jangan lupa simpan perubahan kamu",
       imageUrl: warningImage,
       imageWidth: 180,
       imageHeight: 180,
       showCancelButton: true,
-      confirmButtonText: 'Keluar Akun',
-      cancelButtonText: 'Batal',
+      confirmButtonText: "Keluar Akun",
+      cancelButtonText: "Batal",
       buttonsStyling: false,
       customClass: {
-        title: 'text-lg font-bold mb-1',
-        text: 'text-base font-normal',
-        confirmButton: 'w-full max-w-md px-44 py-1 bg-[#3653B0] hover:bg-blue-500 text-white rounded-full',
-        cancelButton: 'w-full max-w-md mt-1 py-1 bg-[#FF3B3B] hover:bg-red-400 text-white rounded-full',
+        title: "text-lg font-bold mb-1",
+        text: "text-base font-normal",
+        confirmButton:
+          "w-full max-w-md px-44 py-1 bg-[#3653B0] hover:bg-blue-500 text-white rounded-full",
+        cancelButton:
+          "w-full max-w-md mt-1 py-1 bg-[#FF3B3B] hover:bg-red-400 text-white rounded-full",
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.href = '/';
-        Swal.fire('Berhasil Keluar!', '', 'success');
+        window.location.href = "/";
+        Swal.fire("Berhasil Keluar!", "", "success");
       }
     });
-    
-      
-    
   };
-  
 
   return (
     <div
@@ -87,7 +85,7 @@ const Sidebar = () => {
             </li>
             <li>
               <Link
-                to={""}
+                to={"/superadmin/transaksi"}
                 className="flex items-center py-2 px-4 text-gray-900 rounded-lg  hover:bg-[#768DD5] "
               >
                 <img src={logoTransaksi} className="w-[25px] h-8" />
@@ -109,7 +107,7 @@ const Sidebar = () => {
             </li>
             <li>
               <Link
-                to={""}
+                to={"/superadmin/pusatbantuan"}
                 className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-[#768DD5] "
               >
                 <img src={logoAgent} className="w-[25px] h-8 " />

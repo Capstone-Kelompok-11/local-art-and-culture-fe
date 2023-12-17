@@ -11,7 +11,7 @@ import InfoiceData from "../../component/adminUMKM/dashboard/InfoiceData";
 
 const Home = () => {
     return (
-        <div className="bg-[#F2F2F2]">
+        <div className="bg-[#F2F2F2] ">
             <div className="flex">
                 <div>
                     <Sidebar />

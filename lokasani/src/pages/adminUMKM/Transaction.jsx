@@ -11,56 +11,17 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-const MySwal = withReactContent(Swal);
-
 const DaftarPesanan = () => {
   const [dataListOrder, setDataListOrder] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 10;
-  const [searchInput, setSearchInput] = useState("");
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        "https://657b094c394ca9e4af13732c.mockapi.io/pesanan/dataListOrder"
-      );
-      setDataListOrder(response.data);
-      setFilteredData(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  const [selectedStatus, setSelectedStatus] = useState("Semua");
+  const MySwal = withReactContent(Swal);
 
   const formatDate = (dateString) => {
     const options = { day: "2-digit", month: "2-digit", year: "numeric" };
     return new Date(dateString).toLocaleDateString("en-GB", options);
-  };
-
-  const offset = currentPage * itemsPerPage;
-  const currentItems = filteredData.slice(offset, offset + itemsPerPage);
-
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
-  const handlePageChange = ({ selected }) => {
-    setCurrentPage(selected);
-  };
-
-  const handleSearch = () => {
-    const searchTerm = searchInput.toLowerCase();
-    const filteredResults = dataListOrder.filter(
-      (item) =>
-        item.tanggal.toLowerCase().includes(searchTerm) ||
-        item.nama_pelanggan.toLowerCase().includes(searchTerm) ||
-        item.pembayaran.toLowerCase().includes(searchTerm) ||
-        item.status.toLowerCase().includes(searchTerm)
-    );
-    setFilteredData(filteredResults);
-    setCurrentPage(0);
   };
 
   const handleDelete = async (id) => {
@@ -77,7 +38,7 @@ const DaftarPesanan = () => {
     if (confirmation.isConfirmed) {
       try {
         await axios.delete(
-          `https://657b094c394ca9e4af13732c.mockapi.io/pesanan/dataListOrder/${id}`
+          `https://657b0c43394ca9e4af137e14.mockapi.io/transaction/${id}`
         );
         fetchData();
         await MySwal.fire("Deleted!", "Data berhasil dihapus", "success");
@@ -88,6 +49,44 @@ const DaftarPesanan = () => {
     }
   };
 
+  const handleStatusFilter = (status) => {
+    setSelectedStatus(status);
+    const filteredResults =
+      status === "Semua"
+        ? dataListOrder
+        : dataListOrder.filter(
+            (item) => item.status.toLowerCase() === status.toLowerCase()
+          );
+
+    setFilteredData(filteredResults);
+    setCurrentPage(0);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://657b0c43394ca9e4af137e14.mockapi.io/transaction"
+      );
+      setDataListOrder(response.data);
+      setFilteredData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const offset = currentPage * itemsPerPage;
+  const currentItems = filteredData.slice(offset, offset + itemsPerPage);
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
   return (
     <div className="bg-[#F2F2F2]">
       <div className="flex">
@@ -96,23 +95,42 @@ const DaftarPesanan = () => {
         </div>
         <div className="w-full pl-[255px]">
           <div>
-            <Header headerTitle={"Daftar Pesanan"} />
+            <Header headerTitle={"Daftar Transaksi"} />
           </div>
-          <div className="bg-white mx-6 mt-6 mb-2 px-6 py-2 flex justify-between">
+          <div className="bg-white mx-6 mt-6 mb-2 px-6 py-2 flex justify-between rounded-md">
             <div>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Cari Infoice"
-                  className="w-64 py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                />
+              <div className="flex gap-3">
                 <button
-                  className="bg-[#253E8D] text-white rounded-md py-2 px-3 ml-2"
-                  onClick={handleSearch}
+                  className={`bg-[#253E8D] text-white px-4 py-2 rounded-lg ${
+                    selectedStatus === "Semua" ? "bg-blue-600" : ""
+                  }`}
+                  onClick={() => handleStatusFilter("Semua")}
                 >
-                  Cari
+                  Semua
+                </button>
+                <button
+                  className={`bg-[#253E8D] text-white px-4 py-2 rounded-lg ${
+                    selectedStatus === "Dibayar" ? "bg-blue-600" : ""
+                  }`}
+                  onClick={() => handleStatusFilter("Dibayar")}
+                >
+                  Dibayar
+                </button>
+                <button
+                  className={`bg-[#253E8D] text-white px-4 py-2 rounded-lg ${
+                    selectedStatus === "Tertunda" ? "bg-blue-600" : ""
+                  }`}
+                  onClick={() => handleStatusFilter("Tertunda")}
+                >
+                  Tertunda
+                </button>
+                <button
+                  className={`bg-[#253E8D] text-white px-4 py-2 rounded-lg ${
+                    selectedStatus === "Dibatalkan" ? "bg-blue-600" : ""
+                  }`}
+                  onClick={() => handleStatusFilter("Dibatalkan")}
+                >
+                  Dibatalkan
                 </button>
               </div>
             </div>
@@ -133,10 +151,13 @@ const DaftarPesanan = () => {
                   Tanggal
                 </th>
                 <th className="text-left border-t-2 border-b-2 px-4 py-2">
-                  Nama Pelanggan
+                  Usename
                 </th>
                 <th className="text-left border-t-2 border-b-2 px-4 py-2">
-                  Pembayaran
+                  Kategori
+                </th>
+                <th className="text-left border-t-2 border-b-2 px-4 py-2">
+                  Total Transaksi
                 </th>
                 <th className="text-left border-t-2 border-b-2 px-4 py-2">
                   Status
@@ -152,48 +173,37 @@ const DaftarPesanan = () => {
                       {item.id}
                     </td>
                     <td className="border-t-2 border-b-2 px-4 py-3">
-                      {formatDate(item.tanggal)}
+                      {formatDate(item.createdAt)}
                     </td>
                     <td className="border-t-2 border-b-2 px-4 py-3">
-                      {item.nama_pelanggan}
+                      {item.username}
                     </td>
                     <td
-                      className={`border-t-2 border-b-2 px-4 py-3 font-semibold ${
-                        item.pembayaran === "Gagal"
-                          ? "text-red-500"
-                          : item.pembayaran === "Dibayar"
-                          ? "text-green-500"
-                          : item.pembayaran === "Dibatalkan"
-                          ? "text-orange-500"
-                          : item.pembayaran === "Tertunda"
-                          ? "text-blue-400"
-                          : ""
-                      }`}
+                      className={
+                        "border-t-2 border-b-2 px-4 py-3 font-semibold"
+                      }
                     >
-                      {item.pembayaran}
+                      {item.category}
+                    </td>
+                    <td className="border-t-2 border-b-2 px-4 py-3">
+                      {item.total_transaction}
                     </td>
                     <td className="text-white border-t-2 border-b-2 px-4 py-3 font-semibold">
                       <p
                         className={`block w-fit text-white px-1 py-0 rounded-lg ${
-                          item.status === "Tidak Dikirim"
+                          item.status === "dibatalkan"
                             ? "bg-red-500"
-                            : item.status === "Dikirim"
+                            : item.status === "dibayar"
                             ? "bg-green-500"
-                            : item.status === "Dikemas"
+                            : item.status === "tertunda"
                             ? "bg-orange-500"
-                            : item.status === "Siap Diambil"
-                            ? "bg-blue-400"
                             : ""
                         }`}
                       >
                         {item.status}
                       </p>
                     </td>
-
                     <td className="border-t-2 border-b-2 px-4 py-3 font-semibold flex items-center gap-2 text-gray-500">
-
-                      {/* <InfoIcon /> */}
-
                       <button onClick={() => handleDelete(item.id)}>
                         <DeleteOutlineIcon />
                       </button>
