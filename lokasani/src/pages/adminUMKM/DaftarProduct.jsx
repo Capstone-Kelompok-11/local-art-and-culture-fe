@@ -12,17 +12,16 @@ const DaftarProduct = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 10;
     const [products, setProducts] = useState([]);
+    const [statusFilter, setStatusFilter] = useState('all');
+    const [categoryFilter, setCategoryFilter] = useState('all');
+    const [stockFilter, setStockFilter] = useState('all');
+    const [searchTerm, setSearchTerm] = useState('');
 
     const fetchProducts = async () => {
         try {
-            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjozOCwiZXhwIjoxNzAyMDI0NTAxLCJpZCI6MzgsIm5hbWUiOiJmYXR1ckBnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsInJvbGVfaWQiOjB9.rY5sjQpPeeACYyEiSu71470S6Oh6OBQ57tIRorYjKWI"
-            const response = await axios.get('https://lokasani.my.id/product', {
-                headers: {
-                    Authorization:`Bearer ${token}`
-                }
-            })
-            setProducts(response.data.data.data);
-            console.log(response.data.data.data)
+            const response = await axios.get('https://657bab26394ca9e4af1498ba.mockapi.io/product')
+            setProducts(response.data);
+            console.log(response.data)
         } catch (error) {
             console.error('Terjadi kesalahan:', error);
         }
@@ -45,12 +44,7 @@ const DaftarProduct = () => {
     
         if (confirmation.isConfirmed) {
             try {
-                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdG9yX2lkIjozOCwiZXhwIjoxNzAyMDI0NTAxLCJpZCI6MzgsIm5hbWUiOiJmYXR1ckBnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsInJvbGVfaWQiOjB9.rY5sjQpPeeACYyEiSu71470S6Oh6OBQ57tIRorYjKWI"
-                await axios.delete(`https://lokasani.my.id/product/${productId}`, {
-                    headers: {
-                        Authorization:`Bearer ${token}`
-                    }
-                });
+                await axios.delete(`https://657bab26394ca9e4af1498ba.mockapi.io/product/${productId}`);
                 fetchProducts();
                 await Swal.fire('Deleted!', 'data berhasil dihapus', 'success');
             } catch (error) {
@@ -59,15 +53,38 @@ const DaftarProduct = () => {
             }
         }
     };
+
+    const filteredProducts = products.filter((item) => {
+        const filterByStatus = statusFilter === 'all' || item.status === statusFilter;
+        const filterByCategory = categoryFilter === 'all' || item.category === categoryFilter;
+        const filterByStock = stockFilter === 'all' || (stockFilter === 'true' ? item.stock : !item.stock);
+        const filterBySearch = searchTerm.length === 0 || item.name.toLowerCase().includes(searchTerm.toLowerCase());
+        return filterByStatus && filterByCategory && filterByStock && filterBySearch;
+    });
+    
     
 
     const offset = currentPage * itemsPerPage;
-    const currentItems = products.slice(offset, offset + itemsPerPage);
-
-    const totalPages = Math.ceil(products.length / itemsPerPage);
+    const currentItems = filteredProducts.slice(offset, offset + itemsPerPage);
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
+    };
+
+    const handleStatusChange = (e) => {
+        setStatusFilter(e.target.value);
+        setCurrentPage(0);
+    };
+
+    const handleCategoryChange = (e) => {
+        setCategoryFilter(e.target.value);
+        setCurrentPage(0);
+    };
+
+    const handleStockChange = (e) => {
+        setStockFilter(e.target.value);
+        setCurrentPage(0);
     };
 
     return (
@@ -88,18 +105,24 @@ const DaftarProduct = () => {
                             <div className="flex justify-between gap-6 mb-5">
                                 <select 
                                     className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
-                                    name="status" 
+                                    name="status"
                                     id="status"
+                                    onChange={handleStatusChange}
+                                    value={statusFilter}
                                 >
+                                    <option value="all">Semua</option>
                                     <option value="diunggah">Diunggah</option>
                                     <option value="dijadwalkan">Dijadwalkan</option>
                                     <option value="tidak aktif">Tidak Aktif</option>
                                 </select>
                                 <select 
                                     className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
-                                    name="kategori" 
+                                    name="kategori"
                                     id="kategori"
+                                    onChange={handleCategoryChange}
+                                    value={categoryFilter}
                                 >
+                                    <option value="all">Semua</option>
                                     <option value="handmade">Handmade</option>
                                     <option value="fashion">Fashion</option>
                                     <option value="buku">Buku</option>
@@ -107,11 +130,14 @@ const DaftarProduct = () => {
                                 </select>
                                 <select 
                                     className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
-                                    name="stok" 
+                                    name="stok"
                                     id="stok"
+                                    onChange={handleStockChange}
+                                    value={stockFilter}
                                 >
-                                    <option value="tersedia">Tersedia</option>
-                                    <option value="tidak tersedia">Tidak Tersedia</option>
+                                    <option value="all">Semua</option>
+                                    <option value="true">Tersedia</option>
+                                    <option value="false">Tidak Tersedia</option>
                                 </select>
                             </div>
                             <div className="flex justify-between">
@@ -120,10 +146,12 @@ const DaftarProduct = () => {
                                         type="text"
                                         placeholder="Cari Produk"
                                         className="w-64 py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
                                     />
-                                </div>
+                                </div> 
                                 <div>
-                                    <button className="bg-[#253E8D] text-white rounded-md py-2 px-3">Tambah Product</button>
+                                    <a href="/adminumkm/tambahproduct" className="bg-[#253E8D] text-white rounded-md py-2 px-3">Tambah Product</a>
                                 </div>
                             </div>
                         </div>
@@ -145,14 +173,14 @@ const DaftarProduct = () => {
                                         <tr key={item.id}>
                                             <td className="border-t-2 border-b-2 px-4 py-2">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-10 h-10 bg-[#253E8D] rounded-lg"></div>
+                                                    <img src={item.image} className="w-10 h-10 object-cover rounded-lg"></img>
                                                     <div>
                                                         <p className="font-semibold">{item.name}</p>
                                                         <p className="font-light text-sm">{item.description}</p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.category.category}</td>
+                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.category}</td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">
                                                 {item.stock ? (
                                                     <label
@@ -175,8 +203,22 @@ const DaftarProduct = () => {
                                                 )}
                                             </td>
                                             <td className="border-t-2 border-b-2 px-4 py-2">{item.price}</td>
-                                            <td className="border-t-2 border-b-2 px-4 py-2"></td>
-                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.status}</td>
+                                            <td className="border-t-2 border-b-2 px-4 py-2">{item.total_product}</td>
+                                            <td className="border-t-2 border-b-2 px-4 py-2">
+                                                <p
+                                                    className={`block w-fit text-white px-3 py-1 rounded-lg ${
+                                                    item.status === "tidak aktif"
+                                                        ? "bg-[#b3c7f9]"
+                                                        : item.status === "dijadwalkan"
+                                                        ? "bg-yellow-500"
+                                                        : item.status === "diunggah"
+                                                        ? "bg-[#267360]"
+                                                        : "text-black"
+                                                    }`}
+                                                >
+                                                    {item.status}
+                                                </p>
+                                            </td>
                                             <td className="border-t-2 border-b-2 px-4 py-2 cursor-pointer">
                                                 <button onClick={() => handleDeleteProduct(item.id)}>
                                                     <DeleteOutlineIcon/>

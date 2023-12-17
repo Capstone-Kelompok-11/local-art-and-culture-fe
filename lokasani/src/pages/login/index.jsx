@@ -4,12 +4,21 @@ import {useNavigate} from "react-router-dom"
 import bgLogin from "../../assets/img/bg-login.png";
 import googleIcon from "../../assets/icon/google-icon.png";
 import lokasaniLogo from "../../assets/img/lokasani-logo.png";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const Login = () => {
   const navigate = useNavigate();
   const [isTetapMasukChecked, setIsTetapMasukChecked] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] =useState("false")
+  const [error, setError] = useState("")
+  const [isLoading, setIsloading] = useState(false)
+
+  const togglePasswordViibility = () => {
+    setShowPassword(!showPassword);
+  }
 
   const handleTetapMasukChange = () => {
     setIsTetapMasukChecked(!isTetapMasukChecked);
@@ -19,14 +28,14 @@ const Login = () => {
     event.preventDefault();
     console.log("submitting login request...")
     try {
-      console.log(`email ${email}, password ${password}`)
+      setIsloading(true)
       const response = await axios.post('https://lokasani.my.id/admin/login', {
         email: email,
         password: password
       });
       const token = response.data.data.token
       localStorage.setItem('token', token);
-
+      
       const userRole = response.data.data.role.role.toLowerCase();
       if ( userRole == "product creator" ) {
         navigate("/adminumkm")
@@ -35,9 +44,11 @@ const Login = () => {
       }else {
         navigate("/superadmin/homesuperadmin")
       }
+      setIsloading(false)
 
     } catch (error) {
-      console.error('Terjadi kesalahan:', error.response.data);
+      setError(error.response.data.message)
+      setIsloading(false)
     }
   };
   return (
@@ -78,16 +89,30 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-                <div className="mb-[42px]">
+                <div className="mb-8">
                   <label className="block font-semibold text-[#768DD5]" htmlFor="password">Password</label>
-                  <input
-                    className="p-3 w-full rounded-lg bg-[#F2F2F2] focus:outline-none"
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
+                  <div className='flex justify-between relative'>
+                    <input
+                      className="p-3 w-full rounded-lg bg-[#F2F2F2] focus:outline-none"
+                      id="password"
+                      type={showPassword ? "password" : "text"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <div onClick={togglePasswordViibility} className="absolute right-0 py-3 px-4">
+                      {showPassword
+                        ? <VisibilityOffIcon fontSize="medium" className="text-gray-600"/>
+                        : <VisibilityIcon fontSize="medium" className="text-gray-600"/> 
+                      }
+                    </div>
+                  </div>
                 </div>
+                {error && 
+                  <div className="flex justify-center mb-5">
+                    <p className="text-white w-fit block px-5 py-1 bg-red-400 rounded-lg">{error}</p>
+                  </div>
+                }
+                
                 <div className="flex items-center mb-2">
                   <input
                     id="tetapMasuk"
@@ -108,7 +133,12 @@ const Login = () => {
                   </label>
                   <span className="text-gray-700 text-lg">Biarkan saya tetap masuk</span>
                 </div>
-                <button className="w-full p-3 rounded-full text-white text-xl font-semibold bg-[#3653B0]" type="submit">Login</button>
+                <button className={`w-full p-3 rounded-full text-white text-xl font-semibold ${isLoading ? "bg-blue-400" : "bg-[#3653B0]"} `} type="submit">
+                  {isLoading ?
+                    "Tunggu Sebentar"
+                    : "Login"
+                  }
+                </button>
               </form>
             </div>
             <div className="text-center">

@@ -1,11 +1,77 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
 import InformasiProduct from "../../component/adminUMKM/product/InformasiProduct";
 import Harga from "../../component/adminUMKM/product/Harga";
-import Varian from "../../component/adminUMKM/product/Varian";
+// import Varian from "../../component/adminUMKM/product/Varian";
 import Media from "../../component/adminUMKM/product/Media";
 
-const Product = () => {
+const TambahProduct = () => {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [formDataProduct, setFormDataProduct] = useState({
+    name: "",
+    category: "",
+    total_product: "",
+    description: "",
+    price: "",
+    stock: false,
+    image: "",
+    status: ""
+  })
+
+  const handleFormChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const newValue = type === "checkbox" ? checked : value;
+
+    setFormDataProduct({
+      ...formDataProduct,
+      [name]: newValue
+    });
+  };
+
+  const postDataProduct = async (status) => {
+    try {
+      setIsLoading(true)
+      const dataToSend = {
+        ...formDataProduct,
+        status: status
+      };
+  
+      const response = await axios.post('https://657bab26394ca9e4af1498ba.mockapi.io/product', dataToSend);
+      console.log('Data berhasil dipost:', response.data);
+      setFormDataProduct({
+        name: "",
+        category: "",
+        total_product: "",
+        description: "",
+        price: "",
+        stock: false,
+        image: "",
+        status: ""
+      });
+      setIsLoading(false);
+      navigate("/adminumkm/daftarproduct")
+    } catch (error) {
+      console.error('Terjadi kesalahan saat posting data:', error);
+      setIsLoading(false)
+    }
+  };
+
+  const handleResetForm = () => {
+    setFormDataProduct({
+      name: "",
+      category: "",
+      total_product: "",
+      description: "",
+      price: "",
+      stock: false,
+      image: "",
+      status: ""
+    });
+  }
 
   return (
     <div className="bg-[#F2F2F2]">
@@ -27,32 +93,60 @@ const Product = () => {
               </p>
             </div>
             <div className="flex justify-end items-center gap-3 w-full">
-              <button className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3 ">
-                Simpan
-              </button>
-              <button className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3">
+              <button 
+                onClick={handleResetForm} 
+                className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3"
+              >
                 Batalkan
               </button>
-              <button className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3">
-                Unggah Produk
+              <button 
+                onClick={() => postDataProduct("dijadwalkan")}
+                className={`border border-slate-200 ${isLoading ? "bg-blue-400" : "bg-[#253E8D]"}  text-white rounded-md py-2 px-3`}
+              >
+                { isLoading ?
+                  "Menyimpan"
+                  : "Simpan"
+                }
+              </button>
+              <button 
+                onClick={() => postDataProduct("diunggah")} 
+                className={`border border-slate-200 ${isLoading ? "bg-blue-400" : "bg-[#253E8D]"}  text-white rounded-md py-2 px-3`}
+              >
+                {isLoading ?
+                  "Mengunggah"
+                  : "Unggah Product"
+                }
               </button>
             </div>
           </div>
           <div className="px-6 w-full flex gap-6">
             <div className="w-3/5">
               <div className="w-full">
-                <InformasiProduct />
+                <InformasiProduct 
+                  valueName={formDataProduct.name}
+                  valueKategori={formDataProduct.category}
+                  valueJumlah={formDataProduct.total_product}
+                  valueDeskripsi={formDataProduct.description}
+                  handleFormChange={handleFormChange}
+                />
               </div>
               <div className="w-full">
-                <Media/>
+                <Media
+                  valueImageURL={formDataProduct.image}
+                  handleImageURLChange={handleFormChange}
+                />
               </div>
-              <div className="w-full">
+              {/* <div className="w-full">
                 <Varian/>
-              </div>
+              </div> */}
             </div>
             <div className="w-2/5">
               <div className="w-full">
-                <Harga />
+                <Harga 
+                  valueHarga={formDataProduct.price}
+                  valueStok={formDataProduct.stock}
+                  handleFormChange={handleFormChange}
+                />
               </div>
             </div>
           </div>
@@ -62,4 +156,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default TambahProduct;
