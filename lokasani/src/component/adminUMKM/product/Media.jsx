@@ -3,7 +3,7 @@ import PopupInputImage from "./PopupInputImage";
 import cameraSearch from "../../../assets/img/camera-search.png"
 
 // eslint-disable-next-line react/prop-types
-const Media = ({valueImageURL}) => {
+const Media = ({valueImageURL, handleImageURLChange}) => {
     const [imagePreview, setImagePreview] = useState(null);
     const [isPopupImageOpen, setIsPopupImageOpen] = useState(false);
 
@@ -52,6 +52,7 @@ const Media = ({valueImageURL}) => {
                         <PopupInputImage
                             onClose={() => setIsPopupImageOpen(false)}
                             valueImageURL={valueImageURL}
+                            handleImageURLChange={handleImageURLChange}
                         />
                     )}
                 </div>

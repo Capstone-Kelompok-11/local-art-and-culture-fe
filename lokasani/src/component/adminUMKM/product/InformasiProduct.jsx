@@ -2,7 +2,7 @@
 // import PopupInputCSV from "./PopupInputCSV";
 
 // eslint-disable-next-line react/prop-types
-const InformasiProduct = ({valueName,valueKategori,valueJumlah,valueDeskripsi}) => {
+const InformasiProduct = ({valueName, valueKategori, valueJumlah, valueDeskripsi, handleFormChange}) => {
   // const [isPopupCSVOpen, setIsPopupCSVOpen] = useState(false);
 
   // const handlePopupUploadCSV = () => {
@@ -36,8 +36,9 @@ const InformasiProduct = ({valueName,valueKategori,valueJumlah,valueDeskripsi}) 
         <input
           type="text"
           id="productName"
-          name="productName"
+          name="name"
           value={valueName}
+          onChange={handleFormChange}
           className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
         />
       </div>
@@ -47,8 +48,11 @@ const InformasiProduct = ({valueName,valueKategori,valueJumlah,valueDeskripsi}) 
             <label className="font-semibold text-base" htmlFor="sku">Kategori</label>
           </div>
           <select 
-            className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none" name="kategori" id="kategori"
+            className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none" 
+            name="category" 
+            id="kategori"
             value={valueKategori}
+            onChange={handleFormChange}
           >
             <option value="handmade">HandMade</option>
             <option value="fashion">Fashion</option>
@@ -58,14 +62,15 @@ const InformasiProduct = ({valueName,valueKategori,valueJumlah,valueDeskripsi}) 
         </div>
         <div className="w-full">
           <div className="mb-2">
-            <label className="font-semibold text-base" htmlFor="kodeBatang">Jumlah Product</label>
+            <label className="font-semibold text-base" htmlFor="jumlah">Jumlah Product</label>
           </div>
           <input
             type="text"
-            name="kodeBatang"
+            name="total_product"
             placeholder="5"
             className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
             value={valueJumlah}
+            onChange={handleFormChange}
           />
         </div>
       </div>
@@ -74,11 +79,12 @@ const InformasiProduct = ({valueName,valueKategori,valueJumlah,valueDeskripsi}) 
             <label className="font-semibold text-base" htmlFor="deskripsi">Deskripsi Product</label>
           </div>
           <textarea
-            name="deskripsi" 
+            name="description" 
             id="deskrisi"
             rows="7"
             className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none overflow-auto"
             value={valueDeskripsi}
+            onChange={handleFormChange}
           >
           </textarea>
       </div>

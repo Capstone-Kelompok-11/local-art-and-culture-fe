@@ -2,7 +2,7 @@ import { useState } from "react";
 import imageSearching from "../../../assets/img/image-searching.png";
 
 // eslint-disable-next-line react/prop-types
-const PopupInputImage = ({ onClose, valueImageURL }) => {
+const PopupInputImage = ({ onClose, valueImageURL, handleImageURLChange  }) => {
     const [imagePreview, setImagePreview] = useState(null);
 
     const handleFileChange = (event) => {
@@ -75,11 +75,13 @@ const PopupInputImage = ({ onClose, valueImageURL }) => {
                     <div>
                         <h3 className="font-semibold">Atau tambahkan dari URL</h3>
                         <div className="mt-2 flex gap-3">
-                            <input 
+                            <input
+                                name="image"
                                 className="w-7/12 px-4 py-2 rounded-lg border-2 focus:outline-none" 
                                 type="text" 
                                 placeholder="https://lokasani..."
                                 value={valueImageURL}
+                                onChange={handleImageURLChange}
                             />
                             <button className="w-5/12 px-4 py-2 rounded-lg focus:outline-none text-white bg-[#253E8D]">Tambahkan</button>
                         </div>

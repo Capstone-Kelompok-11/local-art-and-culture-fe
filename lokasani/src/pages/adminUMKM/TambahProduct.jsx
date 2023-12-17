@@ -8,33 +8,58 @@ import Harga from "../../component/adminUMKM/product/Harga";
 import Media from "../../component/adminUMKM/product/Media";
 
 const Product = () => {
-  // const [productName, setProductName] = useState("");
-  // const [productCategory, setProductCategory] = useState("");
-  // const [productJumlah, setProductJumlah] = useState("");
-  // const [productDescription, setProductDescription] = useState("");
-  // const [productHarga, setProductHarga] = useState("");
-  // const [productStok, setProductStok] = useState("");
-
   const [formDataProduct, setFormDataProduct] = useState({
-    productName: "",
-    productCategory: "",
-    productJumlah: "",
-    productDescription: "",
-    productHarga: "",
-    productStok: false,
-    productImageURL: "",
-    productStatus: ""
+    name: "",
+    category: "",
+    total_product: "",
+    description: "",
+    price: "",
+    stock: false,
+    image: "",
+    status: ""
   })
+
+  const handleFormChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const newValue = type === "checkbox" ? checked : value;
+
+    setFormDataProduct({
+      ...formDataProduct,
+      [name]: newValue
+    });
+  };
 
   const postDataProduct = async () => {
     try {
       const response = await axios.post('https://657bab26394ca9e4af1498ba.mockapi.io/product', formDataProduct);
-
       console.log('Data berhasil dipost:', response.data);
+      setFormDataProduct({
+        name: "",
+        category: "",
+        total_product: "",
+        description: "",
+        price: "",
+        stock: false,
+        image: "",
+        status: ""
+      });
     } catch (error) {
       console.error('Terjadi kesalahan saat posting data:', error);
     }
   };
+
+  const handleResetForm = () => {
+    setFormDataProduct({
+      name: "",
+      category: "",
+      total_product: "",
+      description: "",
+      price: "",
+      stock: false,
+      image: "",
+      status: ""
+    });
+  }
 
   return (
     <div className="bg-[#F2F2F2]">
@@ -59,10 +84,10 @@ const Product = () => {
               <button className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3 ">
                 Simpan
               </button>
-              <button className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3">
+              <button onClick={handleResetForm} className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3">
                 Batalkan
               </button>
-              <button className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3">
+              <button onClick={postDataProduct} className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3">
                 Unggah Produk
               </button>
             </div>
@@ -71,15 +96,17 @@ const Product = () => {
             <div className="w-3/5">
               <div className="w-full">
                 <InformasiProduct 
-                  valueName={formDataProduct.productName}
-                  valueKategori={formDataProduct.productCategory}
-                  valueJumlah={formDataProduct.productJumlah}
-                  valueDeskripsi={formDataProduct.productDescription}
+                  valueName={formDataProduct.name}
+                  valueKategori={formDataProduct.category}
+                  valueJumlah={formDataProduct.total_product}
+                  valueDeskripsi={formDataProduct.description}
+                  handleFormChange={handleFormChange}
                 />
               </div>
               <div className="w-full">
                 <Media
-                  valueImageURL={formDataProduct.productImageURL}
+                  valueImageURL={formDataProduct.image}
+                  handleImageURLChange={handleFormChange}
                 />
               </div>
               {/* <div className="w-full">
@@ -89,8 +116,9 @@ const Product = () => {
             <div className="w-2/5">
               <div className="w-full">
                 <Harga 
-                  valueHarga={formDataProduct.productHarga}
-                  valueStok={formDataProduct.productStok}
+                  valueHarga={formDataProduct.price}
+                  valueStok={formDataProduct.stock}
+                  handleFormChange={handleFormChange}
                 />
               </div>
             </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-const Harga = ({valueHarga, valueStok}) => {
+const Harga = ({valueHarga, valueStok, handleFormChange}) => {
   const [isButtonStoctChecked, setIsButtonStockChecked] = useState(false);
 
   const handleToggleButtonStock = () => {
@@ -22,10 +22,11 @@ const Harga = ({valueHarga, valueStok}) => {
         <input
           type="text"
           id="harga"
-          name="harga"
+          name="price"
           placeholder="Harga Awal"
           className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
           value={valueHarga}
+          onChange={handleFormChange}
         />
       </div>
       <div>
@@ -43,12 +44,16 @@ const Harga = ({valueHarga, valueStok}) => {
           ></div>
           </label>
           <input
+            name="stock"
             id="buttonStock"
             type="checkbox"
             className="hidden"
             value={valueStok}
             checked={isButtonStoctChecked}
-            onChange={handleToggleButtonStock}
+            onChange={(e) => {
+              handleToggleButtonStock();
+              handleFormChange(e);
+            }}
           />
           </div>
         </div>
