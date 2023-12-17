@@ -77,13 +77,12 @@ const PopupInputImage = ({ onClose, valueImageURL, handleImageURLChange  }) => {
                         <div className="mt-2 flex gap-3">
                             <input
                                 name="image"
-                                className="w-7/12 px-4 py-2 rounded-lg border-2 focus:outline-none" 
+                                className="w-full px-4 py-2 rounded-lg border-2 focus:outline-none" 
                                 type="text" 
                                 placeholder="https://lokasani..."
                                 value={valueImageURL}
                                 onChange={handleImageURLChange}
                             />
-                            <button className="w-5/12 px-4 py-2 rounded-lg focus:outline-none text-white bg-[#253E8D]">Tambahkan</button>
                         </div>
                     </div>
                 </div>

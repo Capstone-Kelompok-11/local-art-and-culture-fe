@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
@@ -8,6 +9,8 @@ import Harga from "../../component/adminUMKM/product/Harga";
 import Media from "../../component/adminUMKM/product/Media";
 
 const TambahProduct = () => {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [formDataProduct, setFormDataProduct] = useState({
     name: "",
     category: "",
@@ -31,6 +34,7 @@ const TambahProduct = () => {
 
   const postDataProduct = async (status) => {
     try {
+      setIsLoading(true)
       const dataToSend = {
         ...formDataProduct,
         status: status
@@ -48,8 +52,11 @@ const TambahProduct = () => {
         image: "",
         status: ""
       });
+      setIsLoading(false);
+      navigate("/adminumkm/daftarproduct")
     } catch (error) {
       console.error('Terjadi kesalahan saat posting data:', error);
+      setIsLoading(false)
     }
   };
 
@@ -87,22 +94,28 @@ const TambahProduct = () => {
             </div>
             <div className="flex justify-end items-center gap-3 w-full">
               <button 
-                onClick={() => postDataProduct("dijadwalkan")}
-                className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3 "
-              >
-                Simpan
-              </button>
-              <button 
                 onClick={handleResetForm} 
                 className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3"
               >
                 Batalkan
               </button>
               <button 
-                onClick={() => postDataProduct("diunggah")} 
-                className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3"
+                onClick={() => postDataProduct("dijadwalkan")}
+                className={`border border-slate-200 ${isLoading ? "bg-blue-400" : "bg-[#253E8D]"}  text-white rounded-md py-2 px-3`}
               >
-                Unggah Produk
+                { isLoading ?
+                  "Menyimpan"
+                  : "Simpan"
+                }
+              </button>
+              <button 
+                onClick={() => postDataProduct("diunggah")} 
+                className={`border border-slate-200 ${isLoading ? "bg-blue-400" : "bg-[#253E8D]"}  text-white rounded-md py-2 px-3`}
+              >
+                {isLoading ?
+                  "Mengunggah"
+                  : "Unggah Product"
+                }
               </button>
             </div>
           </div>
