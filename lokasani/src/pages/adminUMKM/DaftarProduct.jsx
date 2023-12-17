@@ -87,14 +87,6 @@ const DaftarProduct = () => {
         setCurrentPage(0);
     };
 
-    const handleResetFilter = () => {
-        setStatusFilter('all');
-        setCategoryFilter('all');
-        setStockFilter('all');
-        setCurrentPage(0);
-        fetchProducts();
-    };
-
     return (
         <div className="bg-[#F2F2F2]">
             <div className="flex">
@@ -147,7 +139,6 @@ const DaftarProduct = () => {
                                     <option value="true">Tersedia</option>
                                     <option value="false">Tidak Tersedia</option>
                                 </select>
-                                <button onClick={handleResetFilter} className="bg-blue-400 text-white rounded-md py-1 px-3">Reset</button>
                             </div>
                             <div className="flex justify-between">
                                 <div>
