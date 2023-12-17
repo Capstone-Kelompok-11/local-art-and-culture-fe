@@ -4,6 +4,10 @@ import AdminEvent from './pages/adminEvent/Index'
 import Transaksi from './pages/adminEvent/transaksi'
 import MyEvent from './pages/adminEvent/myevent'
 import Payout from './pages/adminEvent/payout'
+import Marchandise from './pages/adminEvent/marchandise'
+import PengunjungTable from './component/adminEvent/tabelpengunjung'
+import TiketTerjualTable from './component/adminEvent/tabelterjual'
+import MerchTable from './component/adminEvent/tabelmerch'
 import NewEvent from "./pages/adminEvent/newevent";
 import DraftEvent from "./pages/adminEvent/draftevent";
 import Chat from "./pages/adminEvent/chat";
@@ -45,6 +49,10 @@ function App() {
         <Route element={<DaftarAdminUmkm/>} path='/superadmin/daftarAdminUmkm'/>
         <Route element={<DaftarPengguna/>} path='/superadmin/daftarPengguna'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
+        <Route element= {<Marchandise/>} path='/adminevent/marchandise'/>
+        <Route element= {<PengunjungTable/>} path='/adminevent/tabelpengunjung'/>
+        <Route element= {<TiketTerjualTable/>} path='/adminevent/tabelterjual'/>
+        <Route element= {<MerchTable/>} path='/adminevent/tabelmerch'/>
         <Route element={<DraftEvent/>} path='/adminevent/draft'/>
         <Route element={<EditEvent/>} path='/adminevent/editevent'/>
         <Route element ={<Transaksi/>} path='/adminevent/transaksi'/>
