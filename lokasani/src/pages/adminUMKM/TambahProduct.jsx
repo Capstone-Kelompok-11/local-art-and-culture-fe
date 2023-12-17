@@ -29,9 +29,14 @@ const Product = () => {
     });
   };
 
-  const postDataProduct = async () => {
+  const postDataProduct = async (status) => {
     try {
-      const response = await axios.post('https://657bab26394ca9e4af1498ba.mockapi.io/product', formDataProduct);
+      const dataToSend = {
+        ...formDataProduct,
+        status: status
+      };
+  
+      const response = await axios.post('https://657bab26394ca9e4af1498ba.mockapi.io/product', dataToSend);
       console.log('Data berhasil dipost:', response.data);
       setFormDataProduct({
         name: "",
@@ -81,13 +86,22 @@ const Product = () => {
               </p>
             </div>
             <div className="flex justify-end items-center gap-3 w-full">
-              <button className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3 ">
+              <button 
+                onClick={() => postDataProduct("dijadwalkan")}
+                className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3 "
+              >
                 Simpan
               </button>
-              <button onClick={handleResetForm} className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3">
+              <button 
+                onClick={handleResetForm} 
+                className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3"
+              >
                 Batalkan
               </button>
-              <button onClick={postDataProduct} className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3">
+              <button 
+                onClick={() => postDataProduct("diunggah")} 
+                className=" border border-slate-200 bg-[#253E8D] text-white rounded-md py-2 px-3"
+              >
                 Unggah Produk
               </button>
             </div>
