@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
@@ -17,6 +20,7 @@ import Ticket from "../../component/adminEvent/addNewEvent/Ticket";
 import CloseIcon from "@mui/icons-material/Close";
 
 function NewEvent() {
+  const navigate = useNavigate();
   // function poster
   const [poster, setPoster] = useState(null);
   const [posterPreview, setPosterPreview] = useState(null);
@@ -69,10 +73,10 @@ function NewEvent() {
   const handleGuestUpload = (event) => {
     event.preventDefault();
     setIsPopupGuestOpen(false);
-    // setGuest([
-    //   ...guest,
-    //   { name: nameGuest, job: jobGuest, image: imageGuestPreview },
-    // ]);
+    setGuest([
+      ...guest,
+      { name: nameGuest, job: jobGuest, image: imageGuestPreview },
+    ]);
     setNameGuest("");
     setJobGuest("");
     setImageGuestPreview(null);
@@ -137,10 +141,19 @@ function NewEvent() {
   const [isPopupDenahOpen, setIsPopupDenahOpen] = useState(false);
   const handleDenahUpload = (event) => {
     setIsPopupDenahOpen(false);
-    console.log(denah);
   };
   const handlePopupUploadDenah = () => {
     setIsPopupDenahOpen(true);
+  };
+  const handleDenahChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setDenah(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   // function Tambah Tiket
@@ -188,7 +201,6 @@ function NewEvent() {
       endTime: "",
     });
     setIsPopupAddTiketOpen(false);
-    console.log(tiket);
   };
   const handleDeleteTiket = (index) => {
     setTiket((prevData) => prevData.filter((_, i) => i !== index));
@@ -207,14 +219,6 @@ function NewEvent() {
   };
   const handlePopupUploadImportFile = () => {
     setIsPopupImportFileOpen(true);
-  };
-
-  const [poster1, setPoster1] = useState(null);
-
-  const handlePosterUpload1 = (event) => {
-    const file = event.target.files[0];
-
-    setPoster1(file);
   };
 
   const [eventName, setEventName] = useState("");
@@ -264,7 +268,6 @@ function NewEvent() {
 
   // fungsi gomaps
   const [showGoogleMaps, setShowGoogleMaps] = useState(false);
-
   const [selectedOption, setSelectedOption] = useState(null);
 
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -278,6 +281,51 @@ function NewEvent() {
     } else {
       setSelectedOptions([...selectedOptions, option]);
     }
+  };
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const newData = {
+      tanggal_diajukan: "",
+      status: "pending",
+      name: eventName,
+      jenis_event: eventType,
+      deskirpsi: eventDescription,
+      poster: poster,
+      denah: denah,
+      nama_venue: namaDescription,
+      alamat_venue: alamatDescription,
+      start_date: startDate,
+      end_date: endDate,
+      start_time: startTime,
+      end_time: endDate,
+      guest: guest,
+      tiket: tiket,
+      merch: merchSection,
+    };
+    try {
+      const response = await axios.post(
+        "https://657c05c8394ca9e4af153c42.mockapi.io/draftevent",
+        newData
+      );
+
+      if (response.status === 201) {
+        Swal.fire({
+          icon: "success",
+          title: "Berhasil Menambah Event",
+          confirmButtonText: "OK",
+        });
+        console.log("Data berhasil ditambahkan:", response.data);
+        navigate("/adminevent/");
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal Registrasi",
+        confirmButtonText: "OK",
+      });
+    }
+    console.log(newData);
   };
 
   return (
@@ -310,6 +358,7 @@ function NewEvent() {
           </div>
         </div>
         {/* header end */}
+
         {/* content start */}
         <div className="bg-gray-200 pl-3 pr-3">
           <div className="grid grid-cols-1 gap-1 p-2">
@@ -320,6 +369,7 @@ function NewEvent() {
               <span className="text-[#999999] ml-4">
                 Masukkan detail event-mu di sini!
               </span>
+
               <div className="flex items-center space-x-8 justify-center">
                 {/* Kolom Unggah */}
                 <div className="border-dashed border-2 w-1/2 h-[300px] border-gray-400 p-8 rounded-md aspect-w-1 aspect-h-1">
@@ -480,7 +530,7 @@ function NewEvent() {
               <span className="text-[#999999] text-sm ml-3 mt-5">
                 Jabarkan lokasi event Anda di sini!
               </span>
-              <div className="mt-3 p-3">
+              {/* <div className="mt-3 p-3">
                 <img src={imageGmaps} alt="Maps" />
               </div>
               <div className="flex justify-center">
@@ -489,57 +539,57 @@ function NewEvent() {
                   className="mt-2 mx-auto cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 rounded-full w-11/12"
                 >
                   + Unggah Link Venue (Gomaps)
-                </button>
+                </button> */}
 
-                {/* popup Gmaps start */}
-                {isPopupGmapsOpen && (
-                  <div>
-                    <div className="fixed inset-0 flex items-center justify-center z-40">
-                      <div
-                        className="absolute inset-0 bg-gray-800 opacity-50"
-                        onClick={() => setIsPopupGmapsOpen(false)}
-                      ></div>
-                      <div className="w-6/12 bg-white p-4 rounded-lg z-50">
-                        <h1 className="text-2xl px-5 mt-3 font-semibold mb-3 pb-2 border-b-2">
-                          Unggah Link Lokasi Gmaps
-                        </h1>
-                        <div className="mx-auto mt-3 flex items-center justify-center rounded-lg text-center w-[600px] h-[222px] border-dashed border-[#828282]">
-                          <label className="text-[#828282] text-sm">
-                            * Maps akan muncul setelah kamu unggah link Google
-                            Maps Venue
-                          </label>
-                        </div>
-                        <div className="flex flex-col items-start mt-4 px-5">
-                          <label
-                            className="font-semibold text-xl"
-                            htmlFor="uploadGmaps"
+              {/* popup Gmaps start */}
+              {isPopupGmapsOpen && (
+                <div>
+                  <div className="fixed inset-0 flex items-center justify-center z-40">
+                    <div
+                      className="absolute inset-0 bg-gray-800 opacity-50"
+                      onClick={() => setIsPopupGmapsOpen(false)}
+                    ></div>
+                    <div className="w-6/12 bg-white p-4 rounded-lg z-50">
+                      <h1 className="text-2xl px-5 mt-3 font-semibold mb-3 pb-2 border-b-2">
+                        Unggah Link Lokasi Gmaps
+                      </h1>
+                      <div className="mx-auto mt-3 flex items-center justify-center rounded-lg text-center w-[600px] h-[222px] border-dashed border-[#828282]">
+                        <label className="text-[#828282] text-sm">
+                          * Maps akan muncul setelah kamu unggah link Google
+                          Maps Venue
+                        </label>
+                      </div>
+                      <div className="flex flex-col items-start mt-4 px-5">
+                        <label
+                          className="font-semibold text-xl"
+                          htmlFor="uploadGmaps"
+                        >
+                          Tambahkan Link Google Maps Venue
+                        </label>
+                      </div>
+                      <div className="mb-4">
+                        <div className="flex justify-between mt-2 px-5 w-full">
+                          <input
+                            type="text"
+                            id="uploadGmaps"
+                            className="outline outline-1 outline-[#828282] rounded-full w-8/12 px-4"
+                            placeholder="https://maps"
+                            onChange={(e) => setGmaps(e.target.value)}
+                          />
+                          <button
+                            className="px-10 py-2 rounded-[20px] focus:outline-none text-white bg-[#253E8D]"
+                            onClick={() => handleGmapsUpload()}
                           >
-                            Tambahkan Link Google Maps Venue
-                          </label>
-                        </div>
-                        <div className="mb-4">
-                          <div className="flex justify-between mt-2 px-5 w-full">
-                            <input
-                              type="text"
-                              id="uploadGmaps"
-                              className="outline outline-1 outline-[#828282] rounded-full w-8/12 px-4"
-                              placeholder="https://maps"
-                              onChange={(e) => setGmaps(e.target.value)}
-                            />
-                            <button
-                              className="px-10 py-2 rounded-[20px] focus:outline-none text-white bg-[#253E8D]"
-                              onClick={() => handleGmapsUpload()}
-                            >
-                              Tambahkan
-                            </button>
-                          </div>
+                            Tambahkan
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                )}
-                {/* popup Gmaps end */}
-              </div>
+                </div>
+              )}
+              {/* popup Gmaps end */}
+              {/* </div> */}
               <div className="flex justify-between mt-3 ml-3">
                 <div className="col-span-1 p-2 " style={{ width: "240px" }}>
                   <h1 className="text-3xl font-bold text-sm text-[#768DD5]">
@@ -586,10 +636,14 @@ function NewEvent() {
                           Unggah Denah Lokasi
                         </h1>
                         <div className="mx-auto mt-3 flex items-center justify-center rounded-lg text-center w-[600px] h-[222px] border-dashed border-[#828282]">
-                          <label className="text-[#828282] text-sm">
-                            *Gambar Denah akan Muncul setelah Anda Unggah Foto
-                            Denah
-                          </label>
+                          {denah ? (
+                            <img src={denah} alt="" className=" w-[300px]" />
+                          ) : (
+                            <label className="text-[#828282] text-sm">
+                              *Gambar Denah akan Muncul setelah Anda Unggah Foto
+                              Denah
+                            </label>
+                          )}
                         </div>
                         <div className="mb-2">
                           <div className="mt-4 px-5 w-full flex flex-col">
@@ -604,10 +658,11 @@ function NewEvent() {
                             <input
                               type="file"
                               id="thumbnailDenah"
+                              onChange={handleDenahChange}
                               className="hidden"
                               accept="image/*"
                             />
-                            <div className="w-full mt-2 text-center bg-[#3653B0] py-2 rounded-full cursor-pointer">
+                            {/* <div className="w-full mt-2 text-center bg-[#3653B0] py-2 rounded-full cursor-pointer">
                               <label
                                 htmlFor="denahPDF"
                                 className="text-white text-center cursor-pointer"
@@ -621,7 +676,7 @@ function NewEvent() {
                               id="denahPDF"
                               className="hidden"
                               accept=".pdf"
-                            />
+                            /> */}
                           </div>
                         </div>
                       </div>
@@ -1212,12 +1267,12 @@ function NewEvent() {
                   </span>
                 </div>
                 <div className="flex">
-                  <button
+                  {/* <button
                     onClick={handlePopupUploadImportFile}
                     className="ml-auto cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 text-sm"
                   >
                     + Import Data dari File
-                  </button>
+                  </button> */}
                   {/* popup Import File start */}
                   {isPopupImportFileOpen && (
                     <div>
@@ -1444,7 +1499,10 @@ function NewEvent() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-1 p-2">
-            <button className="flex items-center justify-center cursor-pointer bg-[#768DD5] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 w-full">
+            <button
+              onClick={handleClick}
+              className="flex items-center justify-center cursor-pointer bg-[#768DD5] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 w-full"
+            >
               Simpan Draft Event
             </button>
           </div>
