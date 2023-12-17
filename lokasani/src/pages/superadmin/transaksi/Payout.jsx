@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import Navbar from "../../../component/superadmin/globalComponent/Navbar";
 import Sidebar from "../../../component/superadmin/globalComponent/Sidebar";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
@@ -11,6 +12,7 @@ const Payout = () => {
   const [selectStatus, setSelectStatus] = useState("Semua");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(7);
+
 
   const filteredTransaction = transactions.filter((item) => {
     if (selectStatus === "Semua") {
@@ -39,10 +41,11 @@ const Payout = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+
   return (
     <div className="">
       <Sidebar />
-      <Navbar title="Permintaan Payout" />
+      <Navbar title="Permintaan Payout" showButtonBack={true}/>
       <div className=" flex flex-col px-4 py-28 sm:ml-[266px]">
         <div className="bg-gray-100">
           <div className="bg-gray-100 flex items center justify-between rounded-sm">
