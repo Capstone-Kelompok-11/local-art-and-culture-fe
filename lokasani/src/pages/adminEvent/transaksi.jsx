@@ -5,7 +5,6 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import user from '../../assets/img/user.svg'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import InfoIcon from '@mui/icons-material/Info';
-import TransactionDetailsPopup from '../../component/adminEvent/transaksidetail';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -138,10 +137,8 @@ function Transaksi() {
                     <span className='text-[#3653B0] w-1/6'>$100.00</span>
                     <span className='text-[#7EB4A7] w-1/6'>Paid</span>
                     <span className='text-[#3653B0] w-1/6'>
-                      {isDetailsPopupOpen && <TransactionDetailsPopup onClose={handleClosePopup} />}
-                    <span className='text-[#3653B0] w-1/6 cursor-pointer' onClick={handleInfoIconClick}>
-                  <InfoIcon />
-                </span>
+                     
+                
                     <DeleteOutlineIcon/>
                     </span>
                     </li>

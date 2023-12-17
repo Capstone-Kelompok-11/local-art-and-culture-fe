@@ -24,15 +24,6 @@ function Marchandise() {
     setSelectedGrid(gridIndex);
   };
 
-  // kalender
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  
-
   return (
     <section>
       <Sidebar />
@@ -172,10 +163,10 @@ function Marchandise() {
               </div>
             </div>
           </div>
- {/* Tampilkan tabel sesuai dengan selectedGrid */}
- {selectedGrid === 0 && <PengunjungTable />}
-          {selectedGrid === 1 && <TiketTerjualTable />}
-          {selectedGrid === 2 && <MerchTable />}
+       {/* Tampilkan tabel sesuai dengan selectedGrid */}
+              {selectedGrid === 0 && <PengunjungTable />}
+              {selectedGrid === 1 && <TiketTerjualTable />}
+              {selectedGrid === 2 && <MerchTable />}
 
         </div>
       </main>
