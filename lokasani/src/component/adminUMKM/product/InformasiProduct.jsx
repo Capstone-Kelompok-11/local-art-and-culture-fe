@@ -1,12 +1,13 @@
-import { useState } from "react";
-import PopupInputCSV from "./PopupInputCSV";
+// import { useState } from "react";
+// import PopupInputCSV from "./PopupInputCSV";
 
-const InformasiProduct = () => {
-  const [isPopupCSVOpen, setIsPopupCSVOpen] = useState(false);
+// eslint-disable-next-line react/prop-types
+const InformasiProduct = ({valueName, valueKategori, valueJumlah, valueDeskripsi, handleFormChange}) => {
+  // const [isPopupCSVOpen, setIsPopupCSVOpen] = useState(false);
 
-  const handlePopupUploadCSV = () => {
-    setIsPopupCSVOpen(true);
-}
+  // const handlePopupUploadCSV = () => {
+  //   setIsPopupCSVOpen(true);
+  // }
 
   return (
     <div className="w-full p-6 bg-white rounded-lg mt-5">
@@ -14,7 +15,7 @@ const InformasiProduct = () => {
         <div className="text-black text-xl font-semibold leading-9">
           Informasi Produk
         </div>
-        <div>
+        {/* <div>
           <p
             onClick={handlePopupUploadCSV}
             className="text-blue-800 text-base font-semibold cursor-pointer"
@@ -26,7 +27,7 @@ const InformasiProduct = () => {
               onClose={() => setIsPopupCSVOpen(false)}
               />
           )}
-        </div>
+        </div> */}
       </div>
       <div className="mb-4">
         <div className="mb-2">
@@ -35,7 +36,9 @@ const InformasiProduct = () => {
         <input
           type="text"
           id="productName"
-          name="productName"
+          name="name"
+          value={valueName}
+          onChange={handleFormChange}
           className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
         />
       </div>
@@ -44,7 +47,13 @@ const InformasiProduct = () => {
           <div className="mb-2">
             <label className="font-semibold text-base" htmlFor="sku">Kategori</label>
           </div>
-          <select className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none" name="kategori" id="kategori">
+          <select 
+            className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none" 
+            name="category" 
+            id="kategori"
+            value={valueKategori}
+            onChange={handleFormChange}
+          >
             <option value="handmade">HandMade</option>
             <option value="fashion">Fashion</option>
             <option value="buku">Buku</option>
@@ -53,25 +62,29 @@ const InformasiProduct = () => {
         </div>
         <div className="w-full">
           <div className="mb-2">
-            <label className="font-semibold text-base" htmlFor="kodeBatang">Kode Batang</label>
+            <label className="font-semibold text-base" htmlFor="jumlah">Jumlah Product</label>
           </div>
           <input
             type="text"
-            name="kodeBatang"
-            placeholder="01234-5678"
+            name="total_product"
+            placeholder="5"
             className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
+            value={valueJumlah}
+            onChange={handleFormChange}
           />
         </div>
       </div>
       <div className="mb-4">
         <div className="mb-2">
-            <label className="font-semibold text-base" htmlFor="deskripsi">Kode Batang</label>
+            <label className="font-semibold text-base" htmlFor="deskripsi">Deskripsi Product</label>
           </div>
           <textarea
-            name="deskripsi" 
+            name="description" 
             id="deskrisi"
             rows="7"
             className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none overflow-auto"
+            value={valueDeskripsi}
+            onChange={handleFormChange}
           >
           </textarea>
       </div>

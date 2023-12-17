@@ -1,4 +1,3 @@
-
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import EditEvent from './pages/adminEvent/editevent';
 import AdminEvent from './pages/adminEvent/Index'
@@ -6,6 +5,7 @@ import Transaksi from './pages/adminEvent/transaksi'
 import MyEvent from './pages/adminEvent/myevent'
 import Payout from './pages/adminEvent/payout'
 import NewEvent from "./pages/adminEvent/newevent";
+import DraftEvent from "./pages/adminEvent/draftevent";
 import Chat from "./pages/adminEvent/chat";
 import HomeSuperAdmin from './pages/superadmin/dashboard/HomeSuperAdmin'
 import DataUser from './pages/superadmin/dataUser/DataUser'
@@ -24,14 +24,14 @@ import Pengaturan from './pages/superadmin/pengaturan/Pengaturan'
 import TransaksiUMKM from './pages/adminUMKM/Transaction'
 import Landing from "./pages/landingpage/index"
 import React from "react";
-import Login from "./pages/login"
+import Login from "./pages/login";
 import HomeAdminUMKM from "./pages/adminUMKM/Home";
 import TambahProductAdminUMKM from './pages/adminUMKM/TambahProduct'
 import DaftarPesananAdmimUMKM from './pages/adminUMKM/DaftarPesanan'
 import DaftarProduct from './pages/adminUMKM/DaftarProduct'
-import Transaksi from './pages/superadmin/transaksi/index'
-import Payout from './pages/superadmin/transaksi/Payout'
-
+import TransaksiSuperadmin from './pages/superadmin/transaksi/index'
+import PayoutSuperadmin from './pages/superadmin/transaksi/Payout'
+import PusatBantuan from "./pages/superadmin/pusatBantuan/PusatBantuan";
 
 function App() {
   return (
@@ -45,6 +45,7 @@ function App() {
         <Route element={<DaftarAdminUmkm/>} path='/superadmin/daftarAdminUmkm'/>
         <Route element={<DaftarPengguna/>} path='/superadmin/daftarPengguna'/>
         <Route element={<AdminEvent/>} path='/adminevent'/>
+        <Route element={<DraftEvent/>} path='/adminevent/draft'/>
         <Route element={<EditEvent/>} path='/adminevent/editevent'/>
         <Route element ={<Transaksi/>} path='/adminevent/transaksi'/>
         <Route element={<MyEvent/>} path='/adminevent/myevent'/>
@@ -65,11 +66,10 @@ function App() {
         <Route element={<CompleteFormOrganisasi/>} path='/auth/register/organisasi/form'/>
         <Route element={<RegisterToko/>} path='/auth/register/toko'/>
         <Route element={<CompleteFormToko/>} path='/auth/register/toko/form'/>
-        <Route element={<Transaksi/>} path='/superadmin/transaksi'/>
+        <Route element={<TransaksiSuperadmin/>} path='/superadmin/transaksi'/>
         <Route element={<Landing/>} path="/"/>
-        <Route element={<Payout/>} path='/superadmin/transaksi/payout'/>
-
-
+        <Route element={<PayoutSuperadmin/>} path='/superadmin/transaksi/payout'/>
+        <Route element={<PusatBantuan />} path="/superadmin/pusatbantuan" />
       </Routes>
     </BrowserRouter>
   );
