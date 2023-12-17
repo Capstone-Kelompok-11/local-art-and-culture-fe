@@ -171,10 +171,10 @@ const DaftarAdminEvent = () => {
                     key={item.id}
                     className="bg-white border-b hover:bg-gray-50"
                   >
-                    <td className="px-3 py-4 text-[#3653B0]">
+                    <td className="px-3 py-6 text-[#3653B0]">
                       {item.first_name} {item.last_name}
                     </td>
-                    <td className="px-1 py-4 text-[#3653B0]">{item.date}</td>
+                    <td className="px-1 py-6 text-[#3653B0]">{item.date}</td>
                     <td className="font-semibold ">
                       <p
                         className={`${
@@ -186,12 +186,12 @@ const DaftarAdminEvent = () => {
                         {item.status}
                       </p>
                     </td>
-                    <td className="px-10 py-4 relative">
+                    <td className="px-10 py-6 relative">
                       <MoreVertOutlinedIcon
                         onClick={() => toggleDropdown(item.id)}
                       />
                       {activeDropdown === item.id && (
-                        <div className="absolute left-16 top-[20px] z-20 w-32 py-4 rounded-md shadow-md shadow-gray-400 bg-white">
+                        <div className="absolute left-16 top-[20px] z-20 w-32 py-6 rounded-md shadow-md shadow-gray-400 bg-white">
                           <div className="flex flex-col items-center">
                             <p
                               className="cursor-pointer mb-4 text-[#1A1A1A] "
