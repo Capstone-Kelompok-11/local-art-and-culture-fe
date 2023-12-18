@@ -111,7 +111,7 @@ function PengunjungTable() {
 
   return (
     <div className="col-span-1 bg-white p-7 rounded-md relative">
-      <div className="flex justify-end items-center mr-2 border-2 border-black relative">
+      <div className="flex justify-end items-center mr-2  relative">
         <div className="container mx-auto p-1 ">
           <form onSubmit={handleSearchSubmit} className="flex items-center">
             <TextField
