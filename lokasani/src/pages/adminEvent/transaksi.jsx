@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Sidebar from '../../component/adminEvent/Sidebar';
-import TextsmsIcon from '@mui/icons-material/Textsms';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import user from '../../assets/img/user.svg';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import InfoIcon from '@mui/icons-material/Info';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Sidebar from "../../component/adminEvent/Sidebar";
+import TextsmsIcon from "@mui/icons-material/Textsms";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import user from "../../assets/img/user.svg";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import InfoIcon from "@mui/icons-material/Info";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function Transaksi() {
   const [transactions, setTransactions] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
-  const [activeButton, setActiveButton] = useState('all');
+  const [activeButton, setActiveButton] = useState("all");
   const [selectedTransaction, setSelectedTransaction] = useState(null);
 
   useEffect(() => {
@@ -21,32 +21,37 @@ function Transaksi() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://657af72e394ca9e4af1331c9.mockapi.io/lokasani');
+      const response = await axios.get(
+        "https://657af72e394ca9e4af1331c9.mockapi.io/lokasani"
+      );
       setTransactions(response.data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
 
   const handleDeleteData = async (transactionId) => {
     try {
-      await axios.delete(`https://657af72e394ca9e4af1331c9.mockapi.io/lokasani/${transactionId}`);
-      setTransactions((prevTransactions) => prevTransactions.filter((transaction) => transaction.id !== transactionId));
-      console.log('Deleting transaction with ID:', transactionId);
+      await axios.delete(
+        `https://657af72e394ca9e4af1331c9.mockapi.io/lokasani/${transactionId}`
+      );
+      setTransactions((prevTransactions) =>
+        prevTransactions.filter(
+          (transaction) => transaction.id !== transactionId
+        )
+      );
+      console.log("Deleting transaction with ID:", transactionId);
     } catch (error) {
-      console.error('Error deleting transaction:', error);
+      console.error("Error deleting transaction:", error);
     }
   };
-  
-  
-  
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
   const handleExportButtonClick = () => {
-    console.log('Exporting:', selectedDate);
+    console.log("Exporting:", selectedDate);
   };
 
   const handleButtonClick = (button) => {
@@ -62,9 +67,12 @@ function Transaksi() {
   };
 
   // Filter transactions based on the activeButton state
-  const filteredTransactions = activeButton === 'all'
-    ? transactions
-    : transactions.filter(transaction => transaction.status.toLowerCase() === activeButton);
+  const filteredTransactions =
+    activeButton === "all"
+      ? transactions
+      : transactions.filter(
+          (transaction) => transaction.status.toLowerCase() === activeButton
+        );
 
   return (
     <section>
@@ -86,7 +94,11 @@ function Transaksi() {
                   <NotificationsActiveIcon className="text-[#253E8D]" />
                 </a>
                 <a href="">
-                  <img className="w-6 h-6 rounded-full" src={user} alt="Rounded avatar" />
+                  <img
+                    className="w-6 h-6 rounded-full"
+                    src={user}
+                    alt="Rounded avatar"
+                  />
                 </a>
               </div>
             </div>
@@ -96,18 +108,18 @@ function Transaksi() {
         {/* content start */}
         <div className="bg-white flex items-center justify-between rounded-sm">
           <div className="flex items-center ">
-            {['all', 'paid', 'pending', 'canceled'].map((button) => (
+            {["all", "paid", "pending", "canceled"].map((button) => (
               <button
                 key={button}
                 style={{
-                  backgroundColor: activeButton === button ? '#3653B0' : '#ccc',
-                  color: 'white',
-                  padding: '6px 12px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'background-color 0.3s ease',
-                  borderRadius: '4px',
-                  margin: '2px',
+                  backgroundColor: activeButton === button ? "#3653B0" : "#ccc",
+                  color: "white",
+                  padding: "6px 12px",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "background-color 0.3s ease",
+                  borderRadius: "4px",
+                  margin: "2px",
                 }}
                 onClick={() => handleButtonClick(button)}
               >
@@ -117,7 +129,7 @@ function Transaksi() {
           </div>
 
           <div className="flex items-center">
-            <div className="flex justify-end items-center mr-2 border-2 border-black">
+            <div className="flex justify-end items-center mr-2 ">
               <h1 className="font-semibold">Tampilkan</h1>
               <DatePicker
                 selected={selectedDate}
@@ -140,26 +152,63 @@ function Transaksi() {
           <div className="col-span-1 bg-white p-3 rounded-md shadow-md relative">
             <ul className="list-none p-0 m-0">
               <li className="flex justify-between items-center border-b border-gray-200 py-1">
-                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">#ID</span>
-                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">Tanggal</span>
-                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">Username</span>
-                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">Detail</span>
-                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">Total Transaksi</span>
-                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">Status</span>
-                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">Aksi</span>
+                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">
+                  #ID
+                </span>
+                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">
+                  Tanggal
+                </span>
+                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">
+                  Username
+                </span>
+                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">
+                  Detail
+                </span>
+                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">
+                  Total Transaksi
+                </span>
+                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">
+                  Status
+                </span>
+                <span className="text-3xl font-bold text-sm text-[#243775] w-1/6">
+                  Aksi
+                </span>
               </li>
               {filteredTransactions.map((transaction) => (
-                <li key={transaction.id} className="flex justify-between items-center border-b border-gray-200 py-2">
+                <li
+                  key={transaction.id}
+                  className="flex justify-between items-center border-b border-gray-200 py-2"
+                >
                   <span className="text-[#3653B0] w-1/6">{transaction.id}</span>
-                  <span className="text-[#3653B0] w-1/6">{transaction.tanggal}</span>
-                  <span className="text-[#3653B0] w-1/6">{transaction.username}</span>
-                  <span className="text-[#3653B0] w-1/6">{transaction.detail_tiket}</span>
-                  <span className="text-[#3653B0] w-1/6">{transaction.total_transaksi || 'N/A'}</span>
-                  <span className={`text-${transaction.status === 'paid' ? 'blue-500' : transaction.status === 'canceled' ? 'red-500' : 'green-500'} w-1/6`}> {transaction.status}
+                  <span className="text-[#3653B0] w-1/6">
+                    {transaction.tanggal}
+                  </span>
+                  <span className="text-[#3653B0] w-1/6">
+                    {transaction.username}
+                  </span>
+                  <span className="text-[#3653B0] w-1/6">
+                    {transaction.detail_tiket}
+                  </span>
+                  <span className="text-[#3653B0] w-1/6">
+                    {transaction.total_transaksi || "N/A"}
+                  </span>
+                  <span
+                    className={`text-${
+                      transaction.status === "paid"
+                        ? "blue-500"
+                        : transaction.status === "canceled"
+                        ? "red-500"
+                        : "green-500"
+                    } w-1/6`}
+                  >
+                    {" "}
+                    {transaction.status}
                   </span>
                   <span className="text-[#3653B0] w-1/6">
                     <InfoIcon onClick={() => openDetail(transaction)} />
-                    <DeleteOutlineIcon onClick={() => handleDeleteData(transaction.id)} />
+                    <DeleteOutlineIcon
+                      onClick={() => handleDeleteData(transaction.id)}
+                    />
                   </span>
                 </li>
               ))}
@@ -175,7 +224,12 @@ function Transaksi() {
                   <p>Total Transaksi: ${selectedTransaction.total}</p>
                   <p>Status: {selectedTransaction.status}</p>
                   {/* Tambahkan elemen-elemen lain sesuai dengan struktur transaksi */}
-                  <button onClick={closeDetail} className='bg-blue-700 w-full rounded-md text-white'>Tutup</button>
+                  <button
+                    onClick={closeDetail}
+                    className="bg-blue-700 w-full rounded-md text-white"
+                  >
+                    Tutup
+                  </button>
                 </div>
               </div>
             )}

@@ -1,21 +1,24 @@
-import React from 'react';
-import { DatePicker, Space } from 'antd';
-const { RangePicker } = DatePicker;
-const onChange = (value, dateString) => {
-  console.log('Selected Time: ', value);
-  console.log('Formatted Selected Time: ', dateString);
-};
-const onOk = (value) => {
-  console.log('onOk: ', value);
-};
-const Date = () => (
-  <Space direction="vertical" size={12}>
-    <RangePicker
-      
-      format="DD-MM-YYYY"
-      onChange={onChange}
-      onOk={onOk}
-    />
-  </Space>
-);
-export default Date;
+import React, {useState} from 'react';
+import { DatePicker} from 'antd';
+
+
+const Date = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  return (
+    <div>
+      <DatePicker
+                selected={selectedDate}
+                onChange={handleDateChange}
+                dateFormat="dd/MM/yyyy"
+                placeholderText="Tanggal/bulan"
+                className="bg-white text-[#3653B0] p-2 py-2 rounded-md outline outline-black outline-1 ml-2"
+              />
+    </div>
+  )
+}
+
+export default Date

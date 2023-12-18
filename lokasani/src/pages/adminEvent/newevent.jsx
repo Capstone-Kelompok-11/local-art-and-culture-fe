@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import CloseIcon from "@mui/icons-material/Close";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import DeleteIcon from "@mui/icons-material/Delete";
-import CreateIcon from "@mui/icons-material/Create";
 import DownloadIcon from "@mui/icons-material/Download";
 import AddIcon from "@mui/icons-material/Add";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
@@ -16,8 +16,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import imageSearching from "../../assets/img/image-searching.png";
 import imageGmaps from "../../assets/img/img-gmaps.png";
+import Ticket from "../../component/adminEvent/addNewEvent/Ticket";
+import CloseIcon from "@mui/icons-material/Close";
 
 function NewEvent() {
+  const navigate = useNavigate();
   // function poster
   const [poster, setPoster] = useState(null);
   const [posterPreview, setPosterPreview] = useState(null);
@@ -70,10 +73,10 @@ function NewEvent() {
   const handleGuestUpload = (event) => {
     event.preventDefault();
     setIsPopupGuestOpen(false);
-    // setGuest([
-    //   ...guest,
-    //   { name: nameGuest, job: jobGuest, image: imageGuestPreview },
-    // ]);
+    setGuest([
+      ...guest,
+      { name: nameGuest, job: jobGuest, image: imageGuestPreview },
+    ]);
     setNameGuest("");
     setJobGuest("");
     setImageGuestPreview(null);
@@ -138,21 +141,69 @@ function NewEvent() {
   const [isPopupDenahOpen, setIsPopupDenahOpen] = useState(false);
   const handleDenahUpload = (event) => {
     setIsPopupDenahOpen(false);
-    console.log(denah);
   };
   const handlePopupUploadDenah = () => {
     setIsPopupDenahOpen(true);
   };
+  const handleDenahChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setDenah(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   // function Tambah Tiket
-  const [addTiket, setAddTiket] = useState(null);
   const [isPopupAddTiketOpen, setIsPopupAddTiketOpen] = useState(false);
   const handleAddTiketUpload = (event) => {
     setIsPopupAddTiketOpen(false);
-    console.log(addTiket);
   };
   const handlePopupUploadAddTiket = () => {
     setIsPopupAddTiketOpen(true);
+  };
+  const [tiket, setTiket] = useState([]);
+  const [formTiket, setFormTiket] = useState({
+    namaTiket: "",
+    jenisTiket: "",
+    jumlahTiket: "",
+    hargaTiket: "",
+    deskripsiTiket: "",
+    startDate: "",
+    endDate: "",
+    startTime: "",
+    endTime: "",
+  });
+  const handleChangeTiket = (e) => {
+    const { id, value } = e.target;
+    setFormTiket((prevData) => ({ ...prevData, [id]: value }));
+  };
+  const handleDateChange = (date, type) => {
+    setFormTiket((prevData) => ({ ...prevData, [type]: date }));
+  };
+  const handleTimeChange = (time, type) => {
+    setFormTiket((prevData) => ({ ...prevData, [type]: time }));
+  };
+  const handleSubmitTiket = (e) => {
+    e.preventDefault();
+    setTiket((prevData) => [...prevData, formTiket]);
+    setFormTiket({
+      namaTiket: "",
+      jenisTiket: "",
+      jumlahTiket: "",
+      hargaTiket: "",
+      deskripsiTiket: "",
+      startDate: "",
+      endDate: "",
+      startTime: "",
+      endTime: "",
+    });
+    setIsPopupAddTiketOpen(false);
+  };
+  const handleDeleteTiket = (index) => {
+    setTiket((prevData) => prevData.filter((_, i) => i !== index));
   };
 
   // function Import File
@@ -170,25 +221,41 @@ function NewEvent() {
     setIsPopupImportFileOpen(true);
   };
 
-  const [poster1, setPoster1] = useState(null);
-
-  const handlePosterUpload1 = (event) => {
-    const file = event.target.files[0];
-
-    setPoster1(file);
-  };
-
   const [eventName, setEventName] = useState("");
   const [eventType, setEventType] = useState("");
   const [eventDescription, setEventDescription] = useState("");
 
-  const [eventNama, setEventNama] = useState("");
-  const [eventDeskripsi, setEventDeskripsi] = useState("");
-  const [Price, setPrice] = useState("");
-
-  const [eventNama1, setEventNama1] = useState("");
-  const [eventDeskripsi1, setEventDeskripsi1] = useState("");
-  const [Price1, setPrice1] = useState("");
+  // function Merch
+  const handleMerchInputChange = (index, field, value) => {
+    setMerchSection((prevSections) => {
+      const updatedSections = [...prevSections];
+      updatedSections[index] = {
+        ...updatedSections[index],
+        [field]: value,
+      };
+      return updatedSections;
+    });
+  };
+  const handleMerchImageUpload = (index, file) => {
+    setMerchSection((prevSections) => {
+      const updatedSections = [...prevSections];
+      updatedSections[index] = {
+        ...updatedSections[index],
+        merchPoster: file,
+      };
+      return updatedSections;
+    });
+  };
+  const [merchSection, setMerchSection] = useState([]);
+  const handleMerchButtonClick = () => {
+    setMerchSection((prevSections) => [...prevSections, {}]);
+  };
+  console.log(merchSection);
+  const handleRemoveMerchSection = (indexToRemove) => {
+    setMerchSection((prevSections) =>
+      prevSections.filter((_, index) => index !== indexToRemove)
+    );
+  };
 
   const [namaDescription, setNamaDescription] = useState("");
   const [alamatDescription, setAlamatDescription] = useState("");
@@ -201,10 +268,7 @@ function NewEvent() {
 
   // fungsi gomaps
   const [showGoogleMaps, setShowGoogleMaps] = useState(false);
-
   const [selectedOption, setSelectedOption] = useState(null);
-
- 
 
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -219,6 +283,50 @@ function NewEvent() {
     }
   };
 
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const newData = {
+      tanggal_diajukan: "",
+      status: "pending",
+      name: eventName,
+      jenis_event: eventType,
+      deskirpsi: eventDescription,
+      poster: poster,
+      denah: denah,
+      nama_venue: namaDescription,
+      alamat_venue: alamatDescription,
+      start_date: startDate,
+      end_date: endDate,
+      start_time: startTime,
+      end_time: endDate,
+      guest: guest,
+      tiket: tiket,
+      merch: merchSection,
+    };
+    try {
+      const response = await axios.post(
+        "https://657c05c8394ca9e4af153c42.mockapi.io/draftevent",
+        newData
+      );
+
+      if (response.status === 201) {
+        Swal.fire({
+          icon: "success",
+          title: "Berhasil Menambah Event",
+          confirmButtonText: "OK",
+        });
+        console.log("Data berhasil ditambahkan:", response.data);
+        navigate("/adminevent/");
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal Registrasi",
+        confirmButtonText: "OK",
+      });
+    }
+    console.log(newData);
+  };
 
   return (
     <section>
@@ -250,6 +358,7 @@ function NewEvent() {
           </div>
         </div>
         {/* header end */}
+
         {/* content start */}
         <div className="bg-gray-200 pl-3 pr-3">
           <div className="grid grid-cols-1 gap-1 p-2">
@@ -260,6 +369,7 @@ function NewEvent() {
               <span className="text-[#999999] ml-4">
                 Masukkan detail event-mu di sini!
               </span>
+
               <div className="flex items-center space-x-8 justify-center">
                 {/* Kolom Unggah */}
                 <div className="border-dashed border-2 w-1/2 h-[300px] border-gray-400 p-8 rounded-md aspect-w-1 aspect-h-1">
@@ -268,7 +378,7 @@ function NewEvent() {
                     <h1 className="text-3xl font-bold text-sm mt-1">
                       Unggah poster Event Anda di sini
                     </h1>
-                    <h1 className="block text-sm mt-1 font-medium text-[#828282] ">
+                    <h1 className="block text-xs mt-1 font-medium text-center text-[#828282] ">
                       Upload gambar untuk poster event kamu Max ukuran 500kb
                     </h1>
                     <div className="mt-2 flex flex-col items-center">
@@ -420,7 +530,7 @@ function NewEvent() {
               <span className="text-[#999999] text-sm ml-3 mt-5">
                 Jabarkan lokasi event Anda di sini!
               </span>
-              <div className="mt-3 p-3">
+              {/* <div className="mt-3 p-3">
                 <img src={imageGmaps} alt="Maps" />
               </div>
               <div className="flex justify-center">
@@ -429,57 +539,57 @@ function NewEvent() {
                   className="mt-2 mx-auto cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 rounded-full w-11/12"
                 >
                   + Unggah Link Venue (Gomaps)
-                </button>
+                </button> */}
 
-                {/* popup Gmaps start */}
-                {isPopupGmapsOpen && (
-                  <div>
-                    <div className="fixed inset-0 flex items-center justify-center z-40">
-                      <div
-                        className="absolute inset-0 bg-gray-800 opacity-50"
-                        onClick={() => setIsPopupGmapsOpen(false)}
-                      ></div>
-                      <div className="w-6/12 bg-white p-4 rounded-lg z-50">
-                        <h1 className="text-2xl px-5 mt-3 font-semibold mb-3 pb-2 border-b-2">
-                          Unggah Link Lokasi Gmaps
-                        </h1>
-                        <div className="mx-auto mt-3 flex items-center justify-center rounded-lg text-center w-[600px] h-[222px] border-dashed border-[#828282]">
-                          <label className="text-[#828282] text-sm">
-                            * Maps akan muncul setelah kamu unggah link Google
-                            Maps Venue
-                          </label>
-                        </div>
-                        <div className="flex flex-col items-start mt-4 px-5">
-                          <label
-                            className="font-semibold text-xl"
-                            htmlFor="uploadGmaps"
+              {/* popup Gmaps start */}
+              {isPopupGmapsOpen && (
+                <div>
+                  <div className="fixed inset-0 flex items-center justify-center z-40">
+                    <div
+                      className="absolute inset-0 bg-gray-800 opacity-50"
+                      onClick={() => setIsPopupGmapsOpen(false)}
+                    ></div>
+                    <div className="w-6/12 bg-white p-4 rounded-lg z-50">
+                      <h1 className="text-2xl px-5 mt-3 font-semibold mb-3 pb-2 border-b-2">
+                        Unggah Link Lokasi Gmaps
+                      </h1>
+                      <div className="mx-auto mt-3 flex items-center justify-center rounded-lg text-center w-[600px] h-[222px] border-dashed border-[#828282]">
+                        <label className="text-[#828282] text-sm">
+                          * Maps akan muncul setelah kamu unggah link Google
+                          Maps Venue
+                        </label>
+                      </div>
+                      <div className="flex flex-col items-start mt-4 px-5">
+                        <label
+                          className="font-semibold text-xl"
+                          htmlFor="uploadGmaps"
+                        >
+                          Tambahkan Link Google Maps Venue
+                        </label>
+                      </div>
+                      <div className="mb-4">
+                        <div className="flex justify-between mt-2 px-5 w-full">
+                          <input
+                            type="text"
+                            id="uploadGmaps"
+                            className="outline outline-1 outline-[#828282] rounded-full w-8/12 px-4"
+                            placeholder="https://maps"
+                            onChange={(e) => setGmaps(e.target.value)}
+                          />
+                          <button
+                            className="px-10 py-2 rounded-[20px] focus:outline-none text-white bg-[#253E8D]"
+                            onClick={() => handleGmapsUpload()}
                           >
-                            Tambahkan Link Google Maps Venue
-                          </label>
-                        </div>
-                        <div className="mb-4">
-                          <div className="flex justify-between mt-2 px-5 w-full">
-                            <input
-                              type="text"
-                              id="uploadGmaps"
-                              className="outline outline-1 outline-[#828282] rounded-full w-8/12 px-4"
-                              placeholder="https://maps"
-                              onChange={(e) => setGmaps(e.target.value)}
-                            />
-                            <button
-                              className="px-10 py-2 rounded-[20px] focus:outline-none text-white bg-[#253E8D]"
-                              onClick={() => handleGmapsUpload()}
-                            >
-                              Tambahkan
-                            </button>
-                          </div>
+                            Tambahkan
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                )}
-                {/* popup Gmaps end */}
-              </div>
+                </div>
+              )}
+              {/* popup Gmaps end */}
+              {/* </div> */}
               <div className="flex justify-between mt-3 ml-3">
                 <div className="col-span-1 p-2 " style={{ width: "240px" }}>
                   <h1 className="text-3xl font-bold text-sm text-[#768DD5]">
@@ -526,10 +636,14 @@ function NewEvent() {
                           Unggah Denah Lokasi
                         </h1>
                         <div className="mx-auto mt-3 flex items-center justify-center rounded-lg text-center w-[600px] h-[222px] border-dashed border-[#828282]">
-                          <label className="text-[#828282] text-sm">
-                            *Gambar Denah akan Muncul setelah Anda Unggah Foto
-                            Denah
-                          </label>
+                          {denah ? (
+                            <img src={denah} alt="" className=" w-[300px]" />
+                          ) : (
+                            <label className="text-[#828282] text-sm">
+                              *Gambar Denah akan Muncul setelah Anda Unggah Foto
+                              Denah
+                            </label>
+                          )}
                         </div>
                         <div className="mb-2">
                           <div className="mt-4 px-5 w-full flex flex-col">
@@ -544,10 +658,11 @@ function NewEvent() {
                             <input
                               type="file"
                               id="thumbnailDenah"
+                              onChange={handleDenahChange}
                               className="hidden"
                               accept="image/*"
                             />
-                            <div className="w-full mt-2 text-center bg-[#3653B0] py-2 rounded-full cursor-pointer">
+                            {/* <div className="w-full mt-2 text-center bg-[#3653B0] py-2 rounded-full cursor-pointer">
                               <label
                                 htmlFor="denahPDF"
                                 className="text-white text-center cursor-pointer"
@@ -561,7 +676,7 @@ function NewEvent() {
                               id="denahPDF"
                               className="hidden"
                               accept=".pdf"
-                            />
+                            /> */}
                           </div>
                         </div>
                       </div>
@@ -825,164 +940,196 @@ function NewEvent() {
                       ></div>
                       <div className="w-5/12 bg-white p-4 rounded-lg z-[80] ">
                         <div className="overflow-y-auto overflow-hidden h-[440px] px-4">
-                          <h1 className="text-2xl mt-3 font-semibold mb-3 pb-2 border-b-2">
-                            Detail Tiket
-                          </h1>
-                          <div>
-                            <label
-                              htmlFor="namatiket"
-                              className="text-[#768DD5] font-semibold"
-                            >
-                              Nama Tiket
-                            </label>
-                            <br />
-                            <input
-                              type="text"
-                              id="namatiket"
-                              placeholder="Nama tiket"
-                              className="bg-[#F2F2F2] py-[8px] px-3 mb-2 rounded-lg w-full"
-                            />
-                          </div>
-                          <div>
-                            <label
-                              htmlFor="jenistiket"
-                              className="text-[#768DD5] font-semibold"
-                            >
-                              Jenis Tiket
-                            </label>
-                            <br />
-                            <input
-                              type="text"
-                              id="jenistiket"
-                              placeholder="Jenis tiket"
-                              className="bg-[#F2F2F2] py-[8px] px-3 mb-2 rounded-lg w-full"
-                            />
-                          </div>
-                          <div className="flex w-full mb-2">
-                            <div className="w-1/2 mr-2">
+                          <form onSubmit={handleSubmitTiket}>
+                            <h1 className="text-2xl mt-3 font-semibold mb-3 pb-2 border-b-2">
+                              Detail Tiket
+                            </h1>
+                            <div>
                               <label
-                                htmlFor="jumlahtiket"
+                                htmlFor="namaTiket"
                                 className="text-[#768DD5] font-semibold"
                               >
-                                Jumlah Tiket
+                                Nama Tiket
+                              </label>
+                              <br />
+                              <input
+                                required
+                                type="text"
+                                id="namaTiket"
+                                value={formTiket.namaTiket}
+                                onChange={handleChangeTiket}
+                                placeholder="Nama tiket"
+                                className="bg-[#F2F2F2] py-[8px] px-3 mb-2 rounded-lg w-full"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="jenisTiket"
+                                className="text-[#768DD5] font-semibold"
+                              >
+                                Jenis Tiket
                               </label>
                               <br />
                               <input
                                 type="text"
-                                id="jumlahtiket"
-                                placeholder="Jumlah tiket"
-                                className="bg-[#F2F2F2] py-[8px] px-3 rounded-lg w-full"
+                                required
+                                id="jenisTiket"
+                                value={formTiket.jenisTiket}
+                                onChange={handleChangeTiket}
+                                placeholder="Jenis tiket"
+                                className="bg-[#F2F2F2] py-[8px] px-3 mb-2 rounded-lg w-full"
                               />
                             </div>
-                            <div className="w-1/2">
+                            <div className="flex w-full mb-2">
+                              <div className="w-1/2 mr-2">
+                                <label
+                                  htmlFor="jumlahTiket"
+                                  className="text-[#768DD5] font-semibold"
+                                >
+                                  Jumlah Tiket
+                                </label>
+                                <br />
+                                <input
+                                  type="text"
+                                  id="jumlahTiket"
+                                  required
+                                  value={formTiket.jumlahTiket}
+                                  onChange={handleChangeTiket}
+                                  placeholder="Jumlah tiket"
+                                  className="bg-[#F2F2F2] py-[8px] px-3 rounded-lg w-full"
+                                />
+                              </div>
+                              <div className="w-1/2">
+                                <label
+                                  htmlFor="hargaTiket"
+                                  className="text-[#768DD5] font-semibold"
+                                >
+                                  Harga
+                                </label>
+                                <br />
+                                <input
+                                  type="text"
+                                  id="hargaTiket"
+                                  value={formTiket.hargaTiket}
+                                  onChange={handleChangeTiket}
+                                  placeholder="Harga"
+                                  required
+                                  className="bg-[#F2F2F2] py-[8px] px-3 rounded-lg w-full"
+                                />
+                              </div>
+                            </div>
+                            <div>
                               <label
-                                htmlFor="hargatiket"
+                                htmlFor="deskripsiTiket"
                                 className="text-[#768DD5] font-semibold"
                               >
-                                Harga
+                                Deskripsi Tiket
                               </label>
                               <br />
-                              <input
-                                type="text"
-                                id="hargatiket"
-                                placeholder="Harga"
-                                className="bg-[#F2F2F2] py-[8px] px-3 rounded-lg w-full"
+                              <textarea
+                                name=""
+                                id="deskripsiTiket"
+                                cols="30"
+                                rows="5"
+                                required
+                                value={formTiket.deskripsiTiket}
+                                onChange={handleChangeTiket}
+                                placeholder="Deskripsi tiket"
+                                className="bg-[#F2F2F2] resize-none py-[8px] px-3 rounded-lg w-full"
                               />
                             </div>
-                          </div>
-                          <div>
-                            <label
-                              htmlFor="deskripsitiket"
-                              className="text-[#768DD5] font-semibold"
-                            >
-                              Deskripsi Tiket
-                            </label>
-                            <br />
-                            <textarea
-                              name=""
-                              id="deskripsitiket"
-                              cols="30"
-                              rows="5"
-                              placeholder="Deskripsi tiket"
-                              className="bg-[#F2F2F2] resize-none py-[8px] px-3 rounded-lg w-full"
-                            />
-                          </div>
-                          <h1 className="text-2xl mt-8 font-semibold mb-3">
-                            Waktu Penjualan Tiket
-                          </h1>
-                          <div className="w-full">
-                            <div className="flex mt-4 w-full">
-                              <div className="w-1/2">
-                                <label className="block text-medium font-semibold text-[#768DD5] mb-2">
-                                  Tanggal Mulai
-                                </label>
-                                <DatePicker
-                                  selected={startDate}
-                                  onChange={(date) => setStartDate(date)}
-                                  dateFormat="dd/MM/yyyy"
-                                  className="bg-[#F2F2F2] px-2 w-[220px] rounded-lg py-[8px]"
-                                />
-                              </div>
+                            <h1 className="text-2xl mt-8 font-semibold mb-3">
+                              Waktu Penjualan Tiket
+                            </h1>
+                            <div className="w-full">
+                              <div className="flex mt-4 w-full">
+                                <div className="w-1/2">
+                                  <label className="block text-medium font-semibold text-[#768DD5] mb-2">
+                                    Tanggal Mulai
+                                  </label>
+                                  <DatePicker
+                                    selected={formTiket.startDate}
+                                    onChange={(date) =>
+                                      handleDateChange(date, "startDate")
+                                    }
+                                    required
+                                    dateFormat="dd/MM/yyyy"
+                                    className="bg-[#F2F2F2] px-2 w-[220px] rounded-lg py-[8px]"
+                                  />
+                                </div>
 
-                              <div className="w-1/2">
-                                <label className="block text-medium font-semibold text-[#768DD5] mb-2">
-                                  Tanggal Selesai
-                                </label>
-                                <DatePicker
-                                  selected={endDate}
-                                  onChange={(date) => setEndDate(date)}
-                                  dateFormat="dd/MM/yyyy"
-                                  className="bg-[#F2F2F2] px-2 w-[234px] rounded-lg py-[8px]"
-                                />
+                                <div className="w-1/2">
+                                  <label className="block text-medium font-semibold text-[#768DD5] mb-2">
+                                    Tanggal Selesai
+                                  </label>
+                                  <DatePicker
+                                    selected={formTiket.endDate}
+                                    onChange={(date) =>
+                                      handleDateChange(date, "endDate")
+                                    }
+                                    required
+                                    dateFormat="dd/MM/yyyy"
+                                    className="bg-[#F2F2F2] px-2 w-[234px] rounded-lg py-[8px]"
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="flex w-full mt-4">
-                              <div className="w-1/2 relative">
-                                <label className="block text-medium font-semibold text-[#768DD5] mb-2">
-                                  Jam Mulai
-                                </label>
-                                <AccessAlarmIcon
-                                  fontSize="small"
-                                  className="absolute ml-[8px] z-[90] mt-[9px] z-10 text-[#828282]"
-                                />
-                                <DatePicker
-                                  selected={startTime}
-                                  onChange={(time) => setStartTime(time)}
-                                  showTimeSelect
-                                  showTimeSelectOnly
-                                  timeIntervals={15}
-                                  timeCaption="Time"
-                                  dateFormat="HH:mm"
-                                  className="bg-[#F2F2F2] px-2 pl-8 w-[220px] rounded-lg py-[8px]"
-                                />
-                              </div>
+                              <div className="flex w-full mt-4">
+                                <div className="w-1/2 relative">
+                                  <label className="block text-medium font-semibold text-[#768DD5] mb-2">
+                                    Jam Mulai
+                                  </label>
+                                  <AccessAlarmIcon
+                                    fontSize="small"
+                                    className="absolute ml-[8px] z-[90] mt-[9px] z-10 text-[#828282]"
+                                  />
+                                  <DatePicker
+                                    selected={formTiket.startTime}
+                                    onChange={(time) =>
+                                      handleTimeChange(time, "startTime")
+                                    }
+                                    showTimeSelect
+                                    showTimeSelectOnly
+                                    timeIntervals={15}
+                                    required
+                                    timeCaption="Time"
+                                    dateFormat="HH:mm"
+                                    className="bg-[#F2F2F2] px-2 pl-8 w-[220px] rounded-lg py-[8px]"
+                                  />
+                                </div>
 
-                              <div className="w-1/2 relative">
-                                <label className="block text-medium font-semibold text-[#768DD5] mb-2">
-                                  Jam Selesai
-                                </label>
-                                <AccessAlarmIcon
-                                  fontSize="small"
-                                  className="absolute ml-[8px] z-[90] mt-[9px] text-[#828282]"
-                                />
-                                <DatePicker
-                                  selected={endTime}
-                                  onChange={(time) => setEndTime(time)}
-                                  showTimeSelect
-                                  showTimeSelectOnly
-                                  timeIntervals={15}
-                                  timeCaption="Time"
-                                  dateFormat="HH:mm"
-                                  className="bg-[#F2F2F2] px-2 pl-8 w-full rounded-lg py-[8px]"
-                                />
+                                <div className="w-1/2 relative">
+                                  <label className="block text-medium font-semibold text-[#768DD5] mb-2">
+                                    Jam Selesai
+                                  </label>
+                                  <AccessAlarmIcon
+                                    fontSize="small"
+                                    className="absolute ml-[8px] z-[90] mt-[9px] text-[#828282]"
+                                  />
+                                  <DatePicker
+                                    selected={formTiket.endTime}
+                                    onChange={(time) =>
+                                      handleTimeChange(time, "endTime")
+                                    }
+                                    showTimeSelect
+                                    showTimeSelectOnly
+                                    timeIntervals={15}
+                                    timeCaption="Time"
+                                    required
+                                    dateFormat="HH:mm"
+                                    className="bg-[#F2F2F2] px-2 pl-8 w-full rounded-lg py-[8px]"
+                                  />
+                                </div>
+                              </div>
+                              <div className="w-full mt-6">
+                                <button
+                                  type="submit"
+                                  className="w-full rounded-full bg-[#3653B0] text-white py-2"
+                                >
+                                  Buat Tiket
+                                </button>
                               </div>
                             </div>
-                            <div className="w-full mt-6">
-                              <button className="w-full rounded-full bg-[#3653B0] text-white py-2">
-                                Buat Tiket
-                              </button>
-                            </div>
-                          </div>
+                          </form>
                         </div>
                       </div>
                     </div>
@@ -992,39 +1139,14 @@ function NewEvent() {
               </div>
 
               {/* tiket start */}
-              <div className="mb-4 rounded-md relative flex flex-col px-20 pt-11 pb-8 bg-light-yellow rounded-lg shadow-md hover:bg-tan ring-[#768DD5] ring-2">
-                <div className="flex mb-4">
-                  <button className="cursor-pointer bg-[#CA9702] hover:bg-yellow-600 text-white py-2 px-4 rounded-full text-sm">
-                    Workshop
-                  </button>
-                  <button className="cursor-pointer bg-[#768DD5] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 text-sm">
-                    Reguler
-                  </button>
-                  <div className="ml-auto">
-                    <CreateIcon className="mr-2" />
-                    <DeleteIcon />
-                  </div>
-                </div>
-                <h1 className="text-3xl font-bold text-sm mb-1">
-                  Workshop Keramik Jawa Timur bersama Kak Seto
-                </h1>
-                <span className="text-[#999999]">
-                  Ayo ikuti keseruan dari workshop bersama Kak Seto tentang
-                  bagaimana proses pembuatan keramik yang mudah dan murah!
-                </span>
-                <div className="text-sm flex items-center mb-1">
-                  <CloseIcon color="primary" />
-                  <p className="ml-2 text-[#768DD5]">
-                    <span className="font-semibold">500</span> Tiket mulai
-                    dijual tanggal{" "}
-                    <span className="font-semibold">25 Nov 2023</span> |{" "}
-                    <span>00:00</span>
-                  </p>
-                </div>
-                <div className="border-b border-dashed border-[#768DD5] mt-1"></div>
-                <div className="absolute left-1 top-0 bg-[#CA9702] w-2 h-full ml-2"></div>
-                <h1 className="text-3xl font-bold mt-5">Rp.85.000</h1>
-              </div>
+              {tiket.map((tiket, index) => (
+                <Ticket
+                  key={index}
+                  tiket={tiket}
+                  index={index}
+                  onDelete={handleDeleteTiket}
+                />
+              ))}
               {/* tiket end */}
               <div className="flex w-full">
                 <div className="col-span-1 bg-white w-9/12 p-4 rounded-md relative">
@@ -1145,12 +1267,12 @@ function NewEvent() {
                   </span>
                 </div>
                 <div className="flex">
-                  <button
+                  {/* <button
                     onClick={handlePopupUploadImportFile}
                     className="ml-auto cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 text-sm"
                   >
                     + Import Data dari File
-                  </button>
+                  </button> */}
                   {/* popup Import File start */}
                   {isPopupImportFileOpen && (
                     <div>
@@ -1226,214 +1348,150 @@ function NewEvent() {
                 </div>
               </div>
               <div className="col-span-1 bg-white p-3 rounded-md relative">
-                <div className="grid grid-cols-2 flex items-center mt-4 space-x-8">
-                  {/* Kolom Unggah */}
-                  <div className="border-dashed border-2 border-gray-400 p-20 rounded-md aspect-w-1 aspect-h-1">
-                    <div className="flex flex-col items-center">
-                      <AddAPhotoIcon className="text-[#768DD5]" />
-                      <h1 className="text-3xl font-bold text-sm">
-                        Unggah poster Event Anda di sini
-                      </h1>
-                      <h1 className="block text-xs text-center font-medium text-[#828282]">
-                        Upload gambar untuk poster event kamu Max ukuran 500kb
-                      </h1>
-                      <div className="mt-5 flex items-center">
-                        <input
-                          type="file"
-                          accept="image/*"
-                          onChange={handlePosterUpload1}
-                          id="poster1"
-                          className="hidden"
-                        />
-                        <label
-                          htmlFor="poster"
-                          className="cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2"
-                        >
-                          Unggah Poster
-                        </label>
-                        {poster1 && (
-                          <span className="ml-2 text-gray-500">
-                            {poster1.name}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  {/* Kolom Nama sampai Deskripsi */}
-                  <div className="bg-white p-4 rounded-md flex flex-col">
-                    <div className="flex flex-col gap-y-3">
-                      <div>
-                        <label className="text-3xl font-bold text-sm text-[#768DD5]">
-                          Nama Merch
-                        </label>
-                        <input
-                          type="text"
-                          value={eventNama}
-                          onChange={(e) => setEventNama(e.target.value)}
-                          placeholder="nama..."
-                          className="bg-[#F2F2F2] mt-2 p-2 rounded-md w-full"
+                {/* Add Merch Start */}
+                {merchSection.map((_, index) => (
+                  <div key={index}>
+                    <div className="grid relative grid-cols-2 flex items-center mt-5 space-x-8">
+                      {/* Kolom Unggah */}
+                      <div className="absolute right-0 top-0 mr-3">
+                        <CloseIcon
+                          className="cursor-pointer hover:text-[#999]"
+                          onClick={() => handleRemoveMerchSection(index)}
                         />
                       </div>
-                      <div>
-                        <label className="text-3xl font-bold text-sm text-[#768DD5]">
-                          Deskripsi Merch
-                        </label>
-                        <textarea
-                          type="text"
-                          value={eventDeskripsi}
-                          onChange={(e) => setEventDeskripsi(e.target.value)}
-                          placeholder="deskripsi..."
-                          className="bg-[#F2F2F2] mt-2 px-3 py-3 resize-none rounded-md w-full"
-                        />
-                      </div>
-                      <div className="flex">
-                        <div className="w-1/2 mx-2">
-                          <label className="text-3xl font-bold text-sm text-[#768DD5]">
-                            Harga:
-                          </label>
-                          <div className="mt-1 relative rounded-md shadow-sm">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                              <span className="text-gray-500 sm:text-sm">
-                                Rp -
-                              </span>
-                            </div>
+                      <div className="border-dashed border-2 border-gray-400 p-20 rounded-md aspect-w-1 aspect-h-1">
+                        <div className="flex flex-col items-center">
+                          <AddAPhotoIcon className="text-[#768DD5]" />
+                          <h1 className="text-3xl font-bold text-sm">
+                            Unggah poster Event Anda di sini
+                          </h1>
+                          <h1 className="block text-xs text-center font-medium text-[#828282]">
+                            Upload gambar untuk poster event kamu Max ukuran
+                            500kb
+                          </h1>
+                          <div className="mt-5 flex items-center">
                             <input
-                              type="text"
-                              className="focus:ring-indigo-500 bg-[#F2F2F2] w-11/12 py-2 focus:border-indigo-500 block w-full pl-11 sm:text-sm border-gray-300 rounded-md"
-                              placeholder="0.00"
-                              value={Price}
-                              onChange={(e) => setPrice(e.target.value)}
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) =>
+                                handleMerchImageUpload(index, e.target.files[0])
+                              }
+                              id={`merchPoster${index}`}
+                              className="hidden"
                             />
-                          </div>
-                        </div>
-                        <div className="w-1/2 mx-3">
-                          <label className="text-3xl font-bold text-sm text-[#768DD5]">
-                            Harga:
-                          </label>
-                          <div className="mt-1 relative rounded-md shadow-sm">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                              <span className="text-gray-500 sm:text-sm">
-                                Rp -
-                              </span>
+                            <div className="flex flex-col">
+                              {merchSection[index]?.merchPoster && (
+                                <span className="text-center text-xs mb-3 text-gray-500">
+                                  {merchSection[index].merchPoster.name || ""}
+                                </span>
+                              )}
+                              <label
+                                htmlFor={`merchPoster${index}`}
+                                className="cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2"
+                              >
+                                Unggah Poster
+                              </label>
                             </div>
-                            <input
-                              type="text"
-                              className="focus:ring-indigo-500 bg-[#F2F2F2] w-11/12 py-2 focus:border-indigo-500 block w-full pl-11 sm:text-sm border-gray-300 rounded-md"
-                              placeholder="0.00"
-                              value={Price}
-                              onChange={(e) => setPrice(e.target.value)}
-                            />
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 flex items-center mt-4 space-x-8">
-                  {/* Kolom Unggah */}
-                  <div className="border-dashed border-2 border-gray-400 p-20 rounded-md aspect-w-1 aspect-h-1">
-                    <div className="flex flex-col items-center">
-                      <AddAPhotoIcon className="text-[#768DD5]" />
-                      <h1 className="text-3xl font-bold text-sm">
-                        Unggah poster Event Anda di sini
-                      </h1>
-                      <h1 className="block text-xs text-center font-medium text-[#828282]">
-                        Upload gambar untuk poster event kamu Max ukuran 500kb
-                      </h1>
-                      <div className="mt-5 flex items-center">
-                        <input
-                          type="file"
-                          accept="image/*"
-                          onChange={handlePosterUpload1}
-                          id="poster1"
-                          className="hidden"
-                        />
-                        <label
-                          htmlFor="poster"
-                          className="cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2"
-                        >
-                          Unggah Poster
-                        </label>
-                        {poster1 && (
-                          <span className="ml-2 text-gray-500">
-                            {poster1.name}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  {/* Kolom Nama sampai Deskripsi */}
-                  <div className="bg-white p-4 rounded-md flex flex-col">
-                    <div className="flex flex-col gap-y-3">
-                      <div>
-                        <label className="text-3xl font-bold text-sm text-[#768DD5]">
-                          Nama Merch
-                        </label>
-                        <input
-                          type="text"
-                          value={eventNama}
-                          onChange={(e) => setEventNama(e.target.value)}
-                          placeholder="nama..."
-                          className="bg-[#F2F2F2] mt-2 p-2 rounded-md w-full"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-3xl font-bold text-sm text-[#768DD5]">
-                          Deskripsi Merch
-                        </label>
-                        <textarea
-                          type="text"
-                          value={eventDeskripsi}
-                          onChange={(e) => setEventDeskripsi(e.target.value)}
-                          placeholder="deskripsi..."
-                          className="bg-[#F2F2F2] mt-2 px-3 py-3 resize-none rounded-md w-full"
-                        />
-                      </div>
-                      <div className="flex">
-                        <div className="w-1/2 mx-2">
-                          <label className="text-3xl font-bold text-sm text-[#768DD5]">
-                            Harga:
-                          </label>
-                          <div className="mt-1 relative rounded-md shadow-sm">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                              <span className="text-gray-500 sm:text-sm">
-                                Rp -
-                              </span>
-                            </div>
+                      {/* Kolom Nama sampai Deskripsi */}
+                      <div className="bg-white p-4 rounded-md flex flex-col">
+                        <div className="flex flex-col gap-y-3 mt-2">
+                          <div>
+                            <label className="text-3xl font-bold text-sm text-[#768DD5]">
+                              Nama Merch
+                            </label>
                             <input
                               type="text"
-                              className="focus:ring-indigo-500 bg-[#F2F2F2] w-11/12 py-2 focus:border-indigo-500 block w-full pl-11 sm:text-sm border-gray-300 rounded-md"
-                              placeholder="0.00"
-                              value={Price}
-                              onChange={(e) => setPrice(e.target.value)}
+                              value={merchSection[index]?.nama || ""}
+                              onChange={(e) =>
+                                handleMerchInputChange(
+                                  index,
+                                  "nama",
+                                  e.target.value
+                                )
+                              }
+                              placeholder="Nama"
+                              className="bg-[#F2F2F2] mt-2 p-2 rounded-md w-full"
                             />
                           </div>
-                        </div>
-                        <div className="w-1/2 mx-3">
-                          <label className="text-3xl font-bold text-sm text-[#768DD5]">
-                            Harga:
-                          </label>
-                          <div className="mt-1 relative rounded-md shadow-sm">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                              <span className="text-gray-500 sm:text-sm">
-                                Rp -
-                              </span>
-                            </div>
-                            <input
+                          <div>
+                            <label className="text-3xl font-bold text-sm text-[#768DD5]">
+                              Deskripsi Merch
+                            </label>
+                            <textarea
                               type="text"
-                              className="focus:ring-indigo-500 bg-[#F2F2F2] w-11/12 py-2 focus:border-indigo-500 block w-full pl-11 sm:text-sm border-gray-300 rounded-md"
-                              placeholder="0.00"
-                              value={Price}
-                              onChange={(e) => setPrice(e.target.value)}
+                              value={merchSection[index]?.deskripsi || ""}
+                              onChange={(e) =>
+                                handleMerchInputChange(
+                                  index,
+                                  "deskripsi",
+                                  e.target.value
+                                )
+                              }
+                              placeholder="Deskripsi"
+                              className="bg-[#F2F2F2] mt-2 px-3 py-3 resize-none rounded-md w-full"
                             />
+                          </div>
+                          <div className="flex">
+                            <div className="w-1/2 mx-2">
+                              <label className="text-3xl font-bold text-sm text-[#768DD5]">
+                                Harga
+                              </label>
+                              <div className="mt-1 relative rounded-md shadow-sm">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <span className="text-gray-500 sm:text-sm">
+                                    Rp -
+                                  </span>
+                                </div>
+                                <input
+                                  type="text"
+                                  className="focus:ring-indigo-500 bg-[#F2F2F2] w-11/12 py-2 focus:border-indigo-500 block w-full pl-11 sm:text-sm border-gray-300 rounded-md"
+                                  placeholder="0"
+                                  value={merchSection[index]?.harga || ""}
+                                  onChange={(e) =>
+                                    handleMerchInputChange(
+                                      index,
+                                      "harga",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div className="w-1/2 mx-3">
+                              <label className="text-3xl font-bold text-sm text-[#768DD5]">
+                                Stock
+                              </label>
+                              <div className="mt-1 relative rounded-md shadow-sm">
+                                <input
+                                  type="text"
+                                  className="focus:ring-indigo-500 bg-[#F2F2F2] w-11/12 py-2 focus:border-indigo-500 block w-full pl-3 sm:text-sm border-gray-300 rounded-md"
+                                  placeholder="0"
+                                  value={merchSection[index]?.stok || ""}
+                                  onChange={(e) =>
+                                    handleMerchInputChange(
+                                      index,
+                                      "stok",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ))}
+                {/* Add Merch End */}
                 <div className="flex items-center justify-center mt-5">
-                  <button className="flex items-center justify-center cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 w-full">
+                  <button
+                    onClick={handleMerchButtonClick}
+                    className="flex items-center justify-center cursor-pointer bg-[#3653B0] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 w-full"
+                  >
                     + Tambah Merch
                   </button>
                 </div>
@@ -1441,7 +1499,10 @@ function NewEvent() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-1 p-2">
-            <button className="flex items-center justify-center cursor-pointer bg-[#768DD5] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 w-full">
+            <button
+              onClick={handleClick}
+              className="flex items-center justify-center cursor-pointer bg-[#768DD5] hover:bg-blue-800 text-white py-2 px-4 rounded-full ml-2 w-full"
+            >
               Simpan Draft Event
             </button>
           </div>
