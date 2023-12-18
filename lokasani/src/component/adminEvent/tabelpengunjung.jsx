@@ -59,7 +59,7 @@ function PengunjungTable() {
   useEffect(() => {
     if (currentPage > 1 && isPageChanging) {
       fetchData(activeButton);
-      setIsPageChanging(false); // Setelah fetchData dipanggil, atur kembali ke false
+      setIsPageChanging(false); 
     }
   }, [currentPage, activeButton, isPageChanging]);
 
@@ -76,7 +76,6 @@ function PengunjungTable() {
         const data = await response.json();
         setTransactions(data);
 
-        // Mengatur filtered transactions sesuai dengan halaman yang sedang aktif
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
         const filteredData =

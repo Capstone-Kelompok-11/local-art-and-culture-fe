@@ -23,7 +23,7 @@ function MerchTable() {
 
       setTransactions(sortedData);
       setFilteredTransactions(sortedData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
-      setIsPageChanging(false); // Set isPageChanging to false after updating data
+      setIsPageChanging(false); 
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -49,7 +49,7 @@ function MerchTable() {
   const handleButtonClick = (button) => {
     setActiveButton(button);
     setCurrentPage(1);
-    setIsPageChanging(true); // Set isPageChanging to true when changing pages
+    setIsPageChanging(true);
 
     const filteredData =
       button === 'All'
@@ -61,16 +61,15 @@ function MerchTable() {
 
   const handleDelete = async (id) => {
     try {
-      // Kirim request ke API untuk menghapus data
+      
       await fetch(`https://657eb63c3e3f5b189464014f.mockapi.io/merch/${id}`, {
         method: 'DELETE',
       });
 
-      // Perbarui state transactions tanpa data yang dihapus
       const updatedTransactions = transactions.filter((transaction) => transaction.id !== id);
       setTransactions(updatedTransactions);
 
-      setIsPageChanging(true); // Set isPageChanging to true when deleting data
+      setIsPageChanging(true); 
     } catch (error) {
       console.error('Error deleting data:', error);
     }

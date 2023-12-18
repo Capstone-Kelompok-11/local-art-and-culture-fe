@@ -24,7 +24,7 @@ function TiketTerjualTable() {
 
       setTransactions(sortedData);
       setFilteredTransactions(sortedData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
-      setIsPageChanging(false); // Set isPageChanging to false after updating data
+      setIsPageChanging(false); 
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -50,7 +50,7 @@ function TiketTerjualTable() {
   const handleButtonClick = (button) => {
     setActiveButton(button);
     setCurrentPage(1);
-    setIsPageChanging(true); // Set isPageChanging to true when changing pages
+    setIsPageChanging(true); 
 
     const filteredData =
       button === 'All'
@@ -68,7 +68,7 @@ function TiketTerjualTable() {
       });
 
       if (response.ok) {
-        setIsPageChanging(true); // Set isPageChanging to true when deleting data
+        setIsPageChanging(true); 
       } else {
         console.error('Gagal menghapus data');
       }
