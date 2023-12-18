@@ -9,30 +9,10 @@ function TiketTerjualTable() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
   const [activeButton, setActiveButton] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
   const [transactions, setTransactions] = useState([]);
   const [filteredTransactions, setFilteredTransactions] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isPageChanging, setIsPageChanging] = useState(false);
-  const itemsPerPage = 10;
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch('https://657e8ef63e3f5b189463d39c.mockapi.io/terjual');
-      const data = await response.json();
-
-      const sortedData = data.sort((a, b) => parseInt(a.id) - parseInt(b.id));
-
-      setTransactions(sortedData);
-      setFilteredTransactions(sortedData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
-      setIsPageChanging(false); 
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [currentPage, isPageChanging]);
+  const itemsPerPage = 10; 
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -47,39 +27,90 @@ function TiketTerjualTable() {
     setSelectedDate(date);
   };
 
-  const handleButtonClick = (button) => {
+  const handleButtonClick = async (button) => {
     setActiveButton(button);
     setCurrentPage(1);
-    setIsPageChanging(true); 
-
-    const filteredData =
-      button === 'All'
-        ? transactions
-        : transactions.filter((transaction) => transaction.status.toLowerCase() === button.toLowerCase());
-
-    setFilteredTransactions(filteredData.slice(0, itemsPerPage));
+    fetchData(button);
   };
 
-  const handleDelete = async (idToDelete) => {
+  const fetchFilteredData = async (status) => {
     try {
-      const endpoint = `https://657e8ef63e3f5b189463d39c.mockapi.io/terjual/${idToDelete}`;
+      const apiStatus = status.toLowerCase();
+      const endpoint = `https://657e8ef63e3f5b189463d39c.mockapi.io/terjual?status=${apiStatus}&search=${searchTerm}&date=${selectedDate}`;
+
+      const response = await fetch(endpoint);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Filtered Data:', data);
+        return data;
+      } else {
+        console.error('Failed to fetch filtered data');
+        return [];
+      }
+    } catch (error) {
+      console.error('Error fetching filtered data:', error);
+      return [];
+    }
+  };
+
+  const [isPageChanging, setIsPageChanging] = useState(false);
+
+  useEffect(() => {
+    if (currentPage > 1 && isPageChanging) {
+      fetchData(activeButton);
+      setIsPageChanging(false); 
+    }
+  }, [currentPage, activeButton, isPageChanging]);
+
+  const fetchData = async (status = '') => {
+    try {
+      const endpoint =
+        status === 'All'
+          ? `https://657e8ef63e3f5b189463d39c.mockapi.io/terjual?search=${searchTerm}&date=${selectedDate}`
+          : `https://657e8ef63e3f5b189463d39c.mockapi.io/terjual?status=${status}&search=${searchTerm}&date=${selectedDate}`;
+
+      const response = await fetch(endpoint);
+
+      if (response.ok) {
+        const data = await response.json();
+        setTransactions(data);
+
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const filteredData =
+          status === 'All'
+            ? data
+            : data.filter((transaction) => transaction.status.toLowerCase() === status.toLowerCase());
+        setFilteredTransactions(filteredData.slice(startIndex, endIndex));
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const endpoint = `https://657e8ef63e3f5b189463d39c.mockapi.io/terjual/${id}`;
       const response = await fetch(endpoint, {
         method: 'DELETE',
       });
 
       if (response.ok) {
-        setIsPageChanging(true); 
+        fetchData();
       } else {
-        console.error('Gagal menghapus data');
+        console.error('Failed to delete data');
       }
     } catch (error) {
       console.error('Error deleting data:', error);
     }
   };
-  
+
   return (
     <div className="col-span-1 bg-white p-7 rounded-md relative">
-      <div className="flex justify-end items-center mr-2 relative">
+      <div className="flex justify-end items-center mr-2  relative">
         <div className="container mx-auto p-1 ">
           <form onSubmit={handleSearchSubmit} className="flex items-center">
             <TextField
@@ -113,7 +144,7 @@ function TiketTerjualTable() {
         />
       </div>
       <div className="flex items-center ">
-        {['All', 'Paid', 'Canceled'].map((button) => (
+        {['All', 'paid', 'canceled'].map((button) => (
           <button
             key={button}
             className={`${
@@ -128,26 +159,28 @@ function TiketTerjualTable() {
         ))}
       </div>
       <div className="col-span-1 p-3 bg-white rounded-md shadow-md relative mt-4">
-        <ul className="list-none p-0 m-0 ml-4">
+        <ul className="list-none p-0 m-0">
             <li className="flex justify-between bg-gray- items-center border-b border-gray-200 py-2 px-4">
             <span className="text-3xl font-bold text-sm w-1/6">#ID</span>
             <span className="text-3xl font-bold text-sm w-1/6">Nama Pengunjung</span>
             <span className="text-3xl font-bold text-sm w-1/6">Tanggal Beli Tiket</span>
             <span className="text-3xl font-bold text-sm w-1/6">Detail Tiket</span>
-            <span className="text-3xl font-bold text-sm w-1/6">Status Pembayaran</span>
+            <span className="text-3xl font-bold text-sm w-1/6">Status</span>
             <span className="text-3xl font-bold text-sm w-1/6">Aksi</span>
           </li>
+
+          {/* Menampilkan data pada tabel */}
           {filteredTransactions.map((transaction, index) => (
             <li
-                key={transaction.id}
-                className={`flex justify-between items-center border-b border-gray-200 py-2 px-4 ${
+              key={transaction.id}
+              className={`flex justify-between items-center border-b border-gray-200 py-2 px-4 ${
                 index % 2 === 0 ? 'bg-gray-100' : 'bg-white'
-                } hover:bg-gray-200`}
+              } hover:bg-gray-200`}
             >
-                <span className="text-sm w-1/6">{transaction.id}</span>
-                <span className="text-sm w-1/6">{transaction.nama_pengunjung}</span>
-                <span className="text-sm w-1/6">{transaction.tanggal_beli_tiket}</span>
-                <span className="text-sm w-1/6">
+              <span className="text-sm w-1/6">{transaction.id}</span>
+              <span className="text-sm w-1/6">{transaction.name}</span>
+              <span className="text-sm w-1/6">{transaction.tanggal_beli_tiket}</span>
+              <span className="text-sm w-1/6">
                 <div
                   className={`${
                     transaction.detail_tiket === 'Vvip' ? 'text-green-500' : 'text-blue-500'
@@ -155,7 +188,7 @@ function TiketTerjualTable() {
                   {transaction.detail_tiket}
                 </div>
               </span>
-                <span className="text-sm w-1/6">
+              <span className="text-sm w-1/6">
                 <div
                   className={`${
                     transaction.status === 'paid' ? 'bg-green-500' : 'bg-red-500'
@@ -171,34 +204,40 @@ function TiketTerjualTable() {
                 </IconButton>
               </span>
             </li>
-            ))}
+          ))}
         </ul>
-       {/* Tombol pagination */}
-       <div className="flex justify-center mt-4">
-          <button
-            className={`${
-              currentPage === 1 ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'
-            } text-white py-[6px] px-3 rounded-md m-2`}
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-          >
-            Previous
-          </button>
-          <span className="text-lg font-semibold mx-4">
-            Page {currentPage} of {Math.ceil(transactions.length / itemsPerPage)}
-          </span>
-          <button
-            className={`${
-              currentPage === Math.ceil(transactions.length / itemsPerPage)
-                ? 'bg-gray-300 cursor-not-allowed'
-                : 'bg-gray-200 hover:bg-blue-500'
-            } text-white py-[6px] px-3 rounded-md m-2`}
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, Math.ceil(transactions.length / itemsPerPage)))}
-            disabled={currentPage === Math.ceil(transactions.length / itemsPerPage)}
-          >
-            Next
-          </button>
-        </div>
+        {/* Tombol pagination */}
+            <div className="flex justify-center mt-4">
+                    <button
+              className={`${
+                currentPage === 1 ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'
+              } text-white py-[6px] px-3 rounded-md m-2`}
+              onClick={() => {
+                setCurrentPage((prev) => Math.max(prev - 1, 1));
+                setIsPageChanging(true); 
+              }}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <span className="text-lg font-semibold mx-4">
+              Page {currentPage} of {Math.ceil(transactions.length / itemsPerPage)}
+            </span>
+            <button
+              className={`${
+                currentPage === Math.ceil(transactions.length / itemsPerPage)
+                  ? 'bg-blue-300 cursor-not-allowed'
+                  : 'bg-gray-200 hover:bg-blue-500'
+              } text-white py-[6px] px-3 rounded-md m-2`}
+              onClick={() => {
+                setCurrentPage((prev) => Math.min(prev + 1, Math.ceil(transactions.length / itemsPerPage)));
+                setIsPageChanging(true); 
+              }}
+              disabled={currentPage === Math.ceil(transactions.length / itemsPerPage)}
+            >
+              Next
+            </button>
+          </div>
       </div>
     </div>
   );
