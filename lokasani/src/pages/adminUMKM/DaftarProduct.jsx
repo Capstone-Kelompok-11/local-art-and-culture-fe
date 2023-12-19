@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -16,6 +17,18 @@ const DaftarProduct = () => {
     const [categoryFilter, setCategoryFilter] = useState('all');
     const [stockFilter, setStockFilter] = useState('all');
     const [searchTerm, setSearchTerm] = useState('');
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [formDataProduct, setFormDataProduct] = useState({
+        name: "",
+        category: "",
+        total_product: "",
+        description: "",
+        price: "",
+        stock: false,
+        image: "",
+        status: ""
+    });
+    const [productIdToEdit, setProductIdToEdit] = useState(null)
 
     const fetchProducts = async () => {
         try {
@@ -51,6 +64,32 @@ const DaftarProduct = () => {
                 console.error('Gagal menghapus data:', error.ressponse.data);
                 await Swal.fire('Error!', 'gagal menghapus data', 'error');
             }
+        }
+    };
+
+    const handleEditProduct = (product) => {
+        setFormDataProduct({
+            name: product.name,
+            category: product.category,
+            total_product: product.total_product,
+            description: product.description,
+            price: product.price,
+            stock: product.stock,
+            image: product.image,
+            status: product.status
+        });
+        setProductIdToEdit(product.id);
+        setIsEditModalOpen(true);
+    };
+
+    const handleSaveEdit = async () => {
+        try {
+            await axios.put(`https://657bab26394ca9e4af1498ba.mockapi.io/product/${productIdToEdit}`, formDataProduct);
+            setIsEditModalOpen(false);
+            fetchProducts();
+            await Swal.fire('Updated!', 'Data berhasil diperbarui', 'success');
+        } catch (error) {
+            console.error('Terjadi kesalahan saat menyimpan perubahan:', error);
         }
     };
 
@@ -219,15 +258,140 @@ const DaftarProduct = () => {
                                                     {item.status}
                                                 </p>
                                             </td>
-                                            <td className="border-t-2 border-b-2 px-4 py-2 cursor-pointer">
-                                                <button onClick={() => handleDeleteProduct(item.id)}>
-                                                    <DeleteOutlineIcon/>
-                                                </button>
+                                            <td className="items-center border-t-2 border-b-2 px-4 py-2 cursor-pointer">
+                                                <div className="flex gap-2 items-center">
+                                                    <button onClick={() => handleDeleteProduct(item.id)}>
+                                                        <DeleteOutlineIcon/>
+                                                    </button>
+                                                    <button onClick={() => handleEditProduct(item)}>
+                                                        <EditIcon fontSize="small"/>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
+                            <div>
+                            {isEditModalOpen && (
+                                <div className="fixed inset-0 flex items-center justify-center z-50">
+                                    <div className="absolute inset-0 bg-gray-800 opacity-50" onClick={() => setIsEditModalOpen(false)}></div>
+                                    <div className="w-2/6 bg-white p-4 rounded-lg z-[60]">
+                                        <h2 className="text-xl font-semibold mb-3">Edit Data</h2>
+                                        <div className="mb-2">
+                                            <label className="block font-semibold mb-1">Nama Produk</label>
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                value={formDataProduct.name}
+                                                onChange={(e) => setFormDataProduct({ ...formDataProduct, name: e.target.value })}
+                                                className="w-full h-10 p-2 border border-gray-300 rounded focus:outline-none"
+                                            />
+                                        </div>
+                                        <div className="mb-2">
+                                            <label className="block font-semibold mb-1">Deskripsi Produk</label>
+                                            <textarea
+                                                name="description"
+                                                value={formDataProduct.description}
+                                                onChange={(e) => setFormDataProduct({ ...formDataProduct, description: e.target.value })}
+                                                rows="2"
+                                                className="w-full py-2 px-3 border border-gray-300 rounded focus:outline-none overflow-auto"
+                                            >
+                                            </textarea>
+                                        </div>
+                                        <div className="mb-2 flex gap-3 w-full">
+                                            <div className="w-full">
+                                                <label className="block font-semibold mb-1">Jumalah Produk</label>
+                                                <input
+                                                    type="text"
+                                                    name="total_product"
+                                                    value={formDataProduct.total_product}
+                                                    onChange={(e) => setFormDataProduct({ ...formDataProduct, total_product: e.target.value })}
+                                                    className="w-full h-10 p-2 border border-gray-300 rounded focus:outline-none"
+                                                />
+                                            </div>
+                                            <div className="w-full">
+                                                <label className="block font-semibold mb-1">Kategori</label>
+                                                <select 
+                                                    className="w-full py-2 px-3 border border-gray-300 rounded focus:outline-none" 
+                                                    name="category" 
+                                                    id="kategori"
+                                                    value={formDataProduct.category}
+                                                    onChange={(e) => setFormDataProduct({ ...formDataProduct, category: e.target.value })}
+                                                >
+                                                    <option value="handmade">HandMade</option>
+                                                    <option value="fashion">Fashion</option>
+                                                    <option value="buku">Buku</option>
+                                                    <option value="3D">3D</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="mb-2 flex gap-3">
+                                            <div className="w-full">
+                                                <label className="block font-semibold mb-1">Harga</label>
+                                                <input
+                                                    type="text"
+                                                    id="harga"
+                                                    name="price"
+                                                    value={formDataProduct.price}
+                                                    onChange={(e) => setFormDataProduct({ ...formDataProduct, price: e.target.value })}
+                                                    className="w-full py-2 px-3 border border-gray-300 rounded-lg focus:outline-none"
+                                                />
+                                            </div>
+                                            <div className="w-full">
+                                                <label className="block font-semibold mb-1">Stok</label>
+                                                <select 
+                                                    className="w-full py-2 px-3 border border-gray-300 rounded-lg focus:outline-none" 
+                                                    name="stock" 
+                                                    id="stok"
+                                                    value={formDataProduct.stock}
+                                                    onChange={(e) => setFormDataProduct({ ...formDataProduct, stock: e.target.value })}
+                                                >
+                                                    <option value="true">Tersedia</option>
+                                                    <option value="false">Tidak Tersedia</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="mb-2">
+                                            
+                                        </div>
+                                        <div className="mb-2">
+                                            <label className="block font-semibold mb-1">Status</label>
+                                            <select 
+                                                className="w-full py-2 px-3 border border-gray-300 rounded-lg focus:outline-none"
+                                                name="status"
+                                                id="status"
+                                                value={formDataProduct.status}
+                                                onChange={(e) => setFormDataProduct({ ...formDataProduct, status: e.target.value })}
+                                            >
+                                                <option value="diunggah">Diunggah</option>
+                                                <option value="dijadwalkan">Dijadwalkan</option>
+                                                <option value="tidak aktif">Tidak Aktif</option>
+                                            </select>
+                                        </div>
+                                        <div className="mb-2">
+                                            <label className="block font-semibold mb-1">URL Gambar</label>
+                                            <input
+                                                type="text"
+                                                id="image"
+                                                name="image"
+                                                value={formDataProduct.image}
+                                                onChange={(e) => setFormDataProduct({ ...formDataProduct, image: e.target.value })}
+                                                className="w-full py-2 px-3 border border-gray-300 rounded-lg focus:outline-none"
+                                            />
+                                        </div>
+                                        <div className="flex justify-end">
+                                            <button onClick={() => setIsEditModalOpen(false)} className="bg-red-500 hover-bg-red-600 px-2 py-1 cursor-pointer rounded-lg text-white mr-2">
+                                                Batal
+                                            </button>
+                                            <button onClick={handleSaveEdit} className="bg-[#253E8D] hover-bg-yellow-600 px-2 py-1 cursor-pointer rounded-lg text-white">
+                                                Simpan
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                            </div>
 
                             <div className="pagination mt-4">
                             <ReactPaginate
