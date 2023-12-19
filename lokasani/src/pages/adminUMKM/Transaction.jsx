@@ -6,7 +6,6 @@ import ReactPaginate from "react-paginate";
 import Sidebar from "../../component/adminUMKM/globalComponent/Sidebar";
 import Header from "../../component/adminUMKM/globalComponent/Header";
 import DownloadIcon from "@mui/icons-material/Download";
-import InfoIcon from "@mui/icons-material/Info";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -101,32 +100,32 @@ const DaftarPesanan = () => {
             <div>
               <div className="flex gap-3">
                 <button
-                  className={`bg-[#253E8D] text-white px-4 py-2 rounded-lg ${
-                    selectedStatus === "Semua" ? "bg-blue-600" : ""
+                  className={`text-white px-4 py-2 rounded-lg ${
+                    selectedStatus === "Semua" ? "bg-[#253E8D]" : "bg-gray-400"
                   }`}
                   onClick={() => handleStatusFilter("Semua")}
                 >
                   Semua
                 </button>
                 <button
-                  className={`bg-[#253E8D] text-white px-4 py-2 rounded-lg ${
-                    selectedStatus === "Dibayar" ? "bg-blue-600" : ""
+                  className={`text-white px-4 py-2 rounded-lg ${
+                    selectedStatus === "Dibayar" ? "bg-[#253E8D]" : "bg-gray-400"
                   }`}
                   onClick={() => handleStatusFilter("Dibayar")}
                 >
                   Dibayar
                 </button>
                 <button
-                  className={`bg-[#253E8D] text-white px-4 py-2 rounded-lg ${
-                    selectedStatus === "Tertunda" ? "bg-blue-600" : ""
+                  className={`text-white px-4 py-2 rounded-lg ${
+                    selectedStatus === "Tertunda" ? "bg-[#253E8D]" : "bg-gray-400"
                   }`}
                   onClick={() => handleStatusFilter("Tertunda")}
                 >
                   Tertunda
                 </button>
                 <button
-                  className={`bg-[#253E8D] text-white px-4 py-2 rounded-lg ${
-                    selectedStatus === "Dibatalkan" ? "bg-blue-600" : ""
+                  className={`text-white px-4 py-2 rounded-lg ${
+                    selectedStatus === "Dibatalkan" ? "bg-[#253E8D]" : "bg-gray-400"
                   }`}
                   onClick={() => handleStatusFilter("Dibatalkan")}
                 >
