@@ -22,7 +22,7 @@ function Transaksi() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://657af72e394ca9e4af1331c9.mockapi.io/lokasani"
+        "https://658197343dfdd1b11c43aec0.mockapi.io//transaksi"
       );
       setTransactions(response.data);
     } catch (error) {
@@ -33,7 +33,7 @@ function Transaksi() {
   const handleDeleteData = async (transactionId) => {
     try {
       await axios.delete(
-        `https://657af72e394ca9e4af1331c9.mockapi.io/lokasani/${transactionId}`
+        `https://658197343dfdd1b11c43aec0.mockapi.io//transaksi/${transactionId}`
       );
       setTransactions((prevTransactions) =>
         prevTransactions.filter(
@@ -66,7 +66,6 @@ function Transaksi() {
     setSelectedTransaction(null);
   };
 
-  // Filter transactions based on the activeButton state
   const filteredTransactions =
     activeButton === "all"
       ? transactions
@@ -184,7 +183,7 @@ function Transaksi() {
                     {transaction.tanggal}
                   </span>
                   <span className="text-[#3653B0] w-1/6">
-                    {transaction.username}
+                    {transaction.name}
                   </span>
                   <span className="text-[#3653B0] w-1/6">
                     {transaction.detail_tiket}
