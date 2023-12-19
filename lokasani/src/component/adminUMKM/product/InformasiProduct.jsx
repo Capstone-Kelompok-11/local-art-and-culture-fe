@@ -37,6 +37,7 @@ const InformasiProduct = ({valueName, valueKategori, valueJumlah, valueDeskripsi
           type="text"
           id="productName"
           name="name"
+          placeholder="Nama Product"
           value={valueName}
           onChange={handleFormChange}
           className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
@@ -79,7 +80,8 @@ const InformasiProduct = ({valueName, valueKategori, valueJumlah, valueDeskripsi
             <label className="font-semibold text-base" htmlFor="deskripsi">Deskripsi Product</label>
           </div>
           <textarea
-            name="description" 
+            name="description"
+            placeholder="Deskripsi Singkat"
             id="deskrisi"
             rows="7"
             className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none overflow-auto"
