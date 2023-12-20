@@ -222,7 +222,6 @@ function Transaksi() {
                   <p>Detail Tiket: {selectedTransaction.detail_tiket}</p>
                   <p>Total Transaksi: ${selectedTransaction.total}</p>
                   <p>Status: {selectedTransaction.status}</p>
-                  {/* Tambahkan elemen-elemen lain sesuai dengan struktur transaksi */}
                   <button
                     onClick={closeDetail}
                     className="bg-blue-700 w-full rounded-md text-white"

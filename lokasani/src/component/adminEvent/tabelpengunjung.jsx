@@ -181,7 +181,7 @@ function PengunjungTable() {
             >
               <span className="text-sm w-1/6">{transaction.id}</span>
               <span className="text-sm w-1/6">{transaction.tanggal}</span>
-              <span className="text-sm w-1/6">{transaction.nama_pengunjung}</span>
+              <span className="text-sm w-1/6">{transaction.name}</span>
               <span className="text-sm w-1/6">{transaction.no_hp}</span>
               <span className="text-sm w-1/6">{transaction.email}</span>
               <span className="text-sm w-1/6">{transaction.nik}</span>
