@@ -23,7 +23,7 @@ const Harga = ({valueHarga, valueStok, handleFormChange}) => {
           type="text"
           id="harga"
           name="price"
-          placeholder="Harga Awal"
+          placeholder="Harga Product"
           className="w-full py-2 px-3 border-2 border-gray-400 rounded-lg focus:outline-none"
           value={valueHarga}
           onChange={handleFormChange}

@@ -99,24 +99,26 @@ const TambahProduct = () => {
               >
                 Batalkan
               </button>
-              <button 
-                onClick={() => postDataProduct("dijadwalkan")}
-                className={`border border-slate-200 ${isLoading ? "bg-blue-400" : "bg-[#253E8D]"}  text-white rounded-md py-2 px-3`}
-              >
                 { isLoading ?
-                  "Menyimpan"
-                  : "Simpan"
+                  <div className="border border-slate-200 bg-gray-400 text-white rounded-md py-2 px-3">Mengirim data...</div>
+                  :
+                  <div className="flex gap-3">
+                    <button 
+                      onClick={() => postDataProduct("dijadwalkan")}
+                      className="border border-slate-200 bg-[#253E8D]  text-white rounded-md py-2 px-3"
+                    >
+                      Simpan
+                    </button>
+                    <button 
+                      onClick={() => postDataProduct("diunggah")} 
+                      className="border border-slate-200 bg-[#253E8D]  text-white rounded-md py-2 px-3"
+                    >
+                      Unggah Product
+                    </button>
+                  </div>
+                  
                 }
-              </button>
-              <button 
-                onClick={() => postDataProduct("diunggah")} 
-                className={`border border-slate-200 ${isLoading ? "bg-blue-400" : "bg-[#253E8D]"}  text-white rounded-md py-2 px-3`}
-              >
-                {isLoading ?
-                  "Mengunggah"
-                  : "Unggah Product"
-                }
-              </button>
+              
             </div>
           </div>
           <div className="px-6 w-full flex gap-6">
